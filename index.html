@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="theme-color" content="#070b14">
+<meta name="theme-color" content="#050816">
 <title>VIDZ — Digital Space</title>
 
 <style>
@@ -19,46 +19,155 @@ html{
 
 body{
   font-family:Arial,Helvetica,sans-serif;
-  background:#070b14;
-  color:#eef6ff;
+  background:#050816;
+  color:#f5f7ff;
   overflow-x:hidden;
 }
 
+body.no-scroll{
+  overflow:hidden;
+}
+
 a{
-  text-decoration:none;
   color:inherit;
+  text-decoration:none;
 }
 
 button{
   font:inherit;
 }
 
-/* BACKGROUND */
+/* =========================
+   LOADING SCREEN
+========================= */
+
+.loader{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#050816;
+  transition:opacity .7s,visibility .7s;
+}
+
+.loader.hide{
+  opacity:0;
+  visibility:hidden;
+}
+
+.loader-box{
+  text-align:center;
+}
+
+.loader-logo{
+  font-size:52px;
+  font-weight:900;
+  color:#00e5ff;
+  letter-spacing:-3px;
+  text-shadow:0 0 30px #00e5ff;
+  animation:loaderPulse 1.2s infinite alternate;
+}
+
+.loader-line{
+  width:180px;
+  height:3px;
+  margin:20px auto 12px;
+  overflow:hidden;
+  border-radius:20px;
+  background:#ffffff12;
+}
+
+.loader-line::before{
+  content:"";
+  display:block;
+  width:45%;
+  height:100%;
+  background:#00e5ff;
+  box-shadow:0 0 15px #00e5ff;
+  animation:loading 1s infinite ease-in-out;
+}
+
+.loader-text{
+  color:#65758b;
+  font-size:11px;
+  letter-spacing:2px;
+}
+
+@keyframes loading{
+  0%{transform:translateX(-100%)}
+  100%{transform:translateX(320%)}
+}
+
+@keyframes loaderPulse{
+  to{
+    transform:scale(1.04);
+  }
+}
+
+/* =========================
+   BACKGROUND
+========================= */
 
 body::before{
   content:"";
   position:fixed;
   inset:0;
-  z-index:-2;
+  z-index:-3;
   background:
-    radial-gradient(circle at 10% 10%,rgba(0,229,255,.14),transparent 28%),
-    radial-gradient(circle at 90% 70%,rgba(139,92,246,.14),transparent 30%),
-    #070b14;
+    radial-gradient(circle at 15% 15%,#00e5ff18,transparent 27%),
+    radial-gradient(circle at 85% 75%,#8b5cf618,transparent 30%),
+    #050816;
 }
 
 body::after{
   content:"";
   position:fixed;
   inset:0;
-  z-index:-1;
-  opacity:.07;
+  z-index:-2;
+  opacity:.055;
   background-image:
-    linear-gradient(rgba(255,255,255,.2) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,.2) 1px,transparent 1px);
-  background-size:48px 48px;
+    linear-gradient(#ffffff 1px,transparent 1px),
+    linear-gradient(90deg,#ffffff 1px,transparent 1px);
+  background-size:55px 55px;
+  pointer-events:none;
 }
 
-/* NAVBAR */
+.orb{
+  position:fixed;
+  width:300px;
+  height:300px;
+  border-radius:50%;
+  filter:blur(90px);
+  opacity:.18;
+  z-index:-1;
+  pointer-events:none;
+  animation:floatOrb 10s ease-in-out infinite alternate;
+}
+
+.orb.one{
+  background:#00e5ff;
+  left:-120px;
+  top:20%;
+}
+
+.orb.two{
+  background:#7c3aed;
+  right:-120px;
+  bottom:10%;
+  animation-delay:2s;
+}
+
+@keyframes floatOrb{
+  to{
+    transform:translate(70px,-50px);
+  }
+}
+
+/* =========================
+   NAVBAR
+========================= */
 
 nav{
   position:fixed;
@@ -66,32 +175,37 @@ nav{
   left:0;
   width:100%;
   z-index:100;
+  padding:16px 7%;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:16px 7%;
-  background:rgba(7,11,20,.78);
+  background:#050816b8;
   backdrop-filter:blur(18px);
-  border-bottom:1px solid #ffffff12;
+  border-bottom:1px solid #ffffff0d;
 }
 
 .logo{
+  color:#00e5ff;
   font-size:26px;
   font-weight:900;
-  color:#00e5ff;
-  text-shadow:0 0 20px #00e5ff;
   cursor:pointer;
   user-select:none;
+  text-shadow:0 0 20px #00e5ff;
+  transition:.25s;
+}
+
+.logo:hover{
+  transform:scale(1.06);
 }
 
 .navlinks{
   display:flex;
   align-items:center;
-  gap:20px;
+  gap:22px;
 }
 
 .navlinks a{
-  color:#b9c7d8;
+  color:#9eacc0;
   font-size:14px;
   transition:.2s;
 }
@@ -101,50 +215,67 @@ nav{
 }
 
 .theme{
-  border:1px solid #00e5ff55;
+  border:1px solid #00e5ff44;
   background:#ffffff08;
-  color:white;
+  color:#fff;
   border-radius:10px;
   padding:7px 10px;
   cursor:pointer;
 }
 
-/* HERO */
+/* =========================
+   HERO
+========================= */
 
 .hero{
   min-height:100vh;
-  padding:145px 7% 90px;
+  padding:150px 7% 100px;
   display:grid;
-  grid-template-columns:1.2fr .8fr;
-  gap:55px;
+  grid-template-columns:1.15fr .85fr;
+  gap:65px;
   align-items:center;
 }
 
-.kicker{
-  color:#00e5ff;
-  font-size:12px;
-  font-weight:bold;
-  letter-spacing:2px;
-  margin-bottom:20px;
+.status{
+  width:max-content;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 13px;
+  margin-bottom:22px;
+  border:1px solid #00e5ff33;
+  border-radius:30px;
+  color:#82a1b5;
+  background:#00e5ff08;
+  font-size:11px;
+  letter-spacing:1px;
+}
+
+.status i{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#00ff9d;
+  box-shadow:0 0 12px #00ff9d;
 }
 
 .hero h1{
-  font-size:clamp(50px,8vw,94px);
-  line-height:.93;
-  letter-spacing:-4px;
+  font-size:clamp(55px,8vw,100px);
+  line-height:.9;
+  letter-spacing:-5px;
 }
 
 .hero h1 span{
   color:#00e5ff;
-  text-shadow:0 0 30px #00e5ff;
+  text-shadow:0 0 35px #00e5ff55;
 }
 
-.hero-text{
-  max-width:680px;
-  margin-top:24px;
-  color:#8fa1b5;
-  line-height:1.8;
+.hero-sub{
+  max-width:650px;
+  margin-top:25px;
+  color:#8292a7;
   font-size:17px;
+  line-height:1.8;
 }
 
 .actions{
@@ -155,7 +286,6 @@ nav{
 }
 
 .btn{
-  display:inline-block;
   padding:13px 21px;
   border-radius:12px;
   font-weight:bold;
@@ -163,39 +293,67 @@ nav{
 }
 
 .primary{
-  background:#00e5ff;
   color:#001017;
-  box-shadow:0 0 28px #00e5ff33;
+  background:#00e5ff;
+  box-shadow:0 0 30px #00e5ff2d;
 }
 
 .secondary{
-  border:1px solid #ffffff20;
+  color:#fff;
   background:#ffffff06;
+  border:1px solid #ffffff1c;
 }
 
 .btn:hover{
   transform:translateY(-4px);
 }
 
-/* PROFILE */
+/* =========================
+   PROFILE
+========================= */
 
 .profile-card{
-  padding:28px;
+  position:relative;
+  padding:30px;
+  overflow:hidden;
   border-radius:30px;
-  background:linear-gradient(145deg,#101b2d,#080f1d);
-  border:1px solid #00e5ff33;
-  box-shadow:0 30px 90px #0008;
+  background:linear-gradient(145deg,#111b31dd,#080d1add);
+  border:1px solid #00e5ff2e;
+  box-shadow:0 35px 100px #0008;
+}
+
+.profile-card::before{
+  content:"";
+  position:absolute;
+  width:160px;
+  height:160px;
+  top:-80px;
+  right:-80px;
+  border-radius:50%;
+  background:#00e5ff;
+  filter:blur(80px);
+  opacity:.18;
 }
 
 .avatar{
-  width:150px;
-  height:150px;
+  position:relative;
+  width:155px;
+  height:155px;
   display:block;
   margin:0 auto 22px;
   object-fit:cover;
-  border-radius:28px;
+  border-radius:50%;
   border:3px solid #00e5ff;
-  box-shadow:0 0 30px #00e5ff55;
+  box-shadow:
+    0 0 25px #00e5ff66,
+    0 0 80px #00e5ff18;
+  animation:avatarFloat 4s ease-in-out infinite;
+}
+
+@keyframes avatarFloat{
+  50%{
+    transform:translateY(-8px);
+  }
 }
 
 .profile-card h2{
@@ -206,45 +364,49 @@ nav{
 .role{
   text-align:center;
   color:#00e5ff;
-  margin-top:6px;
+  font-size:13px;
+  margin-top:7px;
 }
 
 .card-line{
   height:1px;
-  background:#ffffff10;
   margin:25px 0;
+  background:#ffffff10;
 }
 
 .mini-info{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:16px;
+  gap:18px;
 }
 
 .mini-info small{
   display:block;
-  color:#607086;
+  color:#56677c;
   margin-bottom:5px;
+  font-size:11px;
 }
 
 .mini-info b{
-  font-size:14px;
+  font-size:13px;
 }
 
 .quote{
-  margin-top:22px;
-  padding:14px;
-  border-radius:13px;
+  margin-top:24px;
+  padding:15px;
+  border-radius:14px;
+  color:#8fa0b4;
   background:#ffffff05;
-  color:#94a3b8;
   font-size:13px;
   line-height:1.6;
 }
 
-/* SECTION */
+/* =========================
+   SECTIONS
+========================= */
 
 section{
-  padding:100px 7%;
+  padding:105px 7%;
 }
 
 .heading{
@@ -254,16 +416,19 @@ section{
 
 .heading small{
   color:#00e5ff;
+  font-size:11px;
   letter-spacing:2px;
   font-weight:bold;
 }
 
 .heading h2{
+  margin-top:9px;
   font-size:42px;
-  margin-top:8px;
 }
 
-/* STATS */
+/* =========================
+   STATS
+========================= */
 
 .stats{
   max-width:1050px;
@@ -274,46 +439,56 @@ section{
 }
 
 .stat{
-  padding:27px;
+  padding:28px;
   text-align:center;
   border-radius:20px;
-  background:#0e1727aa;
-  border:1px solid #ffffff0d;
+  background:#0c1424b8;
+  border:1px solid #ffffff0c;
+  transition:.3s;
+}
+
+.stat:hover{
+  transform:translateY(-7px);
+  border-color:#00e5ff3b;
 }
 
 .stat strong{
   display:block;
-  font-size:38px;
   color:#00e5ff;
+  font-size:40px;
 }
 
 .stat span{
-  color:#8394a8;
+  color:#718198;
   font-size:13px;
 }
 
-/* ABOUT */
+/* =========================
+   ABOUT
+========================= */
 
 .about{
   max-width:900px;
   margin:auto;
-  padding:38px;
-  border-radius:24px;
-  background:#0e1727aa;
-  border:1px solid #ffffff0d;
+  padding:40px;
+  border-radius:25px;
+  background:#0c1424b8;
+  border:1px solid #ffffff0c;
 }
 
 .about p{
-  color:#c5d1de;
+  color:#b9c7d8;
   text-align:center;
-  line-height:1.9;
   font-size:17px;
+  line-height:1.9;
 }
 
-/* SKILLS */
+/* =========================
+   SKILLS
+========================= */
 
 .skills{
-  max-width:900px;
+  max-width:950px;
   margin:auto;
   display:grid;
   grid-template-columns:repeat(3,1fr);
@@ -321,17 +496,17 @@ section{
 }
 
 .skill{
-  padding:20px;
-  border-radius:17px;
-  background:#0e1727aa;
-  border:1px solid #ffffff0d;
-  text-align:center;
-  transition:.25s;
+  padding:22px;
+  border-radius:18px;
+  background:#0c1424b8;
+  border:1px solid #ffffff0c;
+  transition:.3s;
 }
 
 .skill:hover{
-  transform:translateY(-5px);
-  border-color:#00e5ff55;
+  transform:translateY(-6px);
+  border-color:#00e5ff4d;
+  box-shadow:0 15px 40px #0004;
 }
 
 .skill b{
@@ -340,11 +515,13 @@ section{
 }
 
 .skill span{
-  color:#718197;
+  color:#718198;
   font-size:13px;
 }
 
-/* PROJECTS */
+/* =========================
+   PROJECTS
+========================= */
 
 .projects{
   display:grid;
@@ -353,21 +530,39 @@ section{
 }
 
 .project{
-  min-height:230px;
-  padding:29px;
-  border-radius:22px;
-  background:#0e1727aa;
-  border:1px solid #ffffff0d;
+  position:relative;
+  min-height:245px;
+  padding:30px;
+  overflow:hidden;
+  border-radius:23px;
+  background:#0c1424b8;
+  border:1px solid #ffffff0c;
+  transition:.3s;
+}
+
+.project::after{
+  content:"→";
+  position:absolute;
+  right:25px;
+  bottom:20px;
+  color:#00e5ff;
+  font-size:25px;
+  opacity:.5;
   transition:.3s;
 }
 
 .project:hover{
-  transform:translateY(-10px);
-  border-color:#00e5ff66;
+  transform:translateY(-9px);
+  border-color:#00e5ff55;
+}
+
+.project:hover::after{
+  transform:translateX(7px);
+  opacity:1;
 }
 
 .project-icon{
-  font-size:42px;
+  font-size:40px;
   margin-bottom:20px;
 }
 
@@ -377,11 +572,13 @@ section{
 }
 
 .project p{
-  color:#8495aa;
+  color:#7e90a6;
   line-height:1.65;
 }
 
-/* TIMELINE */
+/* =========================
+   TIMELINE
+========================= */
 
 .timeline{
   max-width:800px;
@@ -389,21 +586,23 @@ section{
 }
 
 .event{
+  position:relative;
   display:flex;
   gap:18px;
-  padding:20px 0;
-  border-bottom:1px solid #ffffff0d;
+  padding:22px 0;
+  border-bottom:1px solid #ffffff0c;
 }
 
 .event-num{
-  min-width:40px;
-  height:40px;
-  border-radius:50%;
+  min-width:42px;
+  height:42px;
   display:grid;
   place-items:center;
-  background:#00e5ff;
+  border-radius:50%;
   color:#001017;
+  background:#00e5ff;
   font-weight:900;
+  box-shadow:0 0 20px #00e5ff33;
 }
 
 .event h3{
@@ -411,29 +610,33 @@ section{
 }
 
 .event p{
-  color:#8495aa;
+  color:#7e90a6;
   line-height:1.6;
 }
 
-/* FOOTER */
+/* =========================
+   FOOTER
+========================= */
 
 footer{
   padding:35px 20px;
   text-align:center;
-  color:#5f7085;
-  border-top:1px solid #ffffff0d;
+  color:#586a80;
+  border-top:1px solid #ffffff0c;
 }
 
 footer span{
   color:#00e5ff;
 }
 
-/* SCROLL ANIMATION */
+/* =========================
+   REVEAL
+========================= */
 
 .reveal{
   opacity:0;
-  transform:translateY(25px);
-  transition:.7s;
+  transform:translateY(30px);
+  transition:opacity .7s ease,transform .7s ease;
 }
 
 .reveal.show{
@@ -441,23 +644,25 @@ footer span{
   transform:translateY(0);
 }
 
-/* LIGHT MODE */
+/* =========================
+   LIGHT MODE
+========================= */
 
 body.light{
-  background:#edf2f7;
-  color:#0f172a;
+  color:#101827;
+  background:#edf3f8;
 }
 
 body.light::before{
   background:
-    radial-gradient(circle at 10% 10%,#cff8ff,transparent 28%),
-    radial-gradient(circle at 90% 70%,#e9ddff,transparent 30%),
-    #edf2f7;
+    radial-gradient(circle at 10% 10%,#c9f7ff,transparent 28%),
+    radial-gradient(circle at 90% 70%,#e7dcff,transparent 30%),
+    #edf3f8;
 }
 
 body.light nav{
-  background:#ffffffcc;
-  border-color:#00000012;
+  background:#ffffffc9;
+  border-color:#00000010;
 }
 
 body.light .navlinks a{
@@ -465,8 +670,8 @@ body.light .navlinks a{
 }
 
 body.light .theme{
-  color:#0f172a;
-  background:white;
+  color:#101827;
+  background:#ffffff;
 }
 
 body.light .profile-card,
@@ -474,11 +679,11 @@ body.light .stat,
 body.light .about,
 body.light .skill,
 body.light .project{
-  background:#ffffffcc;
+  background:#ffffffd9;
   border-color:#00000010;
 }
 
-body.light .hero-text,
+body.light .hero-sub,
 body.light .about p,
 body.light .project p,
 body.light .event p{
@@ -486,10 +691,12 @@ body.light .event p{
 }
 
 body.light .secondary{
-  color:#0f172a;
+  color:#101827;
 }
 
-/* MOBILE */
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:850px){
 
@@ -497,6 +704,16 @@ body.light .secondary{
     grid-template-columns:1fr;
     text-align:center;
     padding-top:125px;
+  }
+
+  .status{
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+  .hero-sub{
+    margin-left:auto;
+    margin-right:auto;
   }
 
   .actions{
@@ -507,11 +724,6 @@ body.light .secondary{
   .skills,
   .projects{
     grid-template-columns:1fr;
-  }
-
-  .hero-text{
-    margin-left:auto;
-    margin-right:auto;
   }
 
   section{
@@ -534,18 +746,48 @@ body.light .secondary{
   }
 
   .hero h1{
-    font-size:54px;
-    letter-spacing:-2px;
+    font-size:55px;
+    letter-spacing:-3px;
   }
 
   .mini-info{
     grid-template-columns:1fr;
   }
+
+  .profile-card{
+    padding:24px;
+  }
+
+  .heading h2{
+    font-size:34px;
+  }
 }
 </style>
 </head>
 
-<body>
+<body class="no-scroll">
+
+<!-- LOADING -->
+
+<div class="loader" id="loader">
+
+  <div class="loader-box">
+
+    <div class="loader-logo">VIDZ.</div>
+
+    <div class="loader-line"></div>
+
+    <div class="loader-text">
+      INITIALIZING DIGITAL SPACE...
+    </div>
+
+  </div>
+
+</div>
+
+<div class="orb one"></div>
+<div class="orb two"></div>
+
 
 <!-- NAVBAR -->
 
@@ -577,8 +819,9 @@ body.light .secondary{
 
   <div class="reveal">
 
-    <div class="kicker">
-      ● PERSONAL DIGITAL SPACE
+    <div class="status">
+      <i></i>
+      CURRENTLY LEARNING WEB DEVELOPMENT
     </div>
 
     <h1>
@@ -586,11 +829,10 @@ body.light .secondary{
       SAYA <span>VIDZ.</span>
     </h1>
 
-    <p class="hero-text">
-      Saya sedang belajar membuat website, mencoba berbagai project,
-      dan bereksperimen dengan teknologi web.
-      Website ini saya buat sendiri sebagai tempat belajar dan berkarya —
-      awalnya karena gabut 🗿
+    <p class="hero-sub">
+      Sebuah ruang kecil untuk menyimpan project,
+      eksperimen, dan berbagai ide random yang muncul
+      saat lagi gabut 🗿.
     </p>
 
     <div class="actions">
@@ -600,7 +842,7 @@ body.light .secondary{
       </a>
 
       <a class="btn secondary" href="#about">
-        Kenal Saya
+        Tentang Saya
       </a>
 
     </div>
@@ -649,8 +891,8 @@ body.light .secondary{
     </div>
 
     <div class="quote">
-      “ikan hiu digigit megalodon.
-      btw rating dong. 🗿”
+      “Ikan hiu digigit megalodon.
+      Btw rating dong. 🗿”
     </div>
 
   </div>
@@ -663,25 +905,46 @@ body.light .secondary{
 <section>
 
   <div class="heading reveal">
+
     <small>QUICK INFO</small>
+
     <h2>Statistik</h2>
+
   </div>
+
 
   <div class="stats">
 
     <div class="stat reveal">
+
       <strong>01</strong>
-      <span>Website utama</span>
+
+      <span>
+        Website utama
+      </span>
+
     </div>
 
+
     <div class="stat reveal">
+
       <strong>03+</strong>
-      <span>Project / eksperimen</span>
+
+      <span>
+        Project / eksperimen
+      </span>
+
     </div>
 
+
     <div class="stat reveal">
+
       <strong>∞</strong>
-      <span>Ide random 🗿</span>
+
+      <span>
+        Ide random 🗿
+      </span>
+
     </div>
 
   </div>
@@ -694,17 +957,22 @@ body.light .secondary{
 <section id="about">
 
   <div class="heading reveal">
+
     <small>WHO AM I?</small>
+
     <h2>Tentang Saya</h2>
+
   </div>
+
 
   <div class="about reveal">
 
     <p>
       Saya dari budak SMPN 2 Kelumpang Tengah.
       Saya bikin project ini karena gabut 🗿.
-      Tapi dari project ini saya jadi bisa belajar sedikit demi sedikit
-      tentang HTML, CSS, JavaScript, GitHub, dan cara membuat website sendiri.
+      Tapi dari project ini saya jadi belajar sedikit demi sedikit
+      tentang HTML, CSS, JavaScript, GitHub, dan cara membuat
+      website sendiri.
     </p>
 
   </div>
@@ -717,9 +985,13 @@ body.light .secondary{
 <section id="skills">
 
   <div class="heading reveal">
+
     <small>WHAT I USE</small>
+
     <h2>Skills & Minat</h2>
+
   </div>
+
 
   <div class="skills">
 
@@ -763,21 +1035,27 @@ body.light .secondary{
 <section id="projects">
 
   <div class="heading reveal">
+
     <small>MY WORK</small>
+
     <h2>Project Saya</h2>
+
   </div>
+
 
   <div class="projects">
 
     <div class="project reveal">
 
-      <div class="project-icon">🌐</div>
+      <div class="project-icon">
+        🌐
+      </div>
 
       <h3>VIDZ Website</h3>
 
       <p>
-        Website personal pertama yang dibuat dan
-        di-host menggunakan GitHub Pages.
+        Website personal yang dibuat dengan HTML,
+        CSS, JavaScript, dan GitHub Pages.
       </p>
 
     </div>
@@ -785,13 +1063,15 @@ body.light .secondary{
 
     <div class="project reveal">
 
-      <div class="project-icon">💻</div>
+      <div class="project-icon">
+        💻
+      </div>
 
       <h3>Web Experiments</h3>
 
       <p>
-        Tempat mencoba layout, animasi, JavaScript,
-        dan berbagai ide website.
+        Tempat mencoba layout, animasi,
+        JavaScript, dan berbagai ide website.
       </p>
 
     </div>
@@ -799,7 +1079,9 @@ body.light .secondary{
 
     <div class="project reveal">
 
-      <div class="project-icon">🚀</div>
+      <div class="project-icon">
+        🚀
+      </div>
 
       <h3>Future Project</h3>
 
@@ -820,22 +1102,30 @@ body.light .secondary{
 <section>
 
   <div class="heading reveal">
+
     <small>MY JOURNEY</small>
+
     <h2>Perjalanan Project</h2>
+
   </div>
+
 
   <div class="timeline">
 
     <div class="event reveal">
 
-      <div class="event-num">01</div>
+      <div class="event-num">
+        01
+      </div>
 
       <div>
+
         <h3>Mulai belajar</h3>
 
         <p>
           Mulai mencoba membuat website sendiri.
         </p>
+
       </div>
 
     </div>
@@ -843,14 +1133,19 @@ body.light .secondary{
 
     <div class="event reveal">
 
-      <div class="event-num">02</div>
+      <div class="event-num">
+        02
+      </div>
 
       <div>
+
         <h3>Website pertama online</h3>
 
         <p>
-          Project berhasil dipasang di GitHub Pages.
+          Project berhasil dipasang menggunakan
+          GitHub Pages.
         </p>
+
       </div>
 
     </div>
@@ -858,15 +1153,19 @@ body.light .secondary{
 
     <div class="event reveal">
 
-      <div class="event-num">03</div>
+      <div class="event-num">
+        03
+      </div>
 
       <div>
+
         <h3>Terus eksperimen</h3>
 
         <p>
-          Mulai menambahkan desain, animasi,
-          dan fitur baru.
+          Mulai menambahkan desain,
+          animasi, dan fitur baru.
         </p>
+
       </div>
 
     </div>
@@ -888,7 +1187,28 @@ body.light .secondary{
 
 <script>
 
-/* SCROLL ANIMATION */
+/* =========================
+   LOADING SCREEN
+========================= */
+
+window.addEventListener("load",function(){
+
+  setTimeout(function(){
+
+    document
+      .getElementById("loader")
+      .classList.add("hide");
+
+    document.body.classList.remove("no-scroll");
+
+  },900);
+
+});
+
+
+/* =========================
+   SCROLL REVEAL
+========================= */
 
 const revealElements =
 document.querySelectorAll(".reveal");
@@ -899,21 +1219,27 @@ new IntersectionObserver(function(entries){
   entries.forEach(function(entry){
 
     if(entry.isIntersecting){
+
       entry.target.classList.add("show");
+
     }
 
   });
 
 },{
-  threshold:0.1
+  threshold:.1
 });
 
 revealElements.forEach(function(element){
+
   observer.observe(element);
+
 });
 
 
-/* DARK / LIGHT MODE */
+/* =========================
+   DARK / LIGHT MODE
+========================= */
 
 const themeButton =
 document.getElementById("themeButton");
@@ -922,34 +1248,54 @@ themeButton.addEventListener("click",function(){
 
   document.body.classList.toggle("light");
 
-  if(document.body.classList.contains("light")){
+  if(
+    document.body.classList.contains("light")
+  ){
+
     themeButton.textContent="☀️";
+
   }else{
+
     themeButton.textContent="🌙";
+
   }
 
 });
 
 
-/* SECRET EASTER EGG */
+/* =========================
+   SECRET EASTER EGG
+========================= */
 
 const logo =
 document.getElementById("logo");
 
-let clickCount = 0;
+let clickCount=0;
+
+let clickTimer;
 
 logo.addEventListener("click",function(){
 
   clickCount++;
 
-  if(clickCount === 3){
+  clearTimeout(clickTimer);
+
+  clickTimer=setTimeout(function(){
+
+    clickCount=0;
+
+  },900);
+
+
+  if(clickCount===3){
 
     alert(
-      "🗿 EASTER EGG FOUND!\n\n" +
+      "🗿 EASTER EGG FOUND!\n\n"+
       "Utuh & Enal FUTA LOVERS 🤫"
     );
 
-    clickCount = 0;
+    clickCount=0;
+
   }
 
 });
@@ -957,4 +1303,4 @@ logo.addEventListener("click",function(){
 </script>
 
 </body>
-  </html>
+</html>
