@@ -146,13 +146,3 @@ footer span{color:#00eaff}
 
 </body>
 </html>'''
-
-(outdir / "index.html").write_text(html, encoding="utf-8")
-
-zip_path = Path("/mnt/data/VIDZ-Web-Upgrade.zip")
-with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as z:
-    z.write(outdir / "index.html", "index.html")
-    z.write(outdir / "profile.jpg", "profile.jpg")
-
-print(f"Siap: {zip_path}")
-
