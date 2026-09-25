@@ -2,147 +2,959 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VIDZ | Personal Website</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#070b14">
+<title>VIDZ — Digital Space</title>
+
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
 body{
-  font-family:Arial,sans-serif;color:#fff;background:#030712;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#070b14;
+  color:#eef6ff;
   overflow-x:hidden;
 }
-body:before,body:after{
-  content:"";position:fixed;width:280px;height:280px;border-radius:50%;
-  filter:blur(90px);opacity:.25;z-index:-2;animation:float 8s ease-in-out infinite alternate;
+
+a{
+  text-decoration:none;
+  color:inherit;
 }
-body:before{background:#00eaff;top:5%;left:-80px}
-body:after{background:#7c3aed;right:-80px;bottom:5%;animation-delay:2s}
-@keyframes float{to{transform:translate(80px,-50px)}}
+
+button{
+  font:inherit;
+}
+
+/* BACKGROUND */
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-2;
+  background:
+    radial-gradient(circle at 10% 10%,rgba(0,229,255,.14),transparent 28%),
+    radial-gradient(circle at 90% 70%,rgba(139,92,246,.14),transparent 30%),
+    #070b14;
+}
+
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  opacity:.07;
+  background-image:
+    linear-gradient(rgba(255,255,255,.2) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.2) 1px,transparent 1px);
+  background-size:48px 48px;
+}
+
+/* NAVBAR */
 
 nav{
-  position:fixed;top:0;left:0;width:100%;z-index:10;
-  padding:17px 7%;display:flex;justify-content:space-between;align-items:center;
-  background:rgba(3,7,18,.72);backdrop-filter:blur(16px);
-  border-bottom:1px solid rgba(255,255,255,.08)
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  z-index:100;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:16px 7%;
+  background:rgba(7,11,20,.78);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid #ffffff12;
 }
-.logo{font-size:25px;font-weight:800;color:#00eaff;text-shadow:0 0 18px #00eaff}
-nav a{color:#cbd5e1;text-decoration:none;margin-left:18px;font-size:14px}
-nav a:hover{color:#00eaff}
+
+.logo{
+  font-size:26px;
+  font-weight:900;
+  color:#00e5ff;
+  text-shadow:0 0 20px #00e5ff;
+  cursor:pointer;
+  user-select:none;
+}
+
+.navlinks{
+  display:flex;
+  align-items:center;
+  gap:20px;
+}
+
+.navlinks a{
+  color:#b9c7d8;
+  font-size:14px;
+  transition:.2s;
+}
+
+.navlinks a:hover{
+  color:#00e5ff;
+}
+
+.theme{
+  border:1px solid #00e5ff55;
+  background:#ffffff08;
+  color:white;
+  border-radius:10px;
+  padding:7px 10px;
+  cursor:pointer;
+}
+
+/* HERO */
 
 .hero{
-  min-height:100vh;padding:130px 7% 80px;display:flex;
-  justify-content:center;align-items:center;text-align:center
+  min-height:100vh;
+  padding:145px 7% 90px;
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:55px;
+  align-items:center;
 }
-.profile{
-  width:170px;height:170px;border-radius:50%;object-fit:cover;
-  border:4px solid #00eaff;box-shadow:0 0 25px #00eaff,0 0 70px rgba(0,234,255,.25);
-  animation:pulse 3s ease-in-out infinite
-}
-@keyframes pulse{50%{transform:translateY(-7px);box-shadow:0 0 35px #00eaff,0 0 90px rgba(0,234,255,.3)}}
-.badge{
-  display:inline-block;margin:28px 0 15px;padding:8px 16px;border-radius:30px;
-  border:1px solid #00eaff;color:#00eaff;font-size:12px
-}
-h1{font-size:clamp(48px,10vw,92px);line-height:1}
-h1 span{color:#00eaff;text-shadow:0 0 25px #00eaff}
-.hero p{max-width:650px;margin:24px auto;color:#94a3b8;font-size:17px;line-height:1.7}
-.btn{
-  display:inline-block;margin:6px;padding:13px 22px;border-radius:12px;
-  text-decoration:none;font-weight:bold;transition:.25s
-}
-.primary{background:#00eaff;color:#001018;box-shadow:0 0 25px rgba(0,234,255,.3)}
-.secondary{border:1px solid #334155;color:#fff}
-.btn:hover{transform:translateY(-4px)}
 
-section{padding:90px 7%}
-.title{text-align:center;font-size:40px;margin-bottom:38px}
-.title span{color:#00eaff}
+.kicker{
+  color:#00e5ff;
+  font-size:12px;
+  font-weight:bold;
+  letter-spacing:2px;
+  margin-bottom:20px;
+}
+
+.hero h1{
+  font-size:clamp(50px,8vw,94px);
+  line-height:.93;
+  letter-spacing:-4px;
+}
+
+.hero h1 span{
+  color:#00e5ff;
+  text-shadow:0 0 30px #00e5ff;
+}
+
+.hero-text{
+  max-width:680px;
+  margin-top:24px;
+  color:#8fa1b5;
+  line-height:1.8;
+  font-size:17px;
+}
+
+.actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:30px;
+}
+
+.btn{
+  display:inline-block;
+  padding:13px 21px;
+  border-radius:12px;
+  font-weight:bold;
+  transition:.25s;
+}
+
+.primary{
+  background:#00e5ff;
+  color:#001017;
+  box-shadow:0 0 28px #00e5ff33;
+}
+
+.secondary{
+  border:1px solid #ffffff20;
+  background:#ffffff06;
+}
+
+.btn:hover{
+  transform:translateY(-4px);
+}
+
+/* PROFILE */
+
+.profile-card{
+  padding:28px;
+  border-radius:30px;
+  background:linear-gradient(145deg,#101b2d,#080f1d);
+  border:1px solid #00e5ff33;
+  box-shadow:0 30px 90px #0008;
+}
+
+.avatar{
+  width:150px;
+  height:150px;
+  display:block;
+  margin:0 auto 22px;
+  object-fit:cover;
+  border-radius:28px;
+  border:3px solid #00e5ff;
+  box-shadow:0 0 30px #00e5ff55;
+}
+
+.profile-card h2{
+  text-align:center;
+  font-size:28px;
+}
+
+.role{
+  text-align:center;
+  color:#00e5ff;
+  margin-top:6px;
+}
+
+.card-line{
+  height:1px;
+  background:#ffffff10;
+  margin:25px 0;
+}
+
+.mini-info{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+}
+
+.mini-info small{
+  display:block;
+  color:#607086;
+  margin-bottom:5px;
+}
+
+.mini-info b{
+  font-size:14px;
+}
+
+.quote{
+  margin-top:22px;
+  padding:14px;
+  border-radius:13px;
+  background:#ffffff05;
+  color:#94a3b8;
+  font-size:13px;
+  line-height:1.6;
+}
+
+/* SECTION */
+
+section{
+  padding:100px 7%;
+}
+
+.heading{
+  text-align:center;
+  margin-bottom:48px;
+}
+
+.heading small{
+  color:#00e5ff;
+  letter-spacing:2px;
+  font-weight:bold;
+}
+
+.heading h2{
+  font-size:42px;
+  margin-top:8px;
+}
+
+/* STATS */
+
+.stats{
+  max-width:1050px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+
+.stat{
+  padding:27px;
+  text-align:center;
+  border-radius:20px;
+  background:#0e1727aa;
+  border:1px solid #ffffff0d;
+}
+
+.stat strong{
+  display:block;
+  font-size:38px;
+  color:#00e5ff;
+}
+
+.stat span{
+  color:#8394a8;
+  font-size:13px;
+}
+
+/* ABOUT */
+
 .about{
-  max-width:800px;margin:auto;padding:35px;text-align:center;
-  background:rgba(15,23,42,.62);border:1px solid rgba(0,234,255,.16);
-  border-radius:22px;box-shadow:0 0 35px rgba(0,0,0,.25)
+  max-width:900px;
+  margin:auto;
+  padding:38px;
+  border-radius:24px;
+  background:#0e1727aa;
+  border:1px solid #ffffff0d;
 }
-.about p{color:#cbd5e1;line-height:1.8;font-size:17px}
-.cards{display:flex;justify-content:center;gap:22px;flex-wrap:wrap}
-.card{
-  width:290px;padding:28px;border-radius:20px;background:rgba(15,23,42,.62);
-  border:1px solid rgba(255,255,255,.08);transition:.3s
+
+.about p{
+  color:#c5d1de;
+  text-align:center;
+  line-height:1.9;
+  font-size:17px;
 }
-.card:hover{transform:translateY(-10px);border-color:#00eaff;box-shadow:0 0 30px rgba(0,234,255,.13)}
-.icon{font-size:42px;margin-bottom:15px}
-.card h3{margin-bottom:10px}.card p{color:#94a3b8;line-height:1.6}
+
+/* SKILLS */
+
+.skills{
+  max-width:900px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+}
+
+.skill{
+  padding:20px;
+  border-radius:17px;
+  background:#0e1727aa;
+  border:1px solid #ffffff0d;
+  text-align:center;
+  transition:.25s;
+}
+
+.skill:hover{
+  transform:translateY(-5px);
+  border-color:#00e5ff55;
+}
+
+.skill b{
+  display:block;
+  margin-bottom:7px;
+}
+
+.skill span{
+  color:#718197;
+  font-size:13px;
+}
+
+/* PROJECTS */
+
+.projects{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+.project{
+  min-height:230px;
+  padding:29px;
+  border-radius:22px;
+  background:#0e1727aa;
+  border:1px solid #ffffff0d;
+  transition:.3s;
+}
+
+.project:hover{
+  transform:translateY(-10px);
+  border-color:#00e5ff66;
+}
+
+.project-icon{
+  font-size:42px;
+  margin-bottom:20px;
+}
+
+.project h3{
+  font-size:21px;
+  margin-bottom:10px;
+}
+
+.project p{
+  color:#8495aa;
+  line-height:1.65;
+}
+
+/* TIMELINE */
+
+.timeline{
+  max-width:800px;
+  margin:auto;
+}
+
+.event{
+  display:flex;
+  gap:18px;
+  padding:20px 0;
+  border-bottom:1px solid #ffffff0d;
+}
+
+.event-num{
+  min-width:40px;
+  height:40px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:#00e5ff;
+  color:#001017;
+  font-weight:900;
+}
+
+.event h3{
+  margin-bottom:6px;
+}
+
+.event p{
+  color:#8495aa;
+  line-height:1.6;
+}
+
+/* FOOTER */
 
 footer{
-  text-align:center;padding:30px;color:#64748b;
-  border-top:1px solid rgba(255,255,255,.08)
+  padding:35px 20px;
+  text-align:center;
+  color:#5f7085;
+  border-top:1px solid #ffffff0d;
 }
-footer span{color:#00eaff}
 
-@media(max-width:600px){
-  nav{padding:15px 5%}nav a{font-size:11px;margin-left:8px}
-  .profile{width:145px;height:145px}
-  section{padding:75px 5%}.about{padding:25px}.card{width:100%}
+footer span{
+  color:#00e5ff;
+}
+
+/* SCROLL ANIMATION */
+
+.reveal{
+  opacity:0;
+  transform:translateY(25px);
+  transition:.7s;
+}
+
+.reveal.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* LIGHT MODE */
+
+body.light{
+  background:#edf2f7;
+  color:#0f172a;
+}
+
+body.light::before{
+  background:
+    radial-gradient(circle at 10% 10%,#cff8ff,transparent 28%),
+    radial-gradient(circle at 90% 70%,#e9ddff,transparent 30%),
+    #edf2f7;
+}
+
+body.light nav{
+  background:#ffffffcc;
+  border-color:#00000012;
+}
+
+body.light .navlinks a{
+  color:#334155;
+}
+
+body.light .theme{
+  color:#0f172a;
+  background:white;
+}
+
+body.light .profile-card,
+body.light .stat,
+body.light .about,
+body.light .skill,
+body.light .project{
+  background:#ffffffcc;
+  border-color:#00000010;
+}
+
+body.light .hero-text,
+body.light .about p,
+body.light .project p,
+body.light .event p{
+  color:#475569;
+}
+
+body.light .secondary{
+  color:#0f172a;
+}
+
+/* MOBILE */
+
+@media(max-width:850px){
+
+  .hero{
+    grid-template-columns:1fr;
+    text-align:center;
+    padding-top:125px;
+  }
+
+  .actions{
+    justify-content:center;
+  }
+
+  .stats,
+  .skills,
+  .projects{
+    grid-template-columns:1fr;
+  }
+
+  .hero-text{
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+  section{
+    padding:80px 5%;
+  }
+}
+
+@media(max-width:500px){
+
+  nav{
+    padding:14px 5%;
+  }
+
+  .navlinks{
+    gap:8px;
+  }
+
+  .navlinks a{
+    display:none;
+  }
+
+  .hero h1{
+    font-size:54px;
+    letter-spacing:-2px;
+  }
+
+  .mini-info{
+    grid-template-columns:1fr;
+  }
 }
 </style>
 </head>
+
 <body>
 
+<!-- NAVBAR -->
+
 <nav>
-  <div class="logo">VIDZ.</div>
-  <div>
+
+  <div class="logo" id="logo">
+    VIDZ.
+  </div>
+
+  <div class="navlinks">
+
     <a href="#home">Home</a>
     <a href="#about">Tentang</a>
-    <a href="#project">Project</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Project</a>
+
+    <button class="theme" id="themeButton">
+      🌙
+    </button>
+
   </div>
+
 </nav>
 
+
+<!-- HERO -->
+
 <section class="hero" id="home">
-  <div>
-    <img class="profile" src="profile.jpg" alt="Foto profil VIDZ">
-    <div class="badge">🗿 PERSONAL WEBSITE</div>
-    <h1>I'm <span>VIDZ</span></h1>
-    <p>
-      Selamat datang di website pribadi saya.
-      Dibuat sambil belajar web development dan tentunya...
-      karena lagi gabut 🗿
+
+  <div class="reveal">
+
+    <div class="kicker">
+      ● PERSONAL DIGITAL SPACE
+    </div>
+
+    <h1>
+      HALO,<br>
+      SAYA <span>VIDZ.</span>
+    </h1>
+
+    <p class="hero-text">
+      Saya sedang belajar membuat website, mencoba berbagai project,
+      dan bereksperimen dengan teknologi web.
+      Website ini saya buat sendiri sebagai tempat belajar dan berkarya —
+      awalnya karena gabut 🗿
     </p>
-    <a class="btn primary" href="#about">Tentang Saya</a>
-    <a class="btn secondary" href="#project">Project</a>
+
+    <div class="actions">
+
+      <a class="btn primary" href="#projects">
+        Lihat Project →
+      </a>
+
+      <a class="btn secondary" href="#about">
+        Kenal Saya
+      </a>
+
+    </div>
+
   </div>
+
+
+  <div class="profile-card reveal">
+
+    <img
+      class="avatar"
+      src="profile.jpg"
+      alt="Foto profil VIDZ"
+    >
+
+    <h2>VIDZ</h2>
+
+    <div class="role">
+      Student • Web Explorer
+    </div>
+
+    <div class="card-line"></div>
+
+    <div class="mini-info">
+
+      <div>
+        <small>Sekolah</small>
+        <b>SMPN 2 Kelumpang Tengah</b>
+      </div>
+
+      <div>
+        <small>Status</small>
+        <b>Learning 🗿</b>
+      </div>
+
+      <div>
+        <small>Minat</small>
+        <b>Website & Tech</b>
+      </div>
+
+      <div>
+        <small>Hosting</small>
+        <b>GitHub Pages</b>
+      </div>
+
+    </div>
+
+    <div class="quote">
+      “Belajar dulu, keren belakangan.
+      Yang penting project jalan. 🗿”
+    </div>
+
+  </div>
+
 </section>
+
+
+<!-- STATS -->
+
+<section>
+
+  <div class="heading reveal">
+    <small>QUICK INFO</small>
+    <h2>Statistik</h2>
+  </div>
+
+  <div class="stats">
+
+    <div class="stat reveal">
+      <strong>01</strong>
+      <span>Website utama</span>
+    </div>
+
+    <div class="stat reveal">
+      <strong>03+</strong>
+      <span>Project / eksperimen</span>
+    </div>
+
+    <div class="stat reveal">
+      <strong>∞</strong>
+      <span>Ide random 🗿</span>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ABOUT -->
 
 <section id="about">
-  <h2 class="title">Tentang <span>Saya</span></h2>
-  <div class="about">
+
+  <div class="heading reveal">
+    <small>WHO AM I?</small>
+    <h2>Tentang Saya</h2>
+  </div>
+
+  <div class="about reveal">
+
     <p>
       Saya dari budak SMPN 2 Kelumpang Tengah.
-      Saya bikin project ini karena gabut 🗿
+      Saya bikin project ini karena gabut 🗿.
+      Tapi dari project ini saya jadi bisa belajar sedikit demi sedikit
+      tentang HTML, CSS, JavaScript, GitHub, dan cara membuat website sendiri.
     </p>
+
   </div>
+
 </section>
 
-<section id="project">
-  <h2 class="title">My <span>Projects</span></h2>
-  <div class="cards">
-    <div class="card">
-      <div class="icon">🌐</div>
-      <h3>Website Ini</h3>
-      <p>Website pribadi yang dibuat dengan HTML dan CSS lalu di-host menggunakan GitHub Pages.</p>
+
+<!-- SKILLS -->
+
+<section id="skills">
+
+  <div class="heading reveal">
+    <small>WHAT I USE</small>
+    <h2>Skills & Minat</h2>
+  </div>
+
+  <div class="skills">
+
+    <div class="skill reveal">
+      <b>HTML</b>
+      <span>Struktur website</span>
     </div>
-    <div class="card">
-      <div class="icon">💻</div>
-      <h3>Web Development</h3>
-      <p>Eksperimen membuat website dan belajar HTML, CSS, serta JavaScript.</p>
+
+    <div class="skill reveal">
+      <b>CSS</b>
+      <span>Desain & animasi</span>
     </div>
-    <div class="card">
-      <div class="icon">🚀</div>
+
+    <div class="skill reveal">
+      <b>JavaScript</b>
+      <span>Interaksi website</span>
+    </div>
+
+    <div class="skill reveal">
+      <b>GitHub</b>
+      <span>Hosting & project</span>
+    </div>
+
+    <div class="skill reveal">
+      <b>UI Design</b>
+      <span>Eksperimen tampilan</span>
+    </div>
+
+    <div class="skill reveal">
+      <b>Tech</b>
+      <span>Ngulik hal random 🗿</span>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- PROJECTS -->
+
+<section id="projects">
+
+  <div class="heading reveal">
+    <small>MY WORK</small>
+    <h2>Project Saya</h2>
+  </div>
+
+  <div class="projects">
+
+    <div class="project reveal">
+
+      <div class="project-icon">🌐</div>
+
+      <h3>VIDZ Website</h3>
+
+      <p>
+        Website personal pertama yang dibuat dan
+        di-host menggunakan GitHub Pages.
+      </p>
+
+    </div>
+
+
+    <div class="project reveal">
+
+      <div class="project-icon">💻</div>
+
+      <h3>Web Experiments</h3>
+
+      <p>
+        Tempat mencoba layout, animasi, JavaScript,
+        dan berbagai ide website.
+      </p>
+
+    </div>
+
+
+    <div class="project reveal">
+
+      <div class="project-icon">🚀</div>
+
       <h3>Future Project</h3>
-      <p>Project berikutnya yang bakal dibuat kalau sudah dapat ide lagi 🗿</p>
+
+      <p>
+        Project berikutnya masih rahasia.
+        Menunggu ide muncul 🗿.
+      </p>
+
     </div>
+
   </div>
+
 </section>
 
-<footer>© 2026 <span>VIDZ</span> — Dibuat karena gabut 🗿</footer>
+
+<!-- TIMELINE -->
+
+<section>
+
+  <div class="heading reveal">
+    <small>MY JOURNEY</small>
+    <h2>Perjalanan Project</h2>
+  </div>
+
+  <div class="timeline">
+
+    <div class="event reveal">
+
+      <div class="event-num">01</div>
+
+      <div>
+        <h3>Mulai belajar</h3>
+
+        <p>
+          Mulai mencoba membuat website sendiri.
+        </p>
+      </div>
+
+    </div>
+
+
+    <div class="event reveal">
+
+      <div class="event-num">02</div>
+
+      <div>
+        <h3>Website pertama online</h3>
+
+        <p>
+          Project berhasil dipasang di GitHub Pages.
+        </p>
+      </div>
+
+    </div>
+
+
+    <div class="event reveal">
+
+      <div class="event-num">03</div>
+
+      <div>
+        <h3>Terus eksperimen</h3>
+
+        <p>
+          Mulai menambahkan desain, animasi,
+          dan fitur baru.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+  © 2026 <span>VIDZ</span>
+  — Dibuat karena gabut 🗿
+
+</footer>
+
+
+<script>
+
+/* SCROLL ANIMATION */
+
+const revealElements =
+document.querySelectorAll(".reveal");
+
+const observer =
+new IntersectionObserver(function(entries){
+
+  entries.forEach(function(entry){
+
+    if(entry.isIntersecting){
+      entry.target.classList.add("show");
+    }
+
+  });
+
+},{
+  threshold:0.1
+});
+
+revealElements.forEach(function(element){
+  observer.observe(element);
+});
+
+
+/* DARK / LIGHT MODE */
+
+const themeButton =
+document.getElementById("themeButton");
+
+themeButton.addEventListener("click",function(){
+
+  document.body.classList.toggle("light");
+
+  if(document.body.classList.contains("light")){
+    themeButton.textContent="☀️";
+  }else{
+    themeButton.textContent="🌙";
+  }
+
+});
+
+
+/* SECRET EASTER EGG */
+
+const logo =
+document.getElementById("logo");
+
+let clickCount = 0;
+
+logo.addEventListener("click",function(){
+
+  clickCount++;
+
+  if(clickCount === 3){
+
+    alert(
+      "🗿 EASTER EGG FOUND!\n\n" +
+      "Utuh & Enal FUTA LOVERS 🤫"
+    );
+
+    clickCount = 0;
+  }
+
+});
+
+</script>
 
 </body>
-</html>
+  </html>
