@@ -1,13 +1,4 @@
-from pathlib import Path
-import zipfile, shutil
-
-src = Path("/mnt/data/1000230444.jpg")
-outdir = Path("/mnt/data/vidz_website")
-outdir.mkdir(exist_ok=True)
-
-# Copy the uploaded profile picture into the website folder
-shutil.copy2(src, outdir / "profile.jpg")
-
+<!DOCTYPE html>
 html = r'''<!DOCTYPE html>
 <html lang="id">
 <head>
