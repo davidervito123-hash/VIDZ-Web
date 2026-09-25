@@ -1,228 +1,343 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Website Saya</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VIDZ | Personal Website</title>
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+  scroll-behavior: smooth;
+}
 
-    body {
-      background: #0f172a;
-      color: white;
-      min-height: 100vh;
-    }
+body {
+  background: #050816;
+  color: white;
+  overflow-x: hidden;
+}
 
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 8%;
-      background: rgba(15, 23, 42, 0.9);
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
+/* Background */
+body::before {
+  content: "";
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  background: #00eaff;
+  filter: blur(180px);
+  opacity: .12;
+  top: -150px;
+  left: -150px;
+  z-index: -1;
+}
 
-    .logo {
-      font-size: 24px;
-      font-weight: bold;
-    }
+body::after {
+  content: "";
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  background: #7c3cff;
+  filter: blur(180px);
+  opacity: .12;
+  right: -150px;
+  bottom: -150px;
+  z-index: -1;
+}
 
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin-left: 20px;
-      transition: 0.3s;
-    }
+/* Navbar */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 18px 8%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(5,8,22,.7);
+  backdrop-filter: blur(15px);
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  z-index: 100;
+}
 
-    nav a:hover {
-      opacity: 0.6;
-    }
+.logo {
+  font-size: 25px;
+  font-weight: bold;
+  color: #00eaff;
+  text-shadow: 0 0 15px #00eaff;
+}
 
-    .hero {
-      min-height: 85vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 30px;
-    }
+nav a {
+  color: #ddd;
+  text-decoration: none;
+  margin-left: 22px;
+  transition: .3s;
+}
 
-    .hero-content {
-      max-width: 700px;
-      animation: muncul 1s ease;
-    }
+nav a:hover {
+  color: #00eaff;
+}
 
-    .hero h1 {
-      font-size: clamp(40px, 8vw, 75px);
-      margin-bottom: 15px;
-    }
+/* Hero */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 100px 20px;
+}
 
-    .hero span {
-      color: #38bdf8;
-    }
+.hero-content {
+  animation: fadeUp 1s ease;
+}
 
-    .hero p {
-      color: #cbd5e1;
-      font-size: 18px;
-      line-height: 1.6;
-      margin-bottom: 30px;
-    }
+.badge {
+  display: inline-block;
+  padding: 8px 15px;
+  border: 1px solid #00eaff;
+  border-radius: 30px;
+  color: #00eaff;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
 
-    .button {
-      display: inline-block;
-      padding: 13px 25px;
-      border-radius: 10px;
-      background: #38bdf8;
-      color: #082f49;
-      text-decoration: none;
-      font-weight: bold;
-      transition: 0.3s;
-    }
+h1 {
+  font-size: clamp(45px, 9vw, 90px);
+  margin-bottom: 15px;
+}
 
-    .button:hover {
-      transform: translateY(-4px);
-    }
+h1 span {
+  color: #00eaff;
+  text-shadow: 0 0 25px #00eaff;
+}
 
-    section {
-      padding: 80px 8%;
-      text-align: center;
-    }
+.hero p {
+  max-width: 650px;
+  margin: auto;
+  color: #aab2c8;
+  font-size: 18px;
+  line-height: 1.7;
+}
 
-    section h2 {
-      font-size: 35px;
-      margin-bottom: 30px;
-    }
+.buttons {
+  margin-top: 30px;
+}
 
-    .card-container {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
+.btn {
+  display: inline-block;
+  padding: 13px 25px;
+  margin: 6px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: .3s;
+}
 
-    .card {
-      width: 280px;
-      padding: 25px;
-      border-radius: 15px;
-      background: #1e293b;
-      transition: 0.3s;
-    }
+.primary {
+  background: #00eaff;
+  color: #031016;
+  box-shadow: 0 0 25px rgba(0,234,255,.4);
+}
 
-    .card:hover {
-      transform: translateY(-8px);
-    }
+.secondary {
+  border: 1px solid #334155;
+  color: white;
+}
 
-    .card h3 {
-      margin-bottom: 10px;
-    }
+.btn:hover {
+  transform: translateY(-5px);
+}
 
-    .card p {
-      color: #cbd5e1;
-      line-height: 1.5;
-    }
+/* Sections */
+section {
+  padding: 100px 8%;
+}
 
-    footer {
-      text-align: center;
-      padding: 30px;
-      color: #94a3b8;
-      background: #020617;
-    }
+.title {
+  text-align: center;
+  font-size: 40px;
+  margin-bottom: 50px;
+}
 
-    @keyframes muncul {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
+.title span {
+  color: #00eaff;
+}
 
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-  </style>
+/* Cards */
+.cards {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+.card {
+  width: 300px;
+  padding: 30px;
+  background: rgba(15,23,42,.7);
+  border: 1px solid rgba(0,234,255,.15);
+  border-radius: 18px;
+  transition: .3s;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  border-color: #00eaff;
+  box-shadow: 0 0 30px rgba(0,234,255,.15);
+}
+
+.card .icon {
+  font-size: 40px;
+  margin-bottom: 15px;
+}
+
+.card h3 {
+  margin-bottom: 12px;
+}
+
+.card p {
+  color: #9ca8bd;
+  line-height: 1.6;
+}
+
+/* About */
+.about {
+  max-width: 850px;
+  margin: auto;
+  text-align: center;
+  color: #aab2c8;
+  line-height: 1.8;
+  font-size: 17px;
+}
+
+/* Footer */
+footer {
+  padding: 30px;
+  text-align: center;
+  color: #64748b;
+  border-top: 1px solid rgba(255,255,255,.08);
+}
+
+/* Animation */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media(max-width:600px) {
+  nav {
+    padding: 15px 5%;
+  }
+
+  nav a {
+    margin-left: 8px;
+    font-size: 13px;
+  }
+
+  section {
+    padding: 80px 5%;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <nav>
-    <div class="logo">MyWebsite</div>
+<nav>
+  <div class="logo">VIDZ.</div>
 
-    <div>
-      <a href="#home">Home</a>
-      <a href="#about">Tentang</a>
-      <a href="#contact">Kontak</a>
-    </div>
-  </nav>
+  <div>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#project">Project</a>
+  </div>
+</nav>
 
-  <main id="home">
-    <div class="hero">
-      <div class="hero-content">
-        <h1>Halo, Saya <span>David</span></h1>
+<section class="hero" id="home">
+  <div class="hero-content">
 
-        <p>
-          Selamat datang di website pertama saya.
-          Website ini dibuat menggunakan HTML dan CSS.
-        </p>
+    <div class="badge">WELCOME TO MY WEBSITE</div>
 
-        <a href="#about" class="button">Lihat Selengkapnya</a>
-      </div>
-    </div>
-  </main>
+    <h1>I'm <span>VIDZ</span></h1>
 
-  <section id="about">
-    <h2>Tentang Website</h2>
-
-    <div class="card-container">
-
-      <div class="card">
-        <h3>💻 HTML</h3>
-        <p>
-          Digunakan untuk membuat struktur halaman website.
-        </p>
-      </div>
-
-      <div class="card">
-        <h3>🎨 CSS</h3>
-        <p>
-          Digunakan untuk mengatur tampilan, warna, ukuran,
-          dan animasi website.
-        </p>
-      </div>
-
-      <div class="card">
-        <h3>🚀 JavaScript</h3>
-        <p>
-          Bisa digunakan untuk membuat website menjadi lebih
-          interaktif.
-        </p>
-      </div>
-
-    </div>
-  </section>
-
-  <section id="contact">
-    <h2>Kontak</h2>
-
-    <p style="color:#cbd5e1; margin-bottom:20px;">
-      Ini bagian kontak website saya.
+    <p>
+      Selamat datang di website pribadi saya.
+      Tempat sederhana untuk memperkenalkan diri,
+      project, dan berbagai hal yang sedang saya kerjakan.
     </p>
 
-    <a class="button" href="mailto:emailkamu@example.com">
-      Hubungi Saya
-    </a>
-  </section>
+    <div class="buttons">
+      <a href="#project" class="btn primary">Lihat Project</a>
+      <a href="#about" class="btn secondary">Tentang Saya</a>
+    </div>
 
-  <footer>
-    © 2026 MyWebsite — Dibuat dengan HTML & CSS
-  </footer>
+  </div>
+</section>
+
+<section id="about">
+
+  <h2 class="title">Tentang <span>Saya</span></h2>
+
+  <div class="about">
+    <p>
+      Halo! Saya VIDZ. Ini adalah website yang saya buat
+      sendiri menggunakan HTML dan CSS.
+      Website ini akan terus dikembangkan dan diperbarui
+      seiring saya belajar membuat website.
+    </p>
+  </div>
+
+</section>
+
+<section id="project">
+
+  <h2 class="title">My <span>Projects</span></h2>
+
+  <div class="cards">
+
+    <div class="card">
+      <div class="icon">🌐</div>
+      <h3>Website</h3>
+      <p>
+        Project website pribadi yang sedang kamu lihat sekarang.
+      </p>
+    </div>
+
+    <div class="card">
+      <div class="icon">💻</div>
+      <h3>Web Development</h3>
+      <p>
+        Eksperimen membuat berbagai halaman web
+        menggunakan HTML, CSS, dan JavaScript.
+      </p>
+    </div>
+
+    <div class="card">
+      <div class="icon">🚀</div>
+      <h3>Future Project</h3>
+      <p>
+        Bagian ini bisa kamu isi dengan project-project
+        berikutnya yang akan kamu buat.
+      </p>
+    </div>
+
+  </div>
+
+</section>
+
+<footer>
+  © 2026 VIDZ. All Rights Reserved.
+</footer>
 
 </body>
 </html>
