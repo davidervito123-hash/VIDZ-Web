@@ -1,463 +1,168 @@
-<!DOCTYPE html>
+from pathlib import Path
+import zipfile, shutil
+
+src = Path("/mnt/data/1000230444.jpg")
+outdir = Path("/mnt/data/vidz_website")
+outdir.mkdir(exist_ok=True)
+
+# Copy the uploaded profile picture into the website folder
+shutil.copy2(src, outdir / "profile.jpg")
+
+html = r'''<!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>VIDZ | My Website</title>
-
+<title>VIDZ | Personal Website</title>
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,Helvetica,sans-serif;
-    scroll-behavior:smooth;
-}
-
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
 body{
-    background:#030712;
-    color:#fff;
-    overflow-x:hidden;
+  font-family:Arial,sans-serif;color:#fff;background:#030712;
+  overflow-x:hidden;
 }
-
-/* BACKGROUND */
-.bg{
-    position:fixed;
-    inset:0;
-    z-index:-2;
-    overflow:hidden;
-    background:
-        radial-gradient(circle at 20% 20%,rgba(0,234,255,.15),transparent 30%),
-        radial-gradient(circle at 80% 80%,rgba(124,58,237,.15),transparent 30%),
-        #030712;
+body:before,body:after{
+  content:"";position:fixed;width:280px;height:280px;border-radius:50%;
+  filter:blur(90px);opacity:.25;z-index:-2;animation:float 8s ease-in-out infinite alternate;
 }
+body:before{background:#00eaff;top:5%;left:-80px}
+body:after{background:#7c3aed;right:-80px;bottom:5%;animation-delay:2s}
+@keyframes float{to{transform:translate(80px,-50px)}}
 
-.orb{
-    position:absolute;
-    width:250px;
-    height:250px;
-    border-radius:50%;
-    filter:blur(80px);
-    opacity:.35;
-    animation:float 8s infinite alternate ease-in-out;
-}
-
-.orb.one{
-    background:#00eaff;
-    top:10%;
-    left:5%;
-}
-
-.orb.two{
-    background:#7c3aed;
-    right:5%;
-    bottom:10%;
-    animation-delay:2s;
-}
-
-@keyframes float{
-    from{transform:translate(0,0)}
-    to{transform:translate(80px,-60px)}
-}
-
-/* NAVBAR */
 nav{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    padding:18px 8%;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    background:rgba(3,7,18,.65);
-    backdrop-filter:blur(18px);
-    border-bottom:1px solid rgba(255,255,255,.08);
-    z-index:100;
+  position:fixed;top:0;left:0;width:100%;z-index:10;
+  padding:17px 7%;display:flex;justify-content:space-between;align-items:center;
+  background:rgba(3,7,18,.72);backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(255,255,255,.08)
 }
+.logo{font-size:25px;font-weight:800;color:#00eaff;text-shadow:0 0 18px #00eaff}
+nav a{color:#cbd5e1;text-decoration:none;margin-left:18px;font-size:14px}
+nav a:hover{color:#00eaff}
 
-.logo{
-    font-size:26px;
-    font-weight:bold;
-    color:#00eaff;
-    text-shadow:0 0 18px #00eaff;
-}
-
-nav a{
-    color:#cbd5e1;
-    text-decoration:none;
-    margin-left:20px;
-    transition:.3s;
-}
-
-nav a:hover{
-    color:#00eaff;
-}
-
-/* HERO */
 .hero{
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    padding:120px 20px 80px;
+  min-height:100vh;padding:130px 7% 80px;display:flex;
+  justify-content:center;align-items:center;text-align:center
 }
-
-.hero-content{
-    max-width:800px;
-    animation:appear 1s ease;
+.profile{
+  width:170px;height:170px;border-radius:50%;object-fit:cover;
+  border:4px solid #00eaff;box-shadow:0 0 25px #00eaff,0 0 70px rgba(0,234,255,.25);
+  animation:pulse 3s ease-in-out infinite
 }
-
+@keyframes pulse{50%{transform:translateY(-7px);box-shadow:0 0 35px #00eaff,0 0 90px rgba(0,234,255,.3)}}
 .badge{
-    display:inline-block;
-    padding:8px 17px;
-    border:1px solid #00eaff;
-    border-radius:30px;
-    color:#00eaff;
-    font-size:13px;
-    margin-bottom:25px;
-    box-shadow:0 0 20px rgba(0,234,255,.15);
+  display:inline-block;margin:28px 0 15px;padding:8px 16px;border-radius:30px;
+  border:1px solid #00eaff;color:#00eaff;font-size:12px
 }
-
-.hero h1{
-    font-size:clamp(50px,10vw,100px);
-    line-height:1;
-    margin-bottom:25px;
-}
-
-.hero h1 span{
-    color:#00eaff;
-    text-shadow:
-        0 0 10px #00eaff,
-        0 0 30px #00eaff;
-}
-
-.hero p{
-    color:#94a3b8;
-    font-size:18px;
-    line-height:1.7;
-}
-
-.buttons{
-    margin-top:35px;
-}
-
+h1{font-size:clamp(48px,10vw,92px);line-height:1}
+h1 span{color:#00eaff;text-shadow:0 0 25px #00eaff}
+.hero p{max-width:650px;margin:24px auto;color:#94a3b8;font-size:17px;line-height:1.7}
 .btn{
-    display:inline-block;
-    padding:14px 25px;
-    margin:5px;
-    border-radius:12px;
-    text-decoration:none;
-    font-weight:bold;
-    transition:.3s;
+  display:inline-block;margin:6px;padding:13px 22px;border-radius:12px;
+  text-decoration:none;font-weight:bold;transition:.25s
 }
+.primary{background:#00eaff;color:#001018;box-shadow:0 0 25px rgba(0,234,255,.3)}
+.secondary{border:1px solid #334155;color:#fff}
+.btn:hover{transform:translateY(-4px)}
 
-.primary{
-    color:#001018;
-    background:#00eaff;
-    box-shadow:0 0 25px rgba(0,234,255,.35);
+section{padding:90px 7%}
+.title{text-align:center;font-size:40px;margin-bottom:38px}
+.title span{color:#00eaff}
+.about{
+  max-width:800px;margin:auto;padding:35px;text-align:center;
+  background:rgba(15,23,42,.62);border:1px solid rgba(0,234,255,.16);
+  border-radius:22px;box-shadow:0 0 35px rgba(0,0,0,.25)
 }
-
-.secondary{
-    color:#fff;
-    border:1px solid #334155;
-    background:rgba(255,255,255,.03);
-}
-
-.btn:hover{
-    transform:translateY(-5px) scale(1.03);
-}
-
-/* SECTION */
-section{
-    padding:100px 8%;
-}
-
-.title{
-    text-align:center;
-    font-size:42px;
-    margin-bottom:45px;
-}
-
-.title span{
-    color:#00eaff;
-}
-
-/* ABOUT */
-.about-box{
-    max-width:850px;
-    margin:auto;
-    padding:40px;
-    text-align:center;
-    border:1px solid rgba(0,234,255,.15);
-    background:rgba(15,23,42,.55);
-    border-radius:22px;
-    box-shadow:0 0 40px rgba(0,0,0,.25);
-}
-
-.about-box p{
-    color:#cbd5e1;
-    font-size:18px;
-    line-height:1.8;
-}
-
-/* PROJECT CARDS */
-.cards{
-    display:flex;
-    justify-content:center;
-    gap:25px;
-    flex-wrap:wrap;
-}
-
+.about p{color:#cbd5e1;line-height:1.8;font-size:17px}
+.cards{display:flex;justify-content:center;gap:22px;flex-wrap:wrap}
 .card{
-    width:300px;
-    padding:30px;
-    border-radius:20px;
-    background:rgba(15,23,42,.65);
-    border:1px solid rgba(255,255,255,.08);
-    transition:.35s;
+  width:290px;padding:28px;border-radius:20px;background:rgba(15,23,42,.62);
+  border:1px solid rgba(255,255,255,.08);transition:.3s
 }
+.card:hover{transform:translateY(-10px);border-color:#00eaff;box-shadow:0 0 30px rgba(0,234,255,.13)}
+.icon{font-size:42px;margin-bottom:15px}
+.card h3{margin-bottom:10px}.card p{color:#94a3b8;line-height:1.6}
 
-.card:hover{
-    transform:translateY(-12px);
-    border-color:#00eaff;
-    box-shadow:0 0 35px rgba(0,234,255,.15);
-}
-
-.icon{
-    font-size:45px;
-    margin-bottom:18px;
-}
-
-.card h3{
-    margin-bottom:12px;
-    font-size:22px;
-}
-
-.card p{
-    color:#94a3b8;
-    line-height:1.6;
-}
-
-/* STATUS */
-.status{
-    max-width:700px;
-    margin:80px auto 0;
-    padding:20px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:10px;
-    border-radius:15px;
-    background:rgba(15,23,42,.6);
-    border:1px solid rgba(255,255,255,.08);
-    color:#94a3b8;
-}
-
-.dot{
-    width:10px;
-    height:10px;
-    background:#22c55e;
-    border-radius:50%;
-    box-shadow:0 0 15px #22c55e;
-}
-
-/* FOOTER */
 footer{
-    padding:35px 20px;
-    text-align:center;
-    color:#64748b;
-    border-top:1px solid rgba(255,255,255,.08);
+  text-align:center;padding:30px;color:#64748b;
+  border-top:1px solid rgba(255,255,255,.08)
 }
+footer span{color:#00eaff}
 
-footer span{
-    color:#00eaff;
-}
-
-/* ANIMATION */
-@keyframes appear{
-    from{
-        opacity:0;
-        transform:translateY(35px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-/* MOBILE */
 @media(max-width:600px){
-
-    nav{
-        padding:15px 5%;
-    }
-
-    nav a{
-        margin-left:8px;
-        font-size:12px;
-    }
-
-    section{
-        padding:80px 5%;
-    }
-
-    .about-box{
-        padding:25px;
-    }
-
-    .card{
-        width:100%;
-    }
+  nav{padding:15px 5%}nav a{font-size:11px;margin-left:8px}
+  .profile{width:145px;height:145px}
+  section{padding:75px 5%}.about{padding:25px}.card{width:100%}
 }
 </style>
 </head>
-
 <body>
 
-<div class="bg">
-    <div class="orb one"></div>
-    <div class="orb two"></div>
-</div>
-
-<!-- NAVBAR -->
 <nav>
-    <div class="logo">VIDZ.</div>
-
-    <div>
-        <a href="#home">Home</a>
-        <a href="#about">Tentang</a>
-        <a href="#project">Project</a>
-    </div>
+  <div class="logo">VIDZ.</div>
+  <div>
+    <a href="#home">Home</a>
+    <a href="#about">Tentang</a>
+    <a href="#project">Project</a>
+  </div>
 </nav>
 
-
-<!-- HOME -->
 <section class="hero" id="home">
-
-    <div class="hero-content">
-
-        <div class="badge">
-            🗿 WEBSITE PRIBADI
-        </div>
-
-        <h1>
-            I'M <span>VIDZ</span>
-        </h1>
-
-        <p>
-            Selamat datang di website pribadi saya.
-            Website ini dibuat dari HP dan dikembangkan
-            sedikit demi sedikit sambil belajar.
-        </p>
-
-        <div class="buttons">
-            <a href="#about" class="btn primary">
-                Tentang Saya
-            </a>
-
-            <a href="#project" class="btn secondary">
-                Lihat Project
-            </a>
-        </div>
-
-    </div>
-
+  <div>
+    <img class="profile" src="profile.jpg" alt="Foto profil VIDZ">
+    <div class="badge">🗿 PERSONAL WEBSITE</div>
+    <h1>I'm <span>VIDZ</span></h1>
+    <p>
+      Selamat datang di website pribadi saya.
+      Dibuat sambil belajar web development dan tentunya...
+      karena lagi gabut 🗿
+    </p>
+    <a class="btn primary" href="#about">Tentang Saya</a>
+    <a class="btn secondary" href="#project">Project</a>
+  </div>
 </section>
 
-
-<!-- ABOUT -->
 <section id="about">
-
-    <h2 class="title">
-        Tentang <span>Saya</span>
-    </h2>
-
-    <div class="about-box">
-
-        <p>
-            Saya dari budak SMPN 2 Kelumpang Tengah.
-            Saya bikin project ini karena gabut 🗿
-        </p>
-
-    </div>
-
+  <h2 class="title">Tentang <span>Saya</span></h2>
+  <div class="about">
+    <p>
+      Saya dari budak SMPN 2 Kelumpang Tengah.
+      Saya bikin project ini karena gabut 🗿
+    </p>
+  </div>
 </section>
 
-
-<!-- PROJECT -->
 <section id="project">
-
-    <h2 class="title">
-        My <span>Projects</span>
-    </h2>
-
-    <div class="cards">
-
-        <div class="card">
-
-            <div class="icon">🌐</div>
-
-            <h3>Website Ini</h3>
-
-            <p>
-                Website pribadi yang dibuat menggunakan
-                HTML dan CSS dan di-host menggunakan
-                GitHub Pages.
-            </p>
-
-        </div>
-
-
-        <div class="card">
-
-            <div class="icon">💻</div>
-
-            <h3>Web Development</h3>
-
-            <p>
-                Eksperimen membuat website, mempelajari
-                HTML, CSS, dan JavaScript.
-            </p>
-
-        </div>
-
-
-        <div class="card">
-
-            <div class="icon">🚀</div>
-
-            <h3>Future Project</h3>
-
-            <p>
-                Project-project berikutnya yang bakal
-                dibuat kalau lagi nggak gabut 🗿
-            </p>
-
-        </div>
-
+  <h2 class="title">My <span>Projects</span></h2>
+  <div class="cards">
+    <div class="card">
+      <div class="icon">🌐</div>
+      <h3>Website Ini</h3>
+      <p>Website pribadi yang dibuat dengan HTML dan CSS lalu di-host menggunakan GitHub Pages.</p>
     </div>
-
-
-    <div class="status">
-
-        <div class="dot"></div>
-
-        Website sedang aktif dan terus dikembangkan.
-
+    <div class="card">
+      <div class="icon">💻</div>
+      <h3>Web Development</h3>
+      <p>Eksperimen membuat website dan belajar HTML, CSS, serta JavaScript.</p>
     </div>
-
+    <div class="card">
+      <div class="icon">🚀</div>
+      <h3>Future Project</h3>
+      <p>Project berikutnya yang bakal dibuat kalau sudah dapat ide lagi 🗿</p>
+    </div>
+  </div>
 </section>
 
-
-<!-- FOOTER -->
-<footer>
-
-    © 2026 <span>VIDZ</span> — Dibuat karena gabut 🗿
-
-</footer>
+<footer>© 2026 <span>VIDZ</span> — Dibuat karena gabut 🗿</footer>
 
 </body>
-</html>
+</html>'''
+
+(outdir / "index.html").write_text(html, encoding="utf-8")
+
+zip_path = Path("/mnt/data/VIDZ-Web-Upgrade.zip")
+with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as z:
+    z.write(outdir / "index.html", "index.html")
+    z.write(outdir / "profile.jpg", "profile.jpg")
+
+print(f"Siap: {zip_path}")
+
