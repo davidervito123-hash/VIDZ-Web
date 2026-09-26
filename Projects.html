@@ -2,21 +2,32 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="theme-color" content="#050816">
-<meta name="description" content="Tools dan Projects VIDZ">
-<title>Projects — VIDZ</title>
+<meta name="description" content="VIDZ Digital Space — Projects">
+<title>VIDZ — Projects</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
 
-html{scroll-behavior:smooth}
+html{
+  scroll-behavior:smooth;
+}
 
 body{
   font-family:Arial,Helvetica,sans-serif;
   background:#050816;
   color:#f5f7ff;
+  min-height:100vh;
   overflow-x:hidden;
+}
+
+button{
+  font:inherit;
 }
 
 a{
@@ -24,26 +35,16 @@ a{
   text-decoration:none;
 }
 
-button,input{
-  font:inherit;
-}
-
-:root{
-  --cyan:#00e5ff;
-  --green:#00ff9d;
-  --line:rgba(255,255,255,.08);
-  --muted:#8292a7;
-  --card:rgba(12,20,36,.78);
-}
+/* BACKGROUND */
 
 body::before{
   content:"";
   position:fixed;
   inset:0;
-  z-index:-3;
+  z-index:-2;
   background:
-    radial-gradient(circle at 15% 15%,rgba(0,229,255,.12),transparent 28%),
-    radial-gradient(circle at 85% 75%,rgba(124,58,237,.12),transparent 30%),
+    radial-gradient(circle at 15% 15%,#00e5ff18,transparent 28%),
+    radial-gradient(circle at 85% 80%,#7c3aed18,transparent 30%),
     #050816;
 }
 
@@ -51,1052 +52,1156 @@ body::after{
   content:"";
   position:fixed;
   inset:0;
-  z-index:-2;
-  opacity:.025;
-  pointer-events:none;
+  z-index:-1;
+  opacity:.045;
   background-image:
     linear-gradient(#fff 1px,transparent 1px),
     linear-gradient(90deg,#fff 1px,transparent 1px);
   background-size:55px 55px;
+  pointer-events:none;
 }
 
-/* NAV */
-
-.nav-wrap{
-  position:fixed;
-  top:14px;
-  left:50%;
-  transform:translateX(-50%);
-  width:min(1120px,94%);
-  z-index:100;
-}
+/* NAVBAR */
 
 nav{
-  height:62px;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  z-index:100;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:0 10px 0 20px;
-  border:1px solid var(--line);
-  border-radius:18px;
-  background:rgba(5,8,22,.78);
-  backdrop-filter:blur(20px);
+  padding:16px 7%;
+  background:#050816d9;
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  border-bottom:1px solid #ffffff0d;
 }
 
 .logo{
-  color:var(--cyan);
-  font-size:25px;
+  color:#00e5ff;
+  font-size:26px;
   font-weight:900;
   letter-spacing:-2px;
-  text-shadow:0 0 25px rgba(0,229,255,.35);
+  text-shadow:0 0 20px #00e5ff;
+  cursor:pointer;
+  user-select:none;
 }
 
-.nav-links{
+.navlinks{
   display:flex;
   align-items:center;
-  gap:3px;
-}
-
-.nav-links a{
-  padding:9px 12px;
-  border-radius:9px;
-  color:#8996aa;
-  font-size:11px;
-  font-weight:bold;
-}
-
-.nav-links a:hover,
-.nav-links a.active{
-  color:var(--cyan);
-  background:rgba(0,229,255,.06);
-}
-
-.theme{
-  width:38px;
-  height:38px;
-  margin-left:5px;
-  border:1px solid var(--line);
-  border-radius:10px;
-  background:#ffffff08;
-  color:#fff;
-  cursor:pointer;
-}
-
-/* PAGE */
-
-.page{
-  min-height:100vh;
-  padding:150px 0 90px;
-}
-
-.container{
-  width:min(1100px,92%);
-  margin:auto;
-}
-
-.badge{
-  width:max-content;
-  padding:8px 13px;
-  border:1px solid rgba(0,229,255,.18);
-  border-radius:30px;
-  color:#8291a5;
-  background:rgba(0,229,255,.04);
-  font-size:9px;
-  font-weight:bold;
-  letter-spacing:2px;
-}
-
-h1{
-  margin-top:25px;
-  font-size:clamp(48px,8vw,85px);
-  line-height:.9;
-  letter-spacing:-6px;
-}
-
-h1 span{
-  color:var(--cyan);
-  text-shadow:0 0 35px rgba(0,229,255,.3);
-}
-
-.intro{
-  max-width:700px;
-  margin-top:25px;
-  color:var(--muted);
-  font-size:15px;
-  line-height:1.9;
-}
-
-/* SEARCH */
-
-.search-area{
-  margin-top:40px;
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-}
-
-.search{
-  flex:1;
-  min-width:230px;
-  padding:14px 17px;
-  border:1px solid var(--line);
-  border-radius:13px;
-  outline:none;
-  background:rgba(255,255,255,.04);
-  color:white;
-}
-
-.search:focus{
-  border-color:rgba(0,229,255,.4);
-  box-shadow:0 0 20px rgba(0,229,255,.08);
-}
-
-.filters{
-  display:flex;
-  gap:7px;
-}
-
-.filter{
-  padding:11px 14px;
-  border:1px solid var(--line);
-  border-radius:11px;
-  background:#ffffff06;
-  color:#8996aa;
-  cursor:pointer;
-  font-size:11px;
-  font-weight:bold;
-}
-
-.filter.active,
-.filter:hover{
-  color:var(--cyan);
-  border-color:rgba(0,229,255,.25);
-}
-
-/* CATALOG */
-
-.catalog{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:18px;
-  margin-top:25px;
-}
-
-.tool{
-  position:relative;
-  min-height:300px;
-  padding:25px;
-  border:1px solid var(--line);
-  border-radius:22px;
-  background:var(--card);
-  transition:.3s;
-}
-
-.tool:hover{
-  transform:translateY(-7px);
-  border-color:rgba(0,229,255,.3);
-  box-shadow:0 25px 60px rgba(0,0,0,.25);
-}
-
-.tool.hide{
-  display:none;
-}
-
-.tool-number{
-  color:#536075;
-  font-size:9px;
-  font-weight:bold;
-}
-
-.tool-icon{
-  width:58px;
-  height:58px;
-  display:grid;
-  place-items:center;
-  margin:22px 0;
-  border:1px solid var(--line);
-  border-radius:16px;
-  background:#ffffff06;
-  font-size:25px;
-}
-
-.tool h2{
-  font-size:18px;
-  margin-bottom:10px;
-}
-
-.tool p{
-  min-height:58px;
-  color:#77859a;
-  font-size:12px;
-  line-height:1.7;
-}
-
-.tool-type{
-  display:inline-block;
-  margin-top:20px;
-  padding:5px 8px;
-  border-radius:7px;
-  color:var(--cyan);
-  background:#00e5ff0d;
-  font-size:8px;
-  font-weight:bold;
-  letter-spacing:1px;
-}
-
-.open{
-  display:block;
-  margin-top:14px;
-  width:100%;
-  padding:11px;
-  border:1px solid rgba(0,229,255,.2);
-  border-radius:10px;
-  background:#00e5ff0a;
-  color:var(--cyan);
-  cursor:pointer;
-  font-size:10px;
-  font-weight:bold;
-}
-
-.open:hover{
-  background:rgba(0,229,255,.14);
-}
-
-/* MODAL */
-
-.modal{
-  position:fixed;
-  inset:0;
-  z-index:999;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-  background:rgba(0,0,0,.78);
-  backdrop-filter:blur(8px);
-}
-
-.modal.show{
-  display:flex;
-}
-
-.modal-box{
-  width:min(520px,100%);
-  max-height:90vh;
-  overflow:auto;
-  padding:28px;
-  border:1px solid rgba(0,229,255,.25);
-  border-radius:22px;
-  background:#08101f;
-  box-shadow:0 30px 100px #000;
-}
-
-.modal-top{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:22px;
-}
-
-.modal-top h2{
-  color:var(--cyan);
-}
-
-.close{
-  border:0;
-  background:none;
-  color:#8996aa;
-  font-size:22px;
-  cursor:pointer;
-}
-
-/* CALCULATOR */
-
-.calc-display{
-  width:100%;
-  padding:18px;
-  margin-bottom:12px;
-  border:1px solid var(--line);
-  border-radius:12px;
-  background:#0008;
-  color:#00ff9d;
-  text-align:right;
-  font-size:25px;
-  overflow:hidden;
-}
-
-.calc-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
   gap:8px;
 }
 
-.calc-grid button{
-  padding:16px;
-  border:1px solid var(--line);
-  border-radius:10px;
+.navlinks a{
+  color:#9aa9bd;
+  font-size:13px;
+  padding:8px 10px;
+  border-radius:9px;
+  transition:.2s;
+}
+
+.navlinks a:hover,
+.navlinks a.active{
+  color:#00e5ff;
+  background:#00e5ff0d;
+}
+
+.theme{
+  border:1px solid #00e5ff33;
   background:#ffffff08;
-  color:white;
-  cursor:pointer;
-}
-
-.calc-grid button:hover{
-  background:#00e5ff18;
-}
-
-/* NOTES */
-
-textarea{
-  width:100%;
-  min-height:220px;
-  resize:vertical;
-  padding:15px;
-  border:1px solid var(--line);
-  border-radius:12px;
-  outline:none;
-  background:#0006;
-  color:white;
-}
-
-.save-note{
-  width:100%;
-  margin-top:10px;
-  padding:13px;
-  border:0;
+  color:#fff;
+  padding:8px 10px;
   border-radius:10px;
-  background:var(--cyan);
-  color:#001017;
-  font-weight:bold;
   cursor:pointer;
 }
 
-.note-status{
-  margin-top:10px;
-  color:#00ff9d;
-  font-size:11px;
+/* HEADER */
+
+header{
+  padding:145px 7% 60px;
 }
 
-/* PROJECT STATUS */
-
-.project-status{
-  margin-top:40px;
-  padding:22px;
-  border:1px solid var(--line);
-  border-radius:18px;
-  background:#ffffff04;
+.label{
+  color:#00e5ff;
+  font-size:10px;
+  font-weight:bold;
+  letter-spacing:3px;
 }
 
-.project-status b{
-  color:var(--green);
+header h1{
+  margin-top:12px;
+  font-size:clamp(50px,8vw,90px);
+  letter-spacing:-5px;
+  line-height:.9;
 }
 
-.back{
-  display:inline-block;
-  margin-top:35px;
-  color:var(--cyan);
-  font-size:11px;
+header h1 span{
+  color:#00e5ff;
+  text-shadow:0 0 30px #00e5ff55;
+}
+
+header p{
+  max-width:650px;
+  margin-top:25px;
+  color:#8190a5;
+  line-height:1.8;
+  font-size:15px;
+}
+
+/* PROJECTS */
+
+.projects{
+  width:min(1150px,86%);
+  margin:auto;
+  padding-bottom:100px;
+}
+
+.project-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:18px;
+}
+
+.project{
+  position:relative;
+  overflow:hidden;
+  padding:27px;
+  min-height:245px;
+  border:1px solid #ffffff0d;
+  border-radius:23px;
+  background:
+    linear-gradient(145deg,#111b31dd,#080d18dd);
+  transition:.3s;
+}
+
+.project:hover{
+  transform:translateY(-7px);
+  border-color:#00e5ff44;
+  box-shadow:0 25px 65px #0007;
+}
+
+.project::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:2px;
+  background:linear-gradient(
+    90deg,
+    #00e5ff,
+    transparent
+  );
+}
+
+.project-icon{
+  font-size:35px;
+  margin-bottom:20px;
+}
+
+.project-tag{
+  color:#00e5ff;
+  font-size:9px;
+  letter-spacing:2px;
   font-weight:bold;
 }
 
-footer{
-  padding:40px 20px;
-  border-top:1px solid var(--line);
-  text-align:center;
-  color:#586579;
+.project h2{
+  margin-top:9px;
+  font-size:25px;
+}
+
+.project p{
+  margin-top:12px;
+  color:#7f8da1;
+  line-height:1.7;
+  font-size:12px;
+}
+
+.project-btn{
+  display:inline-block;
+  margin-top:20px;
+  padding:9px 13px;
+  border-radius:9px;
+  background:#00e5ff0d;
+  border:1px solid #00e5ff22;
+  color:#00e5ff;
   font-size:10px;
+  font-weight:bold;
 }
 
-footer span{
-  color:var(--cyan);
+/* SECRET HINT */
+
+.secret-hint{
+  margin-top:45px;
+  text-align:center;
+  color:#334155;
+  font-family:monospace;
+  font-size:9px;
+  letter-spacing:3px;
+  user-select:none;
+  transition:.3s;
 }
 
-/* LIGHT */
-
-body.light{
-  background:#f1f6fa;
-  color:#101827;
+.secret-hint:hover{
+  color:#00e5ff55;
 }
 
-body.light::before{
+/* =========================
+   CINEMATIC EASTER EGG
+========================= */
+
+#secretOverlay{
+  position:fixed;
+  inset:0;
+  z-index:99999;
+  display:none;
+  overflow:hidden;
+  background:#000;
+  font-family:"Courier New",monospace;
+}
+
+#secretOverlay.active{
+  display:block;
+  animation:overlayIn .4s ease forwards;
+}
+
+/* CODE RAIN */
+
+.rain{
+  position:absolute;
+  inset:0;
+  overflow:hidden;
+  opacity:.75;
+}
+
+.rain-column{
+  position:absolute;
+  top:-130%;
+  color:#00ff9d;
+  font-size:clamp(12px,1.8vw,21px);
+  line-height:1.05;
+  font-weight:bold;
+  white-space:pre;
+  text-shadow:
+    0 0 7px #00ff9d,
+    0 0 20px #00ff9d;
+  animation:rain linear infinite;
+}
+
+.rain-column:nth-child(1){
+  left:3%;
+  animation-duration:4.5s;
+  animation-delay:-2s;
+}
+.rain-column:nth-child(2){
+  left:10%;
+  animation-duration:6s;
+  animation-delay:-4s;
+}
+.rain-column:nth-child(3){
+  left:18%;
+  animation-duration:4s;
+  animation-delay:-1s;
+}
+.rain-column:nth-child(4){
+  left:27%;
+  animation-duration:5.5s;
+  animation-delay:-3s;
+}
+.rain-column:nth-child(5){
+  left:36%;
+  animation-duration:4.8s;
+  animation-delay:-2s;
+}
+.rain-column:nth-child(6){
+  left:45%;
+  animation-duration:6.5s;
+  animation-delay:-5s;
+}
+.rain-column:nth-child(7){
+  left:54%;
+  animation-duration:4.3s;
+  animation-delay:-1s;
+}
+.rain-column:nth-child(8){
+  left:63%;
+  animation-duration:5.8s;
+  animation-delay:-4s;
+}
+.rain-column:nth-child(9){
+  left:72%;
+  animation-duration:4.7s;
+  animation-delay:-2s;
+}
+.rain-column:nth-child(10){
+  left:81%;
+  animation-duration:6.2s;
+  animation-delay:-5s;
+}
+.rain-column:nth-child(11){
+  left:90%;
+  animation-duration:4.2s;
+  animation-delay:-1s;
+}
+
+/* DARK */
+
+.overlay-dark{
+  position:absolute;
+  inset:0;
   background:
-    radial-gradient(circle at 10% 10%,#d4faff,transparent 28%),
-    radial-gradient(circle at 90% 75%,#e9ddff,transparent 30%),
-    #f1f6fa;
+    radial-gradient(
+      circle at center,
+      transparent 5%,
+      #0005 45%,
+      #000e 100%
+    );
 }
 
-body.light nav{
-  background:rgba(255,255,255,.85);
+/* SCANLINES */
+
+.scanlines{
+  position:absolute;
+  inset:0;
+  background:repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 3px,
+    #00ff9d0d 4px
+  );
 }
 
-body.light .nav-links a{
-  color:#475569;
+/* BOX */
+
+.secret-box{
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:min(900px,90%);
+  padding:38px;
+  transform:translate(-50%,-50%) scale(.7);
+  background:
+    linear-gradient(
+      145deg,
+      #00150feF,
+      #02080ceF
+    );
+  border:1px solid #00ff9d66;
+  box-shadow:
+    0 0 30px #00ff9d22,
+    0 0 120px #00ff9d0c,
+    inset 0 0 80px #00ff9d08;
+  opacity:0;
+  animation:boxIn .8s .3s cubic-bezier(.2,.8,.2,1) forwards;
 }
 
-body.light .nav-links a.active{
-  color:#008ca0;
+.secret-box::before,
+.secret-box::after{
+  content:"";
+  position:absolute;
+  width:45px;
+  height:45px;
 }
 
-body.light .theme{
-  color:#101827;
+.secret-box::before{
+  top:-1px;
+  left:-1px;
+  border-top:2px solid #00ff9d;
+  border-left:2px solid #00ff9d;
 }
 
-body.light .tool{
-  background:rgba(255,255,255,.85);
-  border-color:rgba(0,0,0,.08);
+.secret-box::after{
+  right:-1px;
+  bottom:-1px;
+  border-right:2px solid #00ff9d;
+  border-bottom:2px solid #00ff9d;
 }
 
-body.light .tool p{
-  color:#526174;
+.secret-status{
+  color:#00ff9d;
+  font-size:9px;
+  letter-spacing:3px;
+  margin-bottom:20px;
 }
 
-body.light .search{
-  color:#101827;
-  background:white;
+.secret-title{
+  color:#effff8;
+  font-size:clamp(30px,7vw,75px);
+  font-weight:900;
+  letter-spacing:6px;
+  text-shadow:
+    3px 0 #ff0055,
+    -3px 0 #00e5ff,
+    0 0 25px #00ff9d;
+  animation:glitch .12s infinite;
 }
 
-body.light .modal-box{
-  background:#f8fbfd;
+.secret-line{
+  height:1px;
+  margin:25px 0;
+  background:linear-gradient(
+    90deg,
+    transparent,
+    #00ff9d,
+    transparent
+  );
 }
 
-body.light textarea{
-  color:#101827;
-  background:white;
+.secret-terminal{
+  color:#8affc9;
+  font-size:13px;
+  line-height:2;
+}
+
+.secret-terminal span{
+  color:#00ff9d;
+}
+
+.unlock{
+  margin-top:28px;
+  text-align:center;
+  color:#fff;
+  font-size:clamp(20px,4vw,40px);
+  font-weight:900;
+  letter-spacing:2px;
+  text-shadow:
+    3px 0 #ff0055,
+    -3px 0 #00e5ff,
+    0 0 25px #fff;
+  opacity:0;
+  transform:scale(.6);
+  animation:unlockIn .7s 2.2s forwards;
+}
+
+.redirect{
+  margin-top:13px;
+  text-align:center;
+  color:#00ff9d;
+  font-size:10px;
+  letter-spacing:2px;
+  opacity:0;
+  animation:fadeIn .5s 2.8s forwards;
+}
+
+.close-secret{
+  position:absolute;
+  top:13px;
+  right:15px;
+  width:35px;
+  height:35px;
+  border-radius:8px;
+  border:1px solid #00ff9d33;
+  background:#00100bcc;
+  color:#00ff9d;
+  cursor:pointer;
+}
+
+/* ANIMATION */
+
+@keyframes overlayIn{
+  from{
+    opacity:0;
+    filter:brightness(3);
+  }
+  to{
+    opacity:1;
+    filter:none;
+  }
+}
+
+@keyframes rain{
+  from{
+    transform:translateY(0);
+  }
+  to{
+    transform:translateY(230vh);
+  }
+}
+
+@keyframes boxIn{
+  0%{
+    opacity:0;
+    transform:translate(-50%,-50%) scale(.7);
+    filter:blur(15px);
+  }
+  70%{
+    opacity:1;
+    transform:translate(-50%,-50%) scale(1.03);
+    filter:blur(0);
+  }
+  100%{
+    opacity:1;
+    transform:translate(-50%,-50%) scale(1);
+  }
+}
+
+@keyframes glitch{
+  0%{transform:translate(0)}
+  25%{transform:translate(-3px,1px)}
+  50%{transform:translate(3px,-1px)}
+  75%{transform:translate(-2px,-2px)}
+  100%{transform:translate(0)}
+}
+
+@keyframes unlockIn{
+  0%{
+    opacity:0;
+    transform:scale(.6);
+    filter:blur(12px);
+  }
+  60%{
+    opacity:1;
+    transform:scale(1.08);
+    filter:blur(0);
+  }
+  100%{
+    opacity:1;
+    transform:scale(1);
+  }
+}
+
+@keyframes fadeIn{
+  from{opacity:0}
+  to{opacity:1}
 }
 
 /* MOBILE */
 
-@media(max-width:850px){
-  .catalog{
-    grid-template-columns:1fr 1fr;
-  }
-}
-
-@media(max-width:650px){
-
-  .nav-wrap{
-    top:8px;
-  }
+@media(max-width:700px){
 
   nav{
-    height:57px;
+    padding:14px 5%;
   }
 
-  .nav-links a{
-    display:none;
+  .navlinks{
+    gap:2px;
   }
 
-  .page{
-    padding-top:120px;
+  .navlinks a{
+    font-size:9px;
+    padding:7px 5px;
   }
 
-  h1{
-    font-size:55px;
-    letter-spacing:-4px;
+  header{
+    padding:125px 6% 50px;
   }
 
-  .catalog{
+  header h1{
+    letter-spacing:-3px;
+  }
+
+  .project-grid{
     grid-template-columns:1fr;
   }
 
-  .filters{
-    width:100%;
+  .projects{
+    width:92%;
   }
 
-  .filter{
-    flex:1;
+  .secret-box{
+    width:94%;
+    padding:27px 18px;
   }
+
+  .secret-title{
+    font-size:30px;
+    letter-spacing:3px;
+  }
+
+  .secret-terminal{
+    font-size:10px;
+  }
+
 }
 </style>
 </head>
 
 <body>
 
-<div class="nav-wrap">
+<!-- NAVBAR -->
+
 <nav>
 
-<a class="logo" href="index.html">VIDZ.</a>
+  <!--
+    SECRET TRIGGER:
+    Klik logo VIDZ. sebanyak 5x dengan cepat.
+  -->
 
-<div class="nav-links">
+  <div class="logo" id="secretLogo">
+    VIDZ.
+  </div>
 
-<a href="index.html">Home</a>
-<a href="About.html">About</a>
-<a class="active" href="Projects.html">Project</a>
-<a href="Contact.html">Contact</a>
+  <div class="navlinks">
 
-<button class="theme" id="themeButton" type="button">🌙</button>
+    <a href="index.html">
+      Home
+    </a>
 
-</div>
+    <a href="About.html">
+      About
+    </a>
+
+    <a href="Projects.html" class="active">
+      Projects
+    </a>
+
+    <a href="Contact.html">
+      Contact
+    </a>
+
+    <button
+      class="theme"
+      id="themeButton"
+      type="button"
+    >
+      🌙
+    </button>
+
+  </div>
+
 </nav>
-</div>
 
-<main class="page">
 
-<div class="container">
+<!-- HEADER -->
 
-<div class="badge">VIDZ DIGITAL LAB</div>
+<header>
 
-<h1>
-TOOLS<br>
-<span>& PROJECTS.</span>
-</h1>
+  <div class="label">
+    VIDZ // PROJECT ARCHIVE
+  </div>
 
-<p class="intro">
- kumpulan tools yang lumayan berguna dan ada
-  project selanjutnya yang akan dikerjakan 
-  jika berkenan berikan kritik dan saran.
-</p>
+  <h1>
+    MY <span>PROJECTS.</span>
+  </h1>
 
-<div class="search-area">
+  <p>
+    Kumpulan project, eksperimen, tools, dan berbagai
+    hal yang sedang dikembangkan di VIDZ Digital Space.
+  </p>
 
-<input
-  class="search"
-  id="search"
-  type="search"
-  placeholder="Cari tools atau project..."
->
+</header>
 
-<div class="filters">
 
-<button class="filter active" data-filter="all">
-ALL
-</button>
+<!-- PROJECTS -->
 
-<button class="filter" data-filter="tool">
-TOOLS
-</button>
+<main class="projects">
 
-<button class="filter" data-filter="project">
-PROJECT
-</button>
+  <div class="project-grid">
 
-</div>
+    <!-- PROJECT 1 -->
 
-</div>
+    <article class="project">
 
-<div class="catalog" id="catalog">
+      <div class="project-icon">
+        🌐
+      </div>
 
-<!-- TOOL 1 -->
+      <div class="project-tag">
+        WEB PROJECT
+      </div>
 
-<div class="tool" data-type="tool" data-name="kalkulator calculator">
+      <h2>
+        VIDZ Digital Space
+      </h2>
 
-<div class="tool-number">TOOL // 01</div>
+      <p>
+        Website utama VIDZ yang berisi informasi,
+        tools, eksperimen, dan berbagai project.
+      </p>
 
-<div class="tool-icon">🧮</div>
+      <a
+        href="index.html"
+        class="project-btn"
+      >
+        OPEN PROJECT →
+      </a>
 
-<h2>Kalkulator</h2>
+    </article>
 
-<p>
-Kalkulator sederhana untuk perhitungan cepat
-langsung di browser.
-</p>
 
-<span class="tool-type">UTILITY</span>
+    <!-- PROJECT 2 -->
 
-<button class="open" onclick="openTool('calculator')">
-OPEN TOOL →
-</button>
+    <article class="project">
 
-</div>
+      <div class="project-icon">
+        🛠️
+      </div>
 
-<!-- TOOL 2 -->
+      <div class="project-tag">
+        TOOLS
+      </div>
 
-<div class="tool" data-type="tool" data-name="catatan notes">
+      <h2>
+        VIDZ Toolbox
+      </h2>
 
-<div class="tool-number">TOOL // 02</div>
+      <p>
+        Kumpulan tools sederhana yang dibuat supaya
+        beberapa kebutuhan bisa dilakukan langsung
+        melalui browser.
+      </p>
 
-<div class="tool-icon">📝</div>
+      <a
+        href="Tools.html"
+        class="project-btn"
+      >
+        OPEN TOOLBOX →
+      </a>
 
-<h2>Quick Notes</h2>
+    </article>
 
-<p>
-Tulis catatan kecil dan simpan langsung
-di browser menggunakan local storage.
-</p>
 
-<span class="tool-type">PRODUCTIVITY</span>
+    <!-- PROJECT 3 -->
 
-<button class="open" onclick="openTool('notes')">
-OPEN TOOL →
-</button>
+    <article class="project">
 
-</div>
+      <div class="project-icon">
+        ☁️
+      </div>
 
-<!-- TOOL 3 -->
+      <div class="project-tag">
+        INFRASTRUCTURE
+      </div>
 
-<div class="tool" data-type="tool" data-name="waktu jam time">
+      <h2>
+        Cloudflare Web
+      </h2>
 
-<div class="tool-number">TOOL // 03</div>
+      <p>
+        Eksperimen deployment dan hosting website
+        menggunakan Cloudflare.
+      </p>
 
-<div class="tool-icon">🕒</div>
+      <span class="project-btn">
+        ACTIVE
+      </span>
 
-<h2>Live Clock</h2>
+    </article>
 
-<p>
-Menampilkan waktu lokal secara realtime
-langsung dari perangkat.
-</p>
 
-<span class="tool-type">UTILITY</span>
+    <!-- PROJECT 4 -->
 
-<button class="open" onclick="openTool('clock')">
-OPEN TOOL →
-</button>
+    <article class="project">
 
-</div>
+      <div class="project-icon">
+        🧪
+      </div>
 
-<!-- PROJECT 1 -->
+      <div class="project-tag">
+        EXPERIMENT
+      </div>
 
-<div class="tool" data-type="project" data-name="vidz website web">
+      <h2>
+        Web Experiments
+      </h2>
 
-<div class="tool-number">PROJECT // 01</div>
+      <p>
+        Tempat berbagai percobaan HTML, CSS,
+        JavaScript, animasi, dan interface.
+      </p>
 
-<div class="tool-icon">🌐</div>
+      <span class="project-btn">
+        EXPERIMENTAL
+      </span>
 
-<h2>VIDZ-Web</h2>
+    </article>
 
-<p>
-Website digital space pribadi VIDZ dengan
-navigasi multi-halaman dan berbagai fitur.
-</p>
+  </div>
 
-<span class="tool-type">ACTIVE</span>
 
-<button class="open" onclick="showInfo('VIDZ-Web','Website utama VIDZ yang digunakan sebagai tempat project, eksperimen, dan tools.')">
-VIEW PROJECT →
-</button>
+  <!-- HIDDEN HINT -->
 
-</div>
+  <div class="secret-hint">
+    [ PROJECT ARCHIVE // SOMETHING IS HIDDEN ]
+  </div>
 
-<!-- PROJECT 2 -->
-
-<div class="tool" data-type="project" data-name="easter egg glitch">
-
-<div class="tool-number">PROJECT // 02</div>
-
-<div class="tool-icon">👁️</div>
-
-<h2>Glitch System</h2>
-
-<p>
-Eksperimen visual berupa interface glitch,
-scanline, dan secret easter egg.
-</p>
-
-<span class="tool-type">EXPERIMENTAL</span>
-
-<button class="open" onclick="showInfo('Glitch System','Eksperimen UI cinematic dan efek glitch yang digunakan sebagai easter egg VIDZ-Web.')">
-VIEW PROJECT →
-</button>
-
-</div>
-
-<!-- PROJECT 3 -->
-
-<div class="tool" data-type="project" data-name="future project">
-
-<div class="tool-number">PROJECT // 03</div>
-
-<div class="tool-icon">🚀</div>
-
-<h2>Future Lab</h2>
-
-<p>
-Tempat untuk project dan eksperimen berikutnya
-yang akan dikembangkan VIDZ.
-</p>
-
-<span class="tool-type">COMING SOON</span>
-
-<button class="open" onclick="showInfo('Future Lab','Project berikutnya masih dalam tahap pengembangan.')">
-VIEW PROJECT →
-</button>
-
-</div>
-
-</div>
-
-<div class="project-status">
-STATUS SISTEM:
-<b>● ALL SYSTEMS OPERATIONAL</b>
-</div>
-
-<a class="back" href="index.html">
-← Kembali ke Home
-</a>
-
-</div>
 </main>
 
-<footer>
-© 2026 <span>VIDZ</span> — Digital Space 🗿
-</footer>
 
-<!-- MODAL -->
+<!-- =========================
+     SECRET EASTER EGG
+========================= -->
 
-<div class="modal" id="modal">
+<div id="secretOverlay">
 
-<div class="modal-box">
+  <div class="rain">
 
-<div class="modal-top">
+    <div class="rain-column">
+01
+10
+FF
+A7
+01
+VIDZ
+10
+00
+SYSTEM
+7F
+A1
+01
+CODE
+FF
+10
+      </div>
 
-<h2 id="modalTitle">Tool</h2>
+    <div class="rain-column">
+10
+01
+A0
+FF
+VIDZ
+11
+00
+7C
+10
+SYSTEM
+01
+F1
+      </div>
 
-<button class="close" onclick="closeModal()">✕</button>
+    <div class="rain-column">
+FF
+01
+10
+CODE
+A7
+00
+11
+VIDZ
+F0
+01
+10
+      </div>
+
+    <div class="rain-column">
+00
+11
+VIDZ
+A1
+F7
+01
+10
+SYSTEM
+FF
+00
+C2
+      </div>
+
+    <div class="rain-column">
+VIDZ
+01
+00
+10
+FF
+A7
+11
+CODE
+01
+F0
+10
+      </div>
+
+    <div class="rain-column">
+10
+FF
+01
+VIDZ
+00
+11
+A0
+SYSTEM
+7F
+01
+10
+      </div>
+
+    <div class="rain-column">
+01
+10
+11
+00
+F2
+VIDZ
+A7
+FF
+01
+CODE
+10
+      </div>
+
+    <div class="rain-column">
+SYSTEM
+01
+FF
+10
+A1
+00
+VIDZ
+11
+F7
+01
+10
+      </div>
+
+    <div class="rain-column">
+FF
+00
+01
+VIDZ
+10
+A7
+11
+CODE
+F1
+00
+01
+      </div>
+
+    <div class="rain-column">
+10
+01
+VIDZ
+FF
+00
+11
+SYSTEM
+A8
+01
+10
+      </div>
+
+    <div class="rain-column">
+00
+FF
+10
+01
+A7
+VIDZ
+11
+F0
+CODE
+01
+10
+      </div>
+
+  </div>
+
+
+  <div class="overlay-dark"></div>
+
+  <div class="scanlines"></div>
+
+
+  <div class="secret-box">
+
+    <button
+      class="close-secret"
+      id="closeSecret"
+      type="button"
+    >
+      ✕
+    </button>
+
+
+    <div class="secret-status">
+      VIDZ // CLASSIFIED PROJECT
+    </div>
+
+
+    <div class="secret-title">
+      ACCESS GRANTED
+    </div>
+
+
+    <div class="secret-line"></div>
+
+
+    <div class="secret-terminal">
+
+      <div>
+        <span>[SYSTEM]</span>
+        Searching hidden projects...
+      </div>
+
+      <div>
+        <span>[SYSTEM]</span>
+        Project archive unlocked.
+      </div>
+
+      <div>
+        <span>[SYSTEM]</span>
+        Unknown project detected.
+      </div>
+
+      <div>
+        <span>[SYSTEM]</span>
+        Security layer bypassed.
+      </div>
+
+      <div>
+        <span>[SYSTEM]</span>
+        Classified database found.
+      </div>
+
+      <div>
+        <span>[SYSTEM]</span>
+        Preparing access...
+      </div>
+
+    </div>
+
+
+    <div class="unlock">
+      SECRET PROJECT UNLOCKED
+    </div>
+
+
+    <div class="redirect">
+      REDIRECTING TO VIDZ VS DATABASE...
+    </div>
+
+  </div>
 
 </div>
 
-<div id="modalContent"></div>
-
-</div>
-</div>
 
 <script>
 
-/* THEME */
+/* =========================
+   THEME
+========================= */
 
-const themeButton=document.getElementById("themeButton");
+const themeButton =
+document.getElementById("themeButton");
 
-themeButton.addEventListener("click",function(){
+themeButton.addEventListener(
+  "click",
+  function(){
 
-  document.body.classList.toggle("light");
+    document.body.classList.toggle("light");
 
-  themeButton.textContent=
-    document.body.classList.contains("light")
-    ? "☀️"
-    : "🌙";
-
-});
-
-/* SEARCH */
-
-const search=document.getElementById("search");
-const cards=document.querySelectorAll(".tool");
-const filters=document.querySelectorAll(".filter");
-
-let currentFilter="all";
-
-function filterCards(){
-
-  const query=search.value.toLowerCase().trim();
-
-  cards.forEach(card=>{
-
-    const matchText=
-      card.dataset.name.includes(query);
-
-    const matchType=
-      currentFilter==="all" ||
-      card.dataset.type===currentFilter;
-
-    card.classList.toggle(
-      "hide",
-      !(matchText && matchType)
-    );
-
-  });
-}
-
-search.addEventListener("input",filterCards);
-
-filters.forEach(button=>{
-
-  button.addEventListener("click",()=>{
-
-    filters.forEach(x=>x.classList.remove("active"));
-
-    button.classList.add("active");
-
-    currentFilter=button.dataset.filter;
-
-    filterCards();
-
-  });
-
-});
-
-/* MODAL */
-
-const modal=document.getElementById("modal");
-const modalTitle=document.getElementById("modalTitle");
-const modalContent=document.getElementById("modalContent");
-
-function openModal(title,content){
-
-  modalTitle.textContent=title;
-  modalContent.innerHTML=content;
-  modal.classList.add("show");
-
-}
-
-function closeModal(){
-
-  modal.classList.remove("show");
-
-}
-
-modal.addEventListener("click",function(e){
-
-  if(e.target===modal){
-    closeModal();
-  }
-
-});
-
-/* CALCULATOR */
-
-function openTool(type){
-
-  if(type==="calculator"){
-
-    openModal(
-      "🧮 Kalkulator",
-      `
-      <div class="calc-display" id="calcDisplay">0</div>
-
-      <div class="calc-grid">
-
-        <button onclick="calcClear()">C</button>
-        <button onclick="calcInput('(')">(</button>
-        <button onclick="calcInput(')')">)</button>
-        <button onclick="calcInput('/')">÷</button>
-
-        <button onclick="calcInput('7')">7</button>
-        <button onclick="calcInput('8')">8</button>
-        <button onclick="calcInput('9')">9</button>
-        <button onclick="calcInput('*')">×</button>
-
-        <button onclick="calcInput('4')">4</button>
-        <button onclick="calcInput('5')">5</button>
-        <button onclick="calcInput('6')">6</button>
-        <button onclick="calcInput('-')">−</button>
-
-        <button onclick="calcInput('1')">1</button>
-        <button onclick="calcInput('2')">2</button>
-        <button onclick="calcInput('3')">3</button>
-        <button onclick="calcInput('+')">+</button>
-
-        <button onclick="calcInput('0')">0</button>
-        <button onclick="calcInput('.')">.</button>
-        <button onclick="calcBack()">⌫</button>
-        <button onclick="calcResult()">=</button>
-
-      </div>
-      `
-    );
+    themeButton.textContent =
+      document.body.classList.contains("light")
+      ? "☀️"
+      : "🌙";
 
   }
+);
 
-  if(type==="notes"){
 
-    openModal(
-      "📝 Quick Notes",
-      `
-      <textarea id="notesArea"
-      placeholder="Tulis sesuatu di sini..."></textarea>
+/* =========================
+   SECRET EASTER EGG
+   5X CLICK LOGO
+========================= */
 
-      <button class="save-note" onclick="saveNotes()">
-      SIMPAN CATATAN
-      </button>
+const secretLogo =
+document.getElementById("secretLogo");
 
-      <div class="note-status" id="noteStatus"></div>
-      `
-    );
+const secretOverlay =
+document.getElementById("secretOverlay");
 
-    const saved=localStorage.getItem("vidz_notes");
+const closeSecret =
+document.getElementById("closeSecret");
 
-    if(saved){
-      document.getElementById("notesArea").value=saved;
+let secretClicks = 0;
+let secretTimer = null;
+let redirectTimer = null;
+
+
+secretLogo.addEventListener(
+  "click",
+  function(){
+
+    secretClicks++;
+
+    clearTimeout(secretTimer);
+
+    secretTimer =
+      setTimeout(function(){
+
+        secretClicks=0;
+
+      },1000);
+
+
+    /*
+      5 KALI KLIK CEPAT
+    */
+
+    if(secretClicks >= 5){
+
+      secretClicks=0;
+
+      openSecret();
+
     }
 
   }
+);
 
-  if(type==="clock"){
 
-    openModal(
-      "🕒 Live Clock",
-      `
-      <div style="
-        text-align:center;
-        padding:35px 10px;
-        font-size:42px;
-        color:#00e5ff;
-        font-weight:bold;
-      " id="clock">
-      </div>
+/* =========================
+   OPEN SECRET
+========================= */
 
-      <div style="
-        text-align:center;
-        color:#8292a7;
-        font-size:11px;
-      ">
-      Waktu perangkat kamu
-      </div>
-      `
-    );
+function openSecret(){
 
-    updateClock();
+  clearTimeout(redirectTimer);
+
+  secretOverlay.classList.add("active");
+
+  /*
+    Setelah cinematic selesai,
+    buka AnimeDB.html
+  */
+
+  redirectTimer =
+    setTimeout(function(){
+
+      window.location.href =
+        "AnimeDB.html";
+
+    },3800);
+
+}
+
+
+/* =========================
+   CLOSE
+========================= */
+
+closeSecret.addEventListener(
+  "click",
+  function(){
+
+    clearTimeout(redirectTimer);
+
+    secretOverlay.classList.remove("active");
 
   }
+);
 
-}
 
-/* CALCULATOR LOGIC */
+/* Klik area luar untuk menutup */
 
-let calcValue="";
+secretOverlay.addEventListener(
+  "click",
+  function(event){
 
-function calcInput(value){
+    if(event.target === secretOverlay){
 
-  calcValue+=value;
+      clearTimeout(redirectTimer);
 
-  document.getElementById("calcDisplay").textContent=
-    calcValue || "0";
+      secretOverlay.classList.remove("active");
 
-}
-
-function calcClear(){
-
-  calcValue="";
-
-  document.getElementById("calcDisplay").textContent="0";
-
-}
-
-function calcBack(){
-
-  calcValue=calcValue.slice(0,-1);
-
-  document.getElementById("calcDisplay").textContent=
-    calcValue || "0";
-
-}
-
-function calcResult(){
-
-  try{
-
-    if(!/^[0-9+\-*/().\s]+$/.test(calcValue)){
-      throw new Error();
     }
 
-    calcValue=String(Function(
-      '"use strict";return ('+calcValue+')'
-    )());
-
-    document.getElementById("calcDisplay").textContent=
-      calcValue;
-
-  }catch{
-
-    calcValue="";
-
-    document.getElementById("calcDisplay").textContent=
-      "ERROR";
-
   }
-
-}
-
-/* NOTES */
-
-function saveNotes(){
-
-  const value=document.getElementById("notesArea").value;
-
-  localStorage.setItem("vidz_notes",value);
-
-  document.getElementById("noteStatus").textContent=
-    "✓ Catatan tersimpan di perangkat.";
-
-}
-
-/* CLOCK */
-
-let clockTimer;
-
-function updateClock(){
-
-  clearInterval(clockTimer);
-
-  function render(){
-
-    const clock=document.getElementById("clock");
-
-    if(!clock){
-      clearInterval(clockTimer);
-      return;
-    }
-
-    const now=new Date();
-
-    clock.textContent=
-      now.toLocaleTimeString("id-ID");
-
-  }
-
-  render();
-
-  clockTimer=setInterval(render,1000);
-
-}
-
-/* PROJECT INFO */
-
-function showInfo(title,text){
-
-  openModal(
-    title,
-    `
-    <p style="
-      color:#8292a7;
-      line-height:1.8;
-      font-size:13px;
-    ">
-      ${text}
-    </p>
-    `
-  );
-
-}
+);
 
 </script>
 
