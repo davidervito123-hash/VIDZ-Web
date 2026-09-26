@@ -59,7 +59,9 @@ body::after{
   pointer-events:none;
 }
 
-/* NAVBAR */
+/* =========================
+   NAVBAR
+========================= */
 
 nav{
   position:fixed;
@@ -95,6 +97,7 @@ nav{
 
 .navlinks a{
   color:#9aa9bd;
+  text-decoration:none;
   font-size:13px;
   padding:8px 10px;
   border-radius:9px;
@@ -116,7 +119,9 @@ nav{
   cursor:pointer;
 }
 
-/* HERO */
+/* =========================
+   HERO
+========================= */
 
 .hero{
   min-height:100vh;
@@ -168,6 +173,7 @@ nav{
 .btn{
   padding:13px 21px;
   border-radius:12px;
+  text-decoration:none;
   font-weight:bold;
   transition:.25s;
 }
@@ -188,7 +194,9 @@ nav{
   transform:translateY(-4px);
 }
 
-/* PROFILE */
+/* =========================
+   PROFILE
+========================= */
 
 .profile-card{
   padding:30px;
@@ -288,7 +296,9 @@ nav{
   line-height:1.6;
 }
 
-/* TOOLS */
+/* =========================
+   TOOLS
+========================= */
 
 .tools-section{
   padding:90px 7%;
@@ -367,7 +377,385 @@ nav{
   font-weight:bold;
 }
 
-/* LIGHT MODE */
+/* =========================
+   CINEMATIC EASTER EGG
+========================= */
+
+#easterEgg{
+  position:fixed;
+  inset:0;
+  z-index:99999;
+  display:none;
+  overflow:hidden;
+  background:#000;
+  color:#00ff9d;
+  font-family:"Courier New",monospace;
+  cursor:default;
+}
+
+#easterEgg.active{
+  display:block;
+  animation:eggAppear .45s ease forwards;
+}
+
+/* Rain code */
+
+.code-rain{
+  position:absolute;
+  inset:0;
+  overflow:hidden;
+  opacity:.75;
+  pointer-events:none;
+}
+
+.code-column{
+  position:absolute;
+  top:-120%;
+  white-space:pre;
+  color:#00ff9d;
+  font-size:clamp(12px,1.7vw,20px);
+  line-height:1.05;
+  font-weight:bold;
+  text-shadow:
+    0 0 6px #00ff9d,
+    0 0 18px #00ff9d;
+  animation:rainFall linear infinite;
+  user-select:none;
+}
+
+.code-column:nth-child(1){left:2%;animation-duration:5s;animation-delay:-2s}
+.code-column:nth-child(2){left:8%;animation-duration:7s;animation-delay:-5s}
+.code-column:nth-child(3){left:15%;animation-duration:4.5s;animation-delay:-1s}
+.code-column:nth-child(4){left:22%;animation-duration:6s;animation-delay:-4s}
+.code-column:nth-child(5){left:30%;animation-duration:5.5s;animation-delay:-3s}
+.code-column:nth-child(6){left:38%;animation-duration:4s;animation-delay:-2s}
+.code-column:nth-child(7){left:46%;animation-duration:6.5s;animation-delay:-5s}
+.code-column:nth-child(8){left:54%;animation-duration:4.8s;animation-delay:-1s}
+.code-column:nth-child(9){left:62%;animation-duration:5.8s;animation-delay:-4s}
+.code-column:nth-child(10){left:70%;animation-duration:4.2s;animation-delay:-2s}
+.code-column:nth-child(11){left:78%;animation-duration:6.2s;animation-delay:-3s}
+.code-column:nth-child(12){left:86%;animation-duration:4.6s;animation-delay:-5s}
+.code-column:nth-child(13){left:94%;animation-duration:5.2s;animation-delay:-1s}
+
+/* Dark cinematic overlay */
+
+.egg-dark{
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(
+      circle at center,
+      transparent 5%,
+      rgba(0,0,0,.35) 45%,
+      rgba(0,0,0,.88) 100%
+    );
+  pointer-events:none;
+}
+
+/* Scanlines */
+
+.egg-scanlines{
+  position:absolute;
+  inset:0;
+  background:repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 3px,
+    rgba(0,255,157,.08) 4px
+  );
+  mix-blend-mode:screen;
+  pointer-events:none;
+}
+
+/* Main cinematic box */
+
+.egg-box{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%) scale(.8);
+  width:min(950px,92%);
+  min-height:420px;
+  padding:38px;
+  border:1px solid #00ff9d55;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(0,20,15,.94),
+      rgba(0,5,8,.92)
+    );
+  box-shadow:
+    0 0 25px #00ff9d22,
+    0 0 100px #00ff9d11,
+    inset 0 0 80px #00ff9d08;
+  opacity:0;
+  animation:boxReveal .8s .25s cubic-bezier(.2,.8,.2,1) forwards;
+}
+
+.egg-box::before,
+.egg-box::after{
+  content:"";
+  position:absolute;
+  width:45px;
+  height:45px;
+  pointer-events:none;
+}
+
+.egg-box::before{
+  top:-1px;
+  left:-1px;
+  border-top:2px solid #00ff9d;
+  border-left:2px solid #00ff9d;
+}
+
+.egg-box::after{
+  right:-1px;
+  bottom:-1px;
+  border-right:2px solid #00ff9d;
+  border-bottom:2px solid #00ff9d;
+}
+
+/* Terminal heading */
+
+.egg-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
+  color:#00ff9d;
+  font-size:10px;
+  letter-spacing:3px;
+  opacity:.75;
+}
+
+.egg-title{
+  position:relative;
+  font-size:clamp(32px,7vw,78px);
+  font-weight:900;
+  letter-spacing:7px;
+  line-height:1;
+  color:#eafff7;
+  text-shadow:
+    3px 0 #ff0055,
+    -3px 0 #00e5ff,
+    0 0 20px #00ff9d,
+    0 0 50px #00ff9d;
+  animation:titleGlitch .13s infinite;
+}
+
+.egg-line{
+  width:100%;
+  height:1px;
+  margin:25px 0;
+  background:linear-gradient(
+    90deg,
+    transparent,
+    #00ff9d,
+    transparent
+  );
+  box-shadow:0 0 15px #00ff9d;
+}
+
+.egg-terminal{
+  color:#8affc9;
+  font-size:13px;
+  line-height:2;
+  min-height:125px;
+}
+
+.egg-terminal span{
+  color:#00ff9d;
+  text-shadow:0 0 10px #00ff9d;
+}
+
+.terminal-cursor{
+  display:inline-block;
+  width:7px;
+  height:13px;
+  margin-left:4px;
+  background:#00ff9d;
+  box-shadow:0 0 10px #00ff9d;
+  animation:cursorBlink .5s infinite;
+}
+
+/* Secret text */
+
+.egg-final{
+  position:relative;
+  margin-top:20px;
+  padding:18px 10px;
+  text-align:center;
+  color:#fff;
+  font-size:clamp(20px,4.5vw,52px);
+  font-weight:900;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  text-shadow:
+    4px 0 #ff0055,
+    -4px 0 #00e5ff,
+    0 0 15px #fff,
+    0 0 35px #00ff9d;
+  opacity:0;
+  transform:scale(.7);
+  animation:finalReveal .6s 2.1s cubic-bezier(.2,.8,.2,1) forwards,
+             finalGlitch .12s 2.7s infinite;
+}
+
+.egg-final::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(0,255,157,.25),
+      transparent
+    );
+  transform:translateX(-120%);
+  animation:finalSweep 1s 2.1s forwards;
+  pointer-events:none;
+}
+
+/* Close */
+
+.egg-close{
+  position:absolute;
+  top:14px;
+  right:16px;
+  z-index:20;
+  border:1px solid #00ff9d33;
+  background:#00110bcc;
+  color:#00ff9d;
+  width:35px;
+  height:35px;
+  border-radius:8px;
+  font-size:18px;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.egg-close:hover{
+  color:#fff;
+  border-color:#00ff9d;
+  box-shadow:0 0 20px #00ff9d55;
+  transform:rotate(90deg);
+}
+
+/* Corner text */
+
+.egg-corner{
+  position:absolute;
+  bottom:16px;
+  left:20px;
+  color:#00ff9d66;
+  font-size:8px;
+  letter-spacing:2px;
+}
+
+.egg-corner-right{
+  position:absolute;
+  bottom:16px;
+  right:20px;
+  color:#00ff9d66;
+  font-size:8px;
+  letter-spacing:2px;
+}
+
+/* Easter Egg animations */
+
+@keyframes eggAppear{
+  0%{
+    opacity:0;
+    filter:brightness(3) contrast(2);
+  }
+  25%{
+    opacity:1;
+    filter:brightness(1.7) contrast(1.5);
+  }
+  100%{
+    opacity:1;
+    filter:none;
+  }
+}
+
+@keyframes boxReveal{
+  0%{
+    opacity:0;
+    transform:translate(-50%,-50%) scale(.8);
+    filter:blur(15px);
+  }
+  60%{
+    opacity:1;
+    transform:translate(-50%,-50%) scale(1.03);
+    filter:blur(0);
+  }
+  100%{
+    opacity:1;
+    transform:translate(-50%,-50%) scale(1);
+  }
+}
+
+@keyframes rainFall{
+  from{
+    transform:translateY(0);
+  }
+  to{
+    transform:translateY(220vh);
+  }
+}
+
+@keyframes titleGlitch{
+  0%{transform:translate(0)}
+  20%{transform:translate(-3px,1px)}
+  40%{transform:translate(3px,-1px)}
+  60%{transform:translate(-2px,-2px)}
+  80%{transform:translate(2px,2px)}
+  100%{transform:translate(0)}
+}
+
+@keyframes finalReveal{
+  0%{
+    opacity:0;
+    transform:scale(.65) translateY(20px);
+    filter:blur(12px);
+  }
+  60%{
+    opacity:1;
+    transform:scale(1.08) translateY(0);
+    filter:blur(0);
+  }
+  100%{
+    opacity:1;
+    transform:scale(1);
+  }
+}
+
+@keyframes finalGlitch{
+  0%{transform:translate(0)}
+  25%{transform:translate(-3px,1px)}
+  50%{transform:translate(3px,-1px)}
+  75%{transform:translate(-2px,0)}
+  100%{transform:translate(0)}
+}
+
+@keyframes finalSweep{
+  from{
+    transform:translateX(-120%);
+  }
+  to{
+    transform:translateX(120%);
+  }
+}
+
+@keyframes cursorBlink{
+  0%,45%{opacity:1}
+  46%,100%{opacity:0}
+}
+
+/* =========================
+   LIGHT MODE
+========================= */
 
 body.light{
   color:#111827;
@@ -423,493 +811,9 @@ body.light .tool p{
   color:#526174;
 }
 
-
-/* ==================================================
-   CINEMATIC EASTER EGG
-================================================== */
-
-#easterEgg{
-  position:fixed;
-  inset:0;
-  z-index:99999;
-  display:none;
-  overflow:hidden;
-  background:#000;
-  color:#00ff9d;
-  font-family:monospace;
-}
-
-#easterEgg.active{
-  display:block;
-  animation:
-    eggAppear .25s ease-out,
-    screenShake .16s infinite;
-}
-
-/* Dark overlay */
-
-.egg-dark{
-  position:absolute;
-  inset:0;
-  background:
-    radial-gradient(
-      circle at center,
-      rgba(0,255,157,.08),
-      transparent 35%
-    ),
-    #000;
-  z-index:1;
-}
-
-/* Rain code */
-
-#codeRain{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  z-index:2;
-  opacity:.8;
-}
-
-/* Scanlines */
-
-.egg-scanlines{
-  position:absolute;
-  inset:0;
-  z-index:5;
-  pointer-events:none;
-
-  background:
-    repeating-linear-gradient(
-      to bottom,
-      transparent 0,
-      transparent 3px,
-      rgba(0,255,157,.07) 4px
-    );
-}
-
-/* Moving scan beam */
-
-.egg-scan{
-  position:absolute;
-  left:0;
-  top:-30%;
-  width:100%;
-  height:35%;
-  z-index:6;
-  pointer-events:none;
-
-  background:linear-gradient(
-    to bottom,
-    transparent,
-    rgba(0,255,157,.12),
-    transparent
-  );
-
-  animation:scanBeam 1.5s linear infinite;
-}
-
-/* Center content */
-
-.egg-content{
-  position:absolute;
-  inset:0;
-  z-index:10;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  padding:20px;
-}
-
-.egg-box{
-  position:relative;
-
-  width:min(900px,92%);
-  min-height:390px;
-
-  padding:38px;
-
-  border:1px solid rgba(0,255,157,.45);
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(0,255,157,.07),
-      rgba(0,0,0,.94) 45%,
-      rgba(0,229,255,.05)
-    );
-
-  box-shadow:
-    0 0 15px rgba(0,255,157,.25),
-    0 0 80px rgba(0,255,157,.08),
-    inset 0 0 80px rgba(0,255,157,.04);
-
-  clip-path:
-    polygon(
-      0 0,
-      98% 0,
-      100% 8%,
-      100% 100%,
-      2% 100%,
-      0 92%
-    );
-
-  animation:boxPulse 2s infinite;
-}
-
-/* Corner decorations */
-
-.egg-box::before,
-.egg-box::after{
-  content:"";
-  position:absolute;
-  width:45px;
-  height:45px;
-  border-color:#00ff9d;
-  border-style:solid;
-  opacity:.8;
-}
-
-.egg-box::before{
-  top:-1px;
-  left:-1px;
-  border-width:2px 0 0 2px;
-}
-
-.egg-box::after{
-  right:-1px;
-  bottom:-1px;
-  border-width:0 2px 2px 0;
-}
-
-/* Title */
-
-.egg-title{
-  font-size:clamp(30px,7vw,75px);
-  font-weight:900;
-  letter-spacing:8px;
-  color:#00ff9d;
-
-  text-shadow:
-    4px 0 #ff0055,
-    -4px 0 #00e5ff,
-    0 0 25px #00ff9d,
-    0 0 70px rgba(0,255,157,.5);
-
-  animation:
-    heavyGlitch .11s infinite,
-    titleFlicker 2s infinite;
-}
-
-/* Line */
-
-.egg-line{
-  width:100%;
-  height:1px;
-  margin:22px 0;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      #00ff9d,
-      transparent
-    );
-
-  box-shadow:0 0 15px #00ff9d;
-}
-
-/* Terminal */
-
-.egg-terminal{
-  color:#79ffbf;
-  font-size:13px;
-  line-height:2.1;
-  text-shadow:0 0 8px #00ff9d;
-}
-
-.egg-terminal span{
-  color:#00ff9d;
-  font-weight:bold;
-}
-
-/* Big falling message */
-
-.egg-drop{
-  position:absolute;
-
-  top:-120px;
-  left:50%;
-
-  transform:translateX(-50%);
-
-  width:100%;
-
-  text-align:center;
-
-  font-size:clamp(25px,6vw,70px);
-  font-weight:1000;
-
-  color:#fff;
-
-  letter-spacing:3px;
-
-  opacity:0;
-
-  text-shadow:
-    4px 0 #ff0055,
-    -4px 0 #00e5ff,
-    0 0 25px #fff,
-    0 0 60px #00ff9d;
-
-  white-space:nowrap;
-
-  z-index:20;
-
-  pointer-events:none;
-}
-
-/* Triggered state */
-
-#easterEgg.reveal .egg-drop{
-  animation:
-    dropText .85s cubic-bezier(.1,.8,.2,1) forwards,
-    heavyGlitch .08s infinite .85s;
-}
-
-/* Final message */
-
-.egg-final{
-  position:relative;
-
-  margin-top:30px;
-
-  text-align:center;
-
-  font-size:clamp(20px,4vw,42px);
-
-  font-weight:900;
-
-  letter-spacing:3px;
-
-  color:#fff;
-
-  opacity:0;
-
-  text-shadow:
-    3px 0 #ff0055,
-    -3px 0 #00e5ff,
-    0 0 25px #fff;
-
-  animation:none;
-}
-
-#easterEgg.reveal .egg-final{
-  animation:
-    finalReveal .25s ease-out 1s forwards,
-    heavyGlitch .08s infinite 1.3s;
-}
-
-/* Close */
-
-.egg-close{
-  position:absolute;
-
-  top:14px;
-  right:17px;
-
-  border:0;
-  background:none;
-
-  color:#00ff9d;
-
-  font-size:20px;
-
-  cursor:pointer;
-
-  z-index:30;
-
-  text-shadow:0 0 10px #00ff9d;
-
-  transition:.2s;
-}
-
-.egg-close:hover{
-  color:#fff;
-  transform:scale(1.2) rotate(10deg);
-}
-
-/* Easter Egg animations */
-
-@keyframes eggAppear{
-  0%{
-    opacity:0;
-    filter:brightness(4) contrast(2);
-  }
-
-  50%{
-    opacity:1;
-    filter:brightness(.5) contrast(2);
-  }
-
-  100%{
-    opacity:1;
-    filter:none;
-  }
-}
-
-@keyframes screenShake{
-  0%{transform:translate(0)}
-  25%{transform:translate(-1px,1px)}
-  50%{transform:translate(1px,-1px)}
-  75%{transform:translate(-1px,-1px)}
-  100%{transform:translate(1px,1px)}
-}
-
-@keyframes scanBeam{
-  from{
-    transform:translateY(-100%);
-  }
-
-  to{
-    transform:translateY(420%);
-  }
-}
-
-@keyframes boxPulse{
-  0%,100%{
-    box-shadow:
-      0 0 15px rgba(0,255,157,.25),
-      0 0 80px rgba(0,255,157,.08),
-      inset 0 0 80px rgba(0,255,157,.04);
-  }
-
-  50%{
-    box-shadow:
-      0 0 30px rgba(0,255,157,.4),
-      0 0 120px rgba(0,255,157,.14),
-      inset 0 0 100px rgba(0,255,157,.08);
-  }
-}
-
-@keyframes heavyGlitch{
-  0%{
-    transform:translate(0);
-    clip-path:inset(0);
-  }
-
-  15%{
-    transform:translate(-5px,2px);
-    clip-path:inset(10% 0 70% 0);
-  }
-
-  30%{
-    transform:translate(5px,-2px);
-    clip-path:inset(60% 0 10% 0);
-  }
-
-  45%{
-    transform:translate(-3px,1px);
-    clip-path:inset(30% 0 40% 0);
-  }
-
-  60%{
-    transform:translate(4px,0);
-    clip-path:inset(80% 0 5% 0);
-  }
-
-  80%{
-    transform:translate(-2px,-1px);
-    clip-path:inset(5% 0 80% 0);
-  }
-
-  100%{
-    transform:translate(0);
-    clip-path:inset(0);
-  }
-}
-
-@keyframes titleFlicker{
-  0%,92%,100%{
-    opacity:1;
-  }
-
-  93%{
-    opacity:.3;
-  }
-
-  94%{
-    opacity:1;
-  }
-
-  96%{
-    opacity:.5;
-  }
-
-  97%{
-    opacity:1;
-  }
-}
-
-@keyframes dropText{
-
-  0%{
-    top:-120px;
-    opacity:0;
-    transform:
-      translateX(-50%)
-      scale(.3)
-      rotate(-8deg);
-  }
-
-  45%{
-    opacity:1;
-  }
-
-  75%{
-    top:42%;
-    transform:
-      translateX(-50%)
-      scale(1.15)
-      rotate(2deg);
-  }
-
-  100%{
-    top:42%;
-    opacity:1;
-    transform:
-      translateX(-50%)
-      scale(1)
-      rotate(0);
-  }
-}
-
-@keyframes finalReveal{
-
-  0%{
-    opacity:0;
-    transform:scale(1.8);
-    filter:blur(15px);
-  }
-
-  60%{
-    opacity:1;
-    transform:scale(.95);
-    filter:blur(0);
-  }
-
-  100%{
-    opacity:1;
-    transform:scale(1);
-    filter:none;
-  }
-}
-
-
-/* MOBILE */
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:850px){
 
@@ -979,8 +883,13 @@ body.light .tool p{
 
   .egg-box{
     width:94%;
-    min-height:430px;
-    padding:25px 18px;
+    min-height:390px;
+    padding:28px 18px;
+  }
+
+  .egg-title{
+    font-size:29px;
+    letter-spacing:3px;
   }
 
   .egg-terminal{
@@ -988,13 +897,18 @@ body.light .tool p{
     line-height:1.9;
   }
 
-  .egg-title{
-    letter-spacing:3px;
+  .egg-final{
+    font-size:22px;
+    letter-spacing:1px;
   }
 
-  .egg-drop{
-    white-space:normal;
-    padding:0 10px;
+  .egg-top{
+    font-size:7px;
+  }
+
+  .egg-corner,
+  .egg-corner-right{
+    font-size:6px;
   }
 }
 </style>
@@ -1002,89 +916,260 @@ body.light .tool p{
 
 <body>
 
-<!-- ==================================================
+<!-- =========================
      CINEMATIC EASTER EGG
-================================================== -->
+========================= -->
 
 <div id="easterEgg">
 
-  <canvas id="codeRain"></canvas>
+  <div class="code-rain">
 
-  <div class="egg-dark"></div>
+    <div class="code-column">01
+10
+A7
+FF
+01
+10
+VIDZ
+01
+X9
+00
+11
+SYSTEM
+7F
+A1</div>
 
-  <div class="egg-scan"></div>
+    <div class="code-column">1A
+0F
+10
+B2
+00
+CODE
+FF
+7A
+01
+VIDZ
+9C
+11
+00</div>
 
-  <div class="egg-scanlines"></div>
+    <div class="code-column">10
+01
+11
+00
+F7
+C2
+A0
+VIDZ
+01
+9F
+10
+FF</div>
 
-  <div class="egg-drop">
-    UTUH &amp; ENAL FUTA LOVERS 🤫
+    <div class="code-column">FF
+01
+10
+SYSTEM
+7A
+00
+B1
+19
+01
+VIDZ
+A8
+00</div>
+
+    <div class="code-column">00
+11
+A1
+F0
+01
+X7
+VIDZ
+10
+10
+FF
+C9
+01</div>
+
+    <div class="code-column">VIDZ
+01
+00
+11
+A7
+F2
+10
+CODE
+FF
+01
+B8
+00</div>
+
+    <div class="code-column">10
+10
+01
+FF
+7C
+00
+VIDZ
+A1
+11
+09
+F0
+01</div>
+
+    <div class="code-column">A0
+01
+10
+11
+SYSTEM
+FF
+C7
+00
+VIDZ
+01
+10
+9A</div>
+
+    <div class="code-column">01
+F0
+00
+VIDZ
+10
+A7
+11
+FF
+C1
+00
+01
+CODE</div>
+
+    <div class="code-column">FF
+10
+01
+A9
+00
+VIDZ
+11
+F7
+01
+10
+B0
+00</div>
+
+    <div class="code-column">10
+01
+VIDZ
+00
+FF
+A1
+11
+SYSTEM
+09
+C0
+01
+10</div>
+
+    <div class="code-column">00
+FF
+01
+10
+B7
+VIDZ
+11
+A0
+01
+CODE
+F1
+00</div>
+
+    <div class="code-column">VIDZ
+10
+01
+FF
+00
+11
+A7
+01
+SYSTEM
+C0
+10
+00</div>
+
   </div>
 
-  <div class="egg-content">
+  <div class="egg-dark"></div>
+  <div class="egg-scanlines"></div>
 
-    <div class="egg-box">
+  <div class="egg-box">
 
-      <button class="egg-close" id="eggClose">
-        ✕
-      </button>
+    <button class="egg-close" id="eggClose" type="button">
+      ✕
+    </button>
 
-      <div class="egg-title">
-        VIDZ//SYSTEM
+    <div class="egg-top">
+      <span>VIDZ // CLASSIFIED LAYER</span>
+      <span>ACCESS: 03</span>
+    </div>
+
+    <div class="egg-title">
+      VIDZ//SYSTEM
+    </div>
+
+    <div class="egg-line"></div>
+
+    <div class="egg-terminal">
+
+      <div>
+        <span>[SYSTEM]</span> Initializing hidden layer...
       </div>
 
-      <div class="egg-line"></div>
-
-      <div class="egg-terminal">
-
-        <div>
-          <span>[SYSTEM]</span>
-          Initializing hidden layer...
-        </div>
-
-        <div>
-          <span>[SYSTEM]</span>
-          Scanning VIDZ-Web...
-        </div>
-
-        <div>
-          <span>[SYSTEM]</span>
-          Connection established.
-        </div>
-
-        <div>
-          <span>[SYSTEM]</span>
-          Developer detected.
-        </div>
-
-        <div>
-          <span>[SYSTEM]</span>
-          🗿 detected.
-        </div>
-
-        <div>
-          <span>[SYSTEM]</span>
-          Access level: UNKNOWN
-        </div>
-
-        <div>
-          <span>[SYSTEM]</span>
-          Hidden layer unlocked.
-        </div>
-
+      <div>
+        <span>[SYSTEM]</span> Scanning VIDZ-Web...
       </div>
 
-      <div class="egg-final">
-        SECRET FOUND.
+      <div>
+        <span>[SYSTEM]</span> Connection established.
       </div>
 
+      <div>
+        <span>[SYSTEM]</span> Developer signature detected.
+      </div>
+
+      <div>
+        <span>[SYSTEM]</span> 🗿 anomaly detected.
+      </div>
+
+      <div>
+        <span>[SYSTEM]</span> Secret sequence verified.
+      </div>
+
+      <div>
+        <span>[SYSTEM]</span> Welcome to the hidden layer...
+        <span class="terminal-cursor"></span>
+      </div>
+
+    </div>
+
+    <div class="egg-final">
+      UTUH &amp; ENAL FUTA LOVERS 🤫
+    </div>
+
+    <div class="egg-corner">
+      NO SIGNAL // NO RECORD
+    </div>
+
+    <div class="egg-corner-right">
+      VIDZ-01
     </div>
 
   </div>
 
 </div>
 
-
-<!-- NAVBAR -->
+<!-- =========================
+     NAVBAR
+========================= -->
 
 <nav>
 
@@ -1094,23 +1179,12 @@ body.light .tool p{
 
   <div class="navlinks">
 
-    <a href="index.html" class="active">
-      Home
-    </a>
+    <a href="index.html" class="active">Home</a>
+    <a href="About.html">About</a>
+    <a href="Projects.html">Projects</a>
+    <a href="Contact.html">Contact</a>
 
-    <a href="About.html">
-      About
-    </a>
-
-    <a href="Projects.html">
-      Projects
-    </a>
-
-    <a href="Contact.html">
-      Contact
-    </a>
-
-    <button class="theme" id="themeButton">
+    <button class="theme" id="themeButton" type="button">
       🌙
     </button>
 
@@ -1118,8 +1192,9 @@ body.light .tool p{
 
 </nav>
 
-
-<!-- HERO -->
+<!-- =========================
+     HERO
+========================= -->
 
 <main>
 
@@ -1156,7 +1231,6 @@ body.light .tool p{
 
   </div>
 
-
   <div class="profile-card">
 
     <img
@@ -1175,9 +1249,7 @@ body.light .tool p{
 
     </div>
 
-    <h2>
-      VIDZ
-    </h2>
+    <h2>VIDZ</h2>
 
     <div class="role">
       Student • Web Explorer
@@ -1189,7 +1261,7 @@ body.light .tool p{
 
       <div>
         <small>Focus</small>
-        <b>Web & Tech</b>
+        <b>Web &amp; Tech</b>
       </div>
 
       <div>
@@ -1218,8 +1290,9 @@ body.light .tool p{
 
 </section>
 
-
-<!-- TOOLS -->
+<!-- =========================
+     TOOLS
+========================= -->
 
 <section class="tools-section" id="tools">
 
@@ -1240,18 +1313,13 @@ body.light .tool p{
 
   </div>
 
-
   <div class="tools">
 
     <div class="tool">
 
-      <div class="tool-icon">
-        🧮
-      </div>
+      <div class="tool-icon">🧮</div>
 
-      <h3>
-        Kalkulator
-      </h3>
+      <h3>Kalkulator</h3>
 
       <p>
         Hitung operasi matematika sederhana
@@ -1264,154 +1332,8 @@ body.light .tool p{
 
     </div>
 
-
     <div class="tool">
 
-      <div class="tool-icon">
-        🔄
-      </div>
+      <div class="tool-icon">🔄</div>
 
-      <h3>
-        Unit Converter
-      </h3>
-
-      <p>
-        Konversi satuan seperti panjang,
-        berat, dan temperatur.
-      </p>
-
-      <span class="tool-btn">
-        SEGERA
-      </span>
-
-    </div>
-
-
-    <div class="tool">
-
-      <div class="tool-icon">
-        🔐
-      </div>
-
-      <h3>
-        Password Generator
-      </h3>
-
-      <p>
-        Membuat password acak untuk membantu
-        meningkatkan keamanan akun.
-      </p>
-
-      <span class="tool-btn">
-        SEGERA
-      </span>
-
-    </div>
-
-
-    <div class="tool">
-
-      <div class="tool-icon">
-        📝
-      </div>
-
-      <h3>
-        Quick Notes
-      </h3>
-
-      <p>
-        Catatan sederhana yang bisa digunakan
-        langsung di browser.
-      </p>
-
-      <span class="tool-btn">
-        SEGERA
-      </span>
-
-    </div>
-
-
-    <div class="tool">
-
-      <div class="tool-icon">
-        ⏱️
-      </div>
-
-      <h3>
-        Timer & Stopwatch
-      </h3>
-
-      <p>
-        Timer dan stopwatch sederhana untuk
-        berbagai kebutuhan.
-      </p>
-
-      <span class="tool-btn">
-        SEGERA
-      </span>
-
-    </div>
-
-
-    <div class="tool">
-
-      <div class="tool-icon">
-        📱
-      </div>
-
-      <h3>
-        QR Generator
-      </h3>
-
-      <p>
-        Membuat QR code dari teks atau link
-        dengan cepat.
-      </p>
-
-      <span class="tool-btn">
-        SEGERA
-      </span>
-
-    </div>
-
-  </div>
-
-</section>
-
-</main>
-
-
-<script>
-
-/* ==================================================
-   THEME
-================================================== */
-
-const themeButton =
-document.getElementById("themeButton");
-
-themeButton.addEventListener("click",function(){
-
-  document.body.classList.toggle("light");
-
-  themeButton.textContent =
-    document.body.classList.contains("light")
-    ? "☀️"
-    : "🌙";
-
-});
-
-
-/* ==================================================
-   ONLINE / OFFLINE
-================================================== */
-
-const ownerStatus =
-document.getElementById("ownerStatus");
-
-const statusText =
-document.getElementById("statusText");
-
-function online(){
-
-  ownerStatus.classList.remove("offl
+      <h3>Unit Converter</h3>
