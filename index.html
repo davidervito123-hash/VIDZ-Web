@@ -4,1612 +4,1597 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="theme-color" content="#050816">
-<meta name="description" content="VIDZ Digital Space — Personal website dan useful tools.">
-<title>VIDZ — Digital Space</title>
+<title>VIDZ — AnimeDB</title>
 
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
-
-html{
-  scroll-behavior:smooth;
-}
+*{box-sizing:border-box;margin:0;padding:0}
 
 body{
-  font-family:Arial,Helvetica,sans-serif;
-  background:#050816;
-  color:#f5f7ff;
-  min-height:100vh;
-  overflow-x:hidden;
+font-family:Arial,Helvetica,sans-serif;
+background:#050816;
+color:#f5f7ff;
+min-height:100vh;
+padding-bottom:60px;
 }
 
-a{
-  color:inherit;
-  text-decoration:none;
+body:before{
+content:"";
+position:fixed;
+inset:0;
+z-index:-2;
+background:
+radial-gradient(circle at 15% 10%,#00e5ff18,transparent 30%),
+radial-gradient(circle at 85% 90%,#7c3aed18,transparent 30%),
+#050816;
 }
 
-button{
-  font:inherit;
+body:after{
+content:"";
+position:fixed;
+inset:0;
+z-index:-1;
+opacity:.035;
+background-image:
+linear-gradient(#fff 1px,transparent 1px),
+linear-gradient(90deg,#fff 1px,transparent 1px);
+background-size:55px 55px;
+pointer-events:none;
 }
 
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  z-index:-2;
-  background:
-    radial-gradient(circle at 15% 15%,#00e5ff18,transparent 28%),
-    radial-gradient(circle at 85% 80%,#7c3aed18,transparent 30%),
-    #050816;
+button,input,textarea,select{
+font:inherit;
 }
-
-body::after{
-  content:"";
-  position:fixed;
-  inset:0;
-  z-index:-1;
-  opacity:.045;
-  background-image:
-    linear-gradient(#fff 1px,transparent 1px),
-    linear-gradient(90deg,#fff 1px,transparent 1px);
-  background-size:55px 55px;
-  pointer-events:none;
-}
-
-/* NAVBAR */
 
 nav{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  z-index:100;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:16px 7%;
-  background:#050816d9;
-  backdrop-filter:blur(18px);
-  -webkit-backdrop-filter:blur(18px);
-  border-bottom:1px solid #ffffff0d;
+position:sticky;
+top:0;
+z-index:50;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 6%;
+background:#050816dd;
+backdrop-filter:blur(18px);
+border-bottom:1px solid #ffffff0d;
 }
 
 .logo{
-  color:#00e5ff;
-  font-size:26px;
-  font-weight:900;
-  letter-spacing:-2px;
-  text-shadow:0 0 20px #00e5ff;
-  cursor:pointer;
-  user-select:none;
+color:#00e5ff;
+font-size:25px;
+font-weight:900;
+letter-spacing:-2px;
+text-shadow:0 0 20px #00e5ff;
 }
 
-.logo:active{
-  transform:scale(.92);
+nav a{
+color:#8fa0b5;
+text-decoration:none;
+font-size:12px;
+margin-left:15px;
 }
 
-.navlinks{
-  display:flex;
-  align-items:center;
-  gap:8px;
+nav a:hover{
+color:#00e5ff;
 }
 
-.navlinks a{
-  color:#9aa9bd;
-  font-size:13px;
-  padding:8px 10px;
-  border-radius:9px;
-  transition:.2s;
+.container{
+width:min(1180px,92%);
+margin:auto;
 }
 
-.navlinks a:hover,
-.navlinks a.active{
-  color:#00e5ff;
-  background:#00e5ff0d;
-}
-
-.theme{
-  border:1px solid #00e5ff33;
-  background:#ffffff08;
-  color:white;
-  padding:8px 10px;
-  border-radius:10px;
-  cursor:pointer;
-}
-
-/* HERO */
-
-.hero{
-  min-height:100vh;
-  padding:145px 7% 90px;
-  display:grid;
-  grid-template-columns:1.15fr .85fr;
-  gap:60px;
-  align-items:center;
+.header{
+text-align:center;
+padding:60px 0 35px;
 }
 
 .badge{
-  width:max-content;
-  padding:8px 13px;
-  border:1px solid #00e5ff33;
-  border-radius:30px;
-  color:#8192a7;
-  background:#00e5ff08;
-  font-size:10px;
-  letter-spacing:1.5px;
-  margin-bottom:22px;
+display:inline-block;
+padding:7px 12px;
+border:1px solid #00e5ff33;
+border-radius:30px;
+color:#00e5ff;
+font-size:9px;
+letter-spacing:2px;
+margin-bottom:15px;
 }
 
-.hero h1{
-  font-size:clamp(55px,8vw,100px);
-  line-height:.9;
-  letter-spacing:-5px;
+.header h1{
+font-size:clamp(40px,7vw,75px);
+letter-spacing:-4px;
 }
 
-.hero h1 span{
-  color:#00e5ff;
-  text-shadow:0 0 30px #00e5ff55;
+.header h1 span{
+color:#00e5ff;
+text-shadow:0 0 25px #00e5ff66;
 }
 
-.hero p{
-  max-width:620px;
-  margin-top:25px;
-  color:#8190a5;
-  line-height:1.8;
-  font-size:17px;
+.header p{
+color:#7d8da2;
+max-width:720px;
+margin:15px auto;
+line-height:1.7;
+font-size:13px;
 }
 
-.buttons{
-  display:flex;
-  flex-wrap:wrap;
-  gap:12px;
-  margin-top:30px;
+.compare{
+display:grid;
+grid-template-columns:1fr 70px 1fr;
+gap:18px;
+align-items:center;
 }
 
-.btn{
-  padding:13px 21px;
-  border-radius:12px;
-  font-weight:bold;
-  transition:.25s;
+.card{
+background:#0b1425dd;
+border:1px solid #ffffff10;
+border-radius:22px;
+padding:24px;
+box-shadow:0 20px 60px #0005;
 }
 
-.primary{
-  background:#00e5ff;
-  color:#001017;
-  box-shadow:0 0 30px #00e5ff25;
+.card h2{
+color:#00e5ff;
+font-size:12px;
+letter-spacing:2px;
+margin-bottom:15px;
 }
 
-.secondary{
-  background:#ffffff07;
-  color:#fff;
-  border:1px solid #ffffff18;
+input,textarea,select{
+width:100%;
+background:#050a15;
+color:white;
+border:1px solid #ffffff16;
+border-radius:11px;
+padding:12px;
+outline:none;
 }
 
-.btn:hover{
-  transform:translateY(-4px);
+input:focus,textarea:focus,select:focus{
+border-color:#00e5ff77;
+box-shadow:0 0 20px #00e5ff12;
 }
 
-/* PROFILE */
+.vs{
+width:62px;
+height:62px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:50%;
+border:1px solid #00e5ff55;
+color:#00e5ff;
+font-weight:900;
+box-shadow:0 0 30px #00e5ff18;
+}
+
+.compare-btn{
+width:100%;
+margin-top:20px;
+padding:15px;
+border:0;
+border-radius:12px;
+background:#00e5ff;
+color:#001017;
+font-weight:900;
+cursor:pointer;
+transition:.2s;
+}
+
+.compare-btn:hover{
+transform:translateY(-3px);
+box-shadow:0 10px 30px #00e5ff33;
+}
+
+.result{
+display:none;
+margin-top:30px;
+animation:appear .5s ease;
+}
+
+.result.show{
+display:block;
+}
+
+.result-head{
+text-align:center;
+padding:28px;
+border:1px solid #00ff9d33;
+background:#00150ddd;
+border-radius:20px 20px 0 0;
+}
+
+.result-head small{
+color:#00ff9d;
+letter-spacing:2px;
+}
+
+.winner{
+margin-top:8px;
+font-size:clamp(28px,6vw,55px);
+font-weight:900;
+color:#fff;
+text-shadow:0 0 25px #00ff9d88;
+}
+
+.status{
+margin-top:10px;
+font-size:11px;
+color:#7d8da2;
+}
+
+.reason{
+padding:25px;
+background:#091321dd;
+border:1px solid #ffffff0d;
+border-top:0;
+border-radius:0 0 20px 20px;
+}
+
+.reason h3{
+color:#00e5ff;
+margin-bottom:12px;
+}
 
-.profile-card{
-  padding:30px;
-  border-radius:28px;
-  background:linear-gradient(145deg,#111b31dd,#080d1add);
-  border:1px solid #00e5ff2e;
-  box-shadow:0 35px 100px #0008;
+.reason p{
+color:#aeb9c8;
+line-height:1.8;
+font-size:13px;
 }
 
-.avatar{
-  width:145px;
-  height:145px;
-  display:block;
-  margin:0 auto 15px;
-  object-fit:cover;
-  border-radius:50%;
-  border:3px solid #00e5ff;
-  box-shadow:0 0 30px #00e5ff55;
+.battle-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px;
+margin-top:20px;
 }
 
-.owner-status{
-  width:max-content;
-  display:flex;
-  align-items:center;
-  gap:7px;
-  margin:0 auto 18px;
-  padding:6px 11px;
-  border-radius:20px;
-  background:#ffffff08;
-  border:1px solid #00ff9d22;
-  color:#00ff9d;
-  font-size:10px;
-  font-weight:bold;
-  letter-spacing:1px;
+.battle-box{
+background:#ffffff05;
+border:1px solid #ffffff0b;
+border-radius:14px;
+padding:15px;
 }
 
-.status-dot{
-  width:7px;
-  height:7px;
-  border-radius:50%;
-  background:#00ff9d;
-  box-shadow:0 0 12px #00ff9d;
+.battle-box h4{
+color:#00e5ff;
+margin-bottom:10px;
 }
 
-.owner-status.offline{
-  color:#64748b;
-  border-color:#ffffff12;
+.battle-box div{
+color:#c9d1dc;
+font-size:11px;
+line-height:1.7;
+margin:5px 0;
 }
 
-.owner-status.offline .status-dot{
-  background:#64748b;
-  box-shadow:none;
+.battle-box b{
+color:#71839a;
 }
 
-.profile-card h2{
-  text-align:center;
-  font-size:28px;
+.analysis{
+margin-top:18px;
+padding:15px;
+border-radius:12px;
+background:#020611;
+border:1px solid #00e5ff18;
+font:11px monospace;
+line-height:1.7;
+white-space:pre-wrap;
+color:#91a4ba;
 }
 
-.role{
-  text-align:center;
-  color:#00e5ff;
-  margin-top:7px;
-  font-size:13px;
+.section{
+margin-top:50px;
 }
 
-.line{
-  height:1px;
-  background:#ffffff0d;
-  margin:24px 0;
+.section-title{
+margin-bottom:18px;
 }
 
-.info{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:18px;
+.section-title small{
+color:#00e5ff;
+letter-spacing:2px;
+font-size:9px;
 }
 
-.info small{
-  display:block;
-  color:#596b80;
-  font-size:10px;
-  margin-bottom:5px;
+.section-title h2{
+margin-top:7px;
+font-size:28px;
 }
 
-.info b{
-  font-size:13px;
+.database{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:14px;
 }
 
-.quote{
-  margin-top:22px;
-  padding:15px;
-  border-radius:14px;
-  background:#ffffff05;
-  color:#8292a7;
-  font-size:13px;
-  line-height:1.6;
+.character{
+padding:20px;
+border-radius:18px;
+background:#0b1425cc;
+border:1px solid #ffffff0d;
 }
 
-/* TOOLS */
+.character h3{
+color:#00e5ff;
+margin-bottom:5px;
+}
+
+.character .key{
+color:#00ff9d;
+font-size:10px;
+margin-bottom:4px;
+}
+
+.character .verse{
+color:#68798e;
+font-size:11px;
+margin-bottom:12px;
+}
+
+.character p{
+color:#a7b2c0;
+font-size:11px;
+line-height:1.65;
+margin:3px 0;
+}
+
+.character button{
+margin-top:12px;
+padding:7px 9px;
+background:#00e5ff0b;
+border:1px solid #00e5ff22;
+color:#00e5ff;
+border-radius:8px;
+cursor:pointer;
+font-size:10px;
+}
+
+.form-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px;
+}
 
-.tools-section{
-  padding:90px 7%;
+.field{
+margin-bottom:12px;
 }
 
-.section-head{
-  margin-bottom:35px;
+.field label{
+display:block;
+color:#728299;
+font-size:10px;
+margin-bottom:6px;
 }
 
-.section-label{
-  color:#00e5ff;
-  font-size:10px;
-  font-weight:bold;
-  letter-spacing:2px;
+.full{
+grid-column:1/-1;
 }
+
+.save{
+padding:12px 18px;
+border:0;
+border-radius:10px;
+background:#00ff9d;
+color:#00150d;
+font-weight:bold;
+cursor:pointer;
+}
+
+.danger{
+padding:12px 18px;
+border:1px solid #ff456533;
+border-radius:10px;
+background:#ff45650b;
+color:#ff7188;
+cursor:pointer;
+margin-left:8px;
+}
+
+.notice{
+margin-top:20px;
+padding:13px;
+border:1px solid #ffffff0d;
+border-radius:12px;
+color:#697a90;
+font-size:10px;
+line-height:1.6;
+}
+
+@keyframes appear{
+from{
+opacity:0;
+transform:translateY(15px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+@media(max-width:750px){
 
-.section-head h2{
-  margin-top:10px;
-  font-size:clamp(32px,5vw,55px);
-  letter-spacing:-3px;
+.compare{
+grid-template-columns:1fr;
 }
 
-.section-head p{
-  max-width:650px;
-  margin-top:12px;
-  color:#8190a5;
-  line-height:1.7;
-  font-size:14px;
+.vs{
+margin:auto;
 }
 
-.tools{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:16px;
+.database{
+grid-template-columns:1fr;
 }
 
-.tool{
-  padding:24px;
-  border:1px solid #ffffff0d;
-  border-radius:20px;
-  background:#0c1424bf;
-  transition:.25s;
+.form-grid{
+grid-template-columns:1fr;
 }
 
-.tool:hover{
-  transform:translateY(-6px);
-  border-color:#00e5ff44;
-  box-shadow:0 20px 50px #0005;
+.full{
+grid-column:auto;
 }
 
-.tool-icon{
-  font-size:28px;
-  margin-bottom:17px;
+.battle-grid{
+grid-template-columns:1fr;
 }
 
-.tool h3{
-  font-size:17px;
+nav{
+padding:13px 4%;
 }
 
-.tool p{
-  margin-top:9px;
-  color:#77869b;
-  font-size:12px;
-  line-height:1.7;
+nav a{
+margin-left:7px;
+font-size:10px;
 }
 
-.tool-btn{
-  display:inline-block;
-  margin-top:17px;
-  padding:8px 12px;
-  border-radius:9px;
-  background:#00e5ff0d;
-  border:1px solid #00e5ff22;
-  color:#00e5ff;
-  font-size:10px;
-  font-weight:bold;
-}
-
-/* =========================
-   CINEMATIC EASTER EGG
-========================= */
-
-#easterEgg{
-  position:fixed;
-  inset:0;
-  z-index:999999;
-  display:none;
-  overflow:hidden;
-  background:#000;
-  color:#00ff9d;
-  font-family:"Courier New",monospace;
-}
-
-#easterEgg.active{
-  display:block;
-  animation:eggIn .35s ease forwards;
-}
-
-.code-rain{
-  position:absolute;
-  inset:0;
-  overflow:hidden;
-  opacity:.8;
-  pointer-events:none;
-}
-
-.code-column{
-  position:absolute;
-  top:-130%;
-  white-space:pre;
-  color:#00ff9d;
-  font-size:clamp(12px,1.8vw,21px);
-  line-height:1.05;
-  font-weight:bold;
-  text-shadow:
-    0 0 6px #00ff9d,
-    0 0 18px #00ff9d;
-  animation:rain linear infinite;
-}
-
-.code-column:nth-child(1){left:2%;animation-duration:5s;animation-delay:-2s}
-.code-column:nth-child(2){left:9%;animation-duration:7s;animation-delay:-4s}
-.code-column:nth-child(3){left:16%;animation-duration:4s;animation-delay:-1s}
-.code-column:nth-child(4){left:23%;animation-duration:6s;animation-delay:-3s}
-.code-column:nth-child(5){left:30%;animation-duration:5s;animation-delay:-2s}
-.code-column:nth-child(6){left:37%;animation-duration:7s;animation-delay:-5s}
-.code-column:nth-child(7){left:44%;animation-duration:4.5s;animation-delay:-1s}
-.code-column:nth-child(8){left:51%;animation-duration:6s;animation-delay:-4s}
-.code-column:nth-child(9){left:58%;animation-duration:5.5s;animation-delay:-2s}
-.code-column:nth-child(10){left:65%;animation-duration:4s;animation-delay:-3s}
-.code-column:nth-child(11){left:72%;animation-duration:6.5s;animation-delay:-5s}
-.code-column:nth-child(12){left:79%;animation-duration:4.8s;animation-delay:-1s}
-.code-column:nth-child(13){left:86%;animation-duration:5.8s;animation-delay:-4s}
-.code-column:nth-child(14){left:93%;animation-duration:4.3s;animation-delay:-2s}
-
-.egg-dark{
-  position:absolute;
-  inset:0;
-  background:
-    radial-gradient(
-      circle at center,
-      transparent 0%,
-      rgba(0,0,0,.25) 35%,
-      rgba(0,0,0,.92) 100%
-    );
-  pointer-events:none;
-}
-
-.egg-scanlines{
-  position:absolute;
-  inset:0;
-  background:repeating-linear-gradient(
-    to bottom,
-    transparent 0,
-    transparent 3px,
-    rgba(0,255,157,.09) 4px
-  );
-  pointer-events:none;
-}
-
-.egg-box{
-  position:absolute;
-  left:50%;
-  top:50%;
-  width:min(950px,92%);
-  min-height:420px;
-  padding:38px;
-  transform:translate(-50%,-50%) scale(.8);
-  opacity:0;
-  border:1px solid #00ff9d66;
-  background:
-    linear-gradient(
-      135deg,
-      rgba(0,22,15,.96),
-      rgba(0,5,8,.95)
-    );
-  box-shadow:
-    0 0 35px #00ff9d33,
-    0 0 120px #00ff9d11,
-    inset 0 0 80px #00ff9d08;
-  animation:boxIn .7s .15s ease forwards;
-}
-
-.egg-top{
-  display:flex;
-  justify-content:space-between;
-  margin-bottom:20px;
-  color:#00ff9d;
-  font-size:10px;
-  letter-spacing:3px;
-  opacity:.75;
-}
-
-.egg-title{
-  font-size:clamp(32px,7vw,78px);
-  font-weight:900;
-  letter-spacing:7px;
-  color:#eafff7;
-  text-shadow:
-    3px 0 #ff0055,
-    -3px 0 #00e5ff,
-    0 0 20px #00ff9d,
-    0 0 50px #00ff9d;
-  animation:titleGlitch .12s infinite;
-}
-
-.egg-line{
-  height:1px;
-  width:100%;
-  margin:25px 0;
-  background:linear-gradient(
-    90deg,
-    transparent,
-    #00ff9d,
-    transparent
-  );
-  box-shadow:0 0 15px #00ff9d;
-}
-
-.egg-terminal{
-  min-height:135px;
-  color:#8affc9;
-  font-size:13px;
-  line-height:2;
-}
-
-.egg-terminal span{
-  color:#00ff9d;
-  text-shadow:0 0 10px #00ff9d;
-}
-
-.egg-final{
-  margin-top:20px;
-  padding:18px 5px;
-  text-align:center;
-  color:#fff;
-  font-size:clamp(20px,4.5vw,52px);
-  font-weight:900;
-  letter-spacing:2px;
-  text-shadow:
-    4px 0 #ff0055,
-    -4px 0 #00e5ff,
-    0 0 15px #fff,
-    0 0 35px #00ff9d;
-  opacity:0;
-  transform:scale(.6);
-  animation:
-    finalIn .6s 1.8s ease forwards,
-    finalGlitch .12s 2.5s infinite;
-}
-
-.egg-close{
-  position:absolute;
-  top:14px;
-  right:16px;
-  z-index:10;
-  width:35px;
-  height:35px;
-  border:1px solid #00ff9d33;
-  border-radius:8px;
-  background:#00110bcc;
-  color:#00ff9d;
-  cursor:pointer;
-  font-size:18px;
-}
-
-.egg-close:hover{
-  border-color:#00ff9d;
-  box-shadow:0 0 20px #00ff9d55;
-}
-
-.egg-corner{
-  position:absolute;
-  bottom:15px;
-  left:20px;
-  color:#00ff9d66;
-  font-size:8px;
-  letter-spacing:2px;
-}
-
-.egg-corner-right{
-  position:absolute;
-  bottom:15px;
-  right:20px;
-  color:#00ff9d66;
-  font-size:8px;
-  letter-spacing:2px;
-}
-
-@keyframes eggIn{
-  from{
-    opacity:0;
-    filter:brightness(3) contrast(2);
-  }
-  to{
-    opacity:1;
-    filter:none;
-  }
-}
-
-@keyframes boxIn{
-  0%{
-    opacity:0;
-    transform:translate(-50%,-50%) scale(.8);
-    filter:blur(15px);
-  }
-  70%{
-    opacity:1;
-    transform:translate(-50%,-50%) scale(1.03);
-    filter:blur(0);
-  }
-  100%{
-    opacity:1;
-    transform:translate(-50%,-50%) scale(1);
-  }
-}
-
-@keyframes rain{
-  from{
-    transform:translateY(0);
-  }
-  to{
-    transform:translateY(230vh);
-  }
-}
-
-@keyframes titleGlitch{
-  0%{transform:translate(0)}
-  25%{transform:translate(-4px,2px)}
-  50%{transform:translate(4px,-2px)}
-  75%{transform:translate(-2px,-1px)}
-  100%{transform:translate(0)}
-}
-
-@keyframes finalIn{
-  0%{
-    opacity:0;
-    transform:scale(.6) translateY(20px);
-    filter:blur(12px);
-  }
-  70%{
-    opacity:1;
-    transform:scale(1.08);
-    filter:blur(0);
-  }
-  100%{
-    opacity:1;
-    transform:scale(1);
-  }
-}
-
-@keyframes finalGlitch{
-  0%{transform:translate(0)}
-  25%{transform:translate(-4px,1px)}
-  50%{transform:translate(4px,-1px)}
-  75%{transform:translate(-2px,0)}
-  100%{transform:translate(0)}
-}
-
-/* LIGHT MODE */
-
-body.light{
-  color:#111827;
-  background:#edf3f8;
-}
-
-body.light::before{
-  background:
-    radial-gradient(circle at 15% 15%,#c9f7ff,transparent 28%),
-    radial-gradient(circle at 85% 80%,#e8ddff,transparent 30%),
-    #edf3f8;
-}
-
-body.light nav{
-  background:#ffffffd9;
-  border-color:#00000010;
-}
-
-body.light .navlinks a{
-  color:#475569;
-}
-
-body.light .navlinks a:hover,
-body.light .navlinks a.active{
-  color:#0284c7;
-}
-
-body.light .theme{
-  color:#111827;
-  background:#ffffff;
-}
-
-body.light .profile-card{
-  background:#ffffffdc;
-  border-color:#00000012;
-}
-
-body.light .hero p,
-body.light .section-head p{
-  color:#475569;
-}
-
-body.light .secondary{
-  color:#111827;
-}
-
-body.light .tool{
-  background:#ffffffdc;
-  border-color:#00000010;
-}
-
-body.light .tool p{
-  color:#526174;
-}
-
-/* MOBILE */
-
-@media(max-width:850px){
-
-  .hero{
-    grid-template-columns:1fr;
-    text-align:center;
-  }
-
-  .badge{
-    margin-left:auto;
-    margin-right:auto;
-  }
-
-  .hero p{
-    margin-left:auto;
-    margin-right:auto;
-  }
-
-  .buttons{
-    justify-content:center;
-  }
-
-  .tools{
-    grid-template-columns:1fr 1fr;
-  }
-}
-
-@media(max-width:600px){
-
-  nav{
-    padding:14px 5%;
-  }
-
-  .navlinks{
-    gap:2px;
-  }
-
-  .navlinks a{
-    font-size:10px;
-    padding:7px 5px;
-  }
-
-  .hero{
-    padding-top:125px;
-  }
-
-  .hero h1{
-    font-size:55px;
-    letter-spacing:-3px;
-  }
-
-  .profile-card{
-    padding:22px;
-  }
-
-  .info{
-    grid-template-columns:1fr;
-  }
-
-  .tools{
-    grid-template-columns:1fr;
-  }
-
-  .tools-section{
-    padding:70px 5%;
-  }
-
-  .egg-box{
-    width:94%;
-    min-height:390px;
-    padding:28px 18px;
-  }
-
-  .egg-title{
-    font-size:29px;
-    letter-spacing:3px;
-  }
-
-  .egg-terminal{
-    font-size:10px;
-    line-height:1.9;
-  }
-
-  .egg-final{
-    font-size:22px;
-    letter-spacing:1px;
-  }
-
-  .egg-top{
-    font-size:7px;
-  }
 }
 </style>
 </head>
 
 <body>
 
-<!-- =========================
-     EASTER EGG
-========================= -->
-
-<div id="easterEgg">
-
-  <div class="code-rain">
-
-    <div class="code-column">01
-10
-A7
-FF
-01
-10
-VIDZ
-01
-X9
-00
-11
-SYSTEM
-7F
-A1</div>
-
-    <div class="code-column">1A
-0F
-10
-B2
-00
-CODE
-FF
-7A
-01
-VIDZ
-9C
-11
-00</div>
-
-    <div class="code-column">10
-01
-11
-00
-F7
-C2
-A0
-VIDZ
-01
-9F
-10
-FF</div>
-
-    <div class="code-column">FF
-01
-10
-SYSTEM
-7A
-00
-B1
-19
-01
-VIDZ
-A8
-00</div>
-
-    <div class="code-column">00
-11
-A1
-F0
-01
-X7
-VIDZ
-10
-10
-FF
-C9
-01</div>
-
-    <div class="code-column">VIDZ
-01
-00
-11
-A7
-F2
-10
-CODE
-FF
-01
-B8
-00</div>
-
-    <div class="code-column">10
-10
-01
-FF
-7C
-00
-VIDZ
-A1
-11
-09
-F0
-01</div>
-
-    <div class="code-column">A0
-01
-10
-11
-SYSTEM
-FF
-C7
-00
-VIDZ
-01
-10
-9A</div>
-
-    <div class="code-column">01
-F0
-00
-VIDZ
-10
-A7
-11
-FF
-C1
-00
-01
-CODE</div>
-
-    <div class="code-column">FF
-10
-01
-A9
-00
-VIDZ
-11
-F7
-01
-10
-B0
-00</div>
-
-    <div class="code-column">10
-01
-VIDZ
-00
-FF
-A1
-11
-SYSTEM
-09
-C0
-01
-10</div>
-
-    <div class="code-column">00
-FF
-01
-10
-B7
-VIDZ
-11
-A0
-01
-CODE
-F1
-00</div>
-
-    <div class="code-column">VIDZ
-10
-01
-FF
-00
-11
-A7
-01
-SYSTEM
-C0
-10
-00</div>
-
-    <div class="code-column">10
-FF
-00
-01
-VIDZ
-A7
-11
-SYSTEM
-09
-C1
-00
-10</div>
-
-  </div>
-
-  <div class="egg-dark"></div>
-  <div class="egg-scanlines"></div>
-
-  <div class="egg-box">
-
-    <button
-      class="egg-close"
-      id="eggClose"
-      type="button">
-      ✕
-    </button>
-
-    <div class="egg-top">
-      <span>VIDZ // CLASSIFIED LAYER</span>
-      <span>ACCESS: 03</span>
-    </div>
-
-    <div class="egg-title">
-      VIDZ//SYSTEM
-    </div>
-
-    <div class="egg-line"></div>
-
-    <div class="egg-terminal">
-
-      <div>
-        <span>[SYSTEM]</span>
-        Initializing hidden layer...
-      </div>
-
-      <div>
-        <span>[SYSTEM]</span>
-        Scanning VIDZ-Web...
-      </div>
-
-      <div>
-        <span>[SYSTEM]</span>
-        Connection established.
-      </div>
-
-      <div>
-        <span>[SYSTEM]</span>
-        Developer signature detected.
-      </div>
-
-      <div>
-        <span>[SYSTEM]</span>
-        🗿 anomaly detected.
-      </div>
-
-      <div>
-        <span>[SYSTEM]</span>
-        Secret sequence verified.
-      </div>
-
-      <div>
-        <span>[SYSTEM]</span>
-        Welcome to the hidden layer...
-        <span class="terminal-cursor">_</span>
-      </div>
-
-    </div>
-
-    <div class="egg-final">
-      UTUH &amp; ENAL FUTA LOVERS 🤫
-    </div>
-
-    <div class="egg-corner">
-      NO SIGNAL // NO RECORD
-    </div>
-
-    <div class="egg-corner-right">
-      VIDZ-01
-    </div>
-
-  </div>
-
-</div>
-
-<!-- NAVBAR -->
-
 <nav>
 
-  <div
-    class="logo"
-    id="logo"
-    role="button"
-    tabindex="0"
-    aria-label="VIDZ secret button">
-    VIDZ.
-  </div>
+<div class="logo">VIDZ.</div>
 
-  <div class="navlinks">
-
-    <a href="index.html" class="active">
-      Home
-    </a>
-
-    <a href="About.html">
-      About
-    </a>
-
-    <a href="Projects.html">
-      Projects
-    </a>
-
-    <a href="Contact.html">
-      Contact
-    </a>
-
-    <button
-      class="theme"
-      id="themeButton"
-      type="button">
-      🌙
-    </button>
-
-  </div>
+<div>
+<a href="index.html">Home</a>
+<a href="Projects.html">Projects</a>
+<a href="AnimeDB.html">AnimeDB</a>
+</div>
 
 </nav>
 
-<!-- HERO -->
+<div class="container">
 
-<main>
+<header class="header">
 
-<section class="hero">
+<div class="badge">
+VIDZ // CHARACTER DATABASE
+</div>
 
-  <div>
+<h1>
+ANIME<span>DB</span>
+</h1>
 
-    <div class="badge">
-      DIGITAL SPACE • USEFUL TOOLS
-    </div>
+<p>
+Powerscaling comparison engine.
+Pilih dua karakter dan database akan membandingkan
+Key, Tier, AP, Speed, Durability, Hax, Resistance,
+Feats dan Scaling.
+</p>
 
-    <h1>
-      HALO,<br>
-      SAYA <span>VIDZ.</span>
-    </h1>
+</header>
 
-    <p>
-      Selamat datang di VIDZ Digital Space.
-      Tempat untuk project, eksperimen, dan tools
-      kecil yang bisa digunakan sehari-hari.
-    </p>
 
-    <div class="buttons">
+<!-- =========================
+     COMPARE
+========================= -->
 
-      <a
-        href="#tools"
-        class="btn primary">
-        Buka Tools →
-      </a>
+<section class="compare">
 
-      <a
-        href="Projects.html"
-        class="btn secondary">
-        Lihat Project
-      </a>
+<div class="card">
 
-    </div>
+<h2>CHARACTER 01</h2>
 
-  </div>
+<select id="char1">
 
-  <div class="profile-card">
+<option value="">
+-- Pilih Character --
+</option>
 
-    <img
-      src="profile.jpg"
-      alt="Foto profil VIDZ"
-      class="avatar">
+</select>
 
-    <div
-      class="owner-status"
-      id="ownerStatus">
+</div>
 
-      <span class="status-dot"></span>
 
-      <span id="statusText">
-        ONLINE
-      </span>
+<div class="vs">
+VS
+</div>
 
-    </div>
 
-    <h2>VIDZ</h2>
+<div class="card">
 
-    <div class="role">
-      Student • Web Explorer
-    </div>
+<h2>CHARACTER 02</h2>
 
-    <div class="line"></div>
+<select id="char2">
 
-    <div class="info">
+<option value="">
+-- Pilih Character --
+</option>
 
-      <div>
-        <small>Focus</small>
-        <b>Web &amp; Tech</b>
-      </div>
+</select>
 
-      <div>
-        <small>Project</small>
-        <b>VIDZ-Web</b>
-      </div>
-
-      <div>
-        <small>Tools</small>
-        <b>Useful Stuff</b>
-      </div>
-
-      <div>
-        <small>Hosting</small>
-        <b>Cloudflare</b>
-      </div>
-
-    </div>
-
-    <div class="quote">
-      "dari gabut, menjadi veteran
-       web🗿"
-    </div>
-
-  </div>
+</div>
 
 </section>
 
-<!-- TOOLS -->
+
+<button
+class="compare-btn"
+onclick="compareCharacters()"
+>
+⚔ COMPARE CHARACTERS
+</button>
+
+
+<!-- =========================
+     RESULT
+========================= -->
 
 <section
-  class="tools-section"
-  id="tools">
+class="result"
+id="result"
+>
 
-  <div class="section-head">
+<div class="result-head">
 
-    <div class="section-label">
-      VIDZ TOOLBOX
-    </div>
+<small>
+COMPARISON RESULT
+</small>
 
-    <h2>
-      Tools yang berguna.
-    </h2>
+<div
+class="winner"
+id="winner"
+>
+—
+</div>
 
-    <p>
-      Beberapa fitur sederhana yang bisa digunakan
-      langsung dari browser tanpa perlu install aplikasi.
-    </p>
+<div
+class="status"
+id="status"
+>
+—
+</div>
 
-  </div>
+</div>
 
-  <div class="tools">
 
-    <div class="tool">
-      <div class="tool-icon">🧮</div>
+<div class="reason">
 
-      <h3>Kalkulator</h3>
+<h3>
+Battle Analysis
+</h3>
 
-      <p>
-        Hitung operasi matematika sederhana
-        langsung dari website.
-      </p>
+<p id="reasonText">
+—
+</p>
 
-      <span class="tool-btn">
-        SEGERA
-      </span>
-    </div>
 
-    <div class="tool">
-      <div class="tool-icon">🔄</div>
+<div class="battle-grid">
 
-      <h3>Unit Converter</h3>
 
-      <p>
-        Konversi satuan seperti panjang,
-        berat, dan temperatur.
-      </p>
+<div class="battle-box">
 
-      <span class="tool-btn">
-        SEGERA
-      </span>
-    </div>
+<h4 id="name1">
+Character 1
+</h4>
 
-    <div class="tool">
-      <div class="tool-icon">🔐</div>
+<div>
+<b>Key:</b>
+<span id="key1">—</span>
+</div>
 
-      <h3>Password Generator</h3>
+<div>
+<b>Tier:</b>
+<span id="tier1">—</span>
+</div>
 
-      <p>
-        Membuat password acak untuk membantu
-        meningkatkan keamanan akun.
-      </p>
+<div>
+<b>AP:</b>
+<span id="ap1">—</span>
+</div>
 
-      <span class="tool-btn">
-        SEGERA
-      </span>
-    </div>
+<div>
+<b>Speed:</b>
+<span id="speed1">—</span>
+</div>
 
-    <div class="tool">
-      <div class="tool-icon">📝</div>
+<div>
+<b>Durability:</b>
+<span id="dur1">—</span>
+</div>
 
-      <h3>Quick Notes</h3>
+<div>
+<b>Abilities:</b>
+<span id="hax1">—</span>
+</div>
 
-      <p>
-        Catatan sederhana yang bisa digunakan
-        langsung di browser.
-      </p>
+<div>
+<b>Resistance:</b>
+<span id="res1">—</span>
+</div>
 
-      <span class="tool-btn">
-        SEGERA
-      </span>
-    </div>
+</div>
 
-    <div class="tool">
-      <div class="tool-icon">⏱️</div>
 
-      <h3>Timer &amp; Stopwatch</h3>
+<div class="battle-box">
 
-      <p>
-        Timer dan stopwatch sederhana untuk
-        berbagai kebutuhan.
-      </p>
+<h4 id="name2">
+Character 2
+</h4>
 
-      <span class="tool-btn">
-        SEGERA
-      </span>
-    </div>
+<div>
+<b>Key:</b>
+<span id="key2">—</span>
+</div>
 
-    <div class="tool">
-      <div class="tool-icon">📱</div>
+<div>
+<b>Tier:</b>
+<span id="tier2">—</span>
+</div>
 
-      <h3>QR Generator</h3>
+<div>
+<b>AP:</b>
+<span id="ap2">—</span>
+</div>
 
-      <p>
-        Membuat QR code dari teks atau link
-        dengan cepat.
-      </p>
+<div>
+<b>Speed:</b>
+<span id="speed2">—</span>
+</div>
 
-      <span class="tool-btn">
-        SEGERA
-      </span>
-    </div>
+<div>
+<b>Durability:</b>
+<span id="dur2">—</span>
+</div>
 
-  </div>
+<div>
+<b>Abilities:</b>
+<span id="hax2">—</span>
+</div>
+
+<div>
+<b>Resistance:</b>
+<span id="res2">—</span>
+</div>
+
+</div>
+
+</div>
+
+
+<div
+class="analysis"
+id="analysis"
+>
+Waiting for comparison...
+</div>
+
+</div>
 
 </section>
 
-</main>
+
+<!-- =========================
+     DATABASE
+========================= -->
+
+<section class="section">
+
+<div class="section-title">
+
+<small>
+LOCAL DATABASE
+</small>
+
+<h2>
+Character Database
+</h2>
+
+</div>
+
+<div
+class="database"
+id="database"
+>
+</div>
+
+</section>
+
+
+<!-- =========================
+     ADD
+========================= -->
+
+<section class="section">
+
+<div class="section-title">
+
+<small>
+DATABASE MANAGER
+</small>
+
+<h2>
+Tambah Character
+</h2>
+
+</div>
+
+
+<div class="card">
+
+<div class="form-grid">
+
+
+<div class="field">
+
+<label>
+Nama Character
+</label>
+
+<input
+id="newName"
+placeholder="Nama character"
+>
+
+</div>
+
+
+<div class="field">
+
+<label>
+Key / Version
+</label>
+
+<input
+id="newKey"
+placeholder="Contoh: Light Novel"
+>
+
+</div>
+
+
+<div class="field">
+
+<label>
+Verse
+</label>
+
+<input
+id="newVerse"
+placeholder="Verse"
+>
+
+</div>
+
+
+<div class="field">
+
+<label>
+Tier
+</label>
+
+<input
+id="newTier"
+placeholder="Contoh: 1-A"
+>
+
+</div>
+
+
+<div class="field">
+
+<label>
+Attack Potency
+</label>
+
+<input
+id="newAP"
+placeholder="Attack Potency"
+>
+
+</div>
+
+
+<div class="field">
+
+<label>
+Speed
+</label>
+
+<input
+id="newSpeed"
+placeholder="Speed"
+>
+
+</div>
+
+
+<div class="field">
+
+<label>
+Durability
+</label>
+
+<input
+id="newDurability"
+placeholder="Durability"
+>
+
+</div>
+
+
+<div class="field">
+
+<label>
+Hax Weight
+</label>
+
+<input
+id="newHaxPower"
+type="number"
+min="0"
+max="100"
+placeholder="0 - 100"
+>
+
+</div>
+
+
+<div class="field full">
+
+<label>
+Abilities / Hax
+</label>
+
+<textarea
+id="newHax"
+rows="3"
+placeholder="Abilities..."
+></textarea>
+
+</div>
+
+
+<div class="field full">
+
+<label>
+Resistance
+</label>
+
+<textarea
+id="newResistance"
+rows="3"
+placeholder="Resistance..."
+></textarea>
+
+</div>
+
+
+<div class="field full">
+
+<label>
+Feats
+</label>
+
+<textarea
+id="newFeats"
+rows="4"
+placeholder="Feats..."
+></textarea>
+
+</div>
+
+
+<div class="field full">
+
+<label>
+Scaling
+</label>
+
+<textarea
+id="newScaling"
+rows="3"
+placeholder="Scaling..."
+></textarea>
+
+</div>
+
+
+<div class="field full">
+
+<label>
+Source
+</label>
+
+<input
+id="newSource"
+placeholder="Source"
+>
+
+</div>
+
+</div>
+
+
+<button
+class="save"
+onclick="addCharacter()"
+>
++ SIMPAN CHARACTER
+</button>
+
+
+<button
+class="danger"
+onclick="resetDatabase()"
+>
+RESET DATABASE
+</button>
+
+</div>
+
+</section>
+
+
+<div class="notice">
+
+Database tersimpan menggunakan LocalStorage.
+Tujuh karakter bawaan selalu tersedia setelah reset.
+Data di bawah adalah dataset powerscaling untuk pengujian
+engine dan bukan database resmi VS Battles Wiki.
+
+</div>
+
+</div>
+
 
 <script>
-/* =========================
-   THEME
-========================= */
 
-const themeButton =
-  document.getElementById("themeButton");
+/* =====================================================
+   DATABASE VERSION
+===================================================== */
 
-themeButton.addEventListener("click", function(){
-
-  document.body.classList.toggle("light");
-
-  themeButton.textContent =
-    document.body.classList.contains("light")
-      ? "☀️"
-      : "🌙";
-
-});
+const STORAGE_KEY="VIDZ_ANIME_DB_V3";
 
 
-/* =========================
-   ONLINE / OFFLINE
-========================= */
+/* =====================================================
+   DEFAULT DATABASE
+===================================================== */
 
-const ownerStatus =
-  document.getElementById("ownerStatus");
+const DEFAULT_DATABASE=[
 
-const statusText =
-  document.getElementById("statusText");
+{
+name:"Yogiri Takatou",
+key:"Light Novel",
+verse:"My Instant Death Ability Is So Overpowered",
+tier:"1-A",
+ap:"1-A",
+speed:"Irrelevant / sesuai key",
+durability:"1-A",
+hax:100,
 
-function online(){
+abilities:
+"Instant Death, Death Manipulation, existence-targeting effects, resistances",
 
-  ownerStatus.classList.remove("offline");
-  statusText.textContent = "ONLINE";
+resistance:
+"Berbagai resistance sesuai profile/key",
+
+feats:
+"Instant Death dapat menyebabkan kematian target melalui kemampuan khususnya.",
+
+scaling:
+"Scaling harus mengikuti key dan feats yang digunakan.",
+
+source:
+"VS Battles Wiki / source material"
+},
+
+
+{
+name:"Son Goku",
+key:"CC Goku",
+verse:"Dragon Ball Heroes",
+tier:"High 1-B",
+ap:"High 1-B",
+speed:"Immeasurable+",
+durability:"High 1-B",
+hax:82,
+
+abilities:
+"Ki Manipulation, Flight, Teleportation, Transformations, Ultra Instinct",
+
+resistance:
+"Resistance terhadap berbagai efek energi dan supernatural",
+
+feats:
+"Berbagai pertarungan tingkat tinggi dalam Dragon Ball Heroes.",
+
+scaling:
+"Scaling mengikuti key CC dan chain scaling yang digunakan.",
+
+source:
+"VS Battles Wiki / Dragon Ball Heroes"
+},
+
+
+{
+name:"Saitama",
+key:"Manga",
+verse:"One-Punch Man",
+tier:"3-A",
+ap:"3-A",
+speed:"Massively FTL+",
+durability:"3-A",
+hax:45,
+
+abilities:
+"Extreme Physical Statistics, Growth, Serious Punch",
+
+resistance:
+"Resistance fisik tinggi",
+
+feats:
+"Pertarungan melawan Garou serta peningkatan kekuatan selama pertarungan.",
+
+scaling:
+"Scaling berdasarkan manga dan feats yang diterima.",
+
+source:
+"VS Battles Wiki / One-Punch Man"
+},
+
+
+{
+name:"Naruto Uzumaki",
+key:"Six Paths Sage Mode",
+verse:"Naruto",
+tier:"5-B",
+ap:"5-B",
+speed:"Massively FTL+",
+durability:"5-B",
+hax:65,
+
+abilities:
+"Six Paths Senjutsu, Truth-Seeking Balls, Sensory Abilities, Chakra Manipulation",
+
+resistance:
+"Resistance melalui chakra dan Six Paths abilities",
+
+feats:
+"Memakai Six Paths Sage Mode dan menghadapi berbagai ancaman tingkat tinggi.",
+
+scaling:
+"Scaling berdasarkan key Six Paths dan chain scaling yang digunakan.",
+
+source:
+"VS Battles Wiki / Naruto"
+},
+
+
+{
+name:"Rimuru Tempest",
+key:"Light Novel",
+verse:"That Time I Got Reincarnated as a Slime",
+tier:"1-C",
+ap:"1-C",
+speed:"Immeasurable",
+durability:"1-C",
+hax:94,
+
+abilities:
+"Absorption, Soul Manipulation, Information Analysis, Regeneration, Causality-related abilities",
+
+resistance:
+"Berbagai resistance melalui skill dan Ultimate Skills",
+
+feats:
+"Mengembangkan berbagai skill tingkat tinggi dan memperoleh Ultimate Skills.",
+
+scaling:
+"Scaling mengikuti key LN dan cosmology yang digunakan.",
+
+source:
+"VS Battles Wiki / Light Novel"
+},
+
+
+{
+name:"Anos Voldigoad",
+key:"Light Novel",
+verse:"The Misfit of Demon King Academy",
+tier:"1-C",
+ap:"1-C",
+speed:"Immeasurable",
+durability:"1-C",
+hax:96,
+
+abilities:
+"Source Manipulation, Destruction, Resurrection, Magic, Time-related abilities",
+
+resistance:
+"Resistance terhadap berbagai magic dan source-related effects",
+
+feats:
+"Memakai source dan destruction abilities dalam berbagai pertarungan.",
+
+scaling:
+"Scaling mengikuti key LN dan cosmology yang digunakan.",
+
+source:
+"VS Battles Wiki / Light Novel"
+},
+
+
+{
+name:"IATIA",
+key:"Standard",
+verse:"World of Darkness",
+tier:"High 1-A",
+ap:"High 1-A",
+speed:"Irrelevant",
+durability:"High 1-A",
+hax:99,
+
+abilities:
+"High-level reality/meta abilities sesuai profile",
+
+resistance:
+"Berbagai resistance tingkat tinggi sesuai profile",
+
+feats:
+"Berada pada skala cosmological/meta dalam konteks profile yang digunakan.",
+
+scaling:
+"Scaling mengikuti cosmology dan profile yang digunakan.",
+
+source:
+"VS Battles Wiki / World of Darkness"
+}
+
+];
+
+
+/* =====================================================
+   STORAGE
+===================================================== */
+
+function loadDatabase(){
+
+let raw=localStorage.getItem(STORAGE_KEY);
+
+if(!raw){
+
+localStorage.setItem(
+STORAGE_KEY,
+JSON.stringify(DEFAULT_DATABASE)
+);
+
+return structuredClone(DEFAULT_DATABASE);
 
 }
 
-function offline(){
+try{
 
-  ownerStatus.classList.add("offline");
-  statusText.textContent = "OFFLINE";
+let data=JSON.parse(raw);
+
+if(!Array.isArray(data)||data.length===0){
+
+return structuredClone(DEFAULT_DATABASE);
 
 }
 
-online();
+return data;
 
-document.addEventListener(
-  "visibilitychange",
-  function(){
+}catch(error){
 
-    if(document.visibilityState === "visible"){
-      online();
-    }else{
-      offline();
-    }
-
-  }
+localStorage.setItem(
+STORAGE_KEY,
+JSON.stringify(DEFAULT_DATABASE)
 );
 
-window.addEventListener(
-  "pageshow",
-  online
+return structuredClone(DEFAULT_DATABASE);
+
+}
+
+}
+
+
+let database=loadDatabase();
+
+
+function saveDatabase(){
+
+localStorage.setItem(
+STORAGE_KEY,
+JSON.stringify(database)
 );
 
-window.addEventListener(
-  "pagehide",
-  offline
+}
+
+
+/* =====================================================
+   ESCAPE
+===================================================== */
+
+function esc(value){
+
+return String(value??"")
+.replaceAll("&","&amp;")
+.replaceAll("<","&lt;")
+.replaceAll(">","&gt;")
+.replaceAll('"',"&quot;")
+.replaceAll("'","&#039;");
+
+}
+
+
+/* =====================================================
+   TIER ENGINE
+===================================================== */
+
+const TIER_VALUES={
+
+"10-C":1,
+"10-B":2,
+"10-A":3,
+
+"9-C":4,
+"9-B":5,
+"9-A":6,
+
+"8-C":7,
+"8-B":8,
+"8-A":9,
+
+"7-C":10,
+"7-B":11,
+"7-A":12,
+
+"6-C":13,
+"6-B":14,
+"6-A":15,
+
+"5-C":16,
+"5-B":17,
+"5-A":18,
+
+"4-C":19,
+"4-B":20,
+"4-A":21,
+
+"3-C":22,
+"3-B":23,
+"3-A":24,
+
+"Low 2-C":25,
+"2-C":26,
+"2-B":27,
+"2-A":28,
+
+"Low 1-C":29,
+"1-C":30,
+"High 1-C":31,
+
+"Low 1-B":32,
+"1-B":33,
+"High 1-B":34,
+
+"Low 1-A":35,
+"1-A":36,
+"High 1-A":37,
+
+"Tier 0":38
+
+};
+
+
+function getTierValue(tier){
+
+let text=String(tier||"")
+.trim()
+.toLowerCase();
+
+if(text.includes("tier 0")||text.includes("boundless"))
+return 38;
+
+if(text.includes("high 1-a"))
+return 37;
+
+if(text.includes("low 1-a"))
+return 35;
+
+if(text.includes("1-a"))
+return 36;
+
+if(text.includes("high 1-b"))
+return 34;
+
+if(text.includes("low 1-b"))
+return 32;
+
+if(text.includes("1-b"))
+return 33;
+
+if(text.includes("high 1-c"))
+return 31;
+
+if(text.includes("low 1-c"))
+return 29;
+
+if(text.includes("1-c"))
+return 30;
+
+if(text.includes("2-a"))
+return 28;
+
+if(text.includes("2-b"))
+return 27;
+
+if(text.includes("2-c"))
+return 26;
+
+if(text.includes("low 2-c"))
+return 25;
+
+for(let key in TIER_VALUES){
+
+if(text===key.toLowerCase())
+return TIER_VALUES[key];
+
+}
+
+return 0;
+
+}
+
+
+/* =====================================================
+   SPEED ENGINE
+===================================================== */
+
+function speedValue(speed){
+
+let s=String(speed||"").toLowerCase();
+
+if(s.includes("irrelevant"))
+return 7;
+
+if(s.includes("immeasurable"))
+return 6;
+
+if(s.includes("infinite"))
+return 5;
+
+if(s.includes("massively ftl+"))
+return 4;
+
+if(s.includes("massively ftl"))
+return 3;
+
+if(s.includes("ftl+"))
+return 2;
+
+if(s.includes("ftl"))
+return 1;
+
+return 0;
+
+}
+
+
+/* =====================================================
+   COMPARE ENGINE
+===================================================== */
+
+function analyze(a,b){
+
+let scoreA=0;
+let scoreB=0;
+
+let reasons=[];
+
+let tierA=getTierValue(a.tier);
+let tierB=getTierValue(b.tier);
+
+
+/* TIER */
+
+if(tierA>tierB){
+
+scoreA+=10;
+
+reasons.push(
+"Tier advantage: "+a.name
 );
 
+}
 
-/* =========================
-   CINEMATIC EASTER EGG
-   3x KLIK LOGO
-   + FALLBACK 3x TEKAN E
-========================= */
+else if(tierB>tierA){
 
-document.addEventListener(
-  "DOMContentLoaded",
-  function(){
+scoreB+=10;
 
-    const logo =
-      document.getElementById("logo");
-
-    const easterEgg =
-      document.getElementById("easterEgg");
-
-    const eggClose =
-      document.getElementById("eggClose");
-
-    let clickCount = 0;
-    let clickTimer = null;
-
-    function openEgg(){
-
-      easterEgg.classList.add("active");
-
-      document.body.style.overflow = "hidden";
-
-      clickCount = 0;
-
-      if(clickTimer){
-        clearTimeout(clickTimer);
-      }
-
-    }
-
-    function closeEgg(){
-
-      easterEgg.classList.remove("active");
-
-      document.body.style.overflow = "";
-
-    }
-
-
-    /* 3X CLICK */
-
-    logo.addEventListener(
-      "click",
-      function(){
-
-        clickCount++;
-
-        if(clickTimer){
-          clearTimeout(clickTimer);
-        }
-
-        if(clickCount >= 3){
-
-          openEgg();
-
-          return;
-
-        }
-
-        clickTimer = setTimeout(
-          function(){
-
-            clickCount = 0;
-
-          },
-          1000
-        );
-
-      }
-    );
-
-
-    /* KEYBOARD FALLBACK:
-       TEKAN E 3X */
-
-    let keyCount = 0;
-    let keyTimer = null;
-
-    document.addEventListener(
-      "keydown",
-      function(event){
-
-        if(event.key.toLowerCase() !== "e"){
-          return;
-        }
-
-        keyCount++;
-
-        if(keyTimer){
-          clearTimeout(keyTimer);
-        }
-
-        if(keyCount >= 3){
-
-          openEgg();
-
-          keyCount = 0;
-
-          return;
-
-        }
-
-        keyTimer = setTimeout(
-          function(){
-
-            keyCount = 0;
-
-          },
-          1000
-        );
-
-      }
-    );
-
-
-    /* CLOSE BUTTON */
-
-    eggClose.addEventListener(
-      "click",
-      function(event){
-
-        event.stopPropagation();
-
-        closeEgg();
-
-      }
-    );
-
-
-    /* CLICK OUTSIDE BOX */
-
-    easterEgg.addEventListener(
-      "click",
-      function(event){
-
-        if(event.target === easterEgg){
-
-          closeEgg();
-
-        }
-
-      }
-    );
-
-
-    /* ESC */
-
-    document.addEventListener(
-      "keydown",
-      function(event){
-
-        if(event.key === "Escape"){
-
-          closeEgg();
-
-        }
-
-      }
-    );
-
-
-    /* ENTER / SPACE PADA LOGO */
-
-    logo.addEventListener(
-      "keydown",
-      function(event){
-
-        if(
-          event.key === "Enter" ||
-          event.key === " "
-        ){
-
-          event.preventDefault();
-
-          clickCount++;
-
-          if(clickCount >= 3){
-
-            openEgg();
-
-          }
-
-        }
-
-      }
-    );
-
-  }
+reasons.push(
+"Tier advantage: "+b.name
 );
-</script>
 
-</body>
-</html>
+}
+
+else{
+
+reasons.push(
+"Tier: equal/similar"
+);
+
+}
+
+
+/* SPEED */
+
+let speedA=speedValue(a.speed);
+let speedB=speedValue(b.speed);
+
+if(speedA>speedB){
+
+scoreA+=3;
+
+reasons.push(
+"Speed advantage: "+a.name
+);
+
+}
+
+else if(speedB>speedA){
+
+scoreB+=3;
+
+reasons.push(
+"Speed advantage: "+b.name
+);
+
+}
+
+
+/* HAX */
+
+let haxA=Number(a.hax)||0;
+let haxB=Number(b.hax)||0;
+
+if(haxA>haxB){
+
+scoreA+=3;
+
+reasons.push(
+"Hax/ability advantage: "+a.name
+);
+
+}
+
+else if(haxB>haxA){
+
+scoreB+=3;
+
+reasons.push(
+"Hax/ability advantage: "+b.name
+);
+
+}
+
+
+/* RESISTANCE */
+
+let resA=String(a.resistance||"").length;
+let resB=String(b.resistance||"").length;
+
+if(resA>resB)
+scoreA+=1;
+
+else if(resB>resA)
+scoreB+=1;
+
+
+/* FEATS */
+
+let featA=String(a.feats||"").length;
+let featB=String(b.feats||"").length;
+
+if(featA>featB)
+scoreA+=1;
+
+else if(featB>featA)
+scoreB+=1;
+
+
+/* FINAL */
+
+let winner=null;
+
+if(scoreA>scoreB)
+winner=a;
+
+if(scoreB>scoreA)
+winner=b;
+
+
+/* IMPORTANT:
+   If scores equal, don't automatically call it
+   inconclusive when tier differs.
+*/
+
+if(!winner && tierA!==tierB){
+
+winner=tierA>tierB?a:b;
+
+reasons.push(
+"Fallback: tier hierarchy breaks the score tie."
+);
+
+}
+
+
+return{
+
+winner,
+scoreA,
+scoreB,
+tierA,
+tierB,
+reasons
+
+};
+
+}
+
+
+/* =====================================================
+   FIND CHARACTER
+===================================================== */
+
+function find(name){
+
+return database.find(
+c=>c.name===name
+);
+
+}
+
+
+/* =====================================================
+   POPULATE SELECT
+===================================================== */
+
+function populateSelects(){
+
+let a=document.getElementById("char1");
+let b=document.getElementById("char2");
+
+a.innerHTML=
+'<option value="">-- Pilih Character --</option>';
+
+b.innerHTML=
+'<option value="">-- Pilih Character --</option>';
+
+database.forEach(c=>{
+
+let o1=document.createElement("option");
+
+o1.value=c.name;
+o1.textContent=c.name+" ["+c.key+"]";
+
+a.appendChild(o1);
+
+
+let o2=document.createElement("option");
+
+o2.value=c.name;
+o2.textContent=
