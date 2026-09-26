@@ -3,106 +3,155 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#070b14">
-<title>VIDZ — Projects</title>
+<meta name="theme-color" content="#050816">
+<meta name="description" content="Project VIDZ — Digital Space">
+<title>Projects — VIDZ</title>
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
+
 html{scroll-behavior:smooth}
+
 body{
   font-family:Arial,Helvetica,sans-serif;
-  background:#070b14;
+  background:#050816;
   color:#f5f7ff;
-  min-height:100vh;
   overflow-x:hidden;
 }
-a{text-decoration:none;color:inherit}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+:root{
+  --cyan:#00e5ff;
+  --line:rgba(255,255,255,.08);
+  --muted:#8292a7;
+}
 
 body::before{
   content:"";
   position:fixed;
   inset:0;
-  z-index:-2;
+  z-index:-3;
   background:
-    radial-gradient(circle at 10% 10%,rgba(0,229,255,.12),transparent 28%),
-    radial-gradient(circle at 90% 80%,rgba(139,92,246,.12),transparent 30%),
-    #070b14;
+    radial-gradient(circle at 15% 15%,rgba(0,229,255,.12),transparent 28%),
+    radial-gradient(circle at 85% 75%,rgba(124,58,237,.12),transparent 30%),
+    #050816;
 }
+
 body::after{
   content:"";
   position:fixed;
   inset:0;
-  z-index:-1;
-  opacity:.035;
+  z-index:-2;
+  opacity:.025;
   background-image:
     linear-gradient(#fff 1px,transparent 1px),
     linear-gradient(90deg,#fff 1px,transparent 1px);
-  background-size:60px 60px;
-  pointer-events:none;
+  background-size:55px 55px;
 }
-
-.nav{
-  position:fixed;
-  top:15px;
-  left:50%;
-  transform:translateX(-50%);
-  width:min(1100px,94%);
-  z-index:100;
-}
-nav{
-  height:62px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:0 20px;
-  border:1px solid rgba(255,255,255,.08);
-  border-radius:18px;
-  background:rgba(7,11,20,.78);
-  backdrop-filter:blur(20px);
-}
-.logo{
-  color:#00e5ff;
-  font-size:25px;
-  font-weight:900;
-  letter-spacing:-2px;
-}
-.links{
-  display:flex;
-  gap:18px;
-  align-items:center;
-}
-.links a{
-  color:#8b98aa;
-  font-size:11px;
-  font-weight:bold;
-  transition:.2s;
-}
-.links a:hover,.links .active{color:#00e5ff}
 
 .container{
   width:min(1100px,92%);
   margin:auto;
 }
-main{
-  padding:155px 0 100px;
+
+.nav-wrap{
+  position:fixed;
+  top:14px;
+  left:50%;
+  transform:translateX(-50%);
+  width:min(1120px,94%);
+  z-index:100;
 }
-.kicker{
-  color:#00e5ff;
-  font-size:10px;
+
+nav{
+  height:62px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 10px 0 20px;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:rgba(5,8,22,.78);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+}
+
+.logo{
+  color:var(--cyan);
+  font-size:25px;
+  font-weight:900;
+  letter-spacing:-2px;
+}
+
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:3px;
+}
+
+.nav-links a{
+  padding:9px 12px;
+  border-radius:9px;
+  color:#8996aa;
+  font-size:11px;
   font-weight:bold;
-  letter-spacing:3px;
 }
+
+.nav-links a:hover,
+.nav-links a.active{
+  color:var(--cyan);
+  background:rgba(0,229,255,.06);
+}
+
+.theme{
+  width:38px;
+  height:38px;
+  margin-left:5px;
+  border:1px solid var(--line);
+  border-radius:10px;
+  background:#ffffff08;
+  color:#fff;
+  cursor:pointer;
+}
+
+.page{
+  min-height:100vh;
+  padding:155px 0 90px;
+}
+
+.badge{
+  width:max-content;
+  padding:8px 13px;
+  border:1px solid rgba(0,229,255,.18);
+  border-radius:30px;
+  color:#8291a5;
+  background:rgba(0,229,255,.04);
+  font-size:9px;
+  font-weight:bold;
+  letter-spacing:2px;
+}
+
 h1{
-  margin-top:12px;
-  font-size:clamp(48px,8vw,80px);
+  margin-top:25px;
+  font-size:clamp(48px,8vw,85px);
   line-height:.9;
   letter-spacing:-6px;
 }
+
+h1 span{
+  color:var(--cyan);
+  text-shadow:0 0 35px rgba(0,229,255,.3);
+}
+
 .intro{
   max-width:680px;
   margin-top:25px;
-  color:#8491a5;
-  font-size:14px;
+  color:var(--muted);
+  font-size:15px;
   line-height:1.9;
 }
 
@@ -112,188 +161,259 @@ h1{
   gap:18px;
   margin-top:50px;
 }
+
 .project{
   position:relative;
-  min-height:275px;
-  padding:27px;
-  overflow:hidden;
-  border:1px solid rgba(255,255,255,.08);
+  min-height:300px;
+  padding:28px;
+  border:1px solid var(--line);
   border-radius:22px;
-  background:rgba(13,21,36,.78);
+  background:rgba(12,20,36,.75);
   transition:.3s;
 }
+
 .project:hover{
   transform:translateY(-8px);
   border-color:rgba(0,229,255,.3);
-  box-shadow:0 25px 60px rgba(0,0,0,.3);
+  box-shadow:0 25px 60px rgba(0,0,0,.25);
 }
+
 .number{
-  position:absolute;
-  top:22px;
-  right:22px;
-  color:#526073;
+  color:#536075;
   font-size:9px;
   font-weight:bold;
 }
+
 .icon{
-  width:55px;
-  height:55px;
+  width:58px;
+  height:58px;
   display:grid;
   place-items:center;
-  margin-bottom:22px;
-  border:1px solid rgba(255,255,255,.08);
-  border-radius:15px;
-  background:rgba(255,255,255,.035);
+  margin:24px 0;
+  border:1px solid var(--line);
+  border-radius:16px;
+  background:#ffffff06;
   font-size:25px;
 }
+
 .project h2{
-  margin-bottom:10px;
   font-size:19px;
+  margin-bottom:12px;
 }
+
 .project p{
-  color:#8491a5;
+  color:#77859a;
   font-size:12px;
   line-height:1.8;
 }
-.tag{
-  position:absolute;
-  bottom:22px;
-  left:27px;
-  color:#00e5ff;
-  font-size:9px;
+
+.status{
+  display:inline-block;
+  margin-top:25px;
+  padding:6px 9px;
+  border-radius:8px;
+  background:#00e5ff0d;
+  color:var(--cyan);
+  font-size:8px;
   font-weight:bold;
   letter-spacing:1px;
 }
 
 .back{
-  display:inline-flex;
-  margin-top:30px;
-  padding:12px 17px;
-  border:1px solid rgba(255,255,255,.09);
-  border-radius:11px;
-  color:#aab6c7;
+  display:inline-block;
+  margin-top:35px;
+  color:var(--cyan);
   font-size:11px;
   font-weight:bold;
-  transition:.2s;
-}
-.back:hover{
-  color:#00e5ff;
-  border-color:rgba(0,229,255,.3);
 }
 
 footer{
-  padding:35px 20px;
-  border-top:1px solid rgba(255,255,255,.08);
+  padding:40px 20px;
+  border-top:1px solid var(--line);
   text-align:center;
-  color:#5d6a7d;
-  font-size:11px;
+  color:#586579;
+  font-size:10px;
 }
-footer span{color:#00e5ff}
 
-@media(max-width:800px){
-  .projects{grid-template-columns:1fr}
+footer span{color:var(--cyan)}
+
+body.light{
+  background:#f1f6fa;
+  color:#101827;
 }
-@media(max-width:600px){
-  .nav{top:9px}
+
+body.light::before{
+  background:
+    radial-gradient(circle at 10% 10%,#d4faff,transparent 28%),
+    radial-gradient(circle at 90% 75%,#e9ddff,transparent 30%),
+    #f1f6fa;
+}
+
+body.light nav{
+  background:rgba(255,255,255,.85);
+}
+
+body.light .nav-links a{color:#475569}
+
+body.light .nav-links a.active{
+  color:#008ca0;
+}
+
+body.light .theme{
+  color:#101827;
+}
+
+body.light .project{
+  background:rgba(255,255,255,.85);
+  border-color:rgba(0,0,0,.08);
+}
+
+body.light .project p{
+  color:#526174;
+}
+
+@media(max-width:850px){
+  .projects{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:650px){
+  .nav-wrap{top:8px}
   nav{height:57px}
-  .links{gap:10px}
-  .links a{font-size:9px}
-  main{padding-top:125px}
-  h1{font-size:55px;letter-spacing:-4px}
+  .nav-links a{display:none}
+  .page{padding-top:120px}
+
+  h1{
+    font-size:55px;
+    letter-spacing:-4px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<div class="nav">
+<div class="nav-wrap">
 <nav>
-  <a href="index.html" class="logo">VIDZ.</a>
 
-  <div class="links">
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="projects.html" class="active">Project</a>
-    <a href="contact.html">Contact</a>
-  </div>
+<a class="logo" href="index.html">VIDZ.</a>
+
+<div class="nav-links">
+<a href="index.html">Home</a>
+<a href="About.html">About</a>
+<a class="active" href="Projects.html">Project</a>
+<a href="Contact.html">Contact</a>
+
+<button class="theme" id="themeButton" type="button">🌙</button>
+</div>
+
 </nav>
 </div>
 
-<main>
+<main class="page">
+
 <div class="container">
 
-  <div class="kicker">MY WORK</div>
+<div class="badge">MY WORK</div>
 
-  <h1>
-    PROJECT<br>
-    SAYA.
-  </h1>
+<h1>
+PROJECT<br>
+<span>VIDZ.</span>
+</h1>
 
-  <p class="intro">
-    Tempat untuk menyimpan berbagai project,
-    eksperimen, dan ide random yang pernah dibuat
-    di Digital Space VIDZ 🗿.
-  </p>
+<p class="intro">
+Beberapa project, eksperimen, dan ide yang pernah
+atau sedang dikerjakan di Digital Space VIDZ.
+Tidak semuanya serius. Sebagian memang dibuat
+karena gabut 🗿.
+</p>
 
-  <div class="projects">
+<div class="projects">
 
-    <div class="project">
-      <div class="number">01</div>
+<div class="project">
 
-      <div class="icon">🌐</div>
+<div class="number">PROJECT // 01</div>
 
-      <h2>VIDZ Website</h2>
+<div class="icon">🌐</div>
 
-      <p>
-        Website personal yang dibuat dengan HTML,
-        CSS, JavaScript, dan GitHub Pages.
-      </p>
+<h2>VIDZ Website</h2>
 
-      <div class="tag">CURRENT PROJECT</div>
-    </div>
+<p>
+Website personal yang dibuat dengan HTML,
+CSS, JavaScript, dan GitHub Pages.
+Project ini menjadi tempat utama untuk
+bereksperimen dengan website sendiri.
+</p>
 
-    <div class="project">
-      <div class="number">02</div>
-
-      <div class="icon">💻</div>
-
-      <h2>Web Experiments</h2>
-
-      <p>
-        Tempat mencoba layout, animasi,
-        JavaScript, dan berbagai ide website.
-      </p>
-
-      <div class="tag">EXPERIMENT</div>
-    </div>
-
-    <div class="project">
-      <div class="number">03</div>
-
-      <div class="icon">🚀</div>
-
-      <h2>Future Project</h2>
-
-      <p>
-        Project berikutnya masih bingung
-        pengen dilanjut atau apa🗿.
-      </p>
-
-      <div class="tag">CLASSIFIED</div>
-    </div>
-
-  </div>
-
-  <a href="index.html" class="back">
-    ← Kembali ke Home
-  </a>
+<div class="status">ACTIVE</div>
 
 </div>
+
+
+<div class="project">
+
+<div class="number">PROJECT // 02</div>
+
+<div class="icon">💻</div>
+
+<h2>Web Experiments</h2>
+
+<p>
+Tempat mencoba berbagai layout, animasi,
+JavaScript, efek visual, dan berbagai ide
+website yang muncul secara random.
+</p>
+
+<div class="status">EXPERIMENTAL</div>
+
+</div>
+
+
+<div class="project">
+
+<div class="number">PROJECT // 03</div>
+
+<div class="icon">🚀</div>
+
+<h2>Future Project</h2>
+
+<p>
+Project berikutnya masih rahasia.
+Menunggu ide muncul 🗿 dan tentunya
+masih akan terus dikembangkan.
+</p>
+
+<div class="status">COMING SOON</div>
+
+</div>
+
+</div>
+
+<a class="back" href="index.html">
+← Kembali ke Home
+</a>
+
+</div>
+
 </main>
 
 <footer>
-  © 2026 <span>VIDZ</span> — Dibuat karena gabut 🗿
+© 2026 <span>VIDZ</span> — Dibuat karena gabut 🗿
 </footer>
+
+<script>
+const themeButton=document.getElementById("themeButton");
+
+themeButton.addEventListener("click",function(){
+  document.body.classList.toggle("light");
+
+  themeButton.textContent=
+    document.body.classList.contains("light")
+    ? "☀️"
+    : "🌙";
+});
+</script>
 
 </body>
 </html>
