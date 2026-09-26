@@ -4,1377 +4,1374 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="theme-color" content="#050816">
-<title>VIDZ — AnimeDB V4</title>
+<meta name="description" content="VIDZ Digital Space — Personal website dan useful tools.">
+<title>VIDZ — Digital Space</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
 
 body{
-font-family:Arial,Helvetica,sans-serif;
-background:#050816;
-color:#f5f7ff;
-min-height:100vh;
-padding-bottom:60px;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#050816;
+  color:#f5f7ff;
+  min-height:100vh;
+  overflow-x:hidden;
 }
 
-body:before{
-content:"";
-position:fixed;
-inset:0;
-z-index:-2;
-background:
-radial-gradient(circle at 15% 10%,#00e5ff18,transparent 30%),
-radial-gradient(circle at 85% 90%,#7c3aed18,transparent 30%),
-#050816;
+a{
+  color:inherit;
+  text-decoration:none;
 }
 
-body:after{
-content:"";
-position:fixed;
-inset:0;
-z-index:-1;
-opacity:.035;
-background-image:
-linear-gradient(#fff 1px,transparent 1px),
-linear-gradient(90deg,#fff 1px,transparent 1px);
-background-size:55px 55px;
-pointer-events:none;
+button{
+  font:inherit;
 }
 
-button,input,textarea,select{
-font:inherit;
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-2;
+  background:
+    radial-gradient(circle at 15% 15%,#00e5ff18,transparent 28%),
+    radial-gradient(circle at 85% 80%,#7c3aed18,transparent 30%),
+    #050816;
 }
+
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  opacity:.045;
+  background-image:
+    linear-gradient(#fff 1px,transparent 1px),
+    linear-gradient(90deg,#fff 1px,transparent 1px);
+  background-size:55px 55px;
+  pointer-events:none;
+}
+
+/* NAVBAR */
 
 nav{
-position:sticky;
-top:0;
-z-index:50;
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:15px 6%;
-background:#050816ee;
-backdrop-filter:blur(18px);
-border-bottom:1px solid #ffffff0d;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  z-index:100;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:16px 7%;
+  background:#050816d9;
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  border-bottom:1px solid #ffffff0d;
 }
 
 .logo{
-color:#00e5ff;
-font-size:25px;
-font-weight:900;
-letter-spacing:-2px;
-text-shadow:0 0 20px #00e5ff;
+  color:#00e5ff;
+  font-size:26px;
+  font-weight:900;
+  letter-spacing:-2px;
+  text-shadow:0 0 20px #00e5ff;
+  cursor:pointer;
+  user-select:none;
 }
 
-nav a{
-color:#8fa0b5;
-text-decoration:none;
-font-size:12px;
-margin-left:15px;
+.logo:active{
+  transform:scale(.92);
 }
 
-nav a:hover{
-color:#00e5ff;
+.navlinks{
+  display:flex;
+  align-items:center;
+  gap:8px;
 }
 
-.container{
-width:min(1150px,92%);
-margin:auto;
+.navlinks a{
+  color:#9aa9bd;
+  font-size:13px;
+  padding:8px 10px;
+  border-radius:9px;
+  transition:.2s;
 }
 
-.header{
-text-align:center;
-padding:60px 0 35px;
+.navlinks a:hover,
+.navlinks a.active{
+  color:#00e5ff;
+  background:#00e5ff0d;
+}
+
+.theme{
+  border:1px solid #00e5ff33;
+  background:#ffffff08;
+  color:white;
+  padding:8px 10px;
+  border-radius:10px;
+  cursor:pointer;
+}
+
+/* HERO */
+
+.hero{
+  min-height:100vh;
+  padding:145px 7% 90px;
+  display:grid;
+  grid-template-columns:1.15fr .85fr;
+  gap:60px;
+  align-items:center;
 }
 
 .badge{
-display:inline-block;
-padding:7px 12px;
-border:1px solid #00e5ff33;
-border-radius:30px;
-color:#00e5ff;
-font-size:9px;
-letter-spacing:2px;
-margin-bottom:15px;
+  width:max-content;
+  padding:8px 13px;
+  border:1px solid #00e5ff33;
+  border-radius:30px;
+  color:#8192a7;
+  background:#00e5ff08;
+  font-size:10px;
+  letter-spacing:1.5px;
+  margin-bottom:22px;
 }
 
-.header h1{
-font-size:clamp(40px,7vw,75px);
-letter-spacing:-4px;
+.hero h1{
+  font-size:clamp(55px,8vw,100px);
+  line-height:.9;
+  letter-spacing:-5px;
 }
 
-.header h1 span{
-color:#00e5ff;
-text-shadow:0 0 25px #00e5ff66;
+.hero h1 span{
+  color:#00e5ff;
+  text-shadow:0 0 30px #00e5ff55;
 }
 
-.header p{
-color:#7d8da2;
-max-width:700px;
-margin:15px auto;
-line-height:1.7;
-font-size:13px;
+.hero p{
+  max-width:620px;
+  margin-top:25px;
+  color:#8190a5;
+  line-height:1.8;
+  font-size:17px;
 }
 
-.compare{
-display:grid;
-grid-template-columns:1fr 70px 1fr;
-gap:18px;
-align-items:center;
+.buttons{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:30px;
 }
 
-.card{
-background:#0b1425dd;
-border:1px solid #ffffff10;
-border-radius:22px;
-padding:24px;
-box-shadow:0 20px 60px #0005;
+.btn{
+  padding:13px 21px;
+  border-radius:12px;
+  font-weight:bold;
+  transition:.25s;
 }
 
-.card h2{
-color:#00e5ff;
-font-size:12px;
-letter-spacing:2px;
-margin-bottom:15px;
+.primary{
+  background:#00e5ff;
+  color:#001017;
+  box-shadow:0 0 30px #00e5ff25;
 }
 
-select,input,textarea{
-width:100%;
-background:#050a15;
-color:white;
-border:1px solid #ffffff16;
-border-radius:11px;
-padding:13px;
-outline:none;
+.secondary{
+  background:#ffffff07;
+  color:#fff;
+  border:1px solid #ffffff18;
 }
 
-select:focus,input:focus,textarea:focus{
-border-color:#00e5ff77;
+.btn:hover{
+  transform:translateY(-4px);
 }
 
-.vs{
-width:62px;
-height:62px;
-display:flex;
-align-items:center;
-justify-content:center;
-border-radius:50%;
-border:1px solid #00e5ff55;
-color:#00e5ff;
-font-weight:900;
-box-shadow:0 0 30px #00e5ff18;
+/* PROFILE */
+
+.profile-card{
+  padding:30px;
+  border-radius:28px;
+  background:linear-gradient(145deg,#111b31dd,#080d1add);
+  border:1px solid #00e5ff2e;
+  box-shadow:0 35px 100px #0008;
 }
 
-.compare-btn{
-width:100%;
-margin-top:20px;
-padding:15px;
-border:0;
-border-radius:12px;
-background:#00e5ff;
-color:#001017;
-font-weight:900;
-cursor:pointer;
+.avatar{
+  width:145px;
+  height:145px;
+  display:block;
+  margin:0 auto 15px;
+  object-fit:cover;
+  border-radius:50%;
+  border:3px solid #00e5ff;
+  box-shadow:0 0 30px #00e5ff55;
 }
 
-.compare-btn:hover{
-box-shadow:0 10px 30px #00e5ff33;
-transform:translateY(-2px);
+.owner-status{
+  width:max-content;
+  display:flex;
+  align-items:center;
+  gap:7px;
+  margin:0 auto 18px;
+  padding:6px 11px;
+  border-radius:20px;
+  background:#ffffff08;
+  border:1px solid #00ff9d22;
+  color:#00ff9d;
+  font-size:10px;
+  font-weight:bold;
+  letter-spacing:1px;
 }
 
-.result{
-display:none;
-margin-top:30px;
+.status-dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#00ff9d;
+  box-shadow:0 0 12px #00ff9d;
 }
 
-.result.show{
-display:block;
+.owner-status.offline{
+  color:#64748b;
+  border-color:#ffffff12;
 }
 
-.result-head{
-text-align:center;
-padding:28px;
-border:1px solid #00ff9d33;
-background:#00150ddd;
-border-radius:20px 20px 0 0;
+.owner-status.offline .status-dot{
+  background:#64748b;
+  box-shadow:none;
 }
 
-.result-head small{
-color:#00ff9d;
-letter-spacing:2px;
+.profile-card h2{
+  text-align:center;
+  font-size:28px;
 }
 
-.winner{
-margin-top:8px;
-font-size:clamp(28px,6vw,55px);
-font-weight:900;
-text-shadow:0 0 25px #00ff9d88;
+.role{
+  text-align:center;
+  color:#00e5ff;
+  margin-top:7px;
+  font-size:13px;
 }
 
-.status{
-margin-top:8px;
-font-size:11px;
-color:#8494a8;
+.line{
+  height:1px;
+  background:#ffffff0d;
+  margin:24px 0;
 }
 
-.reason{
-padding:25px;
-background:#091321dd;
-border:1px solid #ffffff0d;
-border-top:0;
-border-radius:0 0 20px 20px;
+.info{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
 }
 
-.reason h3{
-color:#00e5ff;
-margin-bottom:12px;
+.info small{
+  display:block;
+  color:#596b80;
+  font-size:10px;
+  margin-bottom:5px;
 }
 
-.reason p{
-color:#aeb9c8;
-font-size:13px;
-line-height:1.8;
+.info b{
+  font-size:13px;
 }
 
-.stats{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:12px;
-margin-top:20px;
+.quote{
+  margin-top:22px;
+  padding:15px;
+  border-radius:14px;
+  background:#ffffff05;
+  color:#8292a7;
+  font-size:13px;
+  line-height:1.6;
 }
 
-.stat{
-padding:16px;
-background:#ffffff05;
-border:1px solid #ffffff0b;
-border-radius:12px;
+/* TOOLS */
+
+.tools-section{
+  padding:90px 7%;
 }
 
-.stat h4{
-color:#00e5ff;
-margin-bottom:10px;
+.section-head{
+  margin-bottom:35px;
 }
 
-.stat div{
-font-size:11px;
-line-height:1.7;
-color:#c5ceda;
+.section-label{
+  color:#00e5ff;
+  font-size:10px;
+  font-weight:bold;
+  letter-spacing:2px;
 }
 
-.analysis{
-margin-top:15px;
-padding:15px;
-background:#020611;
-border:1px solid #00e5ff18;
-border-radius:12px;
-font-size:11px;
-line-height:1.7;
-color:#91a4ba;
-white-space:pre-wrap;
+.section-head h2{
+  margin-top:10px;
+  font-size:clamp(32px,5vw,55px);
+  letter-spacing:-3px;
 }
 
-.section{
-margin-top:50px;
+.section-head p{
+  max-width:650px;
+  margin-top:12px;
+  color:#8190a5;
+  line-height:1.7;
+  font-size:14px;
 }
 
-.section-title{
-margin-bottom:18px;
+.tools{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
 }
 
-.section-title small{
-color:#00e5ff;
-letter-spacing:2px;
-font-size:9px;
+.tool{
+  padding:24px;
+  border:1px solid #ffffff0d;
+  border-radius:20px;
+  background:#0c1424bf;
+  transition:.25s;
 }
 
-.section-title h2{
-margin-top:7px;
-font-size:28px;
+.tool:hover{
+  transform:translateY(-6px);
+  border-color:#00e5ff44;
+  box-shadow:0 20px 50px #0005;
 }
 
-.database{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:14px;
+.tool-icon{
+  font-size:28px;
+  margin-bottom:17px;
 }
 
-.character{
-padding:20px;
-border-radius:18px;
-background:#0b1425dd;
-border:1px solid #ffffff0d;
+.tool h3{
+  font-size:17px;
 }
 
-.character h3{
-color:#00e5ff;
-margin-bottom:5px;
+.tool p{
+  margin-top:9px;
+  color:#77869b;
+  font-size:12px;
+  line-height:1.7;
 }
 
-.character .key{
-color:#00ff9d;
-font-size:10px;
-margin-bottom:4px;
+.tool-btn{
+  display:inline-block;
+  margin-top:17px;
+  padding:8px 12px;
+  border-radius:9px;
+  background:#00e5ff0d;
+  border:1px solid #00e5ff22;
+  color:#00e5ff;
+  font-size:10px;
+  font-weight:bold;
 }
 
-.character .verse{
-color:#68798e;
-font-size:11px;
-margin-bottom:12px;
+/* =========================
+   CINEMATIC EASTER EGG
+========================= */
+
+#easterEgg{
+  position:fixed;
+  inset:0;
+  z-index:999999;
+  display:none;
+  overflow:hidden;
+  background:#000;
+  color:#00ff9d;
+  font-family:"Courier New",monospace;
 }
 
-.character p{
-color:#a7b2c0;
-font-size:11px;
-line-height:1.6;
-margin:4px 0;
+#easterEgg.active{
+  display:block;
+  animation:eggIn .35s ease forwards;
 }
 
-.character button{
-margin-top:12px;
-margin-right:4px;
-padding:7px 9px;
-background:#00e5ff0b;
-border:1px solid #00e5ff22;
-color:#00e5ff;
-border-radius:8px;
-cursor:pointer;
-font-size:10px;
+.code-rain{
+  position:absolute;
+  inset:0;
+  overflow:hidden;
+  opacity:.8;
+  pointer-events:none;
 }
 
-.manager{
-background:#0b1425dd;
-border:1px solid #ffffff10;
-border-radius:22px;
-padding:24px;
+.code-column{
+  position:absolute;
+  top:-130%;
+  white-space:pre;
+  color:#00ff9d;
+  font-size:clamp(12px,1.8vw,21px);
+  line-height:1.05;
+  font-weight:bold;
+  text-shadow:
+    0 0 6px #00ff9d,
+    0 0 18px #00ff9d;
+  animation:rain linear infinite;
 }
 
-.form-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:12px;
+.code-column:nth-child(1){left:2%;animation-duration:5s;animation-delay:-2s}
+.code-column:nth-child(2){left:9%;animation-duration:7s;animation-delay:-4s}
+.code-column:nth-child(3){left:16%;animation-duration:4s;animation-delay:-1s}
+.code-column:nth-child(4){left:23%;animation-duration:6s;animation-delay:-3s}
+.code-column:nth-child(5){left:30%;animation-duration:5s;animation-delay:-2s}
+.code-column:nth-child(6){left:37%;animation-duration:7s;animation-delay:-5s}
+.code-column:nth-child(7){left:44%;animation-duration:4.5s;animation-delay:-1s}
+.code-column:nth-child(8){left:51%;animation-duration:6s;animation-delay:-4s}
+.code-column:nth-child(9){left:58%;animation-duration:5.5s;animation-delay:-2s}
+.code-column:nth-child(10){left:65%;animation-duration:4s;animation-delay:-3s}
+.code-column:nth-child(11){left:72%;animation-duration:6.5s;animation-delay:-5s}
+.code-column:nth-child(12){left:79%;animation-duration:4.8s;animation-delay:-1s}
+.code-column:nth-child(13){left:86%;animation-duration:5.8s;animation-delay:-4s}
+.code-column:nth-child(14){left:93%;animation-duration:4.3s;animation-delay:-2s}
+
+.egg-dark{
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(
+      circle at center,
+      transparent 0%,
+      rgba(0,0,0,.25) 35%,
+      rgba(0,0,0,.92) 100%
+    );
+  pointer-events:none;
 }
 
-.field{
-margin-bottom:10px;
+.egg-scanlines{
+  position:absolute;
+  inset:0;
+  background:repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 3px,
+    rgba(0,255,157,.09) 4px
+  );
+  pointer-events:none;
 }
 
-.field label{
-display:block;
-font-size:10px;
-color:#728299;
-margin-bottom:6px;
+.egg-box{
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:min(950px,92%);
+  min-height:420px;
+  padding:38px;
+  transform:translate(-50%,-50%) scale(.8);
+  opacity:0;
+  border:1px solid #00ff9d66;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(0,22,15,.96),
+      rgba(0,5,8,.95)
+    );
+  box-shadow:
+    0 0 35px #00ff9d33,
+    0 0 120px #00ff9d11,
+    inset 0 0 80px #00ff9d08;
+  animation:boxIn .7s .15s ease forwards;
 }
 
-.full{
-grid-column:1/-1;
+.egg-top{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:20px;
+  color:#00ff9d;
+  font-size:10px;
+  letter-spacing:3px;
+  opacity:.75;
 }
 
-.save{
-padding:12px 18px;
-border:0;
-border-radius:10px;
-background:#00ff9d;
-color:#00150d;
-font-weight:bold;
-cursor:pointer;
+.egg-title{
+  font-size:clamp(32px,7vw,78px);
+  font-weight:900;
+  letter-spacing:7px;
+  color:#eafff7;
+  text-shadow:
+    3px 0 #ff0055,
+    -3px 0 #00e5ff,
+    0 0 20px #00ff9d,
+    0 0 50px #00ff9d;
+  animation:titleGlitch .12s infinite;
 }
 
-.reset{
-padding:12px 18px;
-border:1px solid #ff456555;
-border-radius:10px;
-background:#ff456510;
-color:#ff7188;
-font-weight:bold;
-cursor:pointer;
-margin-left:8px;
+.egg-line{
+  height:1px;
+  width:100%;
+  margin:25px 0;
+  background:linear-gradient(
+    90deg,
+    transparent,
+    #00ff9d,
+    transparent
+  );
+  box-shadow:0 0 15px #00ff9d;
 }
 
-.notice{
-margin-top:20px;
-padding:14px;
-border:1px solid #ffffff0d;
-border-radius:12px;
-font-size:10px;
-line-height:1.7;
-color:#697a90;
+.egg-terminal{
+  min-height:135px;
+  color:#8affc9;
+  font-size:13px;
+  line-height:2;
 }
 
-@media(max-width:750px){
-
-.compare{
-grid-template-columns:1fr;
+.egg-terminal span{
+  color:#00ff9d;
+  text-shadow:0 0 10px #00ff9d;
 }
 
-.vs{
-margin:auto;
+.egg-final{
+  margin-top:20px;
+  padding:18px 5px;
+  text-align:center;
+  color:#fff;
+  font-size:clamp(20px,4.5vw,52px);
+  font-weight:900;
+  letter-spacing:2px;
+  text-shadow:
+    4px 0 #ff0055,
+    -4px 0 #00e5ff,
+    0 0 15px #fff,
+    0 0 35px #00ff9d;
+  opacity:0;
+  transform:scale(.6);
+  animation:
+    finalIn .6s 1.8s ease forwards,
+    finalGlitch .12s 2.5s infinite;
 }
 
-.database{
-grid-template-columns:1fr;
+.egg-close{
+  position:absolute;
+  top:14px;
+  right:16px;
+  z-index:10;
+  width:35px;
+  height:35px;
+  border:1px solid #00ff9d33;
+  border-radius:8px;
+  background:#00110bcc;
+  color:#00ff9d;
+  cursor:pointer;
+  font-size:18px;
 }
 
-.stats{
-grid-template-columns:1fr;
+.egg-close:hover{
+  border-color:#00ff9d;
+  box-shadow:0 0 20px #00ff9d55;
 }
 
-.form-grid{
-grid-template-columns:1fr;
+.egg-corner{
+  position:absolute;
+  bottom:15px;
+  left:20px;
+  color:#00ff9d66;
+  font-size:8px;
+  letter-spacing:2px;
 }
 
-.full{
-grid-column:auto;
+.egg-corner-right{
+  position:absolute;
+  bottom:15px;
+  right:20px;
+  color:#00ff9d66;
+  font-size:8px;
+  letter-spacing:2px;
 }
 
-nav{
-padding:13px 4%;
+@keyframes eggIn{
+  from{
+    opacity:0;
+    filter:brightness(3) contrast(2);
+  }
+  to{
+    opacity:1;
+    filter:none;
+  }
 }
 
-nav a{
-font-size:10px;
-margin-left:7px;
+@keyframes boxIn{
+  0%{
+    opacity:0;
+    transform:translate(-50%,-50%) scale(.8);
+    filter:blur(15px);
+  }
+  70%{
+    opacity:1;
+    transform:translate(-50%,-50%) scale(1.03);
+    filter:blur(0);
+  }
+  100%{
+    opacity:1;
+    transform:translate(-50%,-50%) scale(1);
+  }
 }
 
+@keyframes rain{
+  from{
+    transform:translateY(0);
+  }
+  to{
+    transform:translateY(230vh);
+  }
+}
+
+@keyframes titleGlitch{
+  0%{transform:translate(0)}
+  25%{transform:translate(-4px,2px)}
+  50%{transform:translate(4px,-2px)}
+  75%{transform:translate(-2px,-1px)}
+  100%{transform:translate(0)}
+}
+
+@keyframes finalIn{
+  0%{
+    opacity:0;
+    transform:scale(.6) translateY(20px);
+    filter:blur(12px);
+  }
+  70%{
+    opacity:1;
+    transform:scale(1.08);
+    filter:blur(0);
+  }
+  100%{
+    opacity:1;
+    transform:scale(1);
+  }
+}
+
+@keyframes finalGlitch{
+  0%{transform:translate(0)}
+  25%{transform:translate(-4px,1px)}
+  50%{transform:translate(4px,-1px)}
+  75%{transform:translate(-2px,0)}
+  100%{transform:translate(0)}
+}
+
+/* LIGHT MODE */
+
+body.light{
+  color:#111827;
+  background:#edf3f8;
+}
+
+body.light::before{
+  background:
+    radial-gradient(circle at 15% 15%,#c9f7ff,transparent 28%),
+    radial-gradient(circle at 85% 80%,#e8ddff,transparent 30%),
+    #edf3f8;
+}
+
+body.light nav{
+  background:#ffffffd9;
+  border-color:#00000010;
+}
+
+body.light .navlinks a{
+  color:#475569;
+}
+
+body.light .navlinks a:hover,
+body.light .navlinks a.active{
+  color:#0284c7;
+}
+
+body.light .theme{
+  color:#111827;
+  background:#ffffff;
+}
+
+body.light .profile-card{
+  background:#ffffffdc;
+  border-color:#00000012;
+}
+
+body.light .hero p,
+body.light .section-head p{
+  color:#475569;
+}
+
+body.light .secondary{
+  color:#111827;
+}
+
+body.light .tool{
+  background:#ffffffdc;
+  border-color:#00000010;
+}
+
+body.light .tool p{
+  color:#526174;
+}
+
+/* MOBILE */
+
+@media(max-width:850px){
+
+  .hero{
+    grid-template-columns:1fr;
+    text-align:center;
+  }
+
+  .badge{
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+  .hero p{
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+  .buttons{
+    justify-content:center;
+  }
+
+  .tools{
+    grid-template-columns:1fr 1fr;
+  }
+}
+
+@media(max-width:600px){
+
+  nav{
+    padding:14px 5%;
+  }
+
+  .navlinks{
+    gap:2px;
+  }
+
+  .navlinks a{
+    font-size:10px;
+    padding:7px 5px;
+  }
+
+  .hero{
+    padding-top:125px;
+  }
+
+  .hero h1{
+    font-size:55px;
+    letter-spacing:-3px;
+  }
+
+  .profile-card{
+    padding:22px;
+  }
+
+  .info{
+    grid-template-columns:1fr;
+  }
+
+  .tools{
+    grid-template-columns:1fr;
+  }
+
+  .tools-section{
+    padding:70px 5%;
+  }
+
+  .egg-box{
+    width:94%;
+    min-height:390px;
+    padding:28px 18px;
+  }
+
+  .egg-title{
+    font-size:29px;
+    letter-spacing:3px;
+  }
+
+  .egg-terminal{
+    font-size:10px;
+    line-height:1.9;
+  }
+
+  .egg-final{
+    font-size:22px;
+    letter-spacing:1px;
+  }
+
+  .egg-top{
+    font-size:7px;
+  }
 }
 </style>
 </head>
 
 <body>
 
+<!-- =========================
+     EASTER EGG
+========================= -->
+
+<div id="easterEgg">
+
+  <div class="code-rain">
+
+    <div class="code-column">01
+10
+A7
+FF
+01
+10
+VIDZ
+01
+X9
+00
+11
+SYSTEM
+7F
+A1</div>
+
+    <div class="code-column">1A
+0F
+10
+B2
+00
+CODE
+FF
+7A
+01
+VIDZ
+9C
+11
+00</div>
+
+    <div class="code-column">10
+01
+11
+00
+F7
+C2
+A0
+VIDZ
+01
+9F
+10
+FF</div>
+
+    <div class="code-column">FF
+01
+10
+SYSTEM
+7A
+00
+B1
+19
+01
+VIDZ
+A8
+00</div>
+
+    <div class="code-column">00
+11
+A1
+F0
+01
+X7
+VIDZ
+10
+10
+FF
+C9
+01</div>
+
+    <div class="code-column">VIDZ
+01
+00
+11
+A7
+F2
+10
+CODE
+FF
+01
+B8
+00</div>
+
+    <div class="code-column">10
+10
+01
+FF
+7C
+00
+VIDZ
+A1
+11
+09
+F0
+01</div>
+
+    <div class="code-column">A0
+01
+10
+11
+SYSTEM
+FF
+C7
+00
+VIDZ
+01
+10
+9A</div>
+
+    <div class="code-column">01
+F0
+00
+VIDZ
+10
+A7
+11
+FF
+C1
+00
+01
+CODE</div>
+
+    <div class="code-column">FF
+10
+01
+A9
+00
+VIDZ
+11
+F7
+01
+10
+B0
+00</div>
+
+    <div class="code-column">10
+01
+VIDZ
+00
+FF
+A1
+11
+SYSTEM
+09
+C0
+01
+10</div>
+
+    <div class="code-column">00
+FF
+01
+10
+B7
+VIDZ
+11
+A0
+01
+CODE
+F1
+00</div>
+
+    <div class="code-column">VIDZ
+10
+01
+FF
+00
+11
+A7
+01
+SYSTEM
+C0
+10
+00</div>
+
+    <div class="code-column">10
+FF
+00
+01
+VIDZ
+A7
+11
+SYSTEM
+09
+C1
+00
+10</div>
+
+  </div>
+
+  <div class="egg-dark"></div>
+  <div class="egg-scanlines"></div>
+
+  <div class="egg-box">
+
+    <button
+      class="egg-close"
+      id="eggClose"
+      type="button">
+      ✕
+    </button>
+
+    <div class="egg-top">
+      <span>VIDZ // CLASSIFIED LAYER</span>
+      <span>ACCESS: 03</span>
+    </div>
+
+    <div class="egg-title">
+      VIDZ//SYSTEM
+    </div>
+
+    <div class="egg-line"></div>
+
+    <div class="egg-terminal">
+
+      <div>
+        <span>[SYSTEM]</span>
+        Initializing hidden layer...
+      </div>
+
+      <div>
+        <span>[SYSTEM]</span>
+        Scanning VIDZ-Web...
+      </div>
+
+      <div>
+        <span>[SYSTEM]</span>
+        Connection established.
+      </div>
+
+      <div>
+        <span>[SYSTEM]</span>
+        Developer signature detected.
+      </div>
+
+      <div>
+        <span>[SYSTEM]</span>
+        🗿 anomaly detected.
+      </div>
+
+      <div>
+        <span>[SYSTEM]</span>
+        Secret sequence verified.
+      </div>
+
+      <div>
+        <span>[SYSTEM]</span>
+        Welcome to the hidden layer...
+        <span class="terminal-cursor">_</span>
+      </div>
+
+    </div>
+
+    <div class="egg-final">
+      UTUH &amp; ENAL FUTA LOVERS 🤫
+    </div>
+
+    <div class="egg-corner">
+      NO SIGNAL // NO RECORD
+    </div>
+
+    <div class="egg-corner-right">
+      VIDZ-01
+    </div>
+
+  </div>
+
+</div>
+
+<!-- NAVBAR -->
+
 <nav>
 
-<div class="logo">VIDZ.</div>
+  <div
+    class="logo"
+    id="logo"
+    role="button"
+    tabindex="0"
+    aria-label="VIDZ secret button">
+    VIDZ.
+  </div>
 
-<div>
-<a href="index.html">Home</a>
-<a href="Projects.html">Projects</a>
-<a href="AnimeDB.html">AnimeDB</a>
-</div>
+  <div class="navlinks">
+
+    <a href="index.html" class="active">
+      Home
+    </a>
+
+    <a href="About.html">
+      About
+    </a>
+
+    <a href="Projects.html">
+      Projects
+    </a>
+
+    <a href="Contact.html">
+      Contact
+    </a>
+
+    <button
+      class="theme"
+      id="themeButton"
+      type="button">
+      🌙
+    </button>
+
+  </div>
 
 </nav>
 
-<div class="container">
+<!-- HERO -->
 
-<header class="header">
+<main>
 
-<div class="badge">
-VIDZ // CHARACTER DATABASE
-</div>
+<section class="hero">
 
-<h1>
-ANIME<span>DB</span>
-</h1>
+  <div>
 
-<p>
-Pilih dua karakter dari database dan jalankan
-comparison engine.
-Data karakter bawaan tersedia langsung di file.
-</p>
+    <div class="badge">
+      DIGITAL SPACE • USEFUL TOOLS
+    </div>
 
-</header>
+    <h1>
+      HALO,<br>
+      SAYA <span>VIDZ.</span>
+    </h1>
 
+    <p>
+      Selamat datang di VIDZ Digital Space.
+      Tempat untuk project, eksperimen, dan tools
+      kecil yang bisa digunakan sehari-hari.
+    </p>
 
-<!-- ==============================
-COMPARE
-============================== -->
+    <div class="buttons">
 
-<section class="compare">
+      <a
+        href="#tools"
+        class="btn primary">
+        Buka Tools →
+      </a>
 
-<div class="card">
+      <a
+        href="Projects.html"
+        class="btn secondary">
+        Lihat Project
+      </a>
 
-<h2>CHARACTER 01</h2>
+    </div>
 
-<select id="char1">
-<option value="">-- Pilih Character --</option>
-</select>
+  </div>
 
-</div>
+  <div class="profile-card">
 
-<div class="vs">
-VS
-</div>
+    <img
+      src="profile.jpg"
+      alt="Foto profil VIDZ"
+      class="avatar">
 
-<div class="card">
+    <div
+      class="owner-status"
+      id="ownerStatus">
 
-<h2>CHARACTER 02</h2>
+      <span class="status-dot"></span>
 
-<select id="char2">
-<option value="">-- Pilih Character --</option>
-</select>
+      <span id="statusText">
+        ONLINE
+      </span>
 
-</div>
+    </div>
+
+    <h2>VIDZ</h2>
+
+    <div class="role">
+      Student • Web Explorer
+    </div>
+
+    <div class="line"></div>
+
+    <div class="info">
+
+      <div>
+        <small>Focus</small>
+        <b>Web &amp; Tech</b>
+      </div>
+
+      <div>
+        <small>Project</small>
+        <b>VIDZ-Web</b>
+      </div>
+
+      <div>
+        <small>Tools</small>
+        <b>Useful Stuff</b>
+      </div>
+
+      <div>
+        <small>Hosting</small>
+        <b>Cloudflare</b>
+      </div>
+
+    </div>
+
+    <div class="quote">
+      "Bikin website karena gabut,
+      lanjut karena ternyata seru. 🗿"
+    </div>
+
+  </div>
 
 </section>
 
-<button
-class="compare-btn"
-onclick="compareCharacters()"
->
-⚔ COMPARE CHARACTERS
-</button>
-
-
-<!-- ==============================
-RESULT
-============================== -->
+<!-- TOOLS -->
 
 <section
-class="result"
-id="result"
->
+  class="tools-section"
+  id="tools">
 
-<div class="result-head">
+  <div class="section-head">
 
-<small>
-COMPARISON RESULT
-</small>
+    <div class="section-label">
+      VIDZ TOOLBOX
+    </div>
 
-<div
-class="winner"
-id="winner"
->
-—
-</div>
+    <h2>
+      Tools yang berguna.
+    </h2>
 
-<div
-class="status"
-id="status"
->
-—
-</div>
+    <p>
+      Beberapa fitur sederhana yang bisa digunakan
+      langsung dari browser tanpa perlu install aplikasi.
+    </p>
 
-</div>
+  </div>
 
-<div class="reason">
+  <div class="tools">
 
-<h3>
-Reason
-</h3>
+    <div class="tool">
+      <div class="tool-icon">🧮</div>
 
-<p id="reasonText">
-—
-</p>
+      <h3>Kalkulator</h3>
 
-<div class="stats">
+      <p>
+        Hitung operasi matematika sederhana
+        langsung dari website.
+      </p>
 
-<div class="stat">
+      <span class="tool-btn">
+        SEGERA
+      </span>
+    </div>
 
-<h4 id="name1">
-Character 1
-</h4>
+    <div class="tool">
+      <div class="tool-icon">🔄</div>
 
-<div>
-<b>Key:</b>
-<span id="key1">—</span>
-</div>
+      <h3>Unit Converter</h3>
 
-<div>
-<b>Verse:</b>
-<span id="verse1">—</span>
-</div>
+      <p>
+        Konversi satuan seperti panjang,
+        berat, dan temperatur.
+      </p>
 
-<div>
-<b>Tier:</b>
-<span id="tier1">—</span>
-</div>
+      <span class="tool-btn">
+        SEGERA
+      </span>
+    </div>
 
-<div>
-<b>AP:</b>
-<span id="ap1">—</span>
-</div>
+    <div class="tool">
+      <div class="tool-icon">🔐</div>
 
-<div>
-<b>Speed:</b>
-<span id="speed1">—</span>
-</div>
+      <h3>Password Generator</h3>
 
-<div>
-<b>Durability:</b>
-<span id="dur1">—</span>
-</div>
+      <p>
+        Membuat password acak untuk membantu
+        meningkatkan keamanan akun.
+      </p>
 
-<div>
-<b>Abilities:</b>
-<span id="hax1">—</span>
-</div>
+      <span class="tool-btn">
+        SEGERA
+      </span>
+    </div>
 
-</div>
+    <div class="tool">
+      <div class="tool-icon">📝</div>
 
+      <h3>Quick Notes</h3>
 
-<div class="stat">
+      <p>
+        Catatan sederhana yang bisa digunakan
+        langsung di browser.
+      </p>
 
-<h4 id="name2">
-Character 2
-</h4>
+      <span class="tool-btn">
+        SEGERA
+      </span>
+    </div>
 
-<div>
-<b>Key:</b>
-<span id="key2">—</span>
-</div>
+    <div class="tool">
+      <div class="tool-icon">⏱️</div>
 
-<div>
-<b>Verse:</b>
-<span id="verse2">—</span>
-</div>
+      <h3>Timer &amp; Stopwatch</h3>
 
-<div>
-<b>Tier:</b>
-<span id="tier2">—</span>
-</div>
+      <p>
+        Timer dan stopwatch sederhana untuk
+        berbagai kebutuhan.
+      </p>
 
-<div>
-<b>AP:</b>
-<span id="ap2">—</span>
-</div>
+      <span class="tool-btn">
+        SEGERA
+      </span>
+    </div>
 
-<div>
-<b>Speed:</b>
-<span id="speed2">—</span>
-</div>
+    <div class="tool">
+      <div class="tool-icon">📱</div>
 
-<div>
-<b>Durability:</b>
-<span id="dur2">—</span>
-</div>
+      <h3>QR Generator</h3>
 
-<div>
-<b>Abilities:</b>
-<span id="hax2">—</span>
-</div>
+      <p>
+        Membuat QR code dari teks atau link
+        dengan cepat.
+      </p>
 
-</div>
+      <span class="tool-btn">
+        SEGERA
+      </span>
+    </div>
 
-</div>
-
-<div
-class="analysis"
-id="analysis"
->
-Waiting...
-</div>
-
-</div>
+  </div>
 
 </section>
 
-
-<!-- ==============================
-DATABASE
-============================== -->
-
-<section class="section">
-
-<div class="section-title">
-
-<small>
-BUILT-IN DATABASE
-</small>
-
-<h2>
-7 Characters
-</h2>
-
-</div>
-
-<div
-class="database"
-id="database"
->
-</div>
-
-</section>
-
-
-<!-- ==============================
-MANAGER
-============================== -->
-
-<section class="section">
-
-<div class="section-title">
-
-<small>
-DATABASE MANAGER
-</small>
-
-<h2>
-Manage Database
-</h2>
-
-</div>
-
-<div class="manager">
-
-<div class="form-grid">
-
-<div class="field">
-<label>Nama Character</label>
-<input id="newName" placeholder="Nama">
-</div>
-
-<div class="field">
-<label>Key</label>
-<input id="newKey" placeholder="Key / Version">
-</div>
-
-<div class="field">
-<label>Verse</label>
-<input id="newVerse" placeholder="Verse">
-</div>
-
-<div class="field">
-<label>Tier</label>
-<input id="newTier" placeholder="Tier">
-</div>
-
-<div class="field">
-<label>Attack Potency</label>
-<input id="newAP" placeholder="AP">
-</div>
-
-<div class="field">
-<label>Speed</label>
-<input id="newSpeed" placeholder="Speed">
-</div>
-
-<div class="field">
-<label>Durability</label>
-<input id="newDurability" placeholder="Durability">
-</div>
-
-<div class="field">
-<label>Hax Score</label>
-<input id="newHaxScore" type="number" min="0" max="100" placeholder="0-100">
-</div>
-
-<div class="field full">
-<label>Abilities / Hax</label>
-<textarea id="newHax" rows="3"></textarea>
-</div>
-
-<div class="field full">
-<label>Resistance</label>
-<textarea id="newResistance" rows="3"></textarea>
-</div>
-
-<div class="field full">
-<label>Feats</label>
-<textarea id="newFeats" rows="3"></textarea>
-</div>
-
-<div class="field full">
-<label>Scaling</label>
-<textarea id="newScaling" rows="3"></textarea>
-</div>
-
-<div class="field full">
-<label>Source</label>
-<input id="newSource" placeholder="Source">
-</div>
-
-</div>
-
-<br>
-
-<button
-class="save"
-onclick="addCharacter()"
->
-+ SIMPAN CHARACTER
-</button>
-
-<button
-class="reset"
-onclick="resetDatabase()"
->
-↻ RESET DATABASE
-</button>
-
-</div>
-
-<div class="notice">
-
-<strong>DATABASE STATUS:</strong>
-<span id="dbStatus">
-Loading...
-</span>
-
-<br><br>
-
-Database menggunakan LocalStorage.
-Tujuh karakter bawaan akan selalu dikembalikan
-ketika database di-reset.
-
-</div>
-
-</section>
-
-</div>
-
+</main>
 
 <script>
+/* =========================
+   THEME
+========================= */
 
-/* =========================================
-   CONSTANTS
-========================================= */
+const themeButton =
+  document.getElementById("themeButton");
 
-const STORAGE_KEY="VIDZ_ANIME_DB_V4";
+themeButton.addEventListener("click", function(){
 
+  document.body.classList.toggle("light");
 
-/* =========================================
-   BUILT-IN 7 CHARACTERS
-========================================= */
-
-const BUILTIN=[
-
-{
-name:"Yogiri Takatou",
-key:"Light Novel",
-verse:"My Instant Death Ability Is So Overpowered",
-tier:"1-A",
-ap:"1-A",
-speed:"Irrelevant",
-durability:"1-A",
-hax:100,
-abilities:"Instant Death, Death Manipulation, existence-targeting effects, resistances",
-resistance:"Resistance terhadap berbagai kemampuan supernatural sesuai key",
-feats:"Mampu menggunakan kemampuan kematian terhadap target dalam berbagai kondisi.",
-scaling:"Scaling berdasarkan key dan feats yang digunakan.",
-source:"VS Battles Wiki / Source Material"
-},
-
-{
-name:"CC Goku",
-key:"Capsule Corp Goku",
-verse:"Super Dragon Ball Heroes",
-tier:"High 1-B",
-ap:"High 1-B",
-speed:"Immeasurable+",
-durability:"High 1-B",
-hax:85,
-abilities:"Ki Manipulation, Flight, Teleportation, Transformations, Ultra Instinct",
-resistance:"Berbagai resistance terhadap efek energi dan supernatural.",
-feats:"Berbagai pertarungan tingkat tinggi dalam Super Dragon Ball Heroes.",
-scaling:"Scaling mengikuti key CC Goku dan cosmology yang digunakan.",
-source:"VS Battles Wiki / Dragon Ball Heroes"
-},
-
-{
-name:"Saitama",
-key:"Manga",
-verse:"One-Punch Man",
-tier:"3-A",
-ap:"3-A",
-speed:"Massively FTL+",
-durability:"3-A",
-hax:45,
-abilities:"Extreme Physical Statistics, Growth, Serious Punch",
-resistance:"Resistance fisik tinggi.",
-feats:"Pertarungan melawan Garou dan pertumbuhan kekuatan selama pertarungan.",
-scaling:"Scaling berdasarkan manga dan feats yang digunakan.",
-source:"VS Battles Wiki / One-Punch Man"
-},
-
-{
-name:"Naruto Uzumaki",
-key:"Six Paths Sage Mode",
-verse:"Naruto",
-tier:"5-B",
-ap:"5-B",
-speed:"Massively FTL+",
-durability:"5-B",
-hax:65,
-abilities:"Six Paths Senjutsu, Truth-Seeking Balls, Sensory Abilities, Chakra Manipulation",
-resistance:"Berbagai resistance melalui chakra dan Six Paths abilities.",
-feats:"Menggunakan Six Paths Sage Mode dalam pertarungan tingkat tinggi.",
-scaling:"Scaling berdasarkan Six Paths key.",
-source:"VS Battles Wiki / Naruto"
-},
-
-{
-name:"Rimuru Tempest",
-key:"Light Novel",
-verse:"That Time I Got Reincarnated as a Slime",
-tier:"1-C",
-ap:"1-C",
-speed:"Immeasurable",
-durability:"1-C",
-hax:94,
-abilities:"Absorption, Soul Manipulation, Analysis, Regeneration, Ultimate Skills",
-resistance:"Berbagai resistance melalui skill dan Ultimate Skills.",
-feats:"Mengembangkan berbagai skill dan memperoleh Ultimate Skills.",
-scaling:"Scaling mengikuti key Light Novel dan cosmology.",
-source:"VS Battles Wiki / Light Novel"
-},
-
-{
-name:"Anos Voldigoad",
-key:"Light Novel",
-verse:"The Misfit of Demon King Academy",
-tier:"1-C",
-ap:"1-C",
-speed:"Immeasurable",
-durability:"1-C",
-hax:96,
-abilities:"Source Manipulation, Destruction, Resurrection, Magic, Time-related abilities",
-resistance:"Berbagai resistance terhadap magic dan source-related effects.",
-feats:"Menggunakan source dan destruction abilities dalam berbagai pertarungan.",
-scaling:"Scaling mengikuti key Light Novel.",
-source:"VS Battles Wiki / Light Novel"
-},
-
-{
-name:"IATIA",
-key:"Standard",
-verse:"World of Darkness",
-tier:"High 1-A",
-ap:"High 1-A",
-speed:"Irrelevant",
-durability:"High 1-A",
-hax:99,
-abilities:"High-level reality/meta abilities sesuai profile",
-resistance:"Resistance tingkat tinggi sesuai profile.",
-feats:"Berada pada skala cosmological/meta dalam profile yang digunakan.",
-scaling:"Scaling mengikuti cosmology/profile yang digunakan.",
-source:"VS Battles Wiki / World of Darkness"
-}
-
-];
-
-
-/* =========================================
-   DATABASE LOAD
-========================================= */
-
-function loadDB(){
-
-try{
-
-const raw=
-localStorage.getItem(STORAGE_KEY);
-
-if(!raw){
-
-localStorage.setItem(
-STORAGE_KEY,
-JSON.stringify(BUILTIN)
-);
-
-return structuredClone(BUILTIN);
-
-}
-
-const parsed=
-JSON.parse(raw);
-
-if(
-!Array.isArray(parsed)||
-parsed.length===0
-){
-
-throw new Error("Invalid database");
-
-}
-
-return parsed;
-
-}catch(error){
-
-localStorage.setItem(
-STORAGE_KEY,
-JSON.stringify(BUILTIN)
-);
-
-return structuredClone(BUILTIN);
-
-}
-
-}
-
-
-let db=loadDB();
-
-
-/* =========================================
-   SAVE
-========================================= */
-
-function saveDB(){
-
-localStorage.setItem(
-STORAGE_KEY,
-JSON.stringify(db)
-);
-
-}
-
-
-/* =========================================
-   ESCAPE
-========================================= */
-
-function esc(x){
-
-return String(x??"")
-.replaceAll("&","&amp;")
-.replaceAll("<","&lt;")
-.replaceAll(">","&gt;")
-.replaceAll('"',"&quot;")
-.replaceAll("'","&#039;");
-
-}
-
-
-/* =========================================
-   TIER VALUE
-========================================= */
-
-function tierValue(tier){
-
-const t=
-String(tier||"")
-.toLowerCase()
-.replace(/\s+/g," ");
-
-if(t.includes("tier 0")||t.includes("boundless"))
-return 100;
-
-if(t.includes("high 1-a"))
-return 90;
-
-if(t.includes("1-a"))
-return 80;
-
-if(t.includes("low 1-b"))
-return 72;
-
-if(t.includes("high 1-b"))
-return 76;
-
-if(t.includes("1-b"))
-return 74;
-
-if(t.includes("high 1-c"))
-return 66;
-
-if(t.includes("1-c"))
-return 64;
-
-if(t.includes("2-a"))
-return 58;
-
-if(t.includes("2-b"))
-return 56;
-
-if(t.includes("2-c"))
-return 54;
-
-if(t.includes("3-a"))
-return 48;
-
-if(t.includes("3-b"))
-return 46;
-
-if(t.includes("3-c"))
-return 44;
-
-if(t.includes("4-a"))
-return 38;
-
-if(t.includes("4-b"))
-return 36;
-
-if(t.includes("4-c"))
-return 34;
-
-if(t.includes("5-a"))
-return 30;
-
-if(t.includes("5-b"))
-return 28;
-
-if(t.includes("5-c"))
-return 26;
-
-return 0;
-
-}
-
-
-/* =========================================
-   SPEED VALUE
-========================================= */
-
-function speedValue(speed){
-
-const s=
-String(speed||"").toLowerCase();
-
-if(s.includes("irrelevant"))
-return 7;
-
-if(s.includes("immeasurable"))
-return 6;
-
-if(s.includes("infinite"))
-return 5;
-
-if(s.includes("massively ftl+"))
-return 4;
-
-if(s.includes("massively ftl"))
-return 3;
-
-if(s.includes("ftl+"))
-return 2;
-
-if(s.includes("ftl"))
-return 1;
-
-return 0;
-
-}
-
-
-/* =========================================
-   FIND
-========================================= */
-
-function findChar(name){
-
-return db.find(
-x=>x.name===name
-);
-
-}
-
-
-/* =========================================
-   RENDER SELECT
-========================================= */
-
-function renderSelects(){
-
-const a=
-document.getElementById("char1");
-
-const b=
-document.getElementById("char2");
-
-a.innerHTML=
-'<option value="">-- Pilih Character --</option>';
-
-b.innerHTML=
-'<option value="">-- Pilih Character --</option>';
-
-db.forEach(c=>{
-
-const x=
-document.createElement("option");
-
-x.value=c.name;
-
-x.textContent=
-c.name+" — "+c.key;
-
-a.appendChild(x);
-
-
-const y=
-document.createElement("option");
-
-y.value=c.name;
-
-y.textContent=
-c.name+" — "+c.key;
-
-b.appendChild(y);
+  themeButton.textContent =
+    document.body.classList.contains("light")
+      ? "☀️"
+      : "🌙";
 
 });
 
-}
 
+/* =========================
+   ONLINE / OFFLINE
+========================= */
 
-/* =========================================
-   RENDER CARDS
-========================================= */
+const ownerStatus =
+  document.getElementById("ownerStatus");
 
-function renderCards(){
+const statusText =
+  document.getElementById("statusText");
 
-const box=
-document.getElementById("database");
-
-box.innerHTML="";
-
-db.forEach((c,i)=>{
-
-const el=
-document.createElement("div");
-
-el.className="character";
-
-el.innerHTML=`
-
-<h3>${esc(c.name)}</h3>
-
-<div class="key">
-${esc(c.key)}
-</div>
-
-<div class="verse">
-${esc(c.verse)}
-</div>
-
-<p><b>Tier:</b> ${esc(c.tier)}</p>
-
-<p><b>AP:</b> ${esc(c.ap)}</p>
-
-<p><b>Speed:</b> ${esc(c.speed)}</p>
-
-<p><b>Durability:</b> ${esc(c.durability)}</p>
-
-<button onclick="selectChar(${i},1)">
-USE #1
-</button>
-
-<button onclick="selectChar(${i},2)">
-USE #2
-</button>
-
-`;
-
-box.appendChild(el);
-
-});
-
-document.getElementById("dbStatus").textContent=
-db.length+
-" characters loaded successfully.";
-
-}
-
-
-/* =========================================
-   SELECT CARD
-========================================= */
-
-function selectChar(i,slot){
-
-const target=
-slot===1?
-document.getElementById("char1"):
-document.getElementById("char2");
-
-target.value=
-db[i].name;
-
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
-
-}
-
-
-/* =========================================
-   RESULT DATA
-========================================= */
-
-function fill(c,n){
-
-document.getElementById("name"+n).textContent=c.name;
-document.getElementById("key"+n).textContent=c.key;
-document.getElementById("verse"+n).textContent=c.verse;
-document.getElementById("tier"+n).textContent=c.tier;
-document.getElementById("ap"+n).textContent=c.ap;
-document.getElementById("speed"+n).textContent=c.speed;
-document.getElementById("dur"+n).textContent=c.durability;
-document.getElementById("hax"+n).textContent=c.abilities;
-
-}
-
-
-/* =========================================
-   COMPARE
-========================================= */
-
-function compareCharacters(){
-
-const a=
-findChar(
-document.getElementById("char1").value
-);
-
-const b=
-findChar(
-document.getElementById("char2").value
-);
-
-const result=
-document.getElementById("result");
-
-result.classList.add("show");
-
-
-if(!a||!b){
-
-document.getElementById("winner").textContent=
-"SELECT TWO";
-
-document.getElementById("status").textContent=
-"Belum lengkap";
-
-document.getElementById("reasonText").textContent=
-"Pilih dua karakter dari database.";
-
-return;
-
-}
-
-
-if(a.name===b.name){
-
-document.getElementById("winner").textContent=
-"SAME CHARACTER";
-
-document.getElementById("status").textContent=
-"Invalid matchup";
-
-document.getElementById("reasonText").textContent=
-"Silakan pilih dua karakter berbeda.";
-
-return;
-
-}
-
-
-fill(a,1);
-fill(b,2);
-
-
-const ta=
-tierValue(a.tier);
-
-const tb=
-tierValue(b.tier);
-
-const sa=
-speedValue(a.speed);
-
-const sb=
-speedValue(b.speed);
-
-let scoreA=0;
-let scoreB=0;
-
-let reasons=[];
-
-
-/* TIER */
-
-if(ta>tb){
-
-scoreA+=10;
-
-reasons.push(
-"Tier advantage → "+a.name
+f
