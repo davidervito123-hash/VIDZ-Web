@@ -2,9 +2,8 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="theme-color" content="#050816">
-<meta name="description" content="VIDZ — Digital Space">
 <title>VIDZ — Digital Space</title>
 
 <style>
@@ -22,986 +21,371 @@ body{
   font-family:Arial,Helvetica,sans-serif;
   background:#050816;
   color:#f5f7ff;
-  overflow-x:hidden;
+  min-height:100vh;
 }
-
-a{
-  color:inherit;
-  text-decoration:none;
-}
-
-button{
-  font:inherit;
-}
-
-
-/* =========================
-   VARIABLES
-========================= */
-
-:root{
-  --bg:#050816;
-  --card:#0c1424;
-  --card2:#101a2e;
-  --cyan:#00e5ff;
-  --text:#f5f7ff;
-  --muted:#8492a6;
-  --muted2:#5e6c80;
-  --line:rgba(255,255,255,.08);
-}
-
-
-/* =========================
-   BACKGROUND
-========================= */
 
 body::before{
   content:"";
   position:fixed;
   inset:0;
-  z-index:-3;
-
+  z-index:-2;
   background:
-    radial-gradient(
-      circle at 15% 15%,
-      rgba(0,229,255,.12),
-      transparent 28%
-    ),
-    radial-gradient(
-      circle at 85% 75%,
-      rgba(124,58,237,.12),
-      transparent 30%
-    ),
-    var(--bg);
+    radial-gradient(circle at 15% 15%,#00e5ff18,transparent 28%),
+    radial-gradient(circle at 85% 80%,#7c3aed18,transparent 30%),
+    #050816;
 }
 
 body::after{
   content:"";
   position:fixed;
   inset:0;
-  z-index:-2;
-  pointer-events:none;
-  opacity:.025;
-
-  background-image:
-    linear-gradient(
-      rgba(255,255,255,.8) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      90deg,
-      rgba(255,255,255,.8) 1px,
-      transparent 1px
-    );
-
-  background-size:55px 55px;
-}
-
-.orb{
-  position:fixed;
-  width:280px;
-  height:280px;
-  border-radius:50%;
-  filter:blur(100px);
-  opacity:.13;
   z-index:-1;
+  opacity:.045;
+  background-image:
+    linear-gradient(#fff 1px,transparent 1px),
+    linear-gradient(90deg,#fff 1px,transparent 1px);
+  background-size:55px 55px;
   pointer-events:none;
 }
 
-.orb.one{
-  left:-150px;
-  top:20%;
-  background:#00e5ff;
-}
-
-.orb.two{
-  right:-150px;
-  bottom:10%;
-  background:#7c3aed;
-}
-
-
-/* =========================
-   NAVBAR
-========================= */
-
-.nav-wrap{
-  position:fixed;
-  top:14px;
-  left:50%;
-  transform:translateX(-50%);
-  width:min(1120px,94%);
-  z-index:100;
-}
+/* NAVBAR */
 
 nav{
-  height:62px;
-
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  z-index:100;
   display:flex;
   align-items:center;
   justify-content:space-between;
-
-  padding:0 10px 0 20px;
-
-  border:1px solid var(--line);
-  border-radius:18px;
-
-  background:rgba(5,8,22,.78);
-
-  backdrop-filter:blur(20px);
-  -webkit-backdrop-filter:blur(20px);
-
-  box-shadow:0 18px 55px rgba(0,0,0,.25);
+  padding:16px 7%;
+  background:#050816c9;
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid #ffffff0d;
 }
 
 .logo{
-  color:var(--cyan);
-  font-size:25px;
+  color:#00e5ff;
+  font-size:26px;
   font-weight:900;
-  letter-spacing:-2px;
-  text-shadow:0 0 25px rgba(0,229,255,.35);
-  cursor:pointer;
+  text-shadow:0 0 20px #00e5ff;
 }
 
-.nav-links{
+.navlinks{
   display:flex;
   align-items:center;
-  gap:3px;
+  gap:20px;
 }
 
-.nav-links a{
-  padding:9px 12px;
-  border-radius:9px;
-
-  color:#8996aa;
-
-  font-size:11px;
-  font-weight:bold;
-
+.navlinks a{
+  color:#9aa9bd;
+  text-decoration:none;
+  font-size:14px;
   transition:.2s;
 }
 
-.nav-links a:hover{
-  color:var(--cyan);
-  background:rgba(0,229,255,.06);
+.navlinks a:hover,
+.navlinks a.active{
+  color:#00e5ff;
 }
 
 .theme{
-  width:38px;
-  height:38px;
-
-  margin-left:5px;
-
-  border:1px solid var(--line);
+  border:1px solid #00e5ff33;
+  background:#ffffff08;
+  color:white;
+  padding:7px 10px;
   border-radius:10px;
-
-  background:rgba(255,255,255,.04);
-
-  color:#fff;
-
   cursor:pointer;
 }
 
-
-/* =========================
-   CONTAINER
-========================= */
-
-.container{
-  width:min(1120px,92%);
-  margin:auto;
-}
-
-section{
-  padding:110px 0;
-}
-
-
-/* =========================
-   HERO
-========================= */
+/* HERO */
 
 .hero{
   min-height:100vh;
-
+  padding:145px 7% 80px;
   display:grid;
   grid-template-columns:1.15fr .85fr;
-
+  gap:60px;
   align-items:center;
-
-  gap:75px;
-
-  padding-top:125px;
 }
 
-.status{
+.badge{
   width:max-content;
-
-  display:flex;
-  align-items:center;
-  gap:8px;
-
-  padding:8px 12px;
-
-  border:1px solid rgba(0,229,255,.18);
+  padding:8px 13px;
+  border:1px solid #00e5ff33;
   border-radius:30px;
-
-  background:rgba(0,229,255,.04);
-
-  color:#8291a5;
-
-  font-size:9px;
-  font-weight:bold;
-
+  color:#8192a7;
+  background:#00e5ff08;
+  font-size:10px;
   letter-spacing:1.5px;
-}
-
-.status i{
-  width:7px;
-  height:7px;
-  border-radius:50%;
-
-  background:#00ff9d;
-
-  box-shadow:0 0 12px #00ff9d;
+  margin-bottom:22px;
 }
 
 .hero h1{
-  margin-top:25px;
-
-  font-size:clamp(60px,8vw,105px);
-
-  line-height:.84;
-
-  letter-spacing:-7px;
+  font-size:clamp(55px,8vw,100px);
+  line-height:.9;
+  letter-spacing:-5px;
 }
 
 .hero h1 span{
-  color:var(--cyan);
-
-  text-shadow:
-    0 0 40px rgba(0,229,255,.3);
+  color:#00e5ff;
+  text-shadow:0 0 30px #00e5ff55;
 }
 
-.hero-sub{
+.hero p{
   max-width:620px;
-
-  margin-top:27px;
-
-  color:var(--muted);
-
-  font-size:15px;
-
-  line-height:1.9;
+  margin-top:25px;
+  color:#8190a5;
+  line-height:1.8;
+  font-size:17px;
 }
 
-.actions{
+.buttons{
   display:flex;
   flex-wrap:wrap;
-  gap:10px;
-
+  gap:12px;
   margin-top:30px;
 }
 
 .btn{
-  min-height:46px;
-
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-
-  padding:0 20px;
-
-  border-radius:11px;
-
-  font-size:11px;
+  padding:13px 21px;
+  border-radius:12px;
+  text-decoration:none;
   font-weight:bold;
-
   transition:.25s;
+}
+
+.primary{
+  background:#00e5ff;
+  color:#001017;
+  box-shadow:0 0 30px #00e5ff25;
+}
+
+.secondary{
+  background:#ffffff07;
+  color:#fff;
+  border:1px solid #ffffff18;
 }
 
 .btn:hover{
   transform:translateY(-4px);
 }
 
-.primary{
-  color:#001017;
-  background:var(--cyan);
+/* PROFILE */
 
-  box-shadow:
-    0 12px 35px rgba(0,229,255,.14);
+.profile-card{
+  padding:30px;
+  border-radius:28px;
+  background:linear-gradient(145deg,#111b31dd,#080d1add);
+  border:1px solid #00e5ff2e;
+  box-shadow:0 35px 100px #0008;
 }
 
-.secondary{
-  color:#fff;
-
-  background:rgba(255,255,255,.04);
-
-  border:1px solid var(--line);
+.avatar{
+  width:155px;
+  height:155px;
+  display:block;
+  margin:0 auto 15px;
+  object-fit:cover;
+  border-radius:50%;
+  border:3px solid #00e5ff;
+  box-shadow:0 0 30px #00e5ff55;
 }
 
-.hero-info{
+.owner-status{
+  width:max-content;
   display:flex;
-  flex-wrap:wrap;
-  gap:22px;
-
-  margin-top:35px;
-
-  color:#59677b;
-
-  font-size:9px;
+  align-items:center;
+  gap:7px;
+  margin:0 auto 18px;
+  padding:6px 11px;
+  border-radius:20px;
+  background:#ffffff08;
+  border:1px solid #00ff9d22;
+  color:#00ff9d;
+  font-size:10px;
   font-weight:bold;
   letter-spacing:1px;
 }
 
-.hero-info b{
-  color:#aeb9c8;
-}
-
-
-/* =========================
-   PROFILE
-========================= */
-
-.profile{
-  padding:28px;
-
-  border:1px solid rgba(0,229,255,.15);
-  border-radius:27px;
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(16,27,47,.9),
-      rgba(8,13,25,.9)
-    );
-
-  box-shadow:0 35px 100px rgba(0,0,0,.35);
-
-  overflow:hidden;
-}
-
-.profile-header{
-  display:flex;
-  justify-content:space-between;
-
-  color:#566478;
-
-  font-size:8px;
-  font-weight:bold;
-  letter-spacing:2px;
-}
-
-.online{
-  color:#00ff9d;
-}
-
-.avatar{
-  display:block;
-
-  width:145px;
-  height:145px;
-
-  margin:25px auto 20px;
-
-  object-fit:cover;
-
-  border:3px solid var(--cyan);
+.status-dot{
+  width:7px;
+  height:7px;
   border-radius:50%;
-
-  background:#111827;
-
-  box-shadow:
-    0 0 30px rgba(0,229,255,.3),
-    0 0 80px rgba(0,229,255,.08);
+  background:#00ff9d;
+  box-shadow:0 0 12px #00ff9d;
 }
 
-.profile h2{
+.owner-status.offline{
+  color:#64748b;
+  border-color:#ffffff12;
+}
+
+.owner-status.offline .status-dot{
+  background:#64748b;
+  box-shadow:none;
+}
+
+.profile-card h2{
   text-align:center;
   font-size:28px;
 }
 
 .role{
-  margin-top:6px;
-
   text-align:center;
-
-  color:var(--cyan);
-
-  font-size:10px;
-  font-weight:bold;
+  color:#00e5ff;
+  margin-top:7px;
+  font-size:13px;
 }
 
-.divider{
+.line{
   height:1px;
+  background:#ffffff0d;
   margin:24px 0;
-
-  background:var(--line);
-}
-
-.profile-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
 }
 
 .info{
-  padding:13px;
-
-  border:1px solid rgba(255,255,255,.06);
-  border-radius:12px;
-
-  background:rgba(255,255,255,.025);
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
 }
 
 .info small{
   display:block;
-
+  color:#596b80;
+  font-size:10px;
   margin-bottom:5px;
-
-  color:#566477;
-
-  font-size:8px;
-  font-weight:bold;
-  text-transform:uppercase;
 }
 
 .info b{
-  font-size:11px;
+  font-size:13px;
 }
 
 .quote{
-  margin-top:12px;
-
-  padding:14px;
-
-  border-left:2px solid var(--cyan);
-  border-radius:0 10px 10px 0;
-
-  background:rgba(255,255,255,.025);
-
-  color:#8491a5;
-
-  font-size:10px;
-
-  line-height:1.7;
-}
-
-
-/* =========================
-   HEADINGS
-========================= */
-
-.heading{
-  margin-bottom:42px;
-}
-
-.heading small{
-  color:var(--cyan);
-
-  font-size:9px;
-  font-weight:bold;
-
-  letter-spacing:3px;
-}
-
-.heading h2{
-  margin-top:9px;
-
-  font-size:clamp(36px,5vw,52px);
-
-  line-height:1;
-
-  letter-spacing:-3px;
-}
-
-.heading p{
-  max-width:600px;
-
-  margin-top:15px;
-
-  color:var(--muted);
-
-  font-size:13px;
-
-  line-height:1.8;
-}
-
-.heading::after{
-  content:"";
-
-  display:block;
-
-  width:40px;
-  height:2px;
-
-  margin-top:17px;
-
-  background:var(--cyan);
-
-  box-shadow:0 0 14px var(--cyan);
-}
-
-
-/* =========================
-   STATS
-========================= */
-
-.stats{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:15px;
-}
-
-.stat{
-  position:relative;
-
-  min-height:145px;
-
-  padding:27px;
-
-  border:1px solid var(--line);
-  border-radius:20px;
-
-  background:rgba(12,20,36,.75);
-
-  transition:.3s;
-}
-
-.stat:hover{
-  transform:translateY(-6px);
-  border-color:rgba(0,229,255,.3);
-}
-
-.stat strong{
-  display:block;
-
-  color:var(--cyan);
-
-  font-size:42px;
-  font-weight:900;
-
-  letter-spacing:-3px;
-}
-
-.stat span{
-  display:block;
-
-  margin-top:8px;
-
-  color:#718096;
-
-  font-size:11px;
-}
-
-
-/* =========================
-   ABOUT PREVIEW
-========================= */
-
-.about-preview{
-  display:grid;
-  grid-template-columns:.7fr 1.3fr;
-  gap:18px;
-}
-
-.about-box{
-  padding:30px;
-
-  border:1px solid var(--line);
-  border-radius:22px;
-
-  background:rgba(12,20,36,.75);
-}
-
-.about-number{
-  color:var(--cyan);
-
-  font-size:38px;
-  font-weight:900;
-}
-
-.about-box span{
-  display:block;
-
-  margin-top:7px;
-
-  color:var(--muted);
-
-  font-size:11px;
-}
-
-.about-box p{
-  color:#a6b1c0;
-
-  font-size:14px;
-
-  line-height:2;
-}
-
-.more{
-  display:inline-block;
-
-  margin-top:20px;
-
-  color:var(--cyan);
-
-  font-size:11px;
-  font-weight:bold;
-}
-
-
-/* =========================
-   PROJECTS
-========================= */
-
-.projects{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:16px;
-}
-
-.project{
-  position:relative;
-
-  min-height:235px;
-
-  padding:27px;
-
-  border:1px solid var(--line);
-  border-radius:21px;
-
-  background:rgba(12,20,36,.75);
-
-  transition:.3s;
-}
-
-.project:hover{
-  transform:translateY(-8px);
-
-  border-color:rgba(0,229,255,.28);
-
-  box-shadow:0 25px 60px rgba(0,0,0,.25);
-}
-
-.project-number{
-  position:absolute;
-
-  top:20px;
-  right:22px;
-
-  color:#536075;
-
-  font-size:9px;
-  font-weight:bold;
-}
-
-.project-icon{
-  width:50px;
-  height:50px;
-
-  display:grid;
-  place-items:center;
-
-  margin-bottom:20px;
-
-  border:1px solid var(--line);
+  margin-top:22px;
+  padding:15px;
   border-radius:14px;
-
-  background:rgba(255,255,255,.035);
-
-  font-size:22px;
-}
-
-.project h3{
-  margin-bottom:9px;
-
-  font-size:18px;
-}
-
-.project p{
-  color:#77859a;
-
-  font-size:11px;
-
-  line-height:1.8;
-}
-
-.project-arrow{
-  position:absolute;
-
-  right:22px;
-  bottom:19px;
-
-  color:var(--cyan);
-
-  font-size:20px;
-}
-
-
-/* =========================
-   JOURNEY
-========================= */
-
-.timeline{
-  max-width:850px;
-}
-
-.event{
-  display:grid;
-  grid-template-columns:55px 1fr;
-
-  gap:15px;
-
-  margin-bottom:16px;
-}
-
-.event-number{
-  width:42px;
-  height:42px;
-
-  display:grid;
-  place-items:center;
-
-  border-radius:50%;
-
-  background:var(--cyan);
-
-  color:#001017;
-
-  font-size:9px;
-  font-weight:900;
-}
-
-.event-content{
-  padding:17px 19px;
-
-  border:1px solid var(--line);
-  border-radius:15px;
-
-  background:rgba(12,20,36,.75);
-}
-
-.event-content h3{
-  margin-bottom:6px;
-
+  background:#ffffff05;
+  color:#8292a7;
   font-size:13px;
+  line-height:1.6;
 }
 
-.event-content p{
-  color:#718096;
-
-  font-size:11px;
-
-  line-height:1.7;
-}
-
-
-/* =========================
-   FOOTER
-========================= */
-
-footer{
-  padding:40px 20px;
-
-  border-top:1px solid var(--line);
-
-  text-align:center;
-
-  color:#586579;
-
-  font-size:10px;
-}
-
-footer span{
-  color:var(--cyan);
-}
-
-
-/* =========================
-   LIGHT MODE
-========================= */
+/* LIGHT MODE */
 
 body.light{
-  background:#f1f6fa;
-  color:#101827;
+  color:#111827;
+  background:#edf3f8;
 }
 
 body.light::before{
   background:
-    radial-gradient(circle at 10% 10%,#d4faff,transparent 28%),
-    radial-gradient(circle at 90% 75%,#e9ddff,transparent 30%),
-    #f1f6fa;
+    radial-gradient(circle at 15% 15%,#c9f7ff,transparent 28%),
+    radial-gradient(circle at 85% 80%,#e8ddff,transparent 30%),
+    #edf3f8;
 }
 
 body.light nav{
-  background:rgba(255,255,255,.82);
+  background:#ffffffd9;
+  border-color:#00000010;
 }
 
-body.light .nav-links a{
+body.light .navlinks a{
   color:#475569;
 }
 
+body.light .navlinks a:hover,
+body.light .navlinks a.active{
+  color:#0284c7;
+}
+
 body.light .theme{
-  color:#101827;
+  color:#111827;
+  background:#ffffff;
 }
 
-body.light .profile,
-body.light .stat,
-body.light .about-box,
-body.light .project,
-body.light .event-content{
-  background:rgba(255,255,255,.82);
-  border-color:rgba(0,0,0,.08);
+body.light .profile-card{
+  background:#ffffffdc;
+  border-color:#00000012;
 }
 
-body.light .hero-sub,
-body.light .about-box p,
-body.light .project p,
-body.light .event-content p{
-  color:#526174;
+body.light .hero p{
+  color:#475569;
 }
 
 body.light .secondary{
-  color:#101827;
+  color:#111827;
 }
 
-
-/* =========================
-   MOBILE
-========================= */
+/* MOBILE */
 
 @media(max-width:850px){
 
   .hero{
     grid-template-columns:1fr;
-    gap:55px;
-
     text-align:center;
   }
 
-  .status{
-    margin:auto;
-  }
-
-  .hero-sub{
+  .badge{
     margin-left:auto;
     margin-right:auto;
   }
 
-  .actions{
+  .hero p{
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+  .buttons{
     justify-content:center;
-  }
-
-  .hero-info{
-    justify-content:center;
-  }
-
-  .profile{
-    max-width:600px;
-    margin:auto;
-
-    text-align:left;
-  }
-
-  .stats,
-  .projects{
-    grid-template-columns:1fr;
-  }
-
-  .about-preview{
-    grid-template-columns:1fr;
-  }
-
-  section{
-    padding:85px 0;
   }
 }
 
-
-@media(max-width:500px){
-
-  .nav-wrap{
-    top:8px;
-  }
+@media(max-width:520px){
 
   nav{
-    height:57px;
+    padding:14px 5%;
   }
 
-  .nav-links a{
-    display:none;
+  .navlinks{
+    gap:9px;
   }
 
-  .hero{
-    padding-top:115px;
+  .navlinks a{
+    font-size:11px;
   }
 
   .hero h1{
-    font-size:57px;
-    letter-spacing:-5px;
+    font-size:55px;
+    letter-spacing:-3px;
   }
 
-  .hero-sub{
-    font-size:13px;
+  .profile-card{
+    padding:22px;
   }
 
-  .profile{
-    padding:23px;
-  }
-
-  .profile-grid{
+  .info{
     grid-template-columns:1fr;
   }
-
-  .heading h2{
-    font-size:37px;
-  }
-
 }
 </style>
 </head>
 
-
 <body>
-
-<div class="orb one"></div>
-<div class="orb two"></div>
-
-
-<!-- NAVBAR -->
-
-<div class="nav-wrap">
 
 <nav>
 
-  <a class="logo" href="index.html">
-    VIDZ.
-  </a>
+  <div class="logo">VIDZ.</div>
 
-  <div class="nav-links">
+  <div class="navlinks">
 
-    <a href="index.html">
-      Home
-    </a>
+    <a href="index.html" class="active">Home</a>
+    <a href="About.html">About</a>
+    <a href="Projects.html">Projects</a>
+    <a href="Contact.html">Contact</a>
 
-    <a href="About.html">
-      About
-    </a>
-
-    <a href="Projects.html">
-      Project
-    </a>
-
-    <a href="Contact.html">
-      Contact
-    </a>
-
-    <button
-      class="theme"
-      id="themeButton"
-      type="button"
-      aria-label="Ganti tema">
+    <button class="theme" id="themeButton">
       🌙
     </button>
 
@@ -1009,20 +393,14 @@ body.light .secondary{
 
 </nav>
 
-</div>
-
-
-<!-- HERO -->
-
 <main>
 
-<section class="hero container">
+<section class="hero">
 
   <div>
 
-    <div class="status">
-      <i></i>
-      CURRENTLY LEARNING WEB DEVELOPMENT
+    <div class="badge">
+      DIGITAL SPACE • VIDZ
     </div>
 
     <h1>
@@ -1030,477 +408,86 @@ body.light .secondary{
       SAYA <span>VIDZ.</span>
     </h1>
 
-    <p class="hero-sub">
-      Sebuah ruang kecil untuk menyimpan project,
-      eksperimen, dan berbagai ide random yang muncul
-      saat lagi gabut 🗿.
+    <p>
+      Selamat datang di website pribadi saya.
+      Tempat untuk project, eksperimen, dan berbagai
+      hal random yang saya buat saat lagi gabut 🗿.
     </p>
 
-    <div class="actions">
+    <div class="buttons">
 
-      <a
-        class="btn primary"
-        href="Projects.html">
+      <a href="Projects.html" class="btn primary">
         Lihat Project →
       </a>
 
-      <a
-        class="btn secondary"
-        href="About.html">
+      <a href="About.html" class="btn secondary">
         Tentang Saya
       </a>
 
     </div>
 
-    <div class="hero-info">
-
-      <span>
-        STATUS <b>LEARNING</b>
-      </span>
-
-      <span>
-        FOCUS <b>WEB & TECH</b>
-      </span>
-
-      <span>
-        YEAR <b>2026</b>
-      </span>
-
-    </div>
-
   </div>
 
+  <div class="profile-card">
 
-  <!-- PROFILE CARD -->
+    <img
+      src="profile.jpg"
+      alt="Foto profil VIDZ"
+      class="avatar"
+    >
 
-  <div class="profile">
+    <div class="owner-status" id="ownerStatus">
 
-    <div class="profile-header">
+      <span class="status-dot"></span>
 
-      <span>
-        PROFILE // 001
-      </span>
-
-      <span class="online">
-        ● ONLINE
+      <span id="statusText">
+        ONLINE
       </span>
 
     </div>
 
-
-    <img
-      class="avatar"
-      src="profile.jpg"
-      alt="Foto profil VIDZ"
-    >
-
-
-    <h2>
-      VIDZ
-    </h2>
+    <h2>VIDZ</h2>
 
     <div class="role">
       Student • Web Explorer
     </div>
 
+    <div class="line"></div>
 
-    <div class="divider"></div>
+    <div class="info">
 
-
-    <div class="profile-grid">
-
-      <div class="info">
-        <small>Sekolah</small>
-        <b>SMPN 2 Kelumpang Tengah</b>
-      </div>
-
-      <div class="info">
+      <div>
         <small>Status</small>
         <b>Learning 🗿</b>
       </div>
 
-      <div class="info">
-        <small>Minat</small>
-        <b>Website & Tech</b>
+      <div>
+        <small>Interest</small>
+        <b>Web & Tech</b>
       </div>
 
-      <div class="info">
+      <div>
         <small>Hosting</small>
-        <b>GitHub Pages</b>
+        <b>Cloudflare</b>
+      </div>
+
+      <div>
+        <small>Project</small>
+        <b>VIDZ-Web</b>
       </div>
 
     </div>
-
 
     <div class="quote">
-      “Ikan hiu digigit megalodon.
-      Btw rating dong. 🗿”
+      "Bikin website karena gabut,
+      lanjut karena ternyata seru. 🗿"
     </div>
 
   </div>
-
-</section>
-
-
-<!-- STATS -->
-
-<section>
-
-<div class="container">
-
-  <div class="heading">
-
-    <small>
-      QUICK INFO
-    </small>
-
-    <h2>
-      Statistik
-    </h2>
-
-    <p>
-      Beberapa angka kecil dari perjalanan
-      Digital Space VIDZ.
-    </p>
-
-  </div>
-
-
-  <div class="stats">
-
-    <div class="stat">
-
-      <strong>
-        01
-      </strong>
-
-      <span>
-        Website utama
-      </span>
-
-    </div>
-
-
-    <div class="stat">
-
-      <strong>
-        03+
-      </strong>
-
-      <span>
-        Project / eksperimen
-      </span>
-
-    </div>
-
-
-    <div class="stat">
-
-      <strong>
-        ∞
-      </strong>
-
-      <span>
-        Ide random 🗿
-      </span>
-
-    </div>
-
-  </div>
-
-</div>
-
-</section>
-
-
-<!-- ABOUT PREVIEW -->
-
-<section>
-
-<div class="container">
-
-  <div class="heading">
-
-    <small>
-      A LITTLE ABOUT ME
-    </small>
-
-    <h2>
-      Di Balik VIDZ.
-    </h2>
-
-  </div>
-
-
-  <div class="about-preview">
-
-    <div class="about-box">
-
-      <div class="about-number">
-        2026
-      </div>
-
-      <span>
-        Tahun Digital Space mulai berkembang.
-      </span>
-
-    </div>
-
-
-    <div class="about-box">
-
-      <p>
-        Saya dari budak SMPN 2 Kelumpang Tengah.
-        Saya bikin project ini karena gabut 🗿.
-        Tapi dari project ini saya jadi belajar sedikit demi sedikit
-        tentang HTML, CSS, JavaScript, GitHub, dan cara membuat
-        website sendiri.
-      </p>
-
-      <a
-        class="more"
-        href="About.html">
-
-        Baca lebih lanjut →
-
-      </a>
-
-    </div>
-
-  </div>
-
-</div>
-
-</section>
-
-
-<!-- PROJECTS -->
-
-<section>
-
-<div class="container">
-
-  <div class="heading">
-
-    <small>
-      MY WORK
-    </small>
-
-    <h2>
-      Project Saya
-    </h2>
-
-    <p>
-      Beberapa hal yang sedang dan pernah
-      dikerjakan di Digital Space.
-    </p>
-
-  </div>
-
-
-  <div class="projects">
-
-
-    <div class="project">
-
-      <div class="project-number">
-        01
-      </div>
-
-      <div class="project-icon">
-        🌐
-      </div>
-
-      <h3>
-        VIDZ Website
-      </h3>
-
-      <p>
-        Website personal yang dibuat dengan HTML,
-        CSS, JavaScript, dan GitHub Pages.
-      </p>
-
-      <div class="project-arrow">
-        →
-      </div>
-
-    </div>
-
-
-    <div class="project">
-
-      <div class="project-number">
-        02
-      </div>
-
-      <div class="project-icon">
-        💻
-      </div>
-
-      <h3>
-        Web Experiments
-      </h3>
-
-      <p>
-        Tempat mencoba layout, animasi,
-        JavaScript, dan berbagai ide website.
-      </p>
-
-      <div class="project-arrow">
-        →
-      </div>
-
-    </div>
-
-
-    <div class="project">
-
-      <div class="project-number">
-        03
-      </div>
-
-      <div class="project-icon">
-        🚀
-      </div>
-
-      <h3>
-        Future Project
-      </h3>
-
-      <p>
-        Project berikutnya masih rahasia.
-        Menunggu ide muncul 🗿.
-      </p>
-
-      <div class="project-arrow">
-        →
-      </div>
-
-    </div>
-
-
-  </div>
-
-
-  <a
-    class="more"
-    href="Projects.html">
-
-    Lihat semua project →
-
-  </a>
-
-</div>
-
-</section>
-
-
-<!-- JOURNEY -->
-
-<section>
-
-<div class="container">
-
-  <div class="heading">
-
-    <small>
-      MY JOURNEY
-    </small>
-
-    <h2>
-      Perjalanan Project
-    </h2>
-
-  </div>
-
-
-  <div class="timeline">
-
-
-    <div class="event">
-
-      <div class="event-number">
-        01
-      </div>
-
-      <div class="event-content">
-
-        <h3>
-          Mulai belajar
-        </h3>
-
-        <p>
-          Mulai mencoba membuat website sendiri.
-        </p>
-
-      </div>
-
-    </div>
-
-
-    <div class="event">
-
-      <div class="event-number">
-        02
-      </div>
-
-      <div class="event-content">
-
-        <h3>
-          Website pertama online
-        </h3>
-
-        <p>
-          Project berhasil dipasang menggunakan
-          GitHub Pages.
-        </p>
-
-      </div>
-
-    </div>
-
-
-    <div class="event">
-
-      <div class="event-number">
-        03
-      </div>
-
-      <div class="event-content">
-
-        <h3>
-          Terus eksperimen
-        </h3>
-
-        <p>
-          Mulai menambahkan desain,
-          animasi, dan fitur baru.
-        </p>
-
-      </div>
-
-    </div>
-
-
-  </div>
-
-</div>
 
 </section>
 
 </main>
-
-
-<!-- FOOTER -->
-
-<footer>
-
-  © 2026
-  <span>VIDZ</span>
-  — Dibuat karena gabut 🗿
-
-</footer>
-
 
 <script>
 
@@ -1511,68 +498,73 @@ body.light .secondary{
 const themeButton =
 document.getElementById("themeButton");
 
-themeButton.addEventListener(
-  "click",
+themeButton.addEventListener("click",function(){
+
+  document.body.classList.toggle("light");
+
+  if(document.body.classList.contains("light")){
+
+    themeButton.textContent="☀️";
+
+  }else{
+
+    themeButton.textContent="🌙";
+
+  }
+
+});
+
+/* =========================
+   ONLINE / OFFLINE
+========================= */
+
+const ownerStatus =
+document.getElementById("ownerStatus");
+
+const statusText =
+document.getElementById("statusText");
+
+function online(){
+
+  ownerStatus.classList.remove("offline");
+  statusText.textContent="ONLINE";
+
+}
+
+function offline(){
+
+  ownerStatus.classList.add("offline");
+  statusText.textContent="OFFLINE";
+
+}
+
+online();
+
+document.addEventListener(
+  "visibilitychange",
   function(){
 
-    document.body.classList.toggle("light");
+    if(document.visibilityState==="visible"){
 
-    if(
-      document.body.classList.contains("light")
-    ){
-
-      themeButton.textContent = "☀️";
+      online();
 
     }else{
 
-      themeButton.textContent = "🌙";
+      offline();
 
     }
 
   }
 );
 
+window.addEventListener(
+  "pageshow",
+  online
+);
 
-/* =========================
-   EASTER EGG
-========================= */
-
-const logo =
-document.querySelector(".logo");
-
-let clicks = 0;
-let clickTimer = null;
-
-logo.addEventListener(
-  "click",
-  function(){
-
-    clicks++;
-
-    clearTimeout(clickTimer);
-
-    clickTimer = setTimeout(
-      function(){
-
-        clicks = 0;
-
-      },
-      900
-    );
-
-
-    if(clicks === 3){
-
-      alert(
-        "🗿 EASTER EGG FOUND!\n\n" +
-        "Utuh & Enal FUTA LOVERS 🤫"
-      );
-
-      clicks = 0;
-
-    }
-
-  }
+window.addEventListener(
+  "pagehide",
+  offline
 );
 
 </script>
