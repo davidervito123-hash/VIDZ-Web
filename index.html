@@ -1215,8 +1215,8 @@ C1
     </div>
 
     <div class="quote">
-      "Bikin website karena gabut,
-      lanjut karena ternyata seru. 🗿"
+      "dari gabut, menjadi veteran
+       web🗿"
     </div>
 
   </div>
@@ -1374,4 +1374,242 @@ const ownerStatus =
 const statusText =
   document.getElementById("statusText");
 
-f
+function online(){
+
+  ownerStatus.classList.remove("offline");
+  statusText.textContent = "ONLINE";
+
+}
+
+function offline(){
+
+  ownerStatus.classList.add("offline");
+  statusText.textContent = "OFFLINE";
+
+}
+
+online();
+
+document.addEventListener(
+  "visibilitychange",
+  function(){
+
+    if(document.visibilityState === "visible"){
+      online();
+    }else{
+      offline();
+    }
+
+  }
+);
+
+window.addEventListener(
+  "pageshow",
+  online
+);
+
+window.addEventListener(
+  "pagehide",
+  offline
+);
+
+
+/* =========================
+   CINEMATIC EASTER EGG
+   3x KLIK LOGO
+   + FALLBACK 3x TEKAN E
+========================= */
+
+document.addEventListener(
+  "DOMContentLoaded",
+  function(){
+
+    const logo =
+      document.getElementById("logo");
+
+    const easterEgg =
+      document.getElementById("easterEgg");
+
+    const eggClose =
+      document.getElementById("eggClose");
+
+    let clickCount = 0;
+    let clickTimer = null;
+
+    function openEgg(){
+
+      easterEgg.classList.add("active");
+
+      document.body.style.overflow = "hidden";
+
+      clickCount = 0;
+
+      if(clickTimer){
+        clearTimeout(clickTimer);
+      }
+
+    }
+
+    function closeEgg(){
+
+      easterEgg.classList.remove("active");
+
+      document.body.style.overflow = "";
+
+    }
+
+
+    /* 3X CLICK */
+
+    logo.addEventListener(
+      "click",
+      function(){
+
+        clickCount++;
+
+        if(clickTimer){
+          clearTimeout(clickTimer);
+        }
+
+        if(clickCount >= 3){
+
+          openEgg();
+
+          return;
+
+        }
+
+        clickTimer = setTimeout(
+          function(){
+
+            clickCount = 0;
+
+          },
+          1000
+        );
+
+      }
+    );
+
+
+    /* KEYBOARD FALLBACK:
+       TEKAN E 3X */
+
+    let keyCount = 0;
+    let keyTimer = null;
+
+    document.addEventListener(
+      "keydown",
+      function(event){
+
+        if(event.key.toLowerCase() !== "e"){
+          return;
+        }
+
+        keyCount++;
+
+        if(keyTimer){
+          clearTimeout(keyTimer);
+        }
+
+        if(keyCount >= 3){
+
+          openEgg();
+
+          keyCount = 0;
+
+          return;
+
+        }
+
+        keyTimer = setTimeout(
+          function(){
+
+            keyCount = 0;
+
+          },
+          1000
+        );
+
+      }
+    );
+
+
+    /* CLOSE BUTTON */
+
+    eggClose.addEventListener(
+      "click",
+      function(event){
+
+        event.stopPropagation();
+
+        closeEgg();
+
+      }
+    );
+
+
+    /* CLICK OUTSIDE BOX */
+
+    easterEgg.addEventListener(
+      "click",
+      function(event){
+
+        if(event.target === easterEgg){
+
+          closeEgg();
+
+        }
+
+      }
+    );
+
+
+    /* ESC */
+
+    document.addEventListener(
+      "keydown",
+      function(event){
+
+        if(event.key === "Escape"){
+
+          closeEgg();
+
+        }
+
+      }
+    );
+
+
+    /* ENTER / SPACE PADA LOGO */
+
+    logo.addEventListener(
+      "keydown",
+      function(event){
+
+        if(
+          event.key === "Enter" ||
+          event.key === " "
+        ){
+
+          event.preventDefault();
+
+          clickCount++;
+
+          if(clickCount >= 3){
+
+            openEgg();
+
+          }
+
+        }
+
+      }
+    );
+
+  }
+);
+</script>
+
+</body>
+</html>
