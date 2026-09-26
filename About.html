@@ -3,264 +3,408 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#070b14">
-<title>VIDZ — Tentang Saya</title>
+<meta name="theme-color" content="#050816">
+<meta name="description" content="Tentang VIDZ — Digital Space">
+<title>About — VIDZ</title>
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
+
 html{scroll-behavior:smooth}
+
 body{
   font-family:Arial,Helvetica,sans-serif;
-  background:#070b14;
+  background:#050816;
   color:#f5f7ff;
-  min-height:100vh;
   overflow-x:hidden;
 }
-a{text-decoration:none;color:inherit}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+button{font:inherit}
+
+:root{
+  --bg:#050816;
+  --card:#0c1424;
+  --cyan:#00e5ff;
+  --text:#f5f7ff;
+  --muted:#8292a7;
+  --line:rgba(255,255,255,.08);
+}
 
 body::before{
   content:"";
   position:fixed;
   inset:0;
-  z-index:-2;
+  z-index:-3;
   background:
-    radial-gradient(circle at 10% 10%,rgba(0,229,255,.12),transparent 28%),
-    radial-gradient(circle at 90% 80%,rgba(139,92,246,.12),transparent 30%),
-    #070b14;
+    radial-gradient(circle at 15% 15%,rgba(0,229,255,.12),transparent 28%),
+    radial-gradient(circle at 85% 75%,rgba(124,58,237,.12),transparent 30%),
+    var(--bg);
 }
+
 body::after{
   content:"";
   position:fixed;
   inset:0;
-  z-index:-1;
-  opacity:.035;
+  z-index:-2;
+  opacity:.025;
+  pointer-events:none;
   background-image:
     linear-gradient(#fff 1px,transparent 1px),
     linear-gradient(90deg,#fff 1px,transparent 1px);
-  background-size:60px 60px;
-  pointer-events:none;
+  background-size:55px 55px;
 }
 
-.nav{
+.container{
+  width:min(1050px,92%);
+  margin:auto;
+}
+
+.nav-wrap{
   position:fixed;
-  top:15px;
+  top:14px;
   left:50%;
   transform:translateX(-50%);
-  width:min(1100px,94%);
+  width:min(1120px,94%);
   z-index:100;
 }
+
 nav{
   height:62px;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:0 20px;
-  border:1px solid rgba(255,255,255,.08);
+  padding:0 10px 0 20px;
+  border:1px solid var(--line);
   border-radius:18px;
-  background:rgba(7,11,20,.78);
+  background:rgba(5,8,22,.78);
   backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  box-shadow:0 18px 55px rgba(0,0,0,.25);
 }
+
 .logo{
-  color:#00e5ff;
+  color:var(--cyan);
   font-size:25px;
   font-weight:900;
   letter-spacing:-2px;
+  text-shadow:0 0 25px rgba(0,229,255,.35);
 }
-.links{
+
+.nav-links{
   display:flex;
-  gap:18px;
   align-items:center;
+  gap:3px;
 }
-.links a{
-  color:#8b98aa;
+
+.nav-links a{
+  padding:9px 12px;
+  border-radius:9px;
+  color:#8996aa;
   font-size:11px;
   font-weight:bold;
   transition:.2s;
 }
-.links a:hover,.links .active{color:#00e5ff}
-.container{
-  width:min(1000px,92%);
-  margin:auto;
+
+.nav-links a:hover,
+.nav-links a.active{
+  color:var(--cyan);
+  background:rgba(0,229,255,.06);
 }
-main{
-  padding:155px 0 100px;
+
+.theme{
+  width:38px;
+  height:38px;
+  margin-left:5px;
+  border:1px solid var(--line);
+  border-radius:10px;
+  background:rgba(255,255,255,.04);
+  color:#fff;
+  cursor:pointer;
 }
-.kicker{
-  color:#00e5ff;
-  font-size:10px;
+
+.page{
+  min-height:100vh;
+  padding:155px 0 90px;
+}
+
+.badge{
+  width:max-content;
+  padding:8px 13px;
+  border:1px solid rgba(0,229,255,.18);
+  border-radius:30px;
+  color:#8291a5;
+  background:rgba(0,229,255,.04);
+  font-size:9px;
   font-weight:bold;
-  letter-spacing:3px;
+  letter-spacing:2px;
 }
+
 h1{
-  margin-top:12px;
-  font-size:clamp(48px,8vw,80px);
+  margin-top:25px;
+  font-size:clamp(48px,8vw,85px);
   line-height:.9;
   letter-spacing:-6px;
 }
+
+h1 span{
+  color:var(--cyan);
+  text-shadow:0 0 35px rgba(0,229,255,.3);
+}
+
 .intro{
-  max-width:700px;
+  max-width:720px;
   margin-top:25px;
-  color:#8491a5;
-  font-size:14px;
+  color:var(--muted);
+  font-size:15px;
   line-height:1.9;
 }
 
-.about-card{
-  margin-top:50px;
-  padding:35px;
-  border:1px solid rgba(255,255,255,.08);
-  border-radius:24px;
-  background:rgba(13,21,36,.78);
-}
-.about-card p{
-  color:#aab6c7;
-  font-size:14px;
-  line-height:2;
-}
-.about-card p+p{margin-top:18px}
-
-.info-grid{
+.grid{
   display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:15px;
-  margin-top:25px;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+  margin-top:50px;
 }
-.info{
-  padding:20px;
-  border:1px solid rgba(255,255,255,.07);
-  border-radius:16px;
+
+.card{
+  padding:28px;
+  border:1px solid var(--line);
+  border-radius:22px;
+  background:rgba(12,20,36,.75);
+}
+
+.card h2{
+  margin-bottom:15px;
+  font-size:20px;
+}
+
+.card p{
+  color:#8997aa;
+  font-size:13px;
+  line-height:1.9;
+}
+
+.card strong{
+  display:block;
+  margin-bottom:8px;
+  color:var(--cyan);
+  font-size:32px;
+}
+
+.list{
+  display:grid;
+  gap:12px;
+  margin-top:20px;
+}
+
+.item{
+  padding:15px;
+  border:1px solid var(--line);
+  border-radius:13px;
   background:rgba(255,255,255,.025);
 }
-.info small{
+
+.item b{
   display:block;
-  color:#59677b;
-  font-size:9px;
-  font-weight:bold;
-  letter-spacing:1px;
-  margin-bottom:7px;
+  margin-bottom:5px;
+  font-size:12px;
 }
-.info b{font-size:12px}
+
+.item span{
+  color:#718096;
+  font-size:11px;
+}
 
 .back{
-  display:inline-flex;
-  margin-top:25px;
-  padding:12px 17px;
-  border:1px solid rgba(255,255,255,.09);
-  border-radius:11px;
-  color:#aab6c7;
+  display:inline-block;
+  margin-top:35px;
+  color:var(--cyan);
   font-size:11px;
   font-weight:bold;
-  transition:.2s;
-}
-.back:hover{
-  color:#00e5ff;
-  border-color:rgba(0,229,255,.3);
 }
 
 footer{
-  padding:35px 20px;
-  border-top:1px solid rgba(255,255,255,.08);
+  padding:40px 20px;
+  border-top:1px solid var(--line);
   text-align:center;
-  color:#5d6a7d;
-  font-size:11px;
+  color:#586579;
+  font-size:10px;
 }
-footer span{color:#00e5ff}
 
-@media(max-width:600px){
-  .nav{top:9px}
+footer span{color:var(--cyan)}
+
+body.light{
+  background:#f1f6fa;
+  color:#101827;
+}
+
+body.light::before{
+  background:
+    radial-gradient(circle at 10% 10%,#d4faff,transparent 28%),
+    radial-gradient(circle at 90% 75%,#e9ddff,transparent 30%),
+    #f1f6fa;
+}
+
+body.light nav{
+  background:rgba(255,255,255,.85);
+}
+
+body.light .nav-links a{color:#475569}
+body.light .nav-links a.active{color:#008ca0}
+body.light .theme{color:#101827}
+
+body.light .card{
+  background:rgba(255,255,255,.85);
+  border-color:rgba(0,0,0,.08);
+}
+
+body.light .card p{color:#526174}
+
+@media(max-width:650px){
+  .nav-wrap{top:8px}
+
   nav{height:57px}
-  .links{gap:10px}
-  .links a{font-size:9px}
-  main{padding-top:125px}
-  h1{font-size:55px;letter-spacing:-4px}
-  .about-card{padding:25px 20px}
-  .info-grid{grid-template-columns:1fr}
+
+  .nav-links a{display:none}
+
+  .page{padding-top:120px}
+
+  h1{
+    font-size:55px;
+    letter-spacing:-4px;
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<div class="nav">
+<div class="nav-wrap">
 <nav>
-  <a href="index.html" class="logo">VIDZ.</a>
 
-  <div class="links">
-    <a href="index.html">Home</a>
-    <a href="about.html" class="active">About</a>
-    <a href="projects.html">Project</a>
-    <a href="contact.html">Contact</a>
-  </div>
+<a class="logo" href="index.html">VIDZ.</a>
+
+<div class="nav-links">
+<a href="index.html">Home</a>
+<a class="active" href="About.html">About</a>
+<a href="Projects.html">Project</a>
+<a href="Contact.html">Contact</a>
+
+<button class="theme" id="themeButton" type="button">🌙</button>
+</div>
+
 </nav>
 </div>
 
-<main>
+<main class="page">
+
 <div class="container">
 
-  <div class="kicker">WHO AM I?</div>
+<div class="badge">WHO AM I?</div>
 
-  <h1>
-    TENTANG<br>
-    SAYA.
-  </h1>
+<h1>
+TENTANG<br>
+<span>VIDZ.</span>
+</h1>
 
-  <p class="intro">
-    Sedikit cerita tentang orang di balik Digital Space VIDZ
-    dan alasan kenapa website ini dibuat.
-  </p>
+<p class="intro">
+Saya dari budak SMPN 2 Kelumpang Tengah.
+Saya bikin project ini karena gabut 🗿.
+Tapi dari project ini saya jadi belajar sedikit demi sedikit
+tentang HTML, CSS, JavaScript, GitHub, dan cara membuat
+website sendiri.
+</p>
 
-  <div class="about-card">
+<div class="grid">
 
-    <p>
-      Saya budak dari SMPN 2 Kelumpang Tengah.
-      Saya bikin project ini karena gabut 🗿.
-      Tapi dari project ini saya jadi belajar sedikit demi sedikit
-      tentang HTML, CSS, JavaScript, GitHub, dan cara membuat
-      website sendiri.
-    </p>
+<div class="card">
+<strong>01</strong>
+<h2>Awal Mula</h2>
+<p>
+Awalnya cuma mencoba membuat website sendiri.
+Dari yang awalnya hanya eksperimen sederhana,
+perlahan mulai belajar tentang struktur HTML,
+desain CSS, JavaScript, dan bagaimana website
+bisa dipublikasikan menggunakan GitHub Pages.
+</p>
+</div>
 
-    <p>
-      Website ini menjadi tempat untuk menyimpan project,
-      eksperimen, dan berbagai ide random yang muncul
-      saat lagi gabut.
-    </p>
-
-    <div class="info-grid">
-
-      <div class="info">
-        <small>NAMA</small>
-        <b>VIDZ</b>
-      </div>
-
-      <div class="info">
-        <small>STATUS</small>
-        <b>Student • Web Explorer</b>
-      </div>
-
-      <div class="info">
-        <small>MINAT</small>
-        <b>Website & Tech</b>
-      </div>
-
-      <div class="info">
-        <small>HOSTING</small>
-        <b>GitHub Pages</b>
-      </div>
-
-    </div>
-
-    <a href="index.html" class="back">
-      ← Kembali ke Home
-    </a>
-
-  </div>
+<div class="card">
+<strong>02</strong>
+<h2>Tujuan</h2>
+<p>
+Digital Space ini menjadi tempat untuk menyimpan
+project, eksperimen, dan berbagai ide random.
+Nggak harus langsung sempurna, yang penting terus
+belajar dan mencoba hal baru.
+</p>
+</div>
 
 </div>
+
+<div class="card" style="margin-top:18px">
+
+<h2>Yang Sedang Dipelajari</h2>
+
+<div class="list">
+
+<div class="item">
+<b>HTML</b>
+<span>Membangun struktur dan isi website.</span>
+</div>
+
+<div class="item">
+<b>CSS</b>
+<span>Membuat tampilan, layout, animasi, dan responsive design.</span>
+</div>
+
+<div class="item">
+<b>JavaScript</b>
+<span>Membuat website menjadi lebih interaktif.</span>
+</div>
+
+<div class="item">
+<b>GitHub</b>
+<span>Mengelola project dan mempublikasikan website.</span>
+</div>
+
+</div>
+
+</div>
+
+<a class="back" href="index.html">
+← Kembali ke Home
+</a>
+
+</div>
+
 </main>
 
 <footer>
-  © 2026 <span>VIDZ</span> — Dibuat karena gabut 🗿
+© 2026 <span>VIDZ</span> — Dibuat karena gabut 🗿
 </footer>
+
+<script>
+const themeButton=document.getElementById("themeButton");
+
+themeButton.addEventListener("click",function(){
+  document.body.classList.toggle("light");
+
+  themeButton.textContent=
+    document.body.classList.contains("light")
+    ? "☀️"
+    : "🌙";
+});
+</script>
 
 </body>
 </html>
