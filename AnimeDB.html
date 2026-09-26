@@ -4,288 +4,768 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="theme-color" content="#050816">
-<title>VIDZ — AnimeDB</title>
+<title>VIDZ — AnimeDB V2</title>
+
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:Arial,Helvetica,sans-serif;background:#050816;color:#f5f7ff;min-height:100vh;padding-bottom:60px}
-body:before{content:"";position:fixed;inset:0;z-index:-2;background:radial-gradient(circle at 15% 10%,#00e5ff18,transparent 30%),radial-gradient(circle at 85% 90%,#7c3aed18,transparent 30%),#050816}
-body:after{content:"";position:fixed;inset:0;z-index:-1;opacity:.035;background-image:linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px);background-size:55px 55px;pointer-events:none}
-button,input,textarea{font:inherit}
-nav{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:15px 6%;background:#050816e8;backdrop-filter:blur(18px);border-bottom:1px solid #ffffff0d}
-.logo{color:#00e5ff;font-size:25px;font-weight:900;letter-spacing:-2px;text-shadow:0 0 20px #00e5ff}
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#050816;color:#f5f7ff;
+  min-height:100vh;padding-bottom:60px
+}
+body:before{
+  content:"";position:fixed;inset:0;z-index:-2;
+  background:
+  radial-gradient(circle at 15% 10%,#00e5ff18,transparent 30%),
+  radial-gradient(circle at 85% 90%,#7c3aed18,transparent 30%),#050816
+}
+body:after{
+  content:"";position:fixed;inset:0;z-index:-1;opacity:.035;
+  background-image:linear-gradient(#fff 1px,transparent 1px),
+  linear-gradient(90deg,#fff 1px,transparent 1px);
+  background-size:55px 55px;pointer-events:none
+}
+button,input,textarea,select{font:inherit}
+
+nav{
+ position:sticky;top:0;z-index:50;display:flex;
+ justify-content:space-between;align-items:center;
+ padding:15px 6%;background:#050816dd;
+ backdrop-filter:blur(18px);border-bottom:1px solid #ffffff0d
+}
+.logo{
+ color:#00e5ff;font-size:25px;font-weight:900;
+ letter-spacing:-2px;text-shadow:0 0 20px #00e5ff
+}
 nav a{color:#8fa0b5;text-decoration:none;font-size:12px;margin-left:15px}
 nav a:hover{color:#00e5ff}
-.container{width:min(1150px,92%);margin:auto}
+
+.container{width:min(1180px,92%);margin:auto}
 .header{text-align:center;padding:60px 0 35px}
-.badge{display:inline-block;padding:7px 12px;border:1px solid #00e5ff33;border-radius:30px;color:#00e5ff;font-size:9px;letter-spacing:2px;margin-bottom:15px}
-.header h1{font-size:clamp(40px,7vw,75px);letter-spacing:-4px}.header h1 span{color:#00e5ff;text-shadow:0 0 25px #00e5ff66}
-.header p{color:#7d8da2;max-width:700px;margin:15px auto;line-height:1.7;font-size:13px}
-.compare{display:grid;grid-template-columns:1fr 80px 1fr;gap:18px;align-items:center}
-.card{background:#0b1425dd;border:1px solid #ffffff10;border-radius:22px;padding:25px;box-shadow:0 20px 60px #0005}
+.badge{
+ display:inline-block;padding:7px 12px;border:1px solid #00e5ff33;
+ border-radius:30px;color:#00e5ff;font-size:9px;
+ letter-spacing:2px;margin-bottom:15px
+}
+.header h1{font-size:clamp(40px,7vw,75px);letter-spacing:-4px}
+.header h1 span{color:#00e5ff;text-shadow:0 0 25px #00e5ff66}
+.header p{
+ color:#7d8da2;max-width:700px;margin:15px auto;
+ line-height:1.7;font-size:13px
+}
+
+.compare{
+ display:grid;grid-template-columns:1fr 70px 1fr;
+ gap:18px;align-items:center
+}
+.card{
+ background:#0b1425dd;border:1px solid #ffffff10;
+ border-radius:22px;padding:24px;box-shadow:0 20px 60px #0005
+}
 .card h2{color:#00e5ff;font-size:12px;letter-spacing:2px;margin-bottom:15px}
-input,textarea{width:100%;background:#050a15;color:white;border:1px solid #ffffff16;border-radius:11px;padding:13px;outline:none}
-input:focus,textarea:focus{border-color:#00e5ff77;box-shadow:0 0 20px #00e5ff12}
-.suggestions{margin-top:8px;display:flex;flex-wrap:wrap;gap:6px}.suggestion{border:1px solid #00e5ff22;background:#00e5ff08;color:#00e5ff;border-radius:8px;padding:6px 8px;cursor:pointer;font-size:10px}
-.vs{width:65px;height:65px;display:flex;align-items:center;justify-content:center;border-radius:50%;border:1px solid #00e5ff55;color:#00e5ff;font-weight:900;box-shadow:0 0 30px #00e5ff18}
-.compare-btn{width:100%;margin-top:20px;padding:14px;border:0;border-radius:12px;background:#00e5ff;color:#001017;font-weight:900;cursor:pointer}
-.compare-btn:hover,.save:hover{transform:translateY(-2px)}
-.result{display:none;margin-top:30px;animation:appear .4s ease}.result.show{display:block}
-.result-head{text-align:center;padding:25px;border:1px solid #00ff9d33;background:#00150ddd;border-radius:20px 20px 0 0}
-.result-head small{color:#00ff9d;letter-spacing:2px}.winner{margin-top:8px;font-size:clamp(28px,6vw,55px);font-weight:900;color:#fff;text-shadow:0 0 25px #00ff9d88}
-.reason{padding:25px;background:#091321dd;border:1px solid #ffffff0d;border-top:0;border-radius:0 0 20px 20px}.reason h3{color:#00e5ff;margin-bottom:12px}.reason p{color:#9ba9bb;line-height:1.8;font-size:13px}
-.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px}.stat{padding:14px;background:#ffffff05;border:1px solid #ffffff0b;border-radius:12px}.stat b{display:block;color:#00e5ff;font-size:10px;margin-bottom:5px}.stat span{font-size:12px;color:#d5dce6;line-height:1.6}
-.section{margin-top:50px}.section-title{margin-bottom:18px}.section-title small{color:#00e5ff;letter-spacing:2px;font-size:9px}.section-title h2{margin-top:7px;font-size:28px}
-.database{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.character{padding:20px;border-radius:18px;background:#0b1425cc;border:1px solid #ffffff0d}.character h3{color:#00e5ff;margin-bottom:7px}.verse{color:#68798e;font-size:11px;margin-bottom:12px}.character p{color:#a7b2c0;font-size:11px;line-height:1.7}.character button{margin:12px 5px 0 0;padding:7px 10px;background:#00e5ff0b;border:1px solid #00e5ff22;color:#00e5ff;border-radius:8px;cursor:pointer;font-size:10px}
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field label{display:block;color:#728299;font-size:10px;margin-bottom:6px}.field{margin-bottom:4px}.full{grid-column:1/-1}
-.save,.danger{padding:12px 18px;border-radius:10px;cursor:pointer;font-weight:bold;margin-top:10px}.save{border:0;background:#00ff9d;color:#00150d}.danger{border:1px solid #ff456533;background:#ff45650b;color:#ff7188;margin-left:8px}
-.notice{margin-top:20px;padding:13px;border:1px solid #ffffff0d;border-radius:12px;color:#697a90;font-size:10px;line-height:1.7}
-@keyframes appear{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-@media(max-width:750px){.compare{grid-template-columns:1fr}.vs{margin:auto}.database{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}.full{grid-column:auto}nav{padding:13px 4%}nav a{margin-left:7px;font-size:10px}.stats{grid-template-columns:1fr}}
+
+input,textarea,select{
+ width:100%;background:#050a15;color:white;
+ border:1px solid #ffffff16;border-radius:11px;
+ padding:12px;outline:none
+}
+input:focus,textarea:focus,select:focus{
+ border-color:#00e5ff77;box-shadow:0 0 20px #00e5ff12
+}
+
+.vs{
+ width:62px;height:62px;display:flex;align-items:center;
+ justify-content:center;border-radius:50%;
+ border:1px solid #00e5ff55;color:#00e5ff;
+ font-weight:900;box-shadow:0 0 30px #00e5ff18
+}
+
+.compare-btn{
+ width:100%;margin-top:20px;padding:15px;border:0;
+ border-radius:12px;background:#00e5ff;color:#001017;
+ font-weight:900;cursor:pointer;transition:.2s
+}
+.compare-btn:hover{transform:translateY(-3px);box-shadow:0 10px 30px #00e5ff33}
+
+.result{display:none;margin-top:30px;animation:appear .5s ease}
+.result.show{display:block}
+.result-head{
+ text-align:center;padding:28px;border:1px solid #00ff9d33;
+ background:#00150ddd;border-radius:20px 20px 0 0
+}
+.result-head small{color:#00ff9d;letter-spacing:2px}
+.winner{
+ margin-top:8px;font-size:clamp(28px,6vw,55px);
+ font-weight:900;color:#fff;text-shadow:0 0 25px #00ff9d88
+}
+.result-status{
+ margin-top:10px;color:#7d8da2;font-size:12px
+}
+.reason{
+ padding:25px;background:#091321dd;
+ border:1px solid #ffffff0d;border-top:0;
+ border-radius:0 0 20px 20px
+}
+.reason h3{color:#00e5ff;margin-bottom:12px}
+.reason p{color:#aeb9c8;line-height:1.8;font-size:13px}
+
+.battle-grid{
+ display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px
+}
+.battle-box{
+ background:#ffffff05;border:1px solid #ffffff0b;
+ border-radius:14px;padding:15px
+}
+.battle-box h4{color:#00e5ff;margin-bottom:10px}
+.battle-box div{
+ color:#c9d1dc;font-size:11px;line-height:1.7;margin:5px 0
+}
+.battle-box b{color:#71839a}
+
+.section{margin-top:50px}
+.section-title{margin-bottom:18px}
+.section-title small{color:#00e5ff;letter-spacing:2px;font-size:9px}
+.section-title h2{margin-top:7px;font-size:28px}
+
+.database{
+ display:grid;grid-template-columns:repeat(3,1fr);gap:14px
+}
+.character{
+ padding:20px;border-radius:18px;background:#0b1425cc;
+ border:1px solid #ffffff0d
+}
+.character h3{color:#00e5ff;margin-bottom:5px}
+.character .key{color:#00ff9d;font-size:10px;margin-bottom:4px}
+.character .verse{color:#68798e;font-size:11px;margin-bottom:12px}
+.character p{
+ color:#a7b2c0;font-size:11px;line-height:1.65;margin:3px 0
+}
+.character button{
+ margin-top:12px;padding:7px 9px;background:#00e5ff0b;
+ border:1px solid #00e5ff22;color:#00e5ff;
+ border-radius:8px;cursor:pointer;font-size:10px
+}
+
+.form-grid{
+ display:grid;grid-template-columns:1fr 1fr;gap:12px
+}
+.field{margin-bottom:12px}
+.field label{
+ display:block;color:#728299;font-size:10px;margin-bottom:6px
+}
+.full{grid-column:1/-1}
+.save{
+ padding:12px 18px;border:0;border-radius:10px;
+ background:#00ff9d;color:#00150d;font-weight:bold;cursor:pointer
+}
+.danger{
+ padding:12px 18px;border:1px solid #ff456533;
+ border-radius:10px;background:#ff45650b;color:#ff7188;
+ cursor:pointer;margin-left:8px
+}
+
+.notice{
+ margin-top:20px;padding:13px;border:1px solid #ffffff0d;
+ border-radius:12px;color:#697a90;font-size:10px;line-height:1.6
+}
+
+.log{
+ margin-top:20px;background:#020611;border:1px solid #00e5ff18;
+ border-radius:14px;padding:15px;color:#6e849b;
+ font:11px monospace;white-space:pre-wrap;line-height:1.6
+}
+
+@keyframes appear{
+ from{opacity:0;transform:translateY(15px)}
+ to{opacity:1;transform:translateY(0)}
+}
+
+@media(max-width:750px){
+ .compare{grid-template-columns:1fr}
+ .vs{margin:auto}
+ .database{grid-template-columns:1fr}
+ .form-grid{grid-template-columns:1fr}
+ .full{grid-column:auto}
+ .battle-grid{grid-template-columns:1fr}
+ nav{padding:13px 4%}
+ nav a{margin-left:7px;font-size:10px}
+}
 </style>
 </head>
+
 <body>
-<nav><div class="logo">VIDZ.</div><div><a href="index.html">Home</a><a href="Projects.html">Projects</a><a href="AnimeDB.html">AnimeDB</a></div></nav>
+
+<nav>
+ <div class="logo">VIDZ.</div>
+ <div>
+  <a href="index.html">Home</a>
+  <a href="Projects.html">Projects</a>
+  <a href="AnimeDB.html">AnimeDB</a>
+ </div>
+</nav>
 
 <div class="container">
+
 <header class="header">
-<div class="badge">VIDZ // CHARACTER DATABASE</div>
-<h1>ANIME<span>DB</span></h1>
-<p>Database powerscaling lokal. Pilih dua karakter, bandingkan data yang tersimpan, dan tambahkan karakter sendiri. Hasil bukan putusan resmi VS Battles Wiki.</p>
+ <div class="badge">VIDZ // ANIMEDB V2</div>
+ <h1>ANIME<span>DB</span></h1>
+ <p>
+  Character battle database dengan Key, Tier, AP, Speed,
+  Durability, Abilities, Resistances, Feats dan Scaling.
+ </p>
 </header>
 
 <section class="compare">
-<div class="card"><h2>CHARACTER 01</h2><input id="char1" list="characterList" placeholder="Nama character"><div class="suggestions" id="suggestions1"></div></div>
-<div class="vs">VS</div>
-<div class="card"><h2>CHARACTER 02</h2><input id="char2" list="characterList" placeholder="Nama character"><div class="suggestions" id="suggestions2"></div></div>
+
+ <div class="card">
+  <h2>CHARACTER 01</h2>
+  <input id="char1" list="characterList" placeholder="Contoh: Yogiri Takatou">
+ </div>
+
+ <div class="vs">VS</div>
+
+ <div class="card">
+  <h2>CHARACTER 02</h2>
+  <input id="char2" list="characterList" placeholder="Contoh: Saitama">
+ </div>
+
 </section>
+
 <datalist id="characterList"></datalist>
-<button class="compare-btn" onclick="compareCharacters()">⚔ COMPARE CHARACTERS</button>
+
+<button class="compare-btn" onclick="compareCharacters()">
+ ⚔ COMPARE CHARACTERS
+</button>
 
 <section class="result" id="result">
-<div class="result-head"><small>COMPARISON RESULT</small><div class="winner" id="winner">—</div></div>
-<div class="reason"><h3>Reason</h3><p id="reasonText"></p><div class="stats"><div class="stat"><b>CHARACTER 1</b><span id="stats1">—</span></div><div class="stat"><b>CHARACTER 2</b><span id="stats2">—</span></div></div></div>
+
+ <div class="result-head">
+  <small>COMPARISON RESULT</small>
+  <div class="winner" id="winner">—</div>
+  <div class="result-status" id="resultStatus">—</div>
+ </div>
+
+ <div class="reason">
+  <h3>Battle Analysis</h3>
+  <p id="reasonText"></p>
+
+  <div class="battle-grid">
+
+   <div class="battle-box">
+    <h4 id="battleName1">Character 1</h4>
+    <div><b>Key:</b> <span id="key1">—</span></div>
+    <div><b>Tier:</b> <span id="tier1">—</span></div>
+    <div><b>AP:</b> <span id="ap1">—</span></div>
+    <div><b>Speed:</b> <span id="speed1">—</span></div>
+    <div><b>Durability:</b> <span id="dur1">—</span></div>
+    <div><b>Hax:</b> <span id="hax1">—</span></div>
+   </div>
+
+   <div class="battle-box">
+    <h4 id="battleName2">Character 2</h4>
+    <div><b>Key:</b> <span id="key2">—</span></div>
+    <div><b>Tier:</b> <span id="tier2">—</span></div>
+    <div><b>AP:</b> <span id="ap2">—</span></div>
+    <div><b>Speed:</b> <span id="speed2">—</span></div>
+    <div><b>Durability:</b> <span id="dur2">—</span></div>
+    <div><b>Hax:</b> <span id="hax2">—</span></div>
+   </div>
+
+  </div>
+
+  <div class="log" id="analysisLog"></div>
+ </div>
+
 </section>
 
 <section class="section">
-<div class="section-title"><small>LOCAL DATABASE</small><h2>Character Database</h2></div>
-<div class="database" id="database"></div>
+
+ <div class="section-title">
+  <small>LOCAL DATABASE</small>
+  <h2>Character Database</h2>
+ </div>
+
+ <div class="database" id="database"></div>
+
 </section>
 
 <section class="section">
-<div class="section-title"><small>DATABASE MANAGER</small><h2>Tambah Character</h2></div>
-<div class="card">
-<div class="form-grid">
-<div class="field"><label>Nama Character</label><input id="newName" placeholder="Nama character"></div>
-<div class="field"><label>Verse / Series</label><input id="newVerse" placeholder="Verse"></div>
-<div class="field"><label>Tier</label><input id="newTier" placeholder="Tier / key"></div>
-<div class="field"><label>Attack Potency</label><input id="newAP" placeholder="AP"></div>
-<div class="field"><label>Speed</label><input id="newSpeed" placeholder="Speed"></div>
-<div class="field"><label>Durability</label><input id="newDurability" placeholder="Durability"></div>
-<div class="field full"><label>Abilities / Hax</label><textarea id="newHax" rows="3" placeholder="Abilities dan hax"></textarea></div>
-<div class="field full"><label>Feats</label><textarea id="newFeats" rows="4" placeholder="Masukkan feats"></textarea></div>
-<div class="field full"><label>Source</label><input id="newSource" placeholder="Source / URL / referensi"></div>
-</div>
-<button class="save" onclick="addCharacter()">+ SIMPAN CHARACTER</button>
-<button class="danger" onclick="resetDatabase()">RESET DATABASE</button>
-</div>
+
+ <div class="section-title">
+  <small>DATABASE MANAGER</small>
+  <h2>Tambah Character</h2>
+ </div>
+
+ <div class="card">
+
+  <div class="form-grid">
+
+   <div class="field">
+    <label>Nama Character</label>
+    <input id="newName" placeholder="Nama">
+   </div>
+
+   <div class="field">
+    <label>Key / Version</label>
+    <input id="newKey" placeholder="Contoh: Light Novel">
+   </div>
+
+   <div class="field">
+    <label>Verse</label>
+    <input id="newVerse" placeholder="Verse / series">
+   </div>
+
+   <div class="field">
+    <label>Tier</label>
+    <input id="newTier" placeholder="Contoh: 1-A">
+   </div>
+
+   <div class="field">
+    <label>Attack Potency</label>
+    <input id="newAP" placeholder="AP">
+   </div>
+
+   <div class="field">
+    <label>Speed</label>
+    <input id="newSpeed" placeholder="Speed">
+   </div>
+
+   <div class="field">
+    <label>Durability</label>
+    <input id="newDurability" placeholder="Durability">
+   </div>
+
+   <div class="field">
+    <label>Hax Power</label>
+    <input id="newHaxPower" type="number" min="0" max="100"
+           placeholder="0-100">
+   </div>
+
+   <div class="field full">
+    <label>Abilities / Hax</label>
+    <textarea id="newHax" rows="3"></textarea>
+   </div>
+
+   <div class="field full">
+    <label>Resistances</label>
+    <textarea id="newResistance" rows="3"></textarea>
+   </div>
+
+   <div class="field full">
+    <label>Feats</label>
+    <textarea id="newFeats" rows="4"></textarea>
+   </div>
+
+   <div class="field full">
+    <label>Scaling</label>
+    <textarea id="newScaling" rows="3"></textarea>
+   </div>
+
+   <div class="field full">
+    <label>Source</label>
+    <input id="newSource"
+           placeholder="Sumber / referensi">
+   </div>
+
+  </div>
+
+  <button class="save" onclick="addCharacter()">
+   + SIMPAN CHARACTER
+  </button>
+
+  <button class="danger" onclick="resetDatabase()">
+   RESET
+  </button>
+
+ </div>
+
 </section>
 
-<div class="notice">💾 Data karakter tambahan disimpan di LocalStorage browser. Jika cache/site data browser dihapus, data lokal dapat ikut terhapus. Database awal di bawah adalah data contoh untuk pengujian; verifikasi key, tier, dan feats ke sumber yang kamu gunakan sebelum menjadikannya klaim final.</div>
+<div class="notice">
+ ⚠ AnimeDB ini adalah database powerscaling buatan lokal.
+ Data sumber harus diverifikasi terhadap halaman/profil sumbernya.
+ AnimeDB bukan database resmi VS Battles Wiki.
+</div>
+
 </div>
 
 <script>
-const STORAGE_KEY="VIDZ_ANIME_DB_V3";
+
+/* =========================================
+   DATABASE
+========================================= */
+
+const STORAGE_KEY="VIDZ_ANIME_DB_V2";
 
 const defaultCharacters=[
+
 {
-name:"Yogiri Takatou",verse:"My Instant Death Ability Is So Overpowered",
-tier:"Gunakan key yang dipilih; jangan menganggap semua versi sama",
-ap:"Bergantung key dan scaling",
-speed:"Bergantung key",
-durability:"Bergantung key",
-hax:"Instant Death / Death Manipulation; kemampuan terkait target dan berbagai resistances",
-feats:"Mematikan berbagai target dengan kemampuan Instant Death dalam seri.",
-source:"VS Battles Wiki discussions / profile references"
+ name:"Yogiri Takatou",
+ key:"Light Novel",
+ verse:"My Instant Death Ability Is So Overpowered",
+ tier:"1-A",
+ ap:"1-A / mengikuti key dan scaling yang dimasukkan",
+ speed:"Tidak terbatas / mengikuti key",
+ durability:"1-A / mengikuti scaling",
+ haxPower:100,
+ hax:"Instant Death, Death Manipulation, existence-targeting abilities, resistances",
+ resistance:"Resistance terhadap berbagai efek supernatural sesuai key",
+ feats:"Kemampuan Instant Death dapat menentukan kematian target tanpa bergantung pada serangan fisik biasa.",
+ scaling:"Scaling harus mengikuti feats dan profile key yang dipakai.",
+ source:"VS Battles Wiki / source material — verify current profile"
 },
+
 {
-name:"Son Goku (CC)",verse:"Super Dragon Ball Heroes",
-tier:"Bergantung key; CC Goku memiliki beberapa key",
-ap:"Bergantung key/form",
-speed:"Bergantung key/form",
-durability:"Bergantung key/form",
-hax:"Ki, transformations, Time Power dan kemampuan terkait key",
-feats:"Berbagai pertarungan dan scaling di Super Dragon Ball Heroes.",
-source:"VS Battles Wiki forum discussion: CC Goku vs Yogiri"
+ name:"Son Goku",
+ key:"CC Goku",
+ verse:"Dragon Ball Heroes",
+ tier:"High 1-B",
+ ap:"High 1-B / mengikuti key dan scaling",
+ speed:"Immeasurable+ / mengikuti key",
+ durability:"High 1-B",
+ haxPower:82,
+ hax:"Ki manipulation, Ultra Instinct variants, teleportation, energy manipulation",
+ resistance:"Berbagai resistance dari scaling Dragon Ball",
+ feats:"Bertarung melawan berbagai karakter tingkat tinggi dalam Dragon Ball Heroes.",
+ scaling:"Scaling bergantung pada key dan chain scaling yang digunakan.",
+ source:"VS Battles Wiki / Dragon Ball Heroes"
 },
+
 {
-name:"Saitama",verse:"One-Punch Man",
-tier:"Bergantung versi dan scaling",
-ap:"Bergantung feats/key",
-speed:"Bergantung feats/key",
-durability:"Bergantung feats/key",
-hax:"Dominan physical power, strength, speed dan durability",
-feats:"Berbagai feats fisik sepanjang One-Punch Man.",
-source:"Series material / powerscaling reference"
+ name:"Saitama",
+ key:"Manga",
+ verse:"One-Punch Man",
+ tier:"3-A",
+ ap:"3-A+ / bergantung pada scaling",
+ speed:"Massively FTL+",
+ durability:"3-A",
+ haxPower:45,
+ hax:"Extreme physical statistics, exponential growth",
+ resistance:"High physical resistance",
+ feats:"Pertarungan melawan Garou dan pertumbuhan kekuatan selama pertarungan.",
+ scaling:"Mengikuti feats manga dan accepted scaling.",
+ source:"VS Battles Wiki / One-Punch Man manga"
 },
+
 {
-name:"Naruto Uzumaki",verse:"Naruto / Boruto",
-tier:"Bergantung era, form dan scaling",
-ap:"Bergantung form",
-speed:"Bergantung form",
-durability:"Bergantung form",
-hax:"Chakra, Ninjutsu, Sage abilities, sensory abilities dan teknik form tertentu",
-feats:"Berbagai pertarungan besar dan penggunaan berbagai mode sepanjang seri.",
-source:"Series material / powerscaling reference"
+ name:"Naruto Uzumaki",
+ key:"Six Paths Sage Mode",
+ verse:"Naruto",
+ tier:"5-B",
+ ap:"Planet level / bergantung pada scaling",
+ speed:"Massively FTL+ / bergantung pada key",
+ durability:"5-B",
+ haxPower:65,
+ hax:"Six Paths abilities, Truth-Seeking Balls, sensory abilities, chakra techniques",
+ resistance:"Berbagai resistance dari chakra dan Six Paths abilities",
+ feats:"Menggunakan Six Paths Sage Mode dan bertarung melawan ancaman tingkat tinggi.",
+ scaling:"Mengikuti key dan scaling Naruto/Boruto yang digunakan.",
+ source:"VS Battles Wiki / Naruto manga"
 },
+
 {
-name:"Rimuru Tempest",verse:"That Time I Got Reincarnated as a Slime",
-tier:"Bergantung version/key",
-ap:"Bergantung version/key",
-speed:"Bergantung version/key",
-durability:"Bergantung version/key",
-hax:"Absorption, regeneration, analysis, resistances dan berbagai skill",
-feats:"Mengembangkan banyak skill dan kemampuan sepanjang seri.",
-source:"Series material / powerscaling reference"
+ name:"Rimuru Tempest",
+ key:"Light Novel",
+ verse:"That Time I Got Reincarnated as a Slime",
+ tier:"1-C",
+ ap:"1-C / bergantung pada key",
+ speed:"Immeasurable / bergantung pada key",
+ durability:"1-C",
+ haxPower:94,
+ hax:"Soul Manipulation, Absorption, Information Analysis, Regeneration, Causality-related abilities",
+ resistance:"Berbagai resistance dari skill dan scaling",
+ feats:"Mengembangkan kemampuan tingkat tinggi dan memperoleh berbagai Ultimate Skills.",
+ scaling:"Bergantung pada LN key dan scaling yang diterima.",
+ source:"VS Battles Wiki / Light Novel"
 },
+
 {
-name:"Anos Voldigoad",verse:"The Misfit of Demon King Academy",
-tier:"Bergantung version/key",
-ap:"Bergantung version/key",
-speed:"Bergantung version/key",
-durability:"Bergantung version/key",
-hax:"Source-related abilities, destruction, resurrection dan berbagai magic abilities",
-feats:"Berbagai kemampuan supernatural dan pertarungan melawan lawan tingkat tinggi.",
-source:"Series material / powerscaling reference"
+ name:"Anos Voldigoad",
+ key:"Light Novel",
+ verse:"The Misfit of Demon King Academy",
+ tier:"1-C",
+ ap:"1-C / bergantung pada key",
+ speed:"Immeasurable",
+ durability:"1-C",
+ haxPower:96,
+ hax:"Source Manipulation, Magic, Resurrection, Destruction abilities, resistance",
+ resistance:"Berbagai resistance terhadap magic dan source-related effects",
+ feats:"Menggunakan source dan destruction abilities dalam berbagai pertarungan.",
+ scaling:"Mengikuti key LN dan scaling yang digunakan.",
+ source:"VS Battles Wiki / Light Novel"
 },
+
 {
-name:"IATIA",verse:"World of Darkness",
-tier:"Bergantung interpretation/source version",
-ap:"Bergantung cosmology/key",
-speed:"Bergantung nature of the entity",
-durability:"Bergantung interpretation/key",
-hax:"Bergantung source interpretation; masukkan kemampuan spesifik bila ingin scaling lebih presisi",
-feats:"Gunakan feats dan cosmology yang benar-benar terverifikasi dari source yang dipakai.",
-source:"World of Darkness / powerscaling reference"
+ name:"IATIA",
+ key:"Standard",
+ verse:"World of Darkness",
+ tier:"High 1-A",
+ ap:"High 1-A",
+ speed:"Irrelevant",
+ durability:"High 1-A",
+ haxPower:99,
+ hax:"High-level reality/meta abilities sesuai profile",
+ resistance:"Berbagai resistance tingkat tinggi sesuai profile",
+ feats:"Berada pada skala cosmological/meta sesuai interpretasi profile.",
+ scaling:"Harus mengikuti struktur cosmology dan profile yang digunakan.",
+ source:"VS Battles Wiki / World of Darkness"
 }
+
 ];
 
-function cloneDefaults(){return JSON.parse(JSON.stringify(defaultCharacters));}
 
-function loadDB(){
-try{
-const raw=localStorage.getItem(STORAGE_KEY);
-if(!raw){const d=cloneDefaults();localStorage.setItem(STORAGE_KEY,JSON.stringify(d));return d;}
-const parsed=JSON.parse(raw);
-return Array.isArray(parsed)?parsed:cloneDefaults();
-}catch(e){return cloneDefaults();}
-}
-let characters=loadDB();
+/* =========================================
+   STORAGE
+========================================= */
 
-function saveDB(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(characters));return true}catch(e){alert("LocalStorage tidak tersedia/ditolak browser.");return false}}
+function loadDatabase(){
 
-function esc(s){
-return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
-}
+ const saved=localStorage.getItem(STORAGE_KEY);
 
-function render(){
-const db=document.getElementById("database"), list=document.getElementById("characterList");
-db.innerHTML="";list.innerHTML="";
-characters.forEach((c,i)=>{
-const el=document.createElement("div");el.className="character";
-el.innerHTML=`<h3>${esc(c.name)}</h3>
-<div class="verse">${esc(c.verse)}</div>
-<p><b>Tier:</b> ${esc(c.tier)}</p>
-<p><b>AP:</b> ${esc(c.ap)}</p>
-<p><b>Speed:</b> ${esc(c.speed)}</p>
-<p><b>Durability:</b> ${esc(c.durability)}</p>
-<p><b>Abilities:</b> ${esc(c.hax)}</p>
-<p><b>Feats:</b> ${esc(c.feats)}</p>
-<p><b>Source:</b> ${esc(c.source)}</p>
-<button onclick="useChar(${i},1)">USE #1</button>
-<button onclick="useChar(${i},2)">USE #2</button>
-<button onclick="deleteChar(${i})">DELETE</button>`;
-db.appendChild(el);
-const op=document.createElement("option");op.value=c.name;list.appendChild(op);
-});
-renderSuggestions();
+ if(!saved){
+   localStorage.setItem(STORAGE_KEY,JSON.stringify(defaultCharacters));
+   return [...defaultCharacters];
+ }
+
+ try{
+   const parsed=JSON.parse(saved);
+   return Array.isArray(parsed)?parsed:[...defaultCharacters];
+ }catch(e){
+   return [...defaultCharacters];
+ }
 }
 
-function renderSuggestions(){
-[1,2].forEach(slot=>{
-const box=document.getElementById("suggestions"+slot);box.innerHTML="";
-characters.slice(0,8).forEach((c,i)=>{
-const b=document.createElement("button");b.className="suggestion";b.type="button";b.textContent=c.name;
-b.onclick=()=>useChar(i,slot);box.appendChild(b);
-});
-});
+let characters=loadDatabase();
+
+function saveDatabase(){
+ localStorage.setItem(STORAGE_KEY,JSON.stringify(characters));
 }
 
-function useChar(index,slot){
-document.getElementById("char"+slot).value=characters[index].name;
-document.getElementById("char"+slot).focus();
+
+/* =========================================
+   SAFE TEXT
+========================================= */
+
+function escapeHTML(value){
+ return String(value??"")
+  .replaceAll("&","&amp;")
+  .replaceAll("<","&lt;")
+  .replaceAll(">","&gt;")
+  .replaceAll('"',"&quot;")
+  .replaceAll("'","&#039;");
 }
 
-function findChar(name){return characters.find(c=>c.name.trim().toLowerCase()===name.trim().toLowerCase());}
 
-function compareCharacters(){
-const c1=findChar(document.getElementById("char1").value),c2=findChar(document.getElementById("char2").value);
-const result=document.getElementById("result");result.classList.add("show");
-if(!c1||!c2){
-document.getElementById("winner").textContent="DATA NOT FOUND";
-document.getElementById("reasonText").textContent="Pastikan kedua nama ada di database. Kamu bisa memilih dari tombol character atau menambahkan character baru.";
-document.getElementById("stats1").textContent=c1?"Data ditemukan":"Tidak ditemukan";
-document.getElementById("stats2").textContent=c2?"Data ditemukan":"Tidak ditemukan";
-return;
-}
-if(c1.name.toLowerCase()===c2.name.toLowerCase()){
-document.getElementById("winner").textContent="SAME CHARACTER";
-document.getElementById("reasonText").textContent="Kedua sisi memakai character yang sama. Tidak ada pemenang yang bisa ditentukan.";
-showStats(c1,c2);return;
-}
-document.getElementById("winner").textContent="INCONCLUSIVE";
-document.getElementById("reasonText").textContent="AnimeDB menampilkan data kedua character, tetapi tidak mengarang pemenang dari kelengkapan teks. Untuk menentukan winner secara powerscaling, masukkan key/form, tier, AP, speed, durability, abilities, resistances, feats, dan scaling yang spesifik.";
-showStats(c1,c2);
-result.scrollIntoView({behavior:"smooth",block:"start"});
-}
+/* =========================================
+   RENDER
+========================================= */
 
-function showStats(a,b){
-document.getElementById("stats1").textContent=`Tier: ${a.tier} | AP: ${a.ap} | Speed: ${a.speed} | Durability: ${a.durability}`;
-document.getElementById("stats2").textContent=`Tier: ${b.tier} | AP: ${b.ap} | Speed: ${b.speed} | Durability: ${b.durability}`;
-}
+function renderDatabase(){
 
-function addCharacter(){
-const name=document.getElementById("newName").value.trim();
-if(!name){alert("Nama character wajib diisi.");return}
-if(findChar(name)){alert("Character sudah ada.");return}
-characters.push({
-name,
-verse:val("newVerse","Unknown"),
-tier:val("newTier","Belum diisi"),
-ap:val("newAP","Belum diisi"),
-speed:val("newSpeed","Belum diisi"),
-durability:val("newDurability","Belum diisi"),
-hax:val("newHax","Belum diisi"),
-feats:val("newFeats","Belum diisi"),
-source:val("newSource","User-added reference")
-});
-if(saveDB()){render();document.getElementById("char1").value=name;["newName","newVerse","newTier","newAP","newSpeed","newDurability","newHax","newFeats","newSource"].forEach(id=>document.getElementById(id).value="");alert("Character berhasil disimpan ke LocalStorage.");}
-}
-function val(id,fallback){const v=document.getElementById(id).value.trim();return v||fallback}
+ const box=document.getElementById("database");
+ const list=document.getElementById("characterList");
 
-function deleteChar(i){
-if(!confirm("Hapus "+characters[i].name+" dari database lokal?"))return;
-characters.splice(i,1);saveDB();render();
+ box.innerHTML="";
+ list.innerHTML="";
+
+ characters.forEach((c,i)=>{
+
+  const card=document.createElement("div");
+  card.className="character";
+
+  card.innerHTML=`
+   <h3>${escapeHTML(c.name)}</h3>
+   <div class="key">${escapeHTML(c.key)}</div>
+   <div class="verse">${escapeHTML(c.verse)}</div>
+
+   <p><b>Tier:</b> ${escapeHTML(c.tier)}</p>
+   <p><b>AP:</b> ${escapeHTML(c.ap)}</p>
+   <p><b>Speed:</b> ${escapeHTML(c.speed)}</p>
+   <p><b>Durability:</b> ${escapeHTML(c.durability)}</p>
+
+   <button onclick="selectCharacter(${i},1)">USE #1</button>
+   <button onclick="selectCharacter(${i},2)">USE #2</button>
+   <button onclick="deleteCharacter(${i})">DELETE</button>
+  `;
+
+  box.appendChild(card);
+
+  const option=document.createElement("option");
+  option.value=c.name;
+  list.appendChild(option);
+ });
 }
 
-function resetDatabase(){
-if(!confirm("Reset semua data lokal dan kembali ke database 7 character awal?"))return;
-characters=cloneDefaults();saveDB();render();
-document.getElementById("char1").value="";document.getElementById("char2").value="";
-document.getElementById("result").classList.remove("show");
+
+/* =========================================
+   SELECT
+========================================= */
+
+function selectCharacter(index,slot){
+
+ const c=characters[index];
+
+ document.getElementById(
+   slot===1?"char1":"char2"
+ ).value=c.name;
+
+ window.scrollTo({top:0,behavior:"smooth"});
 }
 
-render();
-</script>
-</body>
-</html>
+
+/* =========================================
+   FIND
+========================================= */
+
+function findCharacter(name){
+ return characters.find(
+  c=>c.name.trim().toLowerCase()===
+     name.trim().toLowerCase()
+ );
+}
+
+
+/* =========================================
+   TIER PARSER
+========================================= */
+
+const tierRank={
+ "10-C":1,"10-B":2,"10-A":3,
+ "9-C":4,"9-B":5,"9-A":6,
+ "8-C":7,"8-B":8,"8-A":9,
+ "7-C":10,"7-B":11,"7-A":12,
+ "6-C":13,"6-B":14,"6-A":15,
+ "5-C":16,"5-B":17,"5-A":18,
+ "4-C":19,"4-B":20,"4-A":21,
+ "3-C":22,"3-B":23,"3-A":24,
+ "Low 2-C":25,"2-C":26,"2-B":27,"2-A":28,
+ "Low 1-C":29,"1-C":30,"High 1-C":31,
+ "Low 1-B":32,"1-B":33,"High 1-B":34,
+ "Low 1-A":35,"1-A":36,"High 1-A":37,
+ "Tier 0":38,"0":38
+};
+
+function parseTier(text){
+
+ const s=String(text||"").toLowerCase();
+
+ if(s.includes("high 1-a"))return 37;
+ if(s.includes("1-a"))return 36;
+ if(s.includes("low 1-a"))return 35;
+
+ if(s.includes("high 1-b"))return 34;
+ if(s.includes("1-b"))return 33;
+ if(s.includes("low 1-b"))return 32;
+
+ if(s.includes("high 1-c"))return 31;
+ if(s.includes("1-c"))return 30;
+ if(s.includes("low 1-c"))return 29;
+
+ if(s.includes("2-a"))return 28;
+ if(s.includes("2-b"))return 27;
+ if(s.includes("2-c"))return 26;
+ if(s.includes("low 2-c"))return 25;
+
+ const tiers=[
+  "3-a","3-b","3-c",
+  "4-a","4-b","4-c",
+  "5-a","5-b","5-c",
+  "6-a","6-b","6-c",
+  "7-a","7-b","7-c",
+  "8-a","8-b","8-c",
+  "9-a","9-b","9-c",
+  "10-a","10-b","10-c"
+ ];
+
+ for(let i=0;i<tiers.length;i++){
+   if(s.includes(tiers[i]))return tierRank[tiers[i].toUpperCase()];
+ }
+
+ if(s.includes("boundless"))return 38;
+
+ return 0;
+}
+
+
+/* =========================================
+   TEXT MATCHING
+========================================= */
+
+function textHas(text,words){
+
+ const s=String(text||"").toLowerCase();
+
+ return words.some(w=>s.includes(w));
+}
+
+
+/* =========================================
+   BATTLE ENGINE
+========================================= */
+
+function analyzeBattle(a,b){
+
+ let scoreA=0;
+ let scoreB=0;
+ let log=[];
+
+ const tierA=parseTier(a.tier);
+ const tierB=parseTier(b.tier);
+
+ if(tierA>tierB){
+   scoreA+=8;
+   log.push("Tier: "+a.name+" memiliki rating tier yang lebih tinggi.");
+ }
+ else if(tierB>tierA){
+   scoreB+=8;
+   log.push("Tier: "+b.name+" memiliki rating tier yang lebih tinggi.");
+ }
+ else{
+   log.push("Tier: kedua karakter berada pada rating tier yang sama/serupa.");
+ }
+
+ const apA=String(a.ap||"").toLowerCase();
+ const apB=String(b.ap||"").toLowerCase();
+
+ if(apA!==apB){
+   if(textHas(apA,["boundless","high 1-a","1-a","1-b","1-c","2-a","2-b"])){
+     scoreA+=3;
+   }
+   if(textHas(apB,["boundless","high 1-a","1-a","1-b","1-c","2-a","2-b"])){
+     scoreB+=3;
+   }
+ }
+
+ const speedWords=[
+  "irrelevant","immeasurable","infinite",
+  "massively ftl+","massively ftl","ftl+"
+ ];
+
+ const speedA=speedWords.findIndex(x=>String(a.speed).toLowerCase().includes(x));
+ const speedB=speedWords.findIndex(x=>String(b.speed).toLowerCase().includes(x));
+
+ if(speedA>=0 && speedB>=0){
+   if(speedA<speedB)scoreA+=2;
+   if(speedB<speedA)scoreB+=2;
+ }
+
+ const hpA=Number(a.haxPower)||0;
+ const hpB=Number(b.haxPower)||0;
+
+ if(hpA>hpB)scoreA+=3;
+ if(hpB>hpA)scoreB+=3;
+
+ const haxA=String(a.hax||"").toLowerCase();
+ const haxB=String(b.hax||"").toLowerCase();
+
+ if(haxA.length>haxB.length)scoreA+=1;
+ if(haxB.length>haxA.length)scoreB+=1;
+
+ if(String(a.resistance||"").length>
+    String(b.resistance||"").length)scoreA+=1;
+
+ if(String(b.resistance||"").length>
+    String(a.resistance||"").length)scoreB+=1;
+
+ const featsA=String(a.feats||"").length;
+ const featsB=String(b.feats||"").leng
