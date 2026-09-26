@@ -1,45 +1,74 @@
-<!DOCTYPE html><html lang="id">
+<!DOCTYPE html>
+<html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="theme-color" content="#050816">
-<meta name="description" content="Project VIDZ — Digital Space">
-<title>Projects — VIDZ</title><style>
-*{box-sizing:border-box;margin:0;padding:0}
+<meta name="description" content="Tools dan project VIDZ Digital Space.">
+<title>Projects — VIDZ</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
 body{
   font-family:Arial,Helvetica,sans-serif;
   background:#050816;
   color:#f5f7ff;
   overflow-x:hidden;
 }
-a{text-decoration:none;color:inherit}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+button{
+  font:inherit;
+}
+
 :root{
   --cyan:#00e5ff;
+  --green:#00ff9d;
+  --purple:#8b5cf6;
+  --line:rgba(255,255,255,.08);
   --muted:#8292a7;
-  --line:#ffffff12;
+  --card:#0c1424;
 }
+
 body::before{
   content:"";
   position:fixed;
   inset:0;
   z-index:-3;
   background:
-    radial-gradient(circle at 12% 15%,#00e5ff18,transparent 30%),
-    radial-gradient(circle at 88% 75%,#7c3aed18,transparent 32%),
+    radial-gradient(circle at 15% 15%,rgba(0,229,255,.12),transparent 28%),
+    radial-gradient(circle at 85% 75%,rgba(124,58,237,.12),transparent 30%),
     #050816;
 }
+
 body::after{
   content:"";
   position:fixed;
   inset:0;
   z-index:-2;
-  opacity:.035;
+  opacity:.025;
+  pointer-events:none;
   background-image:
     linear-gradient(#fff 1px,transparent 1px),
     linear-gradient(90deg,#fff 1px,transparent 1px);
   background-size:55px 55px;
-  pointer-events:none;
 }
+
+/* NAVBAR */
+
 .nav-wrap{
   position:fixed;
   top:14px;
@@ -48,29 +77,35 @@ body::after{
   width:min(1120px,94%);
   z-index:100;
 }
+
 nav{
   height:62px;
-  padding:0 10px 0 20px;
   display:flex;
   align-items:center;
   justify-content:space-between;
+  padding:0 10px 0 20px;
   border:1px solid var(--line);
   border-radius:18px;
-  background:#050816c9;
+  background:rgba(5,8,22,.78);
   backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  box-shadow:0 18px 55px rgba(0,0,0,.25);
 }
+
 .logo{
   color:var(--cyan);
   font-size:25px;
   font-weight:900;
   letter-spacing:-2px;
-  text-shadow:0 0 25px #00e5ff55;
+  text-shadow:0 0 25px rgba(0,229,255,.35);
 }
+
 .nav-links{
   display:flex;
   align-items:center;
   gap:3px;
 }
+
 .nav-links a{
   padding:9px 12px;
   border-radius:9px;
@@ -79,48 +114,60 @@ nav{
   font-weight:bold;
   transition:.2s;
 }
+
 .nav-links a:hover,
 .nav-links a.active{
   color:var(--cyan);
-  background:#00e5ff0d;
+  background:rgba(0,229,255,.06);
 }
+
 .theme{
   width:38px;
   height:38px;
   margin-left:5px;
   border:1px solid var(--line);
   border-radius:10px;
-  background:#ffffff08;
+  background:rgba(255,255,255,.04);
   color:#fff;
   cursor:pointer;
 }
+
+/* PAGE */
+
 .page{
-  width:min(1100px,92%);
   min-height:100vh;
-  margin:auto;
   padding:155px 0 90px;
 }
+
+.container{
+  width:min(1100px,92%);
+  margin:auto;
+}
+
 .badge{
-  display:inline-block;
+  width:max-content;
   padding:8px 13px;
-  border:1px solid #00e5ff30;
+  border:1px solid rgba(0,229,255,.18);
   border-radius:30px;
   color:#8291a5;
-  background:#00e5ff08;
+  background:rgba(0,229,255,.04);
   font-size:9px;
   font-weight:bold;
   letter-spacing:2px;
 }
+
 h1{
   margin-top:25px;
-  font-size:clamp(50px,8vw,90px);
-  line-height:.88;
+  font-size:clamp(48px,8vw,85px);
+  line-height:.9;
   letter-spacing:-6px;
 }
+
 h1 span{
   color:var(--cyan);
-  text-shadow:0 0 35px #00e5ff55;
+  text-shadow:0 0 35px rgba(0,229,255,.3);
 }
+
 .intro{
   max-width:700px;
   margin-top:25px;
@@ -128,85 +175,196 @@ h1 span{
   font-size:15px;
   line-height:1.9;
 }
-.projects{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:18px;
-  margin-top:50px;
+
+/* SECTION */
+
+.section{
+  margin-top:65px;
 }
-.project{
-  position:relative;
-  min-height:330px;
-  padding:28px;
-  border:1px solid var(--line);
-  border-radius:24px;
-  background:#0b1425cc;
-  backdrop-filter:blur(15px);
-  overflow:hidden;
-  transition:.35s;
-  animation:rise .7s ease both;
+
+.section-title{
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  gap:20px;
+  margin-bottom:22px;
 }
-.project:nth-child(2){animation-delay:.1s}
-.project:nth-child(3){animation-delay:.2s}
-.project::before{
-  content:"";
-  position:absolute;
-  width:140px;
-  height:140px;
-  top:-70px;
-  right:-70px;
-  background:#00e5ff18;
-  filter:blur(35px);
+
+.section-title h2{
+  font-size:26px;
+  letter-spacing:-1px;
 }
-.project:hover{
-  transform:translateY(-9px);
-  border-color:#00e5ff45;
-  box-shadow:0 30px 80px #0005;
-}
-.number{
-  color:#536075;
-  font-size:9px;
-  font-weight:bold;
+
+.section-title p{
+  color:#596a80;
+  font-size:10px;
   letter-spacing:1px;
 }
+
+/* TOOL GRID */
+
+.tool-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:17px;
+}
+
+.tool-card{
+  position:relative;
+  padding:25px;
+  min-height:255px;
+  border:1px solid var(--line);
+  border-radius:21px;
+  background:rgba(12,20,36,.78);
+  overflow:hidden;
+  transition:.3s;
+}
+
+.tool-card::before{
+  content:"";
+  position:absolute;
+  width:130px;
+  height:130px;
+  right:-70px;
+  top:-70px;
+  border-radius:50%;
+  background:rgba(0,229,255,.08);
+  filter:blur(5px);
+}
+
+.tool-card:hover{
+  transform:translateY(-7px);
+  border-color:rgba(0,229,255,.3);
+  box-shadow:0 25px 60px rgba(0,0,0,.3);
+}
+
 .icon{
-  width:62px;
-  height:62px;
+  width:55px;
+  height:55px;
   display:grid;
   place-items:center;
-  margin:25px 0;
-  border:1px solid #ffffff12;
-  border-radius:17px;
-  background:#ffffff06;
-  font-size:27px;
+  border:1px solid var(--line);
+  border-radius:15px;
+  background:rgba(255,255,255,.035);
+  font-size:25px;
+  margin-bottom:20px;
 }
-.project h2{
-  font-size:20px;
-  margin-bottom:12px;
+
+.tool-card h3{
+  font-size:18px;
+  margin-bottom:9px;
 }
-.project p{
-  color:#77859a;
+
+.tool-card p{
+  color:#77869b;
   font-size:12px;
   line-height:1.8;
 }
-.status{
+
+.tool-status{
   display:inline-block;
-  margin-top:24px;
-  padding:7px 10px;
-  border-radius:8px;
-  background:#00e5ff0d;
-  color:var(--cyan);
+  margin-top:18px;
+  padding:6px 9px;
+  border-radius:7px;
+  background:rgba(0,255,157,.07);
+  border:1px solid rgba(0,255,157,.13);
+  color:var(--green);
   font-size:8px;
   font-weight:bold;
   letter-spacing:1px;
 }
+
+/* PROJECT GRID */
+
+.project-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:17px;
+}
+
+.project-card{
+  padding:27px;
+  border:1px solid var(--line);
+  border-radius:21px;
+  background:rgba(12,20,36,.78);
+  transition:.3s;
+}
+
+.project-card:hover{
+  transform:translateY(-5px);
+  border-color:rgba(139,92,246,.35);
+}
+
+.project-number{
+  color:#56647a;
+  font-size:9px;
+  font-weight:bold;
+  letter-spacing:1px;
+}
+
+.project-card h3{
+  margin-top:15px;
+  font-size:21px;
+}
+
+.project-card p{
+  margin-top:10px;
+  color:#77869b;
+  font-size:12px;
+  line-height:1.8;
+}
+
+.tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-top:18px;
+}
+
+.tag{
+  padding:6px 9px;
+  border-radius:7px;
+  background:rgba(139,92,246,.08);
+  border:1px solid rgba(139,92,246,.15);
+  color:#b9a4ff;
+  font-size:8px;
+  font-weight:bold;
+}
+
+/* FUTURE */
+
+.future{
+  margin-top:18px;
+  padding:27px;
+  border:1px dashed rgba(0,229,255,.2);
+  border-radius:21px;
+  background:rgba(0,229,255,.025);
+}
+
+.future h3{
+  color:var(--cyan);
+  font-size:18px;
+}
+
+.future p{
+  margin-top:8px;
+  color:#748399;
+  font-size:12px;
+  line-height:1.8;
+}
+
+/* BACK */
+
 .back{
   display:inline-block;
-  margin-top:35px;
+  margin-top:40px;
   color:var(--cyan);
   font-size:11px;
   font-weight:bold;
 }
+
+/* FOOTER */
+
 footer{
   padding:40px 20px;
   border-top:1px solid var(--line);
@@ -214,98 +372,509 @@ footer{
   color:#586579;
   font-size:10px;
 }
-footer span{color:var(--cyan)}
+
+footer span{
+  color:var(--cyan);
+}
+
+/* LIGHT MODE */
+
 body.light{
   background:#f1f6fa;
   color:#101827;
 }
+
 body.light::before{
   background:
     radial-gradient(circle at 10% 10%,#d4faff,transparent 28%),
     radial-gradient(circle at 90% 75%,#e9ddff,transparent 30%),
     #f1f6fa;
 }
-body.light nav{background:#ffffffd9}
-body.light .nav-links a{color:#475569}
-body.light .nav-links a.active{color:#008ca0}
-body.light .theme{color:#101827;background:#fff}
-body.light .project{
-  background:#ffffffdd;
-  border-color:#00000012;
+
+body.light nav{
+  background:rgba(255,255,255,.85);
 }
-body.light .project p{color:#526174}
-@keyframes rise{
-  from{opacity:0;transform:translateY(30px)}
-  to{opacity:1;transform:none}
+
+body.light .nav-links a{
+  color:#475569;
 }
+
+body.light .nav-links a.active{
+  color:#008ca0;
+}
+
+body.light .theme{
+  color:#101827;
+}
+
+body.light .tool-card,
+body.light .project-card{
+  background:rgba(255,255,255,.88);
+  border-color:rgba(0,0,0,.08);
+}
+
+body.light .tool-card p,
+body.light .project-card p{
+  color:#526174;
+}
+
+body.light .future{
+  background:rgba(255,255,255,.7);
+}
+
+/* MOBILE */
+
 @media(max-width:850px){
-  .projects{grid-template-columns:1fr}
+
+  .tool-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .project-grid{
+    grid-template-columns:1fr;
+  }
 }
+
 @media(max-width:650px){
-  .nav-wrap{top:8px}
-  nav{height:57px}
-  .nav-links a{display:none}
-  .page{padding-top:120px}
-  h1{font-size:55px;letter-spacing:-4px}
+
+  .nav-wrap{
+    top:8px;
+  }
+
+  nav{
+    height:57px;
+  }
+
+  .nav-links a{
+    display:none;
+  }
+
+  .page{
+    padding-top:120px;
+  }
+
+  h1{
+    font-size:55px;
+    letter-spacing:-4px;
+  }
+
+  .tool-grid{
+    grid-template-columns:1fr;
+  }
+
+  .section-title{
+    display:block;
+  }
+
+  .section-title p{
+    margin-top:7px;
+  }
 }
-</style></head><body><div class="nav-wrap">
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<div class="nav-wrap">
+
 <nav>
-<a class="logo" href="index.html">VIDZ.</a><div class="nav-links">
-<a href="index.html">Home</a>
-<a href="About.html">About</a>
-<a class="active" href="Projects.html">Project</a>
-<a href="Contact.html">Contact</a>
-<button class="theme" id="themeButton">🌙</button>
+
+<a class="logo" href="index.html">
+VIDZ.
+</a>
+
+<div class="nav-links">
+
+<a href="index.html">
+Home
+</a>
+
+<a href="About.html">
+About
+</a>
+
+<a class="active" href="Projects.html">
+Projects
+</a>
+
+<a href="Contact.html">
+Contact
+</a>
+
+<button
+class="theme"
+id="themeButton"
+type="button">
+🌙
+</button>
+
 </div>
+
 </nav>
-</div><main class="page"><div class="badge">MY WORK // DIGITAL LAB</div><h1>
-PROJECT<br>
-<span>VIDZ.</span>
-</h1><p class="intro">
-Kumpulan project, eksperimen, dan ide yang sedang
-atau pernah dibuat di Digital Space VIDZ.
-Sebagian serius, sebagian eksperimen, dan sebagian...
-ya, karena gabut 🗿.
-</p><div class="projects"><div class="project">
-<div class="number">PROJECT // 01</div>
-<div class="icon">🌐</div>
-<h2>VIDZ-Web</h2>
-<p>
-Website personal utama yang menjadi tempat
-eksperimen HTML, CSS, JavaScript, UI,
-animasi, dan berbagai fitur web.
-</p>
-<div class="status">ACTIVE</div>
-</div><div class="project">
-<div class="number">PROJECT // 02</div>
-<div class="icon">⚡</div>
-<h2>Web Experiments</h2>
-<p>
-Kumpulan eksperimen visual seperti glitch effect,
-interactive elements, responsive layout,
-dan berbagai ide random.
-</p>
-<div class="status">EXPERIMENTAL</div>
-</div><div class="project">
-<div class="number">PROJECT // 03</div>
-<div class="icon">🚀</div>
-<h2>Future Project</h2>
-<p>
-Sebuah project yang masih berada di balik layar.
-Konsepnya belum dibuka sampai waktunya tiba.
-</p>
-<div class="status">COMING SOON</div>
-</div></div><a class="back" href="index.html">← Kembali ke Home</a>
 
-</main><footer>
-© 2026 <span>VIDZ</span> — Digital Space
-</footer><script>
-const themeButton=document.getElementById("themeButton");
+</div>
 
-themeButton.onclick=()=>{
+
+<main class="page">
+
+<div class="container">
+
+<div class="badge">
+VIDZ DIGITAL SPACE
+</div>
+
+<h1>
+TOOLS &<br>
+<span>PROJECTS.</span>
+</h1>
+
+<p class="intro">
+Kumpulan tools yang dirancang supaya berguna
+untuk kebutuhan sehari-hari, sekaligus project
+dan eksperimen yang sedang dikembangkan di
+VIDZ Digital Space.
+</p>
+
+
+<!-- TOOLS -->
+
+<section class="section">
+
+<div class="section-title">
+
+<h2>🧰 Useful Tools</h2>
+
+<p>TOOLS // BROWSER BASED</p>
+
+</div>
+
+
+<div class="tool-grid">
+
+
+<div class="tool-card">
+
+<div class="icon">
+🧮
+</div>
+
+<h3>
+Calculator
+</h3>
+
+<p>
+Kalkulator sederhana untuk membantu
+perhitungan matematika sehari-hari.
+</p>
+
+<span class="tool-status">
+READY TO BUILD
+</span>
+
+</div>
+
+
+<div class="tool-card">
+
+<div class="icon">
+🔄
+</div>
+
+<h3>
+Unit Converter
+</h3>
+
+<p>
+Konversi panjang, berat, suhu, dan
+satuan lainnya secara cepat.
+</p>
+
+<span class="tool-status">
+READY TO BUILD
+</span>
+
+</div>
+
+
+<div class="tool-card">
+
+<div class="icon">
+🔐
+</div>
+
+<h3>
+Password Generator
+</h3>
+
+<p>
+Membuat password acak dengan kombinasi
+huruf, angka, dan simbol.
+</p>
+
+<span class="tool-status">
+READY TO BUILD
+</span>
+
+</div>
+
+
+<div class="tool-card">
+
+<div class="icon">
+📝
+</div>
+
+<h3>
+Quick Notes
+</h3>
+
+<p>
+Tempat mencatat teks singkat langsung
+di browser.
+</p>
+
+<span class="tool-status">
+READY TO BUILD
+</span>
+
+</div>
+
+
+<div class="tool-card">
+
+<div class="icon">
+⏱️
+</div>
+
+<h3>
+Timer & Stopwatch
+</h3>
+
+<p>
+Timer dan stopwatch sederhana untuk
+belajar, olahraga, atau aktivitas lainnya.
+</p>
+
+<span class="tool-status">
+READY TO BUILD
+</span>
+
+</div>
+
+
+<div class="tool-card">
+
+<div class="icon">
+📱
+</div>
+
+<h3>
+QR Generator
+</h3>
+
+<p>
+Membuat QR code dari teks atau URL
+secara praktis.
+</p>
+
+<span class="tool-status">
+READY TO BUILD
+</span>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- PROJECTS -->
+
+<section class="section">
+
+<div class="section-title">
+
+<h2>🚀 My Projects</h2>
+
+<p>PROJECT // EXPERIMENT</p>
+
+</div>
+
+
+<div class="project-grid">
+
+
+<div class="project-card">
+
+<div class="project-number">
+PROJECT // 01
+</div>
+
+<h3>
+VIDZ-Web
+</h3>
+
+<p>
+Website personal yang menjadi pusat
+Digital Space VIDZ. Dibangun dari HTML,
+CSS, dan JavaScript lalu dipublikasikan
+menggunakan Cloudflare.
+</p>
+
+<div class="tags">
+
+<span class="tag">HTML</span>
+<span class="tag">CSS</span>
+<span class="tag">JAVASCRIPT</span>
+<span class="tag">CLOUDFLARE</span>
+
+</div>
+
+</div>
+
+
+<div class="project-card">
+
+<div class="project-number">
+PROJECT // 02
+</div>
+
+<h3>
+Useful Tools Hub
+</h3>
+
+<p>
+Kumpulan tools browser-based yang dibuat
+untuk mengubah VIDZ-Web dari sekadar
+personal website menjadi website yang
+bisa digunakan orang lain.
+</p>
+
+<div class="tags">
+
+<span class="tag">TOOLS</span>
+<span class="tag">UTILITY</span>
+<span class="tag">JAVASCRIPT</span>
+
+</div>
+
+</div>
+
+
+<div class="project-card">
+
+<div class="project-number">
+PROJECT // 03
+</div>
+
+<h3>
+Web Experiments
+</h3>
+
+<p>
+Tempat menguji animasi, UI, JavaScript,
+efek visual, dan berbagai eksperimen
+web lainnya.
+</p>
+
+<div class="tags">
+
+<span class="tag">EXPERIMENTAL</span>
+<span class="tag">UI</span>
+<span class="tag">ANIMATION</span>
+
+</div>
+
+</div>
+
+
+<div class="project-card">
+
+<div class="project-number">
+PROJECT // 04
+</div>
+
+<h3>
+VIDZ System
+</h3>
+
+<p>
+Eksperimen interface bertema terminal
+dengan glitch effect dan hidden Easter egg
+yang tersembunyi di dalam website.
+</p>
+
+<div class="tags">
+
+<span class="tag">GLITCH</span>
+<span class="tag">EASTER EGG</span>
+<span class="tag">UI</span>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="future">
+
+<h3>
+⚡ Future Development
+</h3>
+
+<p>
+VIDZ-Web masih terus dikembangkan.
+Target berikutnya adalah membuat tools
+yang benar-benar bisa digunakan langsung,
+meningkatkan performa, dan menambahkan
+fitur baru secara bertahap.
+</p>
+
+</div>
+
+
+<a class="back" href="index.html">
+← Kembali ke Home
+</a>
+
+</section>
+
+</div>
+
+</main>
+
+
+<footer>
+
+© 2026 <span>VIDZ</span>
+— Digital Space
+
+</footer>
+
+
+<script>
+
+const themeButton =
+document.getElementById("themeButton");
+
+themeButton.addEventListener(
+"click",
+function(){
+
   document.body.classList.toggle("light");
-  themeButton.textContent=
-    document.body.classList.contains("light")?"☀️":"🌙";
-};
-</script></body>
+
+  themeButton.textContent =
+    document.body.classList.contains("light")
+    ? "☀️"
+    : "🌙";
+
+}
+);
+
+</script>
+
+</body>
 </html>
