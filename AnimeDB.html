@@ -4,191 +4,448 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="theme-color" content="#050816">
-<title>VIDZ — AnimeDB V2</title>
+<title>VIDZ — AnimeDB</title>
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
+
 body{
-  font-family:Arial,Helvetica,sans-serif;
-  background:#050816;color:#f5f7ff;
-  min-height:100vh;padding-bottom:60px
+font-family:Arial,Helvetica,sans-serif;
+background:#050816;
+color:#f5f7ff;
+min-height:100vh;
+padding-bottom:60px;
 }
+
 body:before{
-  content:"";position:fixed;inset:0;z-index:-2;
-  background:
-  radial-gradient(circle at 15% 10%,#00e5ff18,transparent 30%),
-  radial-gradient(circle at 85% 90%,#7c3aed18,transparent 30%),#050816
+content:"";
+position:fixed;
+inset:0;
+z-index:-2;
+background:
+radial-gradient(circle at 15% 10%,#00e5ff18,transparent 30%),
+radial-gradient(circle at 85% 90%,#7c3aed18,transparent 30%),
+#050816;
 }
+
 body:after{
-  content:"";position:fixed;inset:0;z-index:-1;opacity:.035;
-  background-image:linear-gradient(#fff 1px,transparent 1px),
-  linear-gradient(90deg,#fff 1px,transparent 1px);
-  background-size:55px 55px;pointer-events:none
+content:"";
+position:fixed;
+inset:0;
+z-index:-1;
+opacity:.035;
+background-image:
+linear-gradient(#fff 1px,transparent 1px),
+linear-gradient(90deg,#fff 1px,transparent 1px);
+background-size:55px 55px;
+pointer-events:none;
 }
-button,input,textarea,select{font:inherit}
+
+button,input,textarea,select{
+font:inherit;
+}
 
 nav{
- position:sticky;top:0;z-index:50;display:flex;
- justify-content:space-between;align-items:center;
- padding:15px 6%;background:#050816dd;
- backdrop-filter:blur(18px);border-bottom:1px solid #ffffff0d
+position:sticky;
+top:0;
+z-index:50;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 6%;
+background:#050816dd;
+backdrop-filter:blur(18px);
+border-bottom:1px solid #ffffff0d;
 }
-.logo{
- color:#00e5ff;font-size:25px;font-weight:900;
- letter-spacing:-2px;text-shadow:0 0 20px #00e5ff
-}
-nav a{color:#8fa0b5;text-decoration:none;font-size:12px;margin-left:15px}
-nav a:hover{color:#00e5ff}
 
-.container{width:min(1180px,92%);margin:auto}
-.header{text-align:center;padding:60px 0 35px}
-.badge{
- display:inline-block;padding:7px 12px;border:1px solid #00e5ff33;
- border-radius:30px;color:#00e5ff;font-size:9px;
- letter-spacing:2px;margin-bottom:15px
+.logo{
+color:#00e5ff;
+font-size:25px;
+font-weight:900;
+letter-spacing:-2px;
+text-shadow:0 0 20px #00e5ff;
 }
-.header h1{font-size:clamp(40px,7vw,75px);letter-spacing:-4px}
-.header h1 span{color:#00e5ff;text-shadow:0 0 25px #00e5ff66}
+
+nav a{
+color:#8fa0b5;
+text-decoration:none;
+font-size:12px;
+margin-left:15px;
+}
+
+nav a:hover{
+color:#00e5ff;
+}
+
+.container{
+width:min(1180px,92%);
+margin:auto;
+}
+
+.header{
+text-align:center;
+padding:60px 0 35px;
+}
+
+.badge{
+display:inline-block;
+padding:7px 12px;
+border:1px solid #00e5ff33;
+border-radius:30px;
+color:#00e5ff;
+font-size:9px;
+letter-spacing:2px;
+margin-bottom:15px;
+}
+
+.header h1{
+font-size:clamp(40px,7vw,75px);
+letter-spacing:-4px;
+}
+
+.header h1 span{
+color:#00e5ff;
+text-shadow:0 0 25px #00e5ff66;
+}
+
 .header p{
- color:#7d8da2;max-width:700px;margin:15px auto;
- line-height:1.7;font-size:13px
+color:#7d8da2;
+max-width:720px;
+margin:15px auto;
+line-height:1.7;
+font-size:13px;
 }
 
 .compare{
- display:grid;grid-template-columns:1fr 70px 1fr;
- gap:18px;align-items:center
+display:grid;
+grid-template-columns:1fr 70px 1fr;
+gap:18px;
+align-items:center;
 }
+
 .card{
- background:#0b1425dd;border:1px solid #ffffff10;
- border-radius:22px;padding:24px;box-shadow:0 20px 60px #0005
+background:#0b1425dd;
+border:1px solid #ffffff10;
+border-radius:22px;
+padding:24px;
+box-shadow:0 20px 60px #0005;
 }
-.card h2{color:#00e5ff;font-size:12px;letter-spacing:2px;margin-bottom:15px}
+
+.card h2{
+color:#00e5ff;
+font-size:12px;
+letter-spacing:2px;
+margin-bottom:15px;
+}
 
 input,textarea,select{
- width:100%;background:#050a15;color:white;
- border:1px solid #ffffff16;border-radius:11px;
- padding:12px;outline:none
+width:100%;
+background:#050a15;
+color:white;
+border:1px solid #ffffff16;
+border-radius:11px;
+padding:12px;
+outline:none;
 }
+
 input:focus,textarea:focus,select:focus{
- border-color:#00e5ff77;box-shadow:0 0 20px #00e5ff12
+border-color:#00e5ff77;
+box-shadow:0 0 20px #00e5ff12;
 }
 
 .vs{
- width:62px;height:62px;display:flex;align-items:center;
- justify-content:center;border-radius:50%;
- border:1px solid #00e5ff55;color:#00e5ff;
- font-weight:900;box-shadow:0 0 30px #00e5ff18
+width:62px;
+height:62px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:50%;
+border:1px solid #00e5ff55;
+color:#00e5ff;
+font-weight:900;
+box-shadow:0 0 30px #00e5ff18;
 }
 
 .compare-btn{
- width:100%;margin-top:20px;padding:15px;border:0;
- border-radius:12px;background:#00e5ff;color:#001017;
- font-weight:900;cursor:pointer;transition:.2s
+width:100%;
+margin-top:20px;
+padding:15px;
+border:0;
+border-radius:12px;
+background:#00e5ff;
+color:#001017;
+font-weight:900;
+cursor:pointer;
+transition:.2s;
 }
-.compare-btn:hover{transform:translateY(-3px);box-shadow:0 10px 30px #00e5ff33}
 
-.result{display:none;margin-top:30px;animation:appear .5s ease}
-.result.show{display:block}
+.compare-btn:hover{
+transform:translateY(-3px);
+box-shadow:0 10px 30px #00e5ff33;
+}
+
+.result{
+display:none;
+margin-top:30px;
+animation:appear .5s ease;
+}
+
+.result.show{
+display:block;
+}
+
 .result-head{
- text-align:center;padding:28px;border:1px solid #00ff9d33;
- background:#00150ddd;border-radius:20px 20px 0 0
+text-align:center;
+padding:28px;
+border:1px solid #00ff9d33;
+background:#00150ddd;
+border-radius:20px 20px 0 0;
 }
-.result-head small{color:#00ff9d;letter-spacing:2px}
+
+.result-head small{
+color:#00ff9d;
+letter-spacing:2px;
+}
+
 .winner{
- margin-top:8px;font-size:clamp(28px,6vw,55px);
- font-weight:900;color:#fff;text-shadow:0 0 25px #00ff9d88
+margin-top:8px;
+font-size:clamp(28px,6vw,55px);
+font-weight:900;
+color:#fff;
+text-shadow:0 0 25px #00ff9d88;
 }
-.result-status{
- margin-top:10px;color:#7d8da2;font-size:12px
+
+.status{
+margin-top:10px;
+font-size:11px;
+color:#7d8da2;
 }
+
 .reason{
- padding:25px;background:#091321dd;
- border:1px solid #ffffff0d;border-top:0;
- border-radius:0 0 20px 20px
+padding:25px;
+background:#091321dd;
+border:1px solid #ffffff0d;
+border-top:0;
+border-radius:0 0 20px 20px;
 }
-.reason h3{color:#00e5ff;margin-bottom:12px}
-.reason p{color:#aeb9c8;line-height:1.8;font-size:13px}
+
+.reason h3{
+color:#00e5ff;
+margin-bottom:12px;
+}
+
+.reason p{
+color:#aeb9c8;
+line-height:1.8;
+font-size:13px;
+}
 
 .battle-grid{
- display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px;
+margin-top:20px;
 }
-.battle-box{
- background:#ffffff05;border:1px solid #ffffff0b;
- border-radius:14px;padding:15px
-}
-.battle-box h4{color:#00e5ff;margin-bottom:10px}
-.battle-box div{
- color:#c9d1dc;font-size:11px;line-height:1.7;margin:5px 0
-}
-.battle-box b{color:#71839a}
 
-.section{margin-top:50px}
-.section-title{margin-bottom:18px}
-.section-title small{color:#00e5ff;letter-spacing:2px;font-size:9px}
-.section-title h2{margin-top:7px;font-size:28px}
+.battle-box{
+background:#ffffff05;
+border:1px solid #ffffff0b;
+border-radius:14px;
+padding:15px;
+}
+
+.battle-box h4{
+color:#00e5ff;
+margin-bottom:10px;
+}
+
+.battle-box div{
+color:#c9d1dc;
+font-size:11px;
+line-height:1.7;
+margin:5px 0;
+}
+
+.battle-box b{
+color:#71839a;
+}
+
+.analysis{
+margin-top:18px;
+padding:15px;
+border-radius:12px;
+background:#020611;
+border:1px solid #00e5ff18;
+font:11px monospace;
+line-height:1.7;
+white-space:pre-wrap;
+color:#91a4ba;
+}
+
+.section{
+margin-top:50px;
+}
+
+.section-title{
+margin-bottom:18px;
+}
+
+.section-title small{
+color:#00e5ff;
+letter-spacing:2px;
+font-size:9px;
+}
+
+.section-title h2{
+margin-top:7px;
+font-size:28px;
+}
 
 .database{
- display:grid;grid-template-columns:repeat(3,1fr);gap:14px
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:14px;
 }
+
 .character{
- padding:20px;border-radius:18px;background:#0b1425cc;
- border:1px solid #ffffff0d
+padding:20px;
+border-radius:18px;
+background:#0b1425cc;
+border:1px solid #ffffff0d;
 }
-.character h3{color:#00e5ff;margin-bottom:5px}
-.character .key{color:#00ff9d;font-size:10px;margin-bottom:4px}
-.character .verse{color:#68798e;font-size:11px;margin-bottom:12px}
+
+.character h3{
+color:#00e5ff;
+margin-bottom:5px;
+}
+
+.character .key{
+color:#00ff9d;
+font-size:10px;
+margin-bottom:4px;
+}
+
+.character .verse{
+color:#68798e;
+font-size:11px;
+margin-bottom:12px;
+}
+
 .character p{
- color:#a7b2c0;font-size:11px;line-height:1.65;margin:3px 0
+color:#a7b2c0;
+font-size:11px;
+line-height:1.65;
+margin:3px 0;
 }
+
 .character button{
- margin-top:12px;padding:7px 9px;background:#00e5ff0b;
- border:1px solid #00e5ff22;color:#00e5ff;
- border-radius:8px;cursor:pointer;font-size:10px
+margin-top:12px;
+padding:7px 9px;
+background:#00e5ff0b;
+border:1px solid #00e5ff22;
+color:#00e5ff;
+border-radius:8px;
+cursor:pointer;
+font-size:10px;
 }
 
 .form-grid{
- display:grid;grid-template-columns:1fr 1fr;gap:12px
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px;
 }
-.field{margin-bottom:12px}
+
+.field{
+margin-bottom:12px;
+}
+
 .field label{
- display:block;color:#728299;font-size:10px;margin-bottom:6px
+display:block;
+color:#728299;
+font-size:10px;
+margin-bottom:6px;
 }
-.full{grid-column:1/-1}
+
+.full{
+grid-column:1/-1;
+}
+
 .save{
- padding:12px 18px;border:0;border-radius:10px;
- background:#00ff9d;color:#00150d;font-weight:bold;cursor:pointer
+padding:12px 18px;
+border:0;
+border-radius:10px;
+background:#00ff9d;
+color:#00150d;
+font-weight:bold;
+cursor:pointer;
 }
+
 .danger{
- padding:12px 18px;border:1px solid #ff456533;
- border-radius:10px;background:#ff45650b;color:#ff7188;
- cursor:pointer;margin-left:8px
+padding:12px 18px;
+border:1px solid #ff456533;
+border-radius:10px;
+background:#ff45650b;
+color:#ff7188;
+cursor:pointer;
+margin-left:8px;
 }
 
 .notice{
- margin-top:20px;padding:13px;border:1px solid #ffffff0d;
- border-radius:12px;color:#697a90;font-size:10px;line-height:1.6
-}
-
-.log{
- margin-top:20px;background:#020611;border:1px solid #00e5ff18;
- border-radius:14px;padding:15px;color:#6e849b;
- font:11px monospace;white-space:pre-wrap;line-height:1.6
+margin-top:20px;
+padding:13px;
+border:1px solid #ffffff0d;
+border-radius:12px;
+color:#697a90;
+font-size:10px;
+line-height:1.6;
 }
 
 @keyframes appear{
- from{opacity:0;transform:translateY(15px)}
- to{opacity:1;transform:translateY(0)}
+from{
+opacity:0;
+transform:translateY(15px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
 }
 
 @media(max-width:750px){
- .compare{grid-template-columns:1fr}
- .vs{margin:auto}
- .database{grid-template-columns:1fr}
- .form-grid{grid-template-columns:1fr}
- .full{grid-column:auto}
- .battle-grid{grid-template-columns:1fr}
- nav{padding:13px 4%}
- nav a{margin-left:7px;font-size:10px}
+
+.compare{
+grid-template-columns:1fr;
+}
+
+.vs{
+margin:auto;
+}
+
+.database{
+grid-template-columns:1fr;
+}
+
+.form-grid{
+grid-template-columns:1fr;
+}
+
+.full{
+grid-column:auto;
+}
+
+.battle-grid{
+grid-template-columns:1fr;
+}
+
+nav{
+padding:13px 4%;
+}
+
+nav a{
+margin-left:7px;
+font-size:10px;
+}
+
 }
 </style>
 </head>
@@ -196,576 +453,1148 @@ input:focus,textarea:focus,select:focus{
 <body>
 
 <nav>
- <div class="logo">VIDZ.</div>
- <div>
-  <a href="index.html">Home</a>
-  <a href="Projects.html">Projects</a>
-  <a href="AnimeDB.html">AnimeDB</a>
- </div>
+
+<div class="logo">VIDZ.</div>
+
+<div>
+<a href="index.html">Home</a>
+<a href="Projects.html">Projects</a>
+<a href="AnimeDB.html">AnimeDB</a>
+</div>
+
 </nav>
 
 <div class="container">
 
 <header class="header">
- <div class="badge">VIDZ // ANIMEDB V2</div>
- <h1>ANIME<span>DB</span></h1>
- <p>
-  Character battle database dengan Key, Tier, AP, Speed,
-  Durability, Abilities, Resistances, Feats dan Scaling.
- </p>
+
+<div class="badge">
+VIDZ // CHARACTER DATABASE
+</div>
+
+<h1>
+ANIME<span>DB</span>
+</h1>
+
+<p>
+Powerscaling comparison engine.
+Pilih dua karakter dan database akan membandingkan
+Key, Tier, AP, Speed, Durability, Hax, Resistance,
+Feats dan Scaling.
+</p>
+
 </header>
+
+
+<!-- =========================
+     COMPARE
+========================= -->
 
 <section class="compare">
 
- <div class="card">
-  <h2>CHARACTER 01</h2>
-  <input id="char1" list="characterList" placeholder="Contoh: Yogiri Takatou">
- </div>
+<div class="card">
 
- <div class="vs">VS</div>
+<h2>CHARACTER 01</h2>
 
- <div class="card">
-  <h2>CHARACTER 02</h2>
-  <input id="char2" list="characterList" placeholder="Contoh: Saitama">
- </div>
+<select id="char1">
+
+<option value="">
+-- Pilih Character --
+</option>
+
+</select>
+
+</div>
+
+
+<div class="vs">
+VS
+</div>
+
+
+<div class="card">
+
+<h2>CHARACTER 02</h2>
+
+<select id="char2">
+
+<option value="">
+-- Pilih Character --
+</option>
+
+</select>
+
+</div>
 
 </section>
 
-<datalist id="characterList"></datalist>
 
-<button class="compare-btn" onclick="compareCharacters()">
- ⚔ COMPARE CHARACTERS
+<button
+class="compare-btn"
+onclick="compareCharacters()"
+>
+⚔ COMPARE CHARACTERS
 </button>
 
-<section class="result" id="result">
 
- <div class="result-head">
-  <small>COMPARISON RESULT</small>
-  <div class="winner" id="winner">—</div>
-  <div class="result-status" id="resultStatus">—</div>
- </div>
+<!-- =========================
+     RESULT
+========================= -->
 
- <div class="reason">
-  <h3>Battle Analysis</h3>
-  <p id="reasonText"></p>
+<section
+class="result"
+id="result"
+>
 
-  <div class="battle-grid">
+<div class="result-head">
 
-   <div class="battle-box">
-    <h4 id="battleName1">Character 1</h4>
-    <div><b>Key:</b> <span id="key1">—</span></div>
-    <div><b>Tier:</b> <span id="tier1">—</span></div>
-    <div><b>AP:</b> <span id="ap1">—</span></div>
-    <div><b>Speed:</b> <span id="speed1">—</span></div>
-    <div><b>Durability:</b> <span id="dur1">—</span></div>
-    <div><b>Hax:</b> <span id="hax1">—</span></div>
-   </div>
+<small>
+COMPARISON RESULT
+</small>
 
-   <div class="battle-box">
-    <h4 id="battleName2">Character 2</h4>
-    <div><b>Key:</b> <span id="key2">—</span></div>
-    <div><b>Tier:</b> <span id="tier2">—</span></div>
-    <div><b>AP:</b> <span id="ap2">—</span></div>
-    <div><b>Speed:</b> <span id="speed2">—</span></div>
-    <div><b>Durability:</b> <span id="dur2">—</span></div>
-    <div><b>Hax:</b> <span id="hax2">—</span></div>
-   </div>
+<div
+class="winner"
+id="winner"
+>
+—
+</div>
 
-  </div>
+<div
+class="status"
+id="status"
+>
+—
+</div>
 
-  <div class="log" id="analysisLog"></div>
- </div>
+</div>
+
+
+<div class="reason">
+
+<h3>
+Battle Analysis
+</h3>
+
+<p id="reasonText">
+—
+</p>
+
+
+<div class="battle-grid">
+
+
+<div class="battle-box">
+
+<h4 id="name1">
+Character 1
+</h4>
+
+<div>
+<b>Key:</b>
+<span id="key1">—</span>
+</div>
+
+<div>
+<b>Tier:</b>
+<span id="tier1">—</span>
+</div>
+
+<div>
+<b>AP:</b>
+<span id="ap1">—</span>
+</div>
+
+<div>
+<b>Speed:</b>
+<span id="speed1">—</span>
+</div>
+
+<div>
+<b>Durability:</b>
+<span id="dur1">—</span>
+</div>
+
+<div>
+<b>Abilities:</b>
+<span id="hax1">—</span>
+</div>
+
+<div>
+<b>Resistance:</b>
+<span id="res1">—</span>
+</div>
+
+</div>
+
+
+<div class="battle-box">
+
+<h4 id="name2">
+Character 2
+</h4>
+
+<div>
+<b>Key:</b>
+<span id="key2">—</span>
+</div>
+
+<div>
+<b>Tier:</b>
+<span id="tier2">—</span>
+</div>
+
+<div>
+<b>AP:</b>
+<span id="ap2">—</span>
+</div>
+
+<div>
+<b>Speed:</b>
+<span id="speed2">—</span>
+</div>
+
+<div>
+<b>Durability:</b>
+<span id="dur2">—</span>
+</div>
+
+<div>
+<b>Abilities:</b>
+<span id="hax2">—</span>
+</div>
+
+<div>
+<b>Resistance:</b>
+<span id="res2">—</span>
+</div>
+
+</div>
+
+</div>
+
+
+<div
+class="analysis"
+id="analysis"
+>
+Waiting for comparison...
+</div>
+
+</div>
 
 </section>
+
+
+<!-- =========================
+     DATABASE
+========================= -->
 
 <section class="section">
 
- <div class="section-title">
-  <small>LOCAL DATABASE</small>
-  <h2>Character Database</h2>
- </div>
+<div class="section-title">
 
- <div class="database" id="database"></div>
+<small>
+LOCAL DATABASE
+</small>
+
+<h2>
+Character Database
+</h2>
+
+</div>
+
+<div
+class="database"
+id="database"
+>
+</div>
 
 </section>
+
+
+<!-- =========================
+     ADD
+========================= -->
 
 <section class="section">
 
- <div class="section-title">
-  <small>DATABASE MANAGER</small>
-  <h2>Tambah Character</h2>
- </div>
+<div class="section-title">
 
- <div class="card">
+<small>
+DATABASE MANAGER
+</small>
 
-  <div class="form-grid">
+<h2>
+Tambah Character
+</h2>
 
-   <div class="field">
-    <label>Nama Character</label>
-    <input id="newName" placeholder="Nama">
-   </div>
+</div>
 
-   <div class="field">
-    <label>Key / Version</label>
-    <input id="newKey" placeholder="Contoh: Light Novel">
-   </div>
 
-   <div class="field">
-    <label>Verse</label>
-    <input id="newVerse" placeholder="Verse / series">
-   </div>
+<div class="card">
 
-   <div class="field">
-    <label>Tier</label>
-    <input id="newTier" placeholder="Contoh: 1-A">
-   </div>
+<div class="form-grid">
 
-   <div class="field">
-    <label>Attack Potency</label>
-    <input id="newAP" placeholder="AP">
-   </div>
 
-   <div class="field">
-    <label>Speed</label>
-    <input id="newSpeed" placeholder="Speed">
-   </div>
+<div class="field">
 
-   <div class="field">
-    <label>Durability</label>
-    <input id="newDurability" placeholder="Durability">
-   </div>
+<label>
+Nama Character
+</label>
 
-   <div class="field">
-    <label>Hax Power</label>
-    <input id="newHaxPower" type="number" min="0" max="100"
-           placeholder="0-100">
-   </div>
+<input
+id="newName"
+placeholder="Nama character"
+>
 
-   <div class="field full">
-    <label>Abilities / Hax</label>
-    <textarea id="newHax" rows="3"></textarea>
-   </div>
+</div>
 
-   <div class="field full">
-    <label>Resistances</label>
-    <textarea id="newResistance" rows="3"></textarea>
-   </div>
 
-   <div class="field full">
-    <label>Feats</label>
-    <textarea id="newFeats" rows="4"></textarea>
-   </div>
+<div class="field">
 
-   <div class="field full">
-    <label>Scaling</label>
-    <textarea id="newScaling" rows="3"></textarea>
-   </div>
+<label>
+Key / Version
+</label>
 
-   <div class="field full">
-    <label>Source</label>
-    <input id="newSource"
-           placeholder="Sumber / referensi">
-   </div>
+<input
+id="newKey"
+placeholder="Contoh: Light Novel"
+>
 
-  </div>
+</div>
 
-  <button class="save" onclick="addCharacter()">
-   + SIMPAN CHARACTER
-  </button>
 
-  <button class="danger" onclick="resetDatabase()">
-   RESET
-  </button>
+<div class="field">
 
- </div>
+<label>
+Verse
+</label>
+
+<input
+id="newVerse"
+placeholder="Verse"
+>
+
+</div>
+
+
+<div class="field">
+
+<label>
+Tier
+</label>
+
+<input
+id="newTier"
+placeholder="Contoh: 1-A"
+>
+
+</div>
+
+
+<div class="field">
+
+<label>
+Attack Potency
+</label>
+
+<input
+id="newAP"
+placeholder="Attack Potency"
+>
+
+</div>
+
+
+<div class="field">
+
+<label>
+Speed
+</label>
+
+<input
+id="newSpeed"
+placeholder="Speed"
+>
+
+</div>
+
+
+<div class="field">
+
+<label>
+Durability
+</label>
+
+<input
+id="newDurability"
+placeholder="Durability"
+>
+
+</div>
+
+
+<div class="field">
+
+<label>
+Hax Weight
+</label>
+
+<input
+id="newHaxPower"
+type="number"
+min="0"
+max="100"
+placeholder="0 - 100"
+>
+
+</div>
+
+
+<div class="field full">
+
+<label>
+Abilities / Hax
+</label>
+
+<textarea
+id="newHax"
+rows="3"
+placeholder="Abilities..."
+></textarea>
+
+</div>
+
+
+<div class="field full">
+
+<label>
+Resistance
+</label>
+
+<textarea
+id="newResistance"
+rows="3"
+placeholder="Resistance..."
+></textarea>
+
+</div>
+
+
+<div class="field full">
+
+<label>
+Feats
+</label>
+
+<textarea
+id="newFeats"
+rows="4"
+placeholder="Feats..."
+></textarea>
+
+</div>
+
+
+<div class="field full">
+
+<label>
+Scaling
+</label>
+
+<textarea
+id="newScaling"
+rows="3"
+placeholder="Scaling..."
+></textarea>
+
+</div>
+
+
+<div class="field full">
+
+<label>
+Source
+</label>
+
+<input
+id="newSource"
+placeholder="Source"
+>
+
+</div>
+
+</div>
+
+
+<button
+class="save"
+onclick="addCharacter()"
+>
++ SIMPAN CHARACTER
+</button>
+
+
+<button
+class="danger"
+onclick="resetDatabase()"
+>
+RESET DATABASE
+</button>
+
+</div>
 
 </section>
+
 
 <div class="notice">
- ⚠ AnimeDB ini adalah database powerscaling buatan lokal.
- Data sumber harus diverifikasi terhadap halaman/profil sumbernya.
- AnimeDB bukan database resmi VS Battles Wiki.
+
+Database tersimpan menggunakan LocalStorage.
+Tujuh karakter bawaan selalu tersedia setelah reset.
+Data di bawah adalah dataset powerscaling untuk pengujian
+engine dan bukan database resmi VS Battles Wiki.
+
 </div>
 
 </div>
+
 
 <script>
 
-/* =========================================
-   DATABASE
-========================================= */
+/* =====================================================
+   DATABASE VERSION
+===================================================== */
 
-const STORAGE_KEY="VIDZ_ANIME_DB_V2";
+const STORAGE_KEY="VIDZ_ANIME_DB_V3";
 
-const defaultCharacters=[
+
+/* =====================================================
+   DEFAULT DATABASE
+===================================================== */
+
+const DEFAULT_DATABASE=[
 
 {
- name:"Yogiri Takatou",
- key:"Light Novel",
- verse:"My Instant Death Ability Is So Overpowered",
- tier:"1-A",
- ap:"1-A / mengikuti key dan scaling yang dimasukkan",
- speed:"Tidak terbatas / mengikuti key",
- durability:"1-A / mengikuti scaling",
- haxPower:100,
- hax:"Instant Death, Death Manipulation, existence-targeting abilities, resistances",
- resistance:"Resistance terhadap berbagai efek supernatural sesuai key",
- feats:"Kemampuan Instant Death dapat menentukan kematian target tanpa bergantung pada serangan fisik biasa.",
- scaling:"Scaling harus mengikuti feats dan profile key yang dipakai.",
- source:"VS Battles Wiki / source material — verify current profile"
+name:"Yogiri Takatou",
+key:"Light Novel",
+verse:"My Instant Death Ability Is So Overpowered",
+tier:"1-A",
+ap:"1-A",
+speed:"Irrelevant / sesuai key",
+durability:"1-A",
+hax:100,
+
+abilities:
+"Instant Death, Death Manipulation, existence-targeting effects, resistances",
+
+resistance:
+"Berbagai resistance sesuai profile/key",
+
+feats:
+"Instant Death dapat menyebabkan kematian target melalui kemampuan khususnya.",
+
+scaling:
+"Scaling harus mengikuti key dan feats yang digunakan.",
+
+source:
+"VS Battles Wiki / source material"
 },
 
-{
- name:"Son Goku",
- key:"CC Goku",
- verse:"Dragon Ball Heroes",
- tier:"High 1-B",
- ap:"High 1-B / mengikuti key dan scaling",
- speed:"Immeasurable+ / mengikuti key",
- durability:"High 1-B",
- haxPower:82,
- hax:"Ki manipulation, Ultra Instinct variants, teleportation, energy manipulation",
- resistance:"Berbagai resistance dari scaling Dragon Ball",
- feats:"Bertarung melawan berbagai karakter tingkat tinggi dalam Dragon Ball Heroes.",
- scaling:"Scaling bergantung pada key dan chain scaling yang digunakan.",
- source:"VS Battles Wiki / Dragon Ball Heroes"
-},
 
 {
- name:"Saitama",
- key:"Manga",
- verse:"One-Punch Man",
- tier:"3-A",
- ap:"3-A+ / bergantung pada scaling",
- speed:"Massively FTL+",
- durability:"3-A",
- haxPower:45,
- hax:"Extreme physical statistics, exponential growth",
- resistance:"High physical resistance",
- feats:"Pertarungan melawan Garou dan pertumbuhan kekuatan selama pertarungan.",
- scaling:"Mengikuti feats manga dan accepted scaling.",
- source:"VS Battles Wiki / One-Punch Man manga"
+name:"Son Goku",
+key:"CC Goku",
+verse:"Dragon Ball Heroes",
+tier:"High 1-B",
+ap:"High 1-B",
+speed:"Immeasurable+",
+durability:"High 1-B",
+hax:82,
+
+abilities:
+"Ki Manipulation, Flight, Teleportation, Transformations, Ultra Instinct",
+
+resistance:
+"Resistance terhadap berbagai efek energi dan supernatural",
+
+feats:
+"Berbagai pertarungan tingkat tinggi dalam Dragon Ball Heroes.",
+
+scaling:
+"Scaling mengikuti key CC dan chain scaling yang digunakan.",
+
+source:
+"VS Battles Wiki / Dragon Ball Heroes"
 },
 
-{
- name:"Naruto Uzumaki",
- key:"Six Paths Sage Mode",
- verse:"Naruto",
- tier:"5-B",
- ap:"Planet level / bergantung pada scaling",
- speed:"Massively FTL+ / bergantung pada key",
- durability:"5-B",
- haxPower:65,
- hax:"Six Paths abilities, Truth-Seeking Balls, sensory abilities, chakra techniques",
- resistance:"Berbagai resistance dari chakra dan Six Paths abilities",
- feats:"Menggunakan Six Paths Sage Mode dan bertarung melawan ancaman tingkat tinggi.",
- scaling:"Mengikuti key dan scaling Naruto/Boruto yang digunakan.",
- source:"VS Battles Wiki / Naruto manga"
-},
 
 {
- name:"Rimuru Tempest",
- key:"Light Novel",
- verse:"That Time I Got Reincarnated as a Slime",
- tier:"1-C",
- ap:"1-C / bergantung pada key",
- speed:"Immeasurable / bergantung pada key",
- durability:"1-C",
- haxPower:94,
- hax:"Soul Manipulation, Absorption, Information Analysis, Regeneration, Causality-related abilities",
- resistance:"Berbagai resistance dari skill dan scaling",
- feats:"Mengembangkan kemampuan tingkat tinggi dan memperoleh berbagai Ultimate Skills.",
- scaling:"Bergantung pada LN key dan scaling yang diterima.",
- source:"VS Battles Wiki / Light Novel"
+name:"Saitama",
+key:"Manga",
+verse:"One-Punch Man",
+tier:"3-A",
+ap:"3-A",
+speed:"Massively FTL+",
+durability:"3-A",
+hax:45,
+
+abilities:
+"Extreme Physical Statistics, Growth, Serious Punch",
+
+resistance:
+"Resistance fisik tinggi",
+
+feats:
+"Pertarungan melawan Garou serta peningkatan kekuatan selama pertarungan.",
+
+scaling:
+"Scaling berdasarkan manga dan feats yang diterima.",
+
+source:
+"VS Battles Wiki / One-Punch Man"
 },
 
-{
- name:"Anos Voldigoad",
- key:"Light Novel",
- verse:"The Misfit of Demon King Academy",
- tier:"1-C",
- ap:"1-C / bergantung pada key",
- speed:"Immeasurable",
- durability:"1-C",
- haxPower:96,
- hax:"Source Manipulation, Magic, Resurrection, Destruction abilities, resistance",
- resistance:"Berbagai resistance terhadap magic dan source-related effects",
- feats:"Menggunakan source dan destruction abilities dalam berbagai pertarungan.",
- scaling:"Mengikuti key LN dan scaling yang digunakan.",
- source:"VS Battles Wiki / Light Novel"
-},
 
 {
- name:"IATIA",
- key:"Standard",
- verse:"World of Darkness",
- tier:"High 1-A",
- ap:"High 1-A",
- speed:"Irrelevant",
- durability:"High 1-A",
- haxPower:99,
- hax:"High-level reality/meta abilities sesuai profile",
- resistance:"Berbagai resistance tingkat tinggi sesuai profile",
- feats:"Berada pada skala cosmological/meta sesuai interpretasi profile.",
- scaling:"Harus mengikuti struktur cosmology dan profile yang digunakan.",
- source:"VS Battles Wiki / World of Darkness"
+name:"Naruto Uzumaki",
+key:"Six Paths Sage Mode",
+verse:"Naruto",
+tier:"5-B",
+ap:"5-B",
+speed:"Massively FTL+",
+durability:"5-B",
+hax:65,
+
+abilities:
+"Six Paths Senjutsu, Truth-Seeking Balls, Sensory Abilities, Chakra Manipulation",
+
+resistance:
+"Resistance melalui chakra dan Six Paths abilities",
+
+feats:
+"Memakai Six Paths Sage Mode dan menghadapi berbagai ancaman tingkat tinggi.",
+
+scaling:
+"Scaling berdasarkan key Six Paths dan chain scaling yang digunakan.",
+
+source:
+"VS Battles Wiki / Naruto"
+},
+
+
+{
+name:"Rimuru Tempest",
+key:"Light Novel",
+verse:"That Time I Got Reincarnated as a Slime",
+tier:"1-C",
+ap:"1-C",
+speed:"Immeasurable",
+durability:"1-C",
+hax:94,
+
+abilities:
+"Absorption, Soul Manipulation, Information Analysis, Regeneration, Causality-related abilities",
+
+resistance:
+"Berbagai resistance melalui skill dan Ultimate Skills",
+
+feats:
+"Mengembangkan berbagai skill tingkat tinggi dan memperoleh Ultimate Skills.",
+
+scaling:
+"Scaling mengikuti key LN dan cosmology yang digunakan.",
+
+source:
+"VS Battles Wiki / Light Novel"
+},
+
+
+{
+name:"Anos Voldigoad",
+key:"Light Novel",
+verse:"The Misfit of Demon King Academy",
+tier:"1-C",
+ap:"1-C",
+speed:"Immeasurable",
+durability:"1-C",
+hax:96,
+
+abilities:
+"Source Manipulation, Destruction, Resurrection, Magic, Time-related abilities",
+
+resistance:
+"Resistance terhadap berbagai magic dan source-related effects",
+
+feats:
+"Memakai source dan destruction abilities dalam berbagai pertarungan.",
+
+scaling:
+"Scaling mengikuti key LN dan cosmology yang digunakan.",
+
+source:
+"VS Battles Wiki / Light Novel"
+},
+
+
+{
+name:"IATIA",
+key:"Standard",
+verse:"World of Darkness",
+tier:"High 1-A",
+ap:"High 1-A",
+speed:"Irrelevant",
+durability:"High 1-A",
+hax:99,
+
+abilities:
+"High-level reality/meta abilities sesuai profile",
+
+resistance:
+"Berbagai resistance tingkat tinggi sesuai profile",
+
+feats:
+"Berada pada skala cosmological/meta dalam konteks profile yang digunakan.",
+
+scaling:
+"Scaling mengikuti cosmology dan profile yang digunakan.",
+
+source:
+"VS Battles Wiki / World of Darkness"
 }
 
 ];
 
 
-/* =========================================
+/* =====================================================
    STORAGE
-========================================= */
+===================================================== */
 
 function loadDatabase(){
 
- const saved=localStorage.getItem(STORAGE_KEY);
+let raw=localStorage.getItem(STORAGE_KEY);
 
- if(!saved){
-   localStorage.setItem(STORAGE_KEY,JSON.stringify(defaultCharacters));
-   return [...defaultCharacters];
- }
+if(!raw){
 
- try{
-   const parsed=JSON.parse(saved);
-   return Array.isArray(parsed)?parsed:[...defaultCharacters];
- }catch(e){
-   return [...defaultCharacters];
- }
+localStorage.setItem(
+STORAGE_KEY,
+JSON.stringify(DEFAULT_DATABASE)
+);
+
+return structuredClone(DEFAULT_DATABASE);
+
 }
 
-let characters=loadDatabase();
+try{
+
+let data=JSON.parse(raw);
+
+if(!Array.isArray(data)||data.length===0){
+
+return structuredClone(DEFAULT_DATABASE);
+
+}
+
+return data;
+
+}catch(error){
+
+localStorage.setItem(
+STORAGE_KEY,
+JSON.stringify(DEFAULT_DATABASE)
+);
+
+return structuredClone(DEFAULT_DATABASE);
+
+}
+
+}
+
+
+let database=loadDatabase();
+
 
 function saveDatabase(){
- localStorage.setItem(STORAGE_KEY,JSON.stringify(characters));
+
+localStorage.setItem(
+STORAGE_KEY,
+JSON.stringify(database)
+);
+
 }
 
 
-/* =========================================
-   SAFE TEXT
-========================================= */
+/* =====================================================
+   ESCAPE
+===================================================== */
 
-function escapeHTML(value){
- return String(value??"")
-  .replaceAll("&","&amp;")
-  .replaceAll("<","&lt;")
-  .replaceAll(">","&gt;")
-  .replaceAll('"',"&quot;")
-  .replaceAll("'","&#039;");
+function esc(value){
+
+return String(value??"")
+.replaceAll("&","&amp;")
+.replaceAll("<","&lt;")
+.replaceAll(">","&gt;")
+.replaceAll('"',"&quot;")
+.replaceAll("'","&#039;");
+
 }
 
 
-/* =========================================
-   RENDER
-========================================= */
+/* =====================================================
+   TIER ENGINE
+===================================================== */
 
-function renderDatabase(){
+const TIER_VALUES={
 
- const box=document.getElementById("database");
- const list=document.getElementById("characterList");
+"10-C":1,
+"10-B":2,
+"10-A":3,
 
- box.innerHTML="";
- list.innerHTML="";
+"9-C":4,
+"9-B":5,
+"9-A":6,
 
- characters.forEach((c,i)=>{
+"8-C":7,
+"8-B":8,
+"8-A":9,
 
-  const card=document.createElement("div");
-  card.className="character";
+"7-C":10,
+"7-B":11,
+"7-A":12,
 
-  card.innerHTML=`
-   <h3>${escapeHTML(c.name)}</h3>
-   <div class="key">${escapeHTML(c.key)}</div>
-   <div class="verse">${escapeHTML(c.verse)}</div>
+"6-C":13,
+"6-B":14,
+"6-A":15,
 
-   <p><b>Tier:</b> ${escapeHTML(c.tier)}</p>
-   <p><b>AP:</b> ${escapeHTML(c.ap)}</p>
-   <p><b>Speed:</b> ${escapeHTML(c.speed)}</p>
-   <p><b>Durability:</b> ${escapeHTML(c.durability)}</p>
+"5-C":16,
+"5-B":17,
+"5-A":18,
 
-   <button onclick="selectCharacter(${i},1)">USE #1</button>
-   <button onclick="selectCharacter(${i},2)">USE #2</button>
-   <button onclick="deleteCharacter(${i})">DELETE</button>
-  `;
+"4-C":19,
+"4-B":20,
+"4-A":21,
 
-  box.appendChild(card);
+"3-C":22,
+"3-B":23,
+"3-A":24,
 
-  const option=document.createElement("option");
-  option.value=c.name;
-  list.appendChild(option);
- });
-}
+"Low 2-C":25,
+"2-C":26,
+"2-B":27,
+"2-A":28,
 
+"Low 1-C":29,
+"1-C":30,
+"High 1-C":31,
 
-/* =========================================
-   SELECT
-========================================= */
+"Low 1-B":32,
+"1-B":33,
+"High 1-B":34,
 
-function selectCharacter(index,slot){
+"Low 1-A":35,
+"1-A":36,
+"High 1-A":37,
 
- const c=characters[index];
+"Tier 0":38
 
- document.getElementById(
-   slot===1?"char1":"char2"
- ).value=c.name;
-
- window.scrollTo({top:0,behavior:"smooth"});
-}
-
-
-/* =========================================
-   FIND
-========================================= */
-
-function findCharacter(name){
- return characters.find(
-  c=>c.name.trim().toLowerCase()===
-     name.trim().toLowerCase()
- );
-}
-
-
-/* =========================================
-   TIER PARSER
-========================================= */
-
-const tierRank={
- "10-C":1,"10-B":2,"10-A":3,
- "9-C":4,"9-B":5,"9-A":6,
- "8-C":7,"8-B":8,"8-A":9,
- "7-C":10,"7-B":11,"7-A":12,
- "6-C":13,"6-B":14,"6-A":15,
- "5-C":16,"5-B":17,"5-A":18,
- "4-C":19,"4-B":20,"4-A":21,
- "3-C":22,"3-B":23,"3-A":24,
- "Low 2-C":25,"2-C":26,"2-B":27,"2-A":28,
- "Low 1-C":29,"1-C":30,"High 1-C":31,
- "Low 1-B":32,"1-B":33,"High 1-B":34,
- "Low 1-A":35,"1-A":36,"High 1-A":37,
- "Tier 0":38,"0":38
 };
 
-function parseTier(text){
 
- const s=String(text||"").toLowerCase();
+function getTierValue(tier){
 
- if(s.includes("high 1-a"))return 37;
- if(s.includes("1-a"))return 36;
- if(s.includes("low 1-a"))return 35;
+let text=String(tier||"")
+.trim()
+.toLowerCase();
 
- if(s.includes("high 1-b"))return 34;
- if(s.includes("1-b"))return 33;
- if(s.includes("low 1-b"))return 32;
+if(text.includes("tier 0")||text.includes("boundless"))
+return 38;
 
- if(s.includes("high 1-c"))return 31;
- if(s.includes("1-c"))return 30;
- if(s.includes("low 1-c"))return 29;
+if(text.includes("high 1-a"))
+return 37;
 
- if(s.includes("2-a"))return 28;
- if(s.includes("2-b"))return 27;
- if(s.includes("2-c"))return 26;
- if(s.includes("low 2-c"))return 25;
+if(text.includes("low 1-a"))
+return 35;
 
- const tiers=[
-  "3-a","3-b","3-c",
-  "4-a","4-b","4-c",
-  "5-a","5-b","5-c",
-  "6-a","6-b","6-c",
-  "7-a","7-b","7-c",
-  "8-a","8-b","8-c",
-  "9-a","9-b","9-c",
-  "10-a","10-b","10-c"
- ];
+if(text.includes("1-a"))
+return 36;
 
- for(let i=0;i<tiers.length;i++){
-   if(s.includes(tiers[i]))return tierRank[tiers[i].toUpperCase()];
- }
+if(text.includes("high 1-b"))
+return 34;
 
- if(s.includes("boundless"))return 38;
+if(text.includes("low 1-b"))
+return 32;
 
- return 0;
+if(text.includes("1-b"))
+return 33;
+
+if(text.includes("high 1-c"))
+return 31;
+
+if(text.includes("low 1-c"))
+return 29;
+
+if(text.includes("1-c"))
+return 30;
+
+if(text.includes("2-a"))
+return 28;
+
+if(text.includes("2-b"))
+return 27;
+
+if(text.includes("2-c"))
+return 26;
+
+if(text.includes("low 2-c"))
+return 25;
+
+for(let key in TIER_VALUES){
+
+if(text===key.toLowerCase())
+return TIER_VALUES[key];
+
+}
+
+return 0;
+
 }
 
 
-/* =========================================
-   TEXT MATCHING
-========================================= */
+/* =====================================================
+   SPEED ENGINE
+===================================================== */
 
-function textHas(text,words){
+function speedValue(speed){
 
- const s=String(text||"").toLowerCase();
+let s=String(speed||"").toLowerCase();
 
- return words.some(w=>s.includes(w));
+if(s.includes("irrelevant"))
+return 7;
+
+if(s.includes("immeasurable"))
+return 6;
+
+if(s.includes("infinite"))
+return 5;
+
+if(s.includes("massively ftl+"))
+return 4;
+
+if(s.includes("massively ftl"))
+return 3;
+
+if(s.includes("ftl+"))
+return 2;
+
+if(s.includes("ftl"))
+return 1;
+
+return 0;
+
 }
 
 
-/* =========================================
-   BATTLE ENGINE
-========================================= */
+/* =====================================================
+   COMPARE ENGINE
+===================================================== */
 
-function analyzeBattle(a,b){
+function analyze(a,b){
 
- let scoreA=0;
- let scoreB=0;
- let log=[];
+let scoreA=0;
+let scoreB=0;
 
- const tierA=parseTier(a.tier);
- const tierB=parseTier(b.tier);
+let reasons=[];
 
- if(tierA>tierB){
-   scoreA+=8;
-   log.push("Tier: "+a.name+" memiliki rating tier yang lebih tinggi.");
- }
- else if(tierB>tierA){
-   scoreB+=8;
-   log.push("Tier: "+b.name+" memiliki rating tier yang lebih tinggi.");
- }
- else{
-   log.push("Tier: kedua karakter berada pada rating tier yang sama/serupa.");
- }
+let tierA=getTierValue(a.tier);
+let tierB=getTierValue(b.tier);
 
- const apA=String(a.ap||"").toLowerCase();
- const apB=String(b.ap||"").toLowerCase();
 
- if(apA!==apB){
-   if(textHas(apA,["boundless","high 1-a","1-a","1-b","1-c","2-a","2-b"])){
-     scoreA+=3;
-   }
-   if(textHas(apB,["boundless","high 1-a","1-a","1-b","1-c","2-a","2-b"])){
-     scoreB+=3;
-   }
- }
+/* TIER */
 
- const speedWords=[
-  "irrelevant","immeasurable","infinite",
-  "massively ftl+","massively ftl","ftl+"
- ];
+if(tierA>tierB){
 
- const speedA=speedWords.findIndex(x=>String(a.speed).toLowerCase().includes(x));
- const speedB=speedWords.findIndex(x=>String(b.speed).toLowerCase().includes(x));
+scoreA+=10;
 
- if(speedA>=0 && speedB>=0){
-   if(speedA<speedB)scoreA+=2;
-   if(speedB<speedA)scoreB+=2;
- }
+reasons.push(
+"Tier advantage: "+a.name
+);
 
- const hpA=Number(a.haxPower)||0;
- const hpB=Number(b.haxPower)||0;
+}
 
- if(hpA>hpB)scoreA+=3;
- if(hpB>hpA)scoreB+=3;
+else if(tierB>tierA){
 
- const haxA=String(a.hax||"").toLowerCase();
- const haxB=String(b.hax||"").toLowerCase();
+scoreB+=10;
 
- if(haxA.length>haxB.length)scoreA+=1;
- if(haxB.length>haxA.length)scoreB+=1;
+reasons.push(
+"Tier advantage: "+b.name
+);
 
- if(String(a.resistance||"").length>
-    String(b.resistance||"").length)scoreA+=1;
+}
 
- if(String(b.resistance||"").length>
-    String(a.resistance||"").length)scoreB+=1;
+else{
 
- const featsA=String(a.feats||"").length;
- const featsB=String(b.feats||"").leng
+reasons.push(
+"Tier: equal/similar"
+);
+
+}
+
+
+/* SPEED */
+
+let speedA=speedValue(a.speed);
+let speedB=speedValue(b.speed);
+
+if(speedA>speedB){
+
+scoreA+=3;
+
+reasons.push(
+"Speed advantage: "+a.name
+);
+
+}
+
+else if(speedB>speedA){
+
+scoreB+=3;
+
+reasons.push(
+"Speed advantage: "+b.name
+);
+
+}
+
+
+/* HAX */
+
+let haxA=Number(a.hax)||0;
+let haxB=Number(b.hax)||0;
+
+if(haxA>haxB){
+
+scoreA+=3;
+
+reasons.push(
+"Hax/ability advantage: "+a.name
+);
+
+}
+
+else if(haxB>haxA){
+
+scoreB+=3;
+
+reasons.push(
+"Hax/ability advantage: "+b.name
+);
+
+}
+
+
+/* RESISTANCE */
+
+let resA=String(a.resistance||"").length;
+let resB=String(b.resistance||"").length;
+
+if(resA>resB)
+scoreA+=1;
+
+else if(resB>resA)
+scoreB+=1;
+
+
+/* FEATS */
+
+let featA=String(a.feats||"").length;
+let featB=String(b.feats||"").length;
+
+if(featA>featB)
+scoreA+=1;
+
+else if(featB>featA)
+scoreB+=1;
+
+
+/* FINAL */
+
+let winner=null;
+
+if(scoreA>scoreB)
+winner=a;
+
+if(scoreB>scoreA)
+winner=b;
+
+
+/* IMPORTANT:
+   If scores equal, don't automatically call it
+   inconclusive when tier differs.
+*/
+
+if(!winner && tierA!==tierB){
+
+winner=tierA>tierB?a:b;
+
+reasons.push(
+"Fallback: tier hierarchy breaks the score tie."
+);
+
+}
+
+
+return{
+
+winner,
+scoreA,
+scoreB,
+tierA,
+tierB,
+reasons
+
+};
+
+}
+
+
+/* =====================================================
+   FIND CHARACTER
+===================================================== */
+
+function find(name){
+
+return database.find(
+c=>c.name===name
+);
+
+}
+
+
+/* =====================================================
+   POPULATE SELECT
+===================================================== */
+
+function populateSelects(){
+
+let a=document.getElementById("char1");
+let b=document.getElementById("char2");
+
+a.innerHTML=
+'<option value="">-- Pilih Character --</option>';
+
+b.innerHTML=
+'<option value="">-- Pilih Character --</option>';
+
+database.forEach(c=>{
+
+let o1=document.createElement("option");
+
+o1.value=c.name;
+o1.textContent=c.name+" ["+c.key+"]";
+
+a.appendChild(o1);
+
+
+let o2=document.createElement("option");
+
+o2.value=c.name;
+o2.textContent=
