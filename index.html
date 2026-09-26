@@ -95,7 +95,6 @@ nav{
 
 .navlinks a{
   color:#9aa9bd;
-  text-decoration:none;
   font-size:13px;
   padding:8px 10px;
   border-radius:9px;
@@ -169,7 +168,6 @@ nav{
 .btn{
   padding:13px 21px;
   border-radius:12px;
-  text-decoration:none;
   font-weight:bold;
   transition:.25s;
 }
@@ -425,15 +423,16 @@ body.light .tool p{
   color:#526174;
 }
 
-/* EASTER EGG */
+
+/* ==================================================
+   CINEMATIC EASTER EGG
+================================================== */
 
 #easterEgg{
   position:fixed;
   inset:0;
-  z-index:9999;
+  z-index:99999;
   display:none;
-  align-items:center;
-  justify-content:center;
   overflow:hidden;
   background:#000;
   color:#00ff9d;
@@ -441,117 +440,474 @@ body.light .tool p{
 }
 
 #easterEgg.active{
-  display:flex;
-  animation:eggFlash .12s infinite alternate;
+  display:block;
+  animation:
+    eggAppear .25s ease-out,
+    screenShake .16s infinite;
 }
 
-#easterEgg::before{
-  content:"";
+/* Dark overlay */
+
+.egg-dark{
   position:absolute;
   inset:0;
-  background:repeating-linear-gradient(
-    to bottom,
-    transparent 0px,
-    transparent 3px,
-    #00ff9d09 4px
-  );
-  pointer-events:none;
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(0,255,157,.08),
+      transparent 35%
+    ),
+    #000;
+  z-index:1;
 }
 
-#easterEgg::after{
-  content:"";
+/* Rain code */
+
+#codeRain{
   position:absolute;
-  inset:-100%;
+  inset:0;
+  width:100%;
+  height:100%;
+  z-index:2;
+  opacity:.8;
+}
+
+/* Scanlines */
+
+.egg-scanlines{
+  position:absolute;
+  inset:0;
+  z-index:5;
+  pointer-events:none;
+
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 3px,
+      rgba(0,255,157,.07) 4px
+    );
+}
+
+/* Moving scan beam */
+
+.egg-scan{
+  position:absolute;
+  left:0;
+  top:-30%;
+  width:100%;
+  height:35%;
+  z-index:6;
+  pointer-events:none;
+
   background:linear-gradient(
+    to bottom,
     transparent,
-    #00ff9d12,
+    rgba(0,255,157,.12),
     transparent
   );
-  animation:scan 1.2s linear infinite;
-  pointer-events:none;
+
+  animation:scanBeam 1.5s linear infinite;
+}
+
+/* Center content */
+
+.egg-content{
+  position:absolute;
+  inset:0;
+  z-index:10;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:20px;
 }
 
 .egg-box{
   position:relative;
-  width:min(850px,90%);
-  padding:35px;
-  border:1px solid #00ff9d66;
-  background:#00110be8;
+
+  width:min(900px,92%);
+  min-height:390px;
+
+  padding:38px;
+
+  border:1px solid rgba(0,255,157,.45);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(0,255,157,.07),
+      rgba(0,0,0,.94) 45%,
+      rgba(0,229,255,.05)
+    );
+
   box-shadow:
-    0 0 30px #00ff9d33,
-    inset 0 0 50px #00ff9d08;
+    0 0 15px rgba(0,255,157,.25),
+    0 0 80px rgba(0,255,157,.08),
+    inset 0 0 80px rgba(0,255,157,.04);
+
+  clip-path:
+    polygon(
+      0 0,
+      98% 0,
+      100% 8%,
+      100% 100%,
+      2% 100%,
+      0 92%
+    );
+
+  animation:boxPulse 2s infinite;
 }
 
+/* Corner decorations */
+
+.egg-box::before,
+.egg-box::after{
+  content:"";
+  position:absolute;
+  width:45px;
+  height:45px;
+  border-color:#00ff9d;
+  border-style:solid;
+  opacity:.8;
+}
+
+.egg-box::before{
+  top:-1px;
+  left:-1px;
+  border-width:2px 0 0 2px;
+}
+
+.egg-box::after{
+  right:-1px;
+  bottom:-1px;
+  border-width:0 2px 2px 0;
+}
+
+/* Title */
+
 .egg-title{
-  font-size:clamp(30px,7vw,70px);
+  font-size:clamp(30px,7vw,75px);
   font-weight:900;
   letter-spacing:8px;
+  color:#00ff9d;
+
   text-shadow:
-    3px 0 #ff0055,
-    -3px 0 #00e5ff,
-    0 0 25px #00ff9d;
-  animation:glitch .1s infinite;
+    4px 0 #ff0055,
+    -4px 0 #00e5ff,
+    0 0 25px #00ff9d,
+    0 0 70px rgba(0,255,157,.5);
+
+  animation:
+    heavyGlitch .11s infinite,
+    titleFlicker 2s infinite;
 }
+
+/* Line */
 
 .egg-line{
   width:100%;
   height:1px;
-  margin:20px 0;
-  background:#00ff9d55;
+  margin:22px 0;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      #00ff9d,
+      transparent
+    );
+
+  box-shadow:0 0 15px #00ff9d;
 }
 
+/* Terminal */
+
 .egg-terminal{
-  color:#8affc9;
+  color:#79ffbf;
   font-size:13px;
-  line-height:2;
+  line-height:2.1;
+  text-shadow:0 0 8px #00ff9d;
 }
 
 .egg-terminal span{
   color:#00ff9d;
+  font-weight:bold;
 }
 
-.egg-final{
-  margin-top:25px;
-  color:#fff;
-  font-size:clamp(20px,4vw,38px);
-  font-weight:900;
+/* Big falling message */
+
+.egg-drop{
+  position:absolute;
+
+  top:-120px;
+  left:50%;
+
+  transform:translateX(-50%);
+
+  width:100%;
+
   text-align:center;
-  letter-spacing:2px;
+
+  font-size:clamp(25px,6vw,70px);
+  font-weight:1000;
+
+  color:#fff;
+
+  letter-spacing:3px;
+
+  opacity:0;
+
+  text-shadow:
+    4px 0 #ff0055,
+    -4px 0 #00e5ff,
+    0 0 25px #fff,
+    0 0 60px #00ff9d;
+
+  white-space:nowrap;
+
+  z-index:20;
+
+  pointer-events:none;
+}
+
+/* Triggered state */
+
+#easterEgg.reveal .egg-drop{
+  animation:
+    dropText .85s cubic-bezier(.1,.8,.2,1) forwards,
+    heavyGlitch .08s infinite .85s;
+}
+
+/* Final message */
+
+.egg-final{
+  position:relative;
+
+  margin-top:30px;
+
+  text-align:center;
+
+  font-size:clamp(20px,4vw,42px);
+
+  font-weight:900;
+
+  letter-spacing:3px;
+
+  color:#fff;
+
+  opacity:0;
+
   text-shadow:
     3px 0 #ff0055,
     -3px 0 #00e5ff,
     0 0 25px #fff;
-  animation:glitch .08s infinite;
+
+  animation:none;
 }
+
+#easterEgg.reveal .egg-final{
+  animation:
+    finalReveal .25s ease-out 1s forwards,
+    heavyGlitch .08s infinite 1.3s;
+}
+
+/* Close */
 
 .egg-close{
   position:absolute;
-  top:12px;
-  right:15px;
+
+  top:14px;
+  right:17px;
+
   border:0;
   background:none;
+
   color:#00ff9d;
+
   font-size:20px;
+
   cursor:pointer;
+
+  z-index:30;
+
+  text-shadow:0 0 10px #00ff9d;
+
+  transition:.2s;
 }
 
-@keyframes glitch{
+.egg-close:hover{
+  color:#fff;
+  transform:scale(1.2) rotate(10deg);
+}
+
+/* Easter Egg animations */
+
+@keyframes eggAppear{
+  0%{
+    opacity:0;
+    filter:brightness(4) contrast(2);
+  }
+
+  50%{
+    opacity:1;
+    filter:brightness(.5) contrast(2);
+  }
+
+  100%{
+    opacity:1;
+    filter:none;
+  }
+}
+
+@keyframes screenShake{
   0%{transform:translate(0)}
-  25%{transform:translate(-4px,2px)}
-  50%{transform:translate(4px,-2px)}
-  75%{transform:translate(-3px,-1px)}
-  100%{transform:translate(3px,1px)}
+  25%{transform:translate(-1px,1px)}
+  50%{transform:translate(1px,-1px)}
+  75%{transform:translate(-1px,-1px)}
+  100%{transform:translate(1px,1px)}
 }
 
-@keyframes eggFlash{
-  from{filter:none}
-  to{filter:contrast(1.5) brightness(1.2)}
+@keyframes scanBeam{
+  from{
+    transform:translateY(-100%);
+  }
+
+  to{
+    transform:translateY(420%);
+  }
 }
 
-@keyframes scan{
-  from{transform:translateY(-50%)}
-  to{transform:translateY(50%)}
+@keyframes boxPulse{
+  0%,100%{
+    box-shadow:
+      0 0 15px rgba(0,255,157,.25),
+      0 0 80px rgba(0,255,157,.08),
+      inset 0 0 80px rgba(0,255,157,.04);
+  }
+
+  50%{
+    box-shadow:
+      0 0 30px rgba(0,255,157,.4),
+      0 0 120px rgba(0,255,157,.14),
+      inset 0 0 100px rgba(0,255,157,.08);
+  }
 }
+
+@keyframes heavyGlitch{
+  0%{
+    transform:translate(0);
+    clip-path:inset(0);
+  }
+
+  15%{
+    transform:translate(-5px,2px);
+    clip-path:inset(10% 0 70% 0);
+  }
+
+  30%{
+    transform:translate(5px,-2px);
+    clip-path:inset(60% 0 10% 0);
+  }
+
+  45%{
+    transform:translate(-3px,1px);
+    clip-path:inset(30% 0 40% 0);
+  }
+
+  60%{
+    transform:translate(4px,0);
+    clip-path:inset(80% 0 5% 0);
+  }
+
+  80%{
+    transform:translate(-2px,-1px);
+    clip-path:inset(5% 0 80% 0);
+  }
+
+  100%{
+    transform:translate(0);
+    clip-path:inset(0);
+  }
+}
+
+@keyframes titleFlicker{
+  0%,92%,100%{
+    opacity:1;
+  }
+
+  93%{
+    opacity:.3;
+  }
+
+  94%{
+    opacity:1;
+  }
+
+  96%{
+    opacity:.5;
+  }
+
+  97%{
+    opacity:1;
+  }
+}
+
+@keyframes dropText{
+
+  0%{
+    top:-120px;
+    opacity:0;
+    transform:
+      translateX(-50%)
+      scale(.3)
+      rotate(-8deg);
+  }
+
+  45%{
+    opacity:1;
+  }
+
+  75%{
+    top:42%;
+    transform:
+      translateX(-50%)
+      scale(1.15)
+      rotate(2deg);
+  }
+
+  100%{
+    top:42%;
+    opacity:1;
+    transform:
+      translateX(-50%)
+      scale(1)
+      rotate(0);
+  }
+}
+
+@keyframes finalReveal{
+
+  0%{
+    opacity:0;
+    transform:scale(1.8);
+    filter:blur(15px);
+  }
+
+  60%{
+    opacity:1;
+    transform:scale(.95);
+    filter:blur(0);
+  }
+
+  100%{
+    opacity:1;
+    transform:scale(1);
+    filter:none;
+  }
+}
+
 
 /* MOBILE */
 
@@ -622,11 +978,23 @@ body.light .tool p{
   }
 
   .egg-box{
-    padding:25px 20px;
+    width:94%;
+    min-height:430px;
+    padding:25px 18px;
   }
 
   .egg-terminal{
-    font-size:11px;
+    font-size:10px;
+    line-height:1.9;
+  }
+
+  .egg-title{
+    letter-spacing:3px;
+  }
+
+  .egg-drop{
+    white-space:normal;
+    padding:0 10px;
   }
 }
 </style>
@@ -634,38 +1002,87 @@ body.light .tool p{
 
 <body>
 
-<!-- EASTER EGG -->
+<!-- ==================================================
+     CINEMATIC EASTER EGG
+================================================== -->
 
 <div id="easterEgg">
 
-  <div class="egg-box">
+  <canvas id="codeRain"></canvas>
 
-    <button class="egg-close" id="eggClose">✕</button>
+  <div class="egg-dark"></div>
 
-    <div class="egg-title">
-      VIDZ//SYSTEM
-    </div>
+  <div class="egg-scan"></div>
 
-    <div class="egg-line"></div>
+  <div class="egg-scanlines"></div>
 
-    <div class="egg-terminal">
+  <div class="egg-drop">
+    UTUH &amp; ENAL FUTA LOVERS 🤫
+  </div>
 
-      <div><span>[SYSTEM]</span> Initializing...</div>
-      <div><span>[SYSTEM]</span> Scanning VIDZ-Web...</div>
-      <div><span>[SYSTEM]</span> Connection established.</div>
-      <div><span>[SYSTEM]</span> Developer detected.</div>
-      <div><span>[SYSTEM]</span> 🗿 detected.</div>
-      <div><span>[SYSTEM]</span> Hidden layer unlocked.</div>
+  <div class="egg-content">
 
-    </div>
+    <div class="egg-box">
 
-    <div class="egg-final">
-      UTUH & ENAL FUTA LOVERS 🤫
+      <button class="egg-close" id="eggClose">
+        ✕
+      </button>
+
+      <div class="egg-title">
+        VIDZ//SYSTEM
+      </div>
+
+      <div class="egg-line"></div>
+
+      <div class="egg-terminal">
+
+        <div>
+          <span>[SYSTEM]</span>
+          Initializing hidden layer...
+        </div>
+
+        <div>
+          <span>[SYSTEM]</span>
+          Scanning VIDZ-Web...
+        </div>
+
+        <div>
+          <span>[SYSTEM]</span>
+          Connection established.
+        </div>
+
+        <div>
+          <span>[SYSTEM]</span>
+          Developer detected.
+        </div>
+
+        <div>
+          <span>[SYSTEM]</span>
+          🗿 detected.
+        </div>
+
+        <div>
+          <span>[SYSTEM]</span>
+          Access level: UNKNOWN
+        </div>
+
+        <div>
+          <span>[SYSTEM]</span>
+          Hidden layer unlocked.
+        </div>
+
+      </div>
+
+      <div class="egg-final">
+        SECRET FOUND.
+      </div>
+
     </div>
 
   </div>
 
 </div>
+
 
 <!-- NAVBAR -->
 
@@ -677,10 +1094,21 @@ body.light .tool p{
 
   <div class="navlinks">
 
-    <a href="index.html" class="active">Home</a>
-    <a href="About.html">About</a>
-    <a href="Projects.html">Projects</a>
-    <a href="Contact.html">Contact</a>
+    <a href="index.html" class="active">
+      Home
+    </a>
+
+    <a href="About.html">
+      About
+    </a>
+
+    <a href="Projects.html">
+      Projects
+    </a>
+
+    <a href="Contact.html">
+      Contact
+    </a>
 
     <button class="theme" id="themeButton">
       🌙
@@ -689,6 +1117,7 @@ body.light .tool p{
   </div>
 
 </nav>
+
 
 <!-- HERO -->
 
@@ -727,6 +1156,7 @@ body.light .tool p{
 
   </div>
 
+
   <div class="profile-card">
 
     <img
@@ -745,7 +1175,9 @@ body.light .tool p{
 
     </div>
 
-    <h2>VIDZ</h2>
+    <h2>
+      VIDZ
+    </h2>
 
     <div class="role">
       Student • Web Explorer
@@ -786,6 +1218,7 @@ body.light .tool p{
 
 </section>
 
+
 <!-- TOOLS -->
 
 <section class="tools-section" id="tools">
@@ -796,7 +1229,9 @@ body.light .tool p{
       VIDZ TOOLBOX
     </div>
 
-    <h2>Tools yang berguna.</h2>
+    <h2>
+      Tools yang berguna.
+    </h2>
 
     <p>
       Beberapa fitur sederhana yang bisa digunakan
@@ -805,13 +1240,18 @@ body.light .tool p{
 
   </div>
 
+
   <div class="tools">
 
     <div class="tool">
 
-      <div class="tool-icon">🧮</div>
+      <div class="tool-icon">
+        🧮
+      </div>
 
-      <h3>Kalkulator</h3>
+      <h3>
+        Kalkulator
+      </h3>
 
       <p>
         Hitung operasi matematika sederhana
@@ -824,11 +1264,16 @@ body.light .tool p{
 
     </div>
 
+
     <div class="tool">
 
-      <div class="tool-icon">🔄</div>
+      <div class="tool-icon">
+        🔄
+      </div>
 
-      <h3>Unit Converter</h3>
+      <h3>
+        Unit Converter
+      </h3>
 
       <p>
         Konversi satuan seperti panjang,
@@ -841,11 +1286,16 @@ body.light .tool p{
 
     </div>
 
+
     <div class="tool">
 
-      <div class="tool-icon">🔐</div>
+      <div class="tool-icon">
+        🔐
+      </div>
 
-      <h3>Password Generator</h3>
+      <h3>
+        Password Generator
+      </h3>
 
       <p>
         Membuat password acak untuk membantu
@@ -858,11 +1308,16 @@ body.light .tool p{
 
     </div>
 
+
     <div class="tool">
 
-      <div class="tool-icon">📝</div>
+      <div class="tool-icon">
+        📝
+      </div>
 
-      <h3>Quick Notes</h3>
+      <h3>
+        Quick Notes
+      </h3>
 
       <p>
         Catatan sederhana yang bisa digunakan
@@ -875,11 +1330,16 @@ body.light .tool p{
 
     </div>
 
+
     <div class="tool">
 
-      <div class="tool-icon">⏱️</div>
+      <div class="tool-icon">
+        ⏱️
+      </div>
 
-      <h3>Timer & Stopwatch</h3>
+      <h3>
+        Timer & Stopwatch
+      </h3>
 
       <p>
         Timer dan stopwatch sederhana untuk
@@ -892,11 +1352,16 @@ body.light .tool p{
 
     </div>
 
+
     <div class="tool">
 
-      <div class="tool-icon">📱</div>
+      <div class="tool-icon">
+        📱
+      </div>
 
-      <h3>QR Generator</h3>
+      <h3>
+        QR Generator
+      </h3>
 
       <p>
         Membuat QR code dari teks atau link
@@ -915,9 +1380,12 @@ body.light .tool p{
 
 </main>
 
+
 <script>
 
-/* THEME */
+/* ==================================================
+   THEME
+================================================== */
 
 const themeButton =
 document.getElementById("themeButton");
@@ -933,7 +1401,10 @@ themeButton.addEventListener("click",function(){
 
 });
 
-/* ONLINE / OFFLINE */
+
+/* ==================================================
+   ONLINE / OFFLINE
+================================================== */
 
 const ownerStatus =
 document.getElementById("ownerStatus");
@@ -943,91 +1414,4 @@ document.getElementById("statusText");
 
 function online(){
 
-  ownerStatus.classList.remove("offline");
-  statusText.textContent="ONLINE";
-
-}
-
-function offline(){
-
-  ownerStatus.classList.add("offline");
-  statusText.textContent="OFFLINE";
-
-}
-
-online();
-
-document.addEventListener(
-  "visibilitychange",
-  function(){
-
-    if(document.visibilityState==="visible"){
-      online();
-    }else{
-      offline();
-    }
-
-  }
-);
-
-window.addEventListener("pageshow",online);
-window.addEventListener("pagehide",offline);
-
-
-/* EASTER EGG
-   Klik logo 3x */
-
-const logo =
-document.getElementById("logo");
-
-const easterEgg =
-document.getElementById("easterEgg");
-
-const eggClose =
-document.getElementById("eggClose");
-
-let clickCount=0;
-let clickTimer;
-
-logo.addEventListener("click",function(){
-
-  clickCount++;
-
-  clearTimeout(clickTimer);
-
-  clickTimer=setTimeout(function(){
-
-    clickCount=0;
-
-  },900);
-
-  if(clickCount===3){
-
-    easterEgg.classList.add("active");
-
-    clickCount=0;
-
-  }
-
-});
-
-eggClose.addEventListener("click",function(){
-
-  easterEgg.classList.remove("active");
-
-});
-
-easterEgg.addEventListener("click",function(event){
-
-  if(event.target===easterEgg){
-
-    easterEgg.classList.remove("active");
-
-  }
-
-});
-
-</script>
-
-</body>
-</html>
+  ownerStatus.classList.remove("offl
