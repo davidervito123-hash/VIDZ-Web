@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#070b14">
+<title>VIDZ — Contact</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#070b14;
+  color:#f5f7ff;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+a{
+  text-decoration:none;
+  color:inherit;
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-2;
+  background:
+    radial-gradient(circle at 10% 10%,rgba(0,229,255,.12),transparent 28%),
+    radial-gradient(circle at 90% 80%,rgba(139,92,246,.12),transparent 30%),
+    #070b14;
+}
+
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  opacity:.035;
+  background-image:
+    linear-gradient(#fff 1px,transparent 1px),
+    linear-gradient(90deg,#fff 1px,transparent 1px);
+  background-size:60px 60px;
+  pointer-events:none;
+}
+
+.nav{
+  position:fixed;
+  top:15px;
+  left:50%;
+  transform:translateX(-50%);
+  width:min(1100px,94%);
+  z-index:100;
+}
+
+nav{
+  height:62px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 20px;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:18px;
+  background:rgba(7,11,20,.78);
+  backdrop-filter:blur(20px);
+}
+
+.logo{
+  color:#00e5ff;
+  font-size:25px;
+  font-weight:900;
+  letter-spacing:-2px;
+}
+
+.links{
+  display:flex;
+  gap:18px;
+  align-items:center;
+}
+
+.links a{
+  color:#8b98aa;
+  font-size:11px;
+  font-weight:bold;
+  transition:.2s;
+}
+
+.links a:hover,
+.links .active{
+  color:#00e5ff;
+}
+
+.container{
+  width:min(900px,92%);
+  margin:auto;
+}
+
+main{
+  padding:155px 0 100px;
+}
+
+.kicker{
+  color:#00e5ff;
+  font-size:10px;
+  font-weight:bold;
+  letter-spacing:3px;
+}
+
+h1{
+  margin-top:12px;
+  font-size:clamp(48px,8vw,80px);
+  line-height:.9;
+  letter-spacing:-6px;
+}
+
+.intro{
+  max-width:650px;
+  margin-top:25px;
+  color:#8491a5;
+  font-size:14px;
+  line-height:1.9;
+}
+
+.contact-card{
+  margin-top:50px;
+  padding:35px;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:24px;
+  background:rgba(13,21,36,.78);
+}
+
+.contact-card h2{
+  font-size:22px;
+  margin-bottom:10px;
+}
+
+.contact-card>p{
+  color:#8491a5;
+  font-size:13px;
+  line-height:1.8;
+}
+
+.contact-list{
+  display:grid;
+  gap:13px;
+  margin-top:27px;
+}
+
+.contact-item{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  padding:18px;
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:15px;
+  background:rgba(255,255,255,.025);
+  transition:.25s;
+}
+
+.contact-item:hover{
+  transform:translateX(5px);
+  border-color:rgba(0,229,255,.3);
+}
+
+.contact-icon{
+  width:45px;
+  height:45px;
+  flex:none;
+  display:grid;
+  place-items:center;
+  border-radius:12px;
+  background:rgba(0,229,255,.06);
+  border:1px solid rgba(0,229,255,.12);
+  font-size:20px;
+}
+
+.contact-item small{
+  display:block;
+  margin-bottom:5px;
+  color:#59677b;
+  font-size:9px;
+  font-weight:bold;
+  letter-spacing:1px;
+}
+
+.contact-item b{
+  font-size:12px;
+}
+
+.note{
+  margin-top:20px;
+  padding:15px;
+  border-left:2px solid #00e5ff;
+  color:#718096;
+  background:rgba(255,255,255,.025);
+  font-size:11px;
+  line-height:1.7;
+}
+
+.back{
+  display:inline-flex;
+  margin-top:25px;
+  padding:12px 17px;
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:11px;
+  color:#aab6c7;
+  font-size:11px;
+  font-weight:bold;
+  transition:.2s;
+}
+
+.back:hover{
+  color:#00e5ff;
+  border-color:rgba(0,229,255,.3);
+}
+
+footer{
+  padding:35px 20px;
+  border-top:1px solid rgba(255,255,255,.08);
+  text-align:center;
+  color:#5d6a7d;
+  font-size:11px;
+}
+
+footer span{
+  color:#00e5ff;
+}
+
+@media(max-width:600px){
+
+  .nav{
+    top:9px;
+  }
+
+  nav{
+    height:57px;
+  }
+
+  .links{
+    gap:10px;
+  }
+
+  .links a{
+    font-size:9px;
+  }
+
+  main{
+    padding-top:125px;
+  }
+
+  h1{
+    font-size:55px;
+    letter-spacing:-4px;
+  }
+
+  .contact-card{
+    padding:25px 20px;
+  }
+
+}
+</style>
+</head>
+
+<body>
+
+<div class="nav">
+<nav>
+
+  <a href="index.html" class="logo">
+    VIDZ.
+  </a>
+
+  <div class="links">
+
+    <a href="index.html">
+      Home
+    </a>
+
+    <a href="about.html">
+      About
+    </a>
+
+    <a href="projects.html">
+      Project
+    </a>
+
+    <a href="contact.html" class="active">
+      Contact
+    </a>
+
+  </div>
+
+</nav>
+</div>
+
+
+<main>
+
+<div class="container">
+
+  <div class="kicker">
+    GET IN TOUCH
+  </div>
+
+  <h1>
+    CONTACT<br>
+    SAYA.
+  </h1>
+
+  <p class="intro">
+    Mau ngobrol, kasih saran, atau sekadar mampir?
+    Halaman ini menjadi tempat untuk menemukan
+    kontak VIDZ.
+  </p>
+
+
+  <div class="contact-card">
+
+    <h2>
+      Hubungi VIDZ
+    </h2>
+
+    <p>
+      Untuk saat ini beberapa informasi kontak masih
+      dalam pengembangan. Nanti bisa ditambahkan
+      sosial media atau kontak lain di sini.
+    </p>
+
+
+    <div class="contact-list">
+
+
+      <div class="contact-item">
+
+        <div class="contact-icon">
+          💬
+        </div>
+
+        <div>
+
+          <small>
+            STATUS
+          </small>
+
+          <b>
+            Contact system coming soon
+          </b>
+
+        </div>
+
+      </div>
+
+
+      <div class="contact-item">
+
+        <div class="contact-icon">
+          🌐
+        </div>
+
+        <div>
+
+          <small>
+            WEBSITE
+          </small>
+
+          <b>
+            VIDZ — Digital Space
+          </b>
+
+        </div>
+
+      </div>
+
+
+      <div class="contact-item">
+
+        <div class="contact-icon">
+          🚀
+        </div>
+
+        <div>
+
+          <small>
+            PROJECT
+          </small>
+
+          <b>
+            Open for future experiments
+          </b>
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+    <div class="note">
+
+      🗿 Kontak asli bisa kamu tambahkan nanti.
+      Jangan masukkan informasi pribadi yang tidak ingin
+      dipublikasikan di website.
+
+    </div>
+
+
+    <a href="index.html" class="back">
+      ← Kembali ke Home
+    </a>
+
+  </div>
+
+</div>
+
+</main>
+
+
+<footer>
+
+  © 2026
+  <span>VIDZ</span>
+  — Dibuat karena gabut 🗿
+
+</footer>
+
+</body>
+</html>
