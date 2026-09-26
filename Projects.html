@@ -2,21 +2,15 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#050816">
-<meta name="description" content="Tools dan project VIDZ Digital Space.">
+<meta name="description" content="Tools dan Projects VIDZ">
 <title>Projects — VIDZ</title>
 
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
+*{box-sizing:border-box;margin:0;padding:0}
 
-html{
-  scroll-behavior:smooth;
-}
+html{scroll-behavior:smooth}
 
 body{
   font-family:Arial,Helvetica,sans-serif;
@@ -30,17 +24,16 @@ a{
   text-decoration:none;
 }
 
-button{
+button,input{
   font:inherit;
 }
 
 :root{
   --cyan:#00e5ff;
   --green:#00ff9d;
-  --purple:#8b5cf6;
   --line:rgba(255,255,255,.08);
   --muted:#8292a7;
-  --card:#0c1424;
+  --card:rgba(12,20,36,.78);
 }
 
 body::before{
@@ -67,7 +60,7 @@ body::after{
   background-size:55px 55px;
 }
 
-/* NAVBAR */
+/* NAV */
 
 .nav-wrap{
   position:fixed;
@@ -88,8 +81,6 @@ nav{
   border-radius:18px;
   background:rgba(5,8,22,.78);
   backdrop-filter:blur(20px);
-  -webkit-backdrop-filter:blur(20px);
-  box-shadow:0 18px 55px rgba(0,0,0,.25);
 }
 
 .logo{
@@ -112,7 +103,6 @@ nav{
   color:#8996aa;
   font-size:11px;
   font-weight:bold;
-  transition:.2s;
 }
 
 .nav-links a:hover,
@@ -127,7 +117,7 @@ nav{
   margin-left:5px;
   border:1px solid var(--line);
   border-radius:10px;
-  background:rgba(255,255,255,.04);
+  background:#ffffff08;
   color:#fff;
   cursor:pointer;
 }
@@ -136,7 +126,7 @@ nav{
 
 .page{
   min-height:100vh;
-  padding:155px 0 90px;
+  padding:150px 0 90px;
 }
 
 .container{
@@ -176,194 +166,277 @@ h1 span{
   line-height:1.9;
 }
 
-/* SECTION */
+/* SEARCH */
 
-.section{
-  margin-top:65px;
-}
-
-.section-title{
-  display:flex;
-  align-items:end;
-  justify-content:space-between;
-  gap:20px;
-  margin-bottom:22px;
-}
-
-.section-title h2{
-  font-size:26px;
-  letter-spacing:-1px;
-}
-
-.section-title p{
-  color:#596a80;
-  font-size:10px;
-  letter-spacing:1px;
-}
-
-/* TOOL GRID */
-
-.tool-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:17px;
-}
-
-.tool-card{
-  position:relative;
-  padding:25px;
-  min-height:255px;
-  border:1px solid var(--line);
-  border-radius:21px;
-  background:rgba(12,20,36,.78);
-  overflow:hidden;
-  transition:.3s;
-}
-
-.tool-card::before{
-  content:"";
-  position:absolute;
-  width:130px;
-  height:130px;
-  right:-70px;
-  top:-70px;
-  border-radius:50%;
-  background:rgba(0,229,255,.08);
-  filter:blur(5px);
-}
-
-.tool-card:hover{
-  transform:translateY(-7px);
-  border-color:rgba(0,229,255,.3);
-  box-shadow:0 25px 60px rgba(0,0,0,.3);
-}
-
-.icon{
-  width:55px;
-  height:55px;
-  display:grid;
-  place-items:center;
-  border:1px solid var(--line);
-  border-radius:15px;
-  background:rgba(255,255,255,.035);
-  font-size:25px;
-  margin-bottom:20px;
-}
-
-.tool-card h3{
-  font-size:18px;
-  margin-bottom:9px;
-}
-
-.tool-card p{
-  color:#77869b;
-  font-size:12px;
-  line-height:1.8;
-}
-
-.tool-status{
-  display:inline-block;
-  margin-top:18px;
-  padding:6px 9px;
-  border-radius:7px;
-  background:rgba(0,255,157,.07);
-  border:1px solid rgba(0,255,157,.13);
-  color:var(--green);
-  font-size:8px;
-  font-weight:bold;
-  letter-spacing:1px;
-}
-
-/* PROJECT GRID */
-
-.project-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:17px;
-}
-
-.project-card{
-  padding:27px;
-  border:1px solid var(--line);
-  border-radius:21px;
-  background:rgba(12,20,36,.78);
-  transition:.3s;
-}
-
-.project-card:hover{
-  transform:translateY(-5px);
-  border-color:rgba(139,92,246,.35);
-}
-
-.project-number{
-  color:#56647a;
-  font-size:9px;
-  font-weight:bold;
-  letter-spacing:1px;
-}
-
-.project-card h3{
-  margin-top:15px;
-  font-size:21px;
-}
-
-.project-card p{
-  margin-top:10px;
-  color:#77869b;
-  font-size:12px;
-  line-height:1.8;
-}
-
-.tags{
-  display:flex;
-  flex-wrap:wrap;
-  gap:7px;
-  margin-top:18px;
-}
-
-.tag{
-  padding:6px 9px;
-  border-radius:7px;
-  background:rgba(139,92,246,.08);
-  border:1px solid rgba(139,92,246,.15);
-  color:#b9a4ff;
-  font-size:8px;
-  font-weight:bold;
-}
-
-/* FUTURE */
-
-.future{
-  margin-top:18px;
-  padding:27px;
-  border:1px dashed rgba(0,229,255,.2);
-  border-radius:21px;
-  background:rgba(0,229,255,.025);
-}
-
-.future h3{
-  color:var(--cyan);
-  font-size:18px;
-}
-
-.future p{
-  margin-top:8px;
-  color:#748399;
-  font-size:12px;
-  line-height:1.8;
-}
-
-/* BACK */
-
-.back{
-  display:inline-block;
+.search-area{
   margin-top:40px;
-  color:var(--cyan);
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.search{
+  flex:1;
+  min-width:230px;
+  padding:14px 17px;
+  border:1px solid var(--line);
+  border-radius:13px;
+  outline:none;
+  background:rgba(255,255,255,.04);
+  color:white;
+}
+
+.search:focus{
+  border-color:rgba(0,229,255,.4);
+  box-shadow:0 0 20px rgba(0,229,255,.08);
+}
+
+.filters{
+  display:flex;
+  gap:7px;
+}
+
+.filter{
+  padding:11px 14px;
+  border:1px solid var(--line);
+  border-radius:11px;
+  background:#ffffff06;
+  color:#8996aa;
+  cursor:pointer;
   font-size:11px;
   font-weight:bold;
 }
 
-/* FOOTER */
+.filter.active,
+.filter:hover{
+  color:var(--cyan);
+  border-color:rgba(0,229,255,.25);
+}
+
+/* CATALOG */
+
+.catalog{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+  margin-top:25px;
+}
+
+.tool{
+  position:relative;
+  min-height:300px;
+  padding:25px;
+  border:1px solid var(--line);
+  border-radius:22px;
+  background:var(--card);
+  transition:.3s;
+}
+
+.tool:hover{
+  transform:translateY(-7px);
+  border-color:rgba(0,229,255,.3);
+  box-shadow:0 25px 60px rgba(0,0,0,.25);
+}
+
+.tool.hide{
+  display:none;
+}
+
+.tool-number{
+  color:#536075;
+  font-size:9px;
+  font-weight:bold;
+}
+
+.tool-icon{
+  width:58px;
+  height:58px;
+  display:grid;
+  place-items:center;
+  margin:22px 0;
+  border:1px solid var(--line);
+  border-radius:16px;
+  background:#ffffff06;
+  font-size:25px;
+}
+
+.tool h2{
+  font-size:18px;
+  margin-bottom:10px;
+}
+
+.tool p{
+  min-height:58px;
+  color:#77859a;
+  font-size:12px;
+  line-height:1.7;
+}
+
+.tool-type{
+  display:inline-block;
+  margin-top:20px;
+  padding:5px 8px;
+  border-radius:7px;
+  color:var(--cyan);
+  background:#00e5ff0d;
+  font-size:8px;
+  font-weight:bold;
+  letter-spacing:1px;
+}
+
+.open{
+  display:block;
+  margin-top:14px;
+  width:100%;
+  padding:11px;
+  border:1px solid rgba(0,229,255,.2);
+  border-radius:10px;
+  background:#00e5ff0a;
+  color:var(--cyan);
+  cursor:pointer;
+  font-size:10px;
+  font-weight:bold;
+}
+
+.open:hover{
+  background:rgba(0,229,255,.14);
+}
+
+/* MODAL */
+
+.modal{
+  position:fixed;
+  inset:0;
+  z-index:999;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:rgba(0,0,0,.78);
+  backdrop-filter:blur(8px);
+}
+
+.modal.show{
+  display:flex;
+}
+
+.modal-box{
+  width:min(520px,100%);
+  max-height:90vh;
+  overflow:auto;
+  padding:28px;
+  border:1px solid rgba(0,229,255,.25);
+  border-radius:22px;
+  background:#08101f;
+  box-shadow:0 30px 100px #000;
+}
+
+.modal-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:22px;
+}
+
+.modal-top h2{
+  color:var(--cyan);
+}
+
+.close{
+  border:0;
+  background:none;
+  color:#8996aa;
+  font-size:22px;
+  cursor:pointer;
+}
+
+/* CALCULATOR */
+
+.calc-display{
+  width:100%;
+  padding:18px;
+  margin-bottom:12px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:#0008;
+  color:#00ff9d;
+  text-align:right;
+  font-size:25px;
+  overflow:hidden;
+}
+
+.calc-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
+}
+
+.calc-grid button{
+  padding:16px;
+  border:1px solid var(--line);
+  border-radius:10px;
+  background:#ffffff08;
+  color:white;
+  cursor:pointer;
+}
+
+.calc-grid button:hover{
+  background:#00e5ff18;
+}
+
+/* NOTES */
+
+textarea{
+  width:100%;
+  min-height:220px;
+  resize:vertical;
+  padding:15px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  outline:none;
+  background:#0006;
+  color:white;
+}
+
+.save-note{
+  width:100%;
+  margin-top:10px;
+  padding:13px;
+  border:0;
+  border-radius:10px;
+  background:var(--cyan);
+  color:#001017;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.note-status{
+  margin-top:10px;
+  color:#00ff9d;
+  font-size:11px;
+}
+
+/* PROJECT STATUS */
+
+.project-status{
+  margin-top:40px;
+  padding:22px;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:#ffffff04;
+}
+
+.project-status b{
+  color:var(--green);
+}
+
+.back{
+  display:inline-block;
+  margin-top:35px;
+  color:var(--cyan);
+  font-size:11px;
+  font-weight:bold;
+}
 
 footer{
   padding:40px 20px;
@@ -377,7 +450,7 @@ footer span{
   color:var(--cyan);
 }
 
-/* LIGHT MODE */
+/* LIGHT */
 
 body.light{
   background:#f1f6fa;
@@ -407,31 +480,34 @@ body.light .theme{
   color:#101827;
 }
 
-body.light .tool-card,
-body.light .project-card{
-  background:rgba(255,255,255,.88);
+body.light .tool{
+  background:rgba(255,255,255,.85);
   border-color:rgba(0,0,0,.08);
 }
 
-body.light .tool-card p,
-body.light .project-card p{
+body.light .tool p{
   color:#526174;
 }
 
-body.light .future{
-  background:rgba(255,255,255,.7);
+body.light .search{
+  color:#101827;
+  background:white;
+}
+
+body.light .modal-box{
+  background:#f8fbfd;
+}
+
+body.light textarea{
+  color:#101827;
+  background:white;
 }
 
 /* MOBILE */
 
 @media(max-width:850px){
-
-  .tool-grid{
+  .catalog{
     grid-template-columns:1fr 1fr;
-  }
-
-  .project-grid{
-    grid-template-columns:1fr;
   }
 }
 
@@ -458,16 +534,16 @@ body.light .future{
     letter-spacing:-4px;
   }
 
-  .tool-grid{
+  .catalog{
     grid-template-columns:1fr;
   }
 
-  .section-title{
-    display:block;
+  .filters{
+    width:100%;
   }
 
-  .section-title p{
-    margin-top:7px;
+  .filter{
+    flex:1;
   }
 }
 </style>
@@ -475,404 +551,553 @@ body.light .future{
 
 <body>
 
-<!-- NAVBAR -->
-
 <div class="nav-wrap">
-
 <nav>
 
-<a class="logo" href="index.html">
-VIDZ.
-</a>
+<a class="logo" href="index.html">VIDZ.</a>
 
 <div class="nav-links">
 
-<a href="index.html">
-Home
-</a>
+<a href="index.html">Home</a>
+<a href="About.html">About</a>
+<a class="active" href="Projects.html">Project</a>
+<a href="Contact.html">Contact</a>
 
-<a href="About.html">
-About
-</a>
-
-<a class="active" href="Projects.html">
-Projects
-</a>
-
-<a href="Contact.html">
-Contact
-</a>
-
-<button
-class="theme"
-id="themeButton"
-type="button">
-🌙
-</button>
+<button class="theme" id="themeButton" type="button">🌙</button>
 
 </div>
-
 </nav>
-
 </div>
-
 
 <main class="page">
 
 <div class="container">
 
-<div class="badge">
-VIDZ DIGITAL SPACE
-</div>
+<div class="badge">VIDZ DIGITAL LAB</div>
 
 <h1>
-TOOLS &<br>
-<span>PROJECTS.</span>
+TOOLS<br>
+<span>& PROJECTS.</span>
 </h1>
 
 <p class="intro">
-Kumpulan tools yang dirancang supaya berguna
-untuk kebutuhan sehari-hari, sekaligus project
-dan eksperimen yang sedang dikembangkan di
-VIDZ Digital Space.
+Kumpulan tools sederhana dan project eksperimen VIDZ
+yang bisa langsung digunakan dari browser.
+Dibuat untuk belajar, bereksperimen, dan tentunya
+biar website ini nggak cuma jadi pajangan 🗿.
 </p>
 
+<div class="search-area">
 
-<!-- TOOLS -->
+<input
+  class="search"
+  id="search"
+  type="search"
+  placeholder="Cari tools atau project..."
+>
 
-<section class="section">
+<div class="filters">
 
-<div class="section-title">
+<button class="filter active" data-filter="all">
+ALL
+</button>
 
-<h2>🧰 Useful Tools</h2>
+<button class="filter" data-filter="tool">
+TOOLS
+</button>
 
-<p>TOOLS // BROWSER BASED</p>
+<button class="filter" data-filter="project">
+PROJECT
+</button>
 
 </div>
 
-
-<div class="tool-grid">
-
-
-<div class="tool-card">
-
-<div class="icon">
-🧮
 </div>
 
-<h3>
-Calculator
-</h3>
+<div class="catalog" id="catalog">
+
+<!-- TOOL 1 -->
+
+<div class="tool" data-type="tool" data-name="kalkulator calculator">
+
+<div class="tool-number">TOOL // 01</div>
+
+<div class="tool-icon">🧮</div>
+
+<h2>Kalkulator</h2>
 
 <p>
-Kalkulator sederhana untuk membantu
-perhitungan matematika sehari-hari.
+Kalkulator sederhana untuk perhitungan cepat
+langsung di browser.
 </p>
 
-<span class="tool-status">
-READY TO BUILD
-</span>
+<span class="tool-type">UTILITY</span>
+
+<button class="open" onclick="openTool('calculator')">
+OPEN TOOL →
+</button>
 
 </div>
 
+<!-- TOOL 2 -->
 
-<div class="tool-card">
+<div class="tool" data-type="tool" data-name="catatan notes">
 
-<div class="icon">
-🔄
-</div>
+<div class="tool-number">TOOL // 02</div>
 
-<h3>
-Unit Converter
-</h3>
+<div class="tool-icon">📝</div>
+
+<h2>Quick Notes</h2>
 
 <p>
-Konversi panjang, berat, suhu, dan
-satuan lainnya secara cepat.
+Tulis catatan kecil dan simpan langsung
+di browser menggunakan local storage.
 </p>
 
-<span class="tool-status">
-READY TO BUILD
-</span>
+<span class="tool-type">PRODUCTIVITY</span>
+
+<button class="open" onclick="openTool('notes')">
+OPEN TOOL →
+</button>
 
 </div>
 
+<!-- TOOL 3 -->
 
-<div class="tool-card">
+<div class="tool" data-type="tool" data-name="waktu jam time">
 
-<div class="icon">
-🔐
-</div>
+<div class="tool-number">TOOL // 03</div>
 
-<h3>
-Password Generator
-</h3>
+<div class="tool-icon">🕒</div>
+
+<h2>Live Clock</h2>
 
 <p>
-Membuat password acak dengan kombinasi
-huruf, angka, dan simbol.
+Menampilkan waktu lokal secara realtime
+langsung dari perangkat.
 </p>
 
-<span class="tool-status">
-READY TO BUILD
-</span>
+<span class="tool-type">UTILITY</span>
+
+<button class="open" onclick="openTool('clock')">
+OPEN TOOL →
+</button>
 
 </div>
 
+<!-- PROJECT 1 -->
 
-<div class="tool-card">
+<div class="tool" data-type="project" data-name="vidz website web">
 
-<div class="icon">
-📝
-</div>
+<div class="tool-number">PROJECT // 01</div>
 
-<h3>
-Quick Notes
-</h3>
+<div class="tool-icon">🌐</div>
+
+<h2>VIDZ-Web</h2>
 
 <p>
-Tempat mencatat teks singkat langsung
-di browser.
+Website digital space pribadi VIDZ dengan
+navigasi multi-halaman dan berbagai fitur.
 </p>
 
-<span class="tool-status">
-READY TO BUILD
-</span>
+<span class="tool-type">ACTIVE</span>
+
+<button class="open" onclick="showInfo('VIDZ-Web','Website utama VIDZ yang digunakan sebagai tempat project, eksperimen, dan tools.')">
+VIEW PROJECT →
+</button>
 
 </div>
 
+<!-- PROJECT 2 -->
 
-<div class="tool-card">
+<div class="tool" data-type="project" data-name="easter egg glitch">
 
-<div class="icon">
-⏱️
-</div>
+<div class="tool-number">PROJECT // 02</div>
 
-<h3>
-Timer & Stopwatch
-</h3>
+<div class="tool-icon">👁️</div>
+
+<h2>Glitch System</h2>
 
 <p>
-Timer dan stopwatch sederhana untuk
-belajar, olahraga, atau aktivitas lainnya.
+Eksperimen visual berupa interface glitch,
+scanline, dan secret easter egg.
 </p>
 
-<span class="tool-status">
-READY TO BUILD
-</span>
+<span class="tool-type">EXPERIMENTAL</span>
+
+<button class="open" onclick="showInfo('Glitch System','Eksperimen UI cinematic dan efek glitch yang digunakan sebagai easter egg VIDZ-Web.')">
+VIEW PROJECT →
+</button>
 
 </div>
 
+<!-- PROJECT 3 -->
 
-<div class="tool-card">
+<div class="tool" data-type="project" data-name="future project">
 
-<div class="icon">
-📱
-</div>
+<div class="tool-number">PROJECT // 03</div>
 
-<h3>
-QR Generator
-</h3>
+<div class="tool-icon">🚀</div>
+
+<h2>Future Lab</h2>
 
 <p>
-Membuat QR code dari teks atau URL
-secara praktis.
+Tempat untuk project dan eksperimen berikutnya
+yang akan dikembangkan VIDZ.
 </p>
 
-<span class="tool-status">
-READY TO BUILD
-</span>
+<span class="tool-type">COMING SOON</span>
+
+<button class="open" onclick="showInfo('Future Lab','Project berikutnya masih dalam tahap pengembangan.')">
+VIEW PROJECT →
+</button>
 
 </div>
 
 </div>
 
-</section>
-
-
-<!-- PROJECTS -->
-
-<section class="section">
-
-<div class="section-title">
-
-<h2>🚀 My Projects</h2>
-
-<p>PROJECT // EXPERIMENT</p>
-
+<div class="project-status">
+STATUS SISTEM:
+<b>● ALL SYSTEMS OPERATIONAL</b>
 </div>
-
-
-<div class="project-grid">
-
-
-<div class="project-card">
-
-<div class="project-number">
-PROJECT // 01
-</div>
-
-<h3>
-VIDZ-Web
-</h3>
-
-<p>
-Website personal yang menjadi pusat
-Digital Space VIDZ. Dibangun dari HTML,
-CSS, dan JavaScript lalu dipublikasikan
-menggunakan Cloudflare.
-</p>
-
-<div class="tags">
-
-<span class="tag">HTML</span>
-<span class="tag">CSS</span>
-<span class="tag">JAVASCRIPT</span>
-<span class="tag">CLOUDFLARE</span>
-
-</div>
-
-</div>
-
-
-<div class="project-card">
-
-<div class="project-number">
-PROJECT // 02
-</div>
-
-<h3>
-Useful Tools Hub
-</h3>
-
-<p>
-Kumpulan tools browser-based yang dibuat
-untuk mengubah VIDZ-Web dari sekadar
-personal website menjadi website yang
-bisa digunakan orang lain.
-</p>
-
-<div class="tags">
-
-<span class="tag">TOOLS</span>
-<span class="tag">UTILITY</span>
-<span class="tag">JAVASCRIPT</span>
-
-</div>
-
-</div>
-
-
-<div class="project-card">
-
-<div class="project-number">
-PROJECT // 03
-</div>
-
-<h3>
-Web Experiments
-</h3>
-
-<p>
-Tempat menguji animasi, UI, JavaScript,
-efek visual, dan berbagai eksperimen
-web lainnya.
-</p>
-
-<div class="tags">
-
-<span class="tag">EXPERIMENTAL</span>
-<span class="tag">UI</span>
-<span class="tag">ANIMATION</span>
-
-</div>
-
-</div>
-
-
-<div class="project-card">
-
-<div class="project-number">
-PROJECT // 04
-</div>
-
-<h3>
-VIDZ System
-</h3>
-
-<p>
-Eksperimen interface bertema terminal
-dengan glitch effect dan hidden Easter egg
-yang tersembunyi di dalam website.
-</p>
-
-<div class="tags">
-
-<span class="tag">GLITCH</span>
-<span class="tag">EASTER EGG</span>
-<span class="tag">UI</span>
-
-</div>
-
-</div>
-
-</div>
-
-
-<div class="future">
-
-<h3>
-⚡ Future Development
-</h3>
-
-<p>
-VIDZ-Web masih terus dikembangkan.
-Target berikutnya adalah membuat tools
-yang benar-benar bisa digunakan langsung,
-meningkatkan performa, dan menambahkan
-fitur baru secara bertahap.
-</p>
-
-</div>
-
 
 <a class="back" href="index.html">
 ← Kembali ke Home
 </a>
 
-</section>
+</div>
+</main>
+
+<footer>
+© 2026 <span>VIDZ</span> — Digital Space 🗿
+</footer>
+
+<!-- MODAL -->
+
+<div class="modal" id="modal">
+
+<div class="modal-box">
+
+<div class="modal-top">
+
+<h2 id="modalTitle">Tool</h2>
+
+<button class="close" onclick="closeModal()">✕</button>
 
 </div>
 
-</main>
+<div id="modalContent"></div>
 
-
-<footer>
-
-© 2026 <span>VIDZ</span>
-— Digital Space
-
-</footer>
-
+</div>
+</div>
 
 <script>
 
-const themeButton =
-document.getElementById("themeButton");
+/* THEME */
 
-themeButton.addEventListener(
-"click",
-function(){
+const themeButton=document.getElementById("themeButton");
+
+themeButton.addEventListener("click",function(){
 
   document.body.classList.toggle("light");
 
-  themeButton.textContent =
+  themeButton.textContent=
     document.body.classList.contains("light")
     ? "☀️"
     : "🌙";
 
+});
+
+/* SEARCH */
+
+const search=document.getElementById("search");
+const cards=document.querySelectorAll(".tool");
+const filters=document.querySelectorAll(".filter");
+
+let currentFilter="all";
+
+function filterCards(){
+
+  const query=search.value.toLowerCase().trim();
+
+  cards.forEach(card=>{
+
+    const matchText=
+      card.dataset.name.includes(query);
+
+    const matchType=
+      currentFilter==="all" ||
+      card.dataset.type===currentFilter;
+
+    card.classList.toggle(
+      "hide",
+      !(matchText && matchType)
+    );
+
+  });
 }
-);
+
+search.addEventListener("input",filterCards);
+
+filters.forEach(button=>{
+
+  button.addEventListener("click",()=>{
+
+    filters.forEach(x=>x.classList.remove("active"));
+
+    button.classList.add("active");
+
+    currentFilter=button.dataset.filter;
+
+    filterCards();
+
+  });
+
+});
+
+/* MODAL */
+
+const modal=document.getElementById("modal");
+const modalTitle=document.getElementById("modalTitle");
+const modalContent=document.getElementById("modalContent");
+
+function openModal(title,content){
+
+  modalTitle.textContent=title;
+  modalContent.innerHTML=content;
+  modal.classList.add("show");
+
+}
+
+function closeModal(){
+
+  modal.classList.remove("show");
+
+}
+
+modal.addEventListener("click",function(e){
+
+  if(e.target===modal){
+    closeModal();
+  }
+
+});
+
+/* CALCULATOR */
+
+function openTool(type){
+
+  if(type==="calculator"){
+
+    openModal(
+      "🧮 Kalkulator",
+      `
+      <div class="calc-display" id="calcDisplay">0</div>
+
+      <div class="calc-grid">
+
+        <button onclick="calcClear()">C</button>
+        <button onclick="calcInput('(')">(</button>
+        <button onclick="calcInput(')')">)</button>
+        <button onclick="calcInput('/')">÷</button>
+
+        <button onclick="calcInput('7')">7</button>
+        <button onclick="calcInput('8')">8</button>
+        <button onclick="calcInput('9')">9</button>
+        <button onclick="calcInput('*')">×</button>
+
+        <button onclick="calcInput('4')">4</button>
+        <button onclick="calcInput('5')">5</button>
+        <button onclick="calcInput('6')">6</button>
+        <button onclick="calcInput('-')">−</button>
+
+        <button onclick="calcInput('1')">1</button>
+        <button onclick="calcInput('2')">2</button>
+        <button onclick="calcInput('3')">3</button>
+        <button onclick="calcInput('+')">+</button>
+
+        <button onclick="calcInput('0')">0</button>
+        <button onclick="calcInput('.')">.</button>
+        <button onclick="calcBack()">⌫</button>
+        <button onclick="calcResult()">=</button>
+
+      </div>
+      `
+    );
+
+  }
+
+  if(type==="notes"){
+
+    openModal(
+      "📝 Quick Notes",
+      `
+      <textarea id="notesArea"
+      placeholder="Tulis sesuatu di sini..."></textarea>
+
+      <button class="save-note" onclick="saveNotes()">
+      SIMPAN CATATAN
+      </button>
+
+      <div class="note-status" id="noteStatus"></div>
+      `
+    );
+
+    const saved=localStorage.getItem("vidz_notes");
+
+    if(saved){
+      document.getElementById("notesArea").value=saved;
+    }
+
+  }
+
+  if(type==="clock"){
+
+    openModal(
+      "🕒 Live Clock",
+      `
+      <div style="
+        text-align:center;
+        padding:35px 10px;
+        font-size:42px;
+        color:#00e5ff;
+        font-weight:bold;
+      " id="clock">
+      </div>
+
+      <div style="
+        text-align:center;
+        color:#8292a7;
+        font-size:11px;
+      ">
+      Waktu perangkat kamu
+      </div>
+      `
+    );
+
+    updateClock();
+
+  }
+
+}
+
+/* CALCULATOR LOGIC */
+
+let calcValue="";
+
+function calcInput(value){
+
+  calcValue+=value;
+
+  document.getElementById("calcDisplay").textContent=
+    calcValue || "0";
+
+}
+
+function calcClear(){
+
+  calcValue="";
+
+  document.getElementById("calcDisplay").textContent="0";
+
+}
+
+function calcBack(){
+
+  calcValue=calcValue.slice(0,-1);
+
+  document.getElementById("calcDisplay").textContent=
+    calcValue || "0";
+
+}
+
+function calcResult(){
+
+  try{
+
+    if(!/^[0-9+\-*/().\s]+$/.test(calcValue)){
+      throw new Error();
+    }
+
+    calcValue=String(Function(
+      '"use strict";return ('+calcValue+')'
+    )());
+
+    document.getElementById("calcDisplay").textContent=
+      calcValue;
+
+  }catch{
+
+    calcValue="";
+
+    document.getElementById("calcDisplay").textContent=
+      "ERROR";
+
+  }
+
+}
+
+/* NOTES */
+
+function saveNotes(){
+
+  const value=document.getElementById("notesArea").value;
+
+  localStorage.setItem("vidz_notes",value);
+
+  document.getElementById("noteStatus").textContent=
+    "✓ Catatan tersimpan di perangkat.";
+
+}
+
+/* CLOCK */
+
+let clockTimer;
+
+function updateClock(){
+
+  clearInterval(clockTimer);
+
+  function render(){
+
+    const clock=document.getElementById("clock");
+
+    if(!clock){
+      clearInterval(clockTimer);
+      return;
+    }
+
+    const now=new Date();
+
+    clock.textContent=
+      now.toLocaleTimeString("id-ID");
+
+  }
+
+  render();
+
+  clockTimer=setInterval(render,1000);
+
+}
+
+/* PROJECT INFO */
+
+function showInfo(title,text){
+
+  openModal(
+    title,
+    `
+    <p style="
+      color:#8292a7;
+      line-height:1.8;
+      font-size:13px;
+    ">
+      ${text}
+    </p>
+    `
+  );
+
+}
 
 </script>
 
