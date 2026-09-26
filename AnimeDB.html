@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#050816">
+<meta name="description" content="VIDZ Anime DB — Database karakter anime pribadi.">
+<title>VIDZ — Anime DB</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#050816;
+  color:#f5f7ff;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-2;
+  background:
+    radial-gradient(circle at 15% 15%,#00e5ff18,transparent 28%),
+    radial-gradient(circle at 85% 80%,#7c3aed18,transparent 30%),
+    #050816;
+}
+
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  opacity:.045;
+  background-image:
+    linear-gradient(#fff 1px,transparent 1px),
+    linear-gradient(90deg,#fff 1px,transparent 1px);
+  background-size:55px 55px;
+  pointer-events:none;
+}
+
+button,
+input,
+textarea,
+select{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+/* NAVBAR */
+
+nav{
+  position:sticky;
+  top:0;
+  z-index:100;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+  padding:16px 7%;
+  background:#050816e8;
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid #ffffff0d;
+}
+
+.logo{
+  color:#00e5ff;
+  font-size:25px;
+  font-weight:900;
+  letter-spacing:-2px;
+  text-shadow:0 0 20px #00e5ff;
+}
+
+.nav-right{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.nav-btn{
+  border:1px solid #00e5ff22;
+  background:#ffffff08;
+  color:#aebbd0;
+  padding:8px 11px;
+  border-radius:9px;
+  font-size:12px;
+}
+
+.nav-btn:hover{
+  color:#00e5ff;
+  border-color:#00e5ff55;
+}
+
+/* MAIN */
+
+.container{
+  width:min(1150px,90%);
+  margin:auto;
+  padding:55px 0 80px;
+}
+
+.hero{
+  margin-bottom:35px;
+}
+
+.badge{
+  display:inline-block;
+  padding:7px 12px;
+  border:1px solid #00e5ff33;
+  border-radius:30px;
+  background:#00e5ff08;
+  color:#7f91a8;
+  font-size:10px;
+  letter-spacing:2px;
+}
+
+h1{
+  margin-top:18px;
+  font-size:clamp(42px,7vw,78px);
+  line-height:.95;
+  letter-spacing:-4px;
+}
+
+h1 span{
+  color:#00e5ff;
+  text-shadow:0 0 30px #00e5ff55;
+}
+
+.hero p{
+  max-width:700px;
+  margin-top:18px;
+  color:#8190a5;
+  line-height:1.7;
+}
+
+/* STATS */
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+  margin-bottom:25px;
+}
+
+.stat{
+  padding:20px;
+  border:1px solid #ffffff0d;
+  border-radius:18px;
+  background:#0c1424cc;
+}
+
+.stat small{
+  color:#66778d;
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
+
+.stat b{
+  display:block;
+  margin-top:8px;
+  font-size:25px;
+  color:#00e5ff;
+}
+
+/* PANEL */
+
+.panel{
+  padding:24px;
+  margin-bottom:22px;
+  border:1px solid #ffffff0d;
+  border-radius:22px;
+  background:#0c1424cc;
+  box-shadow:0 20px 60px #0004;
+}
+
+.panel-title{
+  margin-bottom:20px;
+}
+
+.panel-title h2{
+  font-size:22px;
+}
+
+.panel-title p{
+  margin-top:5px;
+  color:#6f8095;
+  font-size:12px;
+}
+
+/* FORM */
+
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+
+.field{
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+}
+
+.field.full{
+  grid-column:1/-1;
+}
+
+.field label{
+  color:#8494a9;
+  font-size:11px;
+}
+
+.field input,
+.field textarea,
+.field select{
+  width:100%;
+  border:1px solid #ffffff12;
+  outline:none;
+  border-radius:11px;
+  padding:12px 13px;
+  color:#fff;
+  background:#050b17;
+  transition:.2s;
+}
+
+.field textarea{
+  min-height:90px;
+  resize:vertical;
+}
+
+.field input:focus,
+.field textarea:focus,
+.field select:focus{
+  border-color:#00e5ff66;
+  box-shadow:0 0 0 3px #00e5ff0c;
+}
+
+.form-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:16px;
+}
+
+.btn{
+  border:0;
+  border-radius:10px;
+  padding:11px 16px;
+  font-weight:bold;
+  font-size:12px;
+}
+
+.btn-primary{
+  background:#00e5ff;
+  color:#001017;
+}
+
+.btn-secondary{
+  background:#ffffff0a;
+  color:#fff;
+  border:1px solid #ffffff15;
+}
+
+.btn-danger{
+  background:#ff33550e;
+  color:#ff6b81;
+  border:1px solid #ff335522;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+}
+
+/* SEARCH */
+
+.search-row{
+  display:grid;
+  grid-template-columns:1fr 190px;
+  gap:10px;
+}
+
+.search-row input,
+.search-row select{
+  width:100%;
+  border:1px solid #ffffff12;
+  border-radius:11px;
+  outline:none;
+  padding:12px;
+  background:#050b17;
+  color:#fff;
+}
+
+.search-row input:focus,
+.search-row select:focus{
+  border-color:#00e5ff66;
+}
+
+/* DATABASE */
+
+.database{
+  display:grid;
+  gap:14px;
+}
+
+.empty{
+  padding:45px 20px;
+  text-align:center;
+  border:1px dashed #ffffff18;
+  border-radius:18px;
+  color:#66778d;
+}
+
+.card{
+  position:relative;
+  padding:22px;
+  border:1px solid #ffffff0d;
+  border-radius:18px;
+  background:linear-gradient(145deg,#111b2ccc,#080d18dd);
+  transition:.25s;
+}
+
+.card:hover{
+  border-color:#00e5ff33;
+  transform:translateY(-2px);
+}
+
+.card-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:15px;
+}
+
+.card h3{
+  font-size:20px;
+}
+
+.anime{
+  margin-top:5px;
+  color:#00e5ff;
+  font-size:12px;
+}
+
+.tag{
+  flex-shrink:0;
+  padding:5px 9px;
+  border-radius:20px;
+  background:#00ff9d0c;
+  border:1px solid #00ff9d22;
+  color:#00ff9d;
+  font-size:9px;
+}
+
+.reason{
+  margin-top:17px;
+  color:#94a3b8;
+  font-size:13px;
+  line-height:1.7;
+}
+
+.card-actions{
+  display:flex;
+  gap:8px;
+  margin-top:17px;
+}
+
+.small-btn{
+  padding:7px 10px;
+  border-radius:8px;
+  border:1px solid #ffffff12;
+  background:#ffffff08;
+  color:#aebbd0;
+  font-size:10px;
+}
+
+.small-btn:hover{
+  color:#00e5ff;
+  border-color:#00e5ff44;
+}
+
+.small-btn.delete:hover{
+  color:#ff6b81;
+  border-color:#ff335544;
+}
+
+/* FOOTER */
+
+footer{
+  text-align:center;
+  padding:25px;
+  color:#526176;
+  font-size:11px;
+}
+
+/* TOAST */
+
+#toast{
+  position:fixed;
+  left:50%;
+  bottom:25px;
+  transform:translate(-50%,30px);
+  z-index:999;
+  padding:11px 17px;
+  border-radius:10px;
+  background:#0d1828f2;
+  border:1px solid #00e5ff33;
+  color:#00e5ff;
+  font-size:11px;
+  opacity:0;
+  pointer-events:none;
+  transition:.3s;
+}
+
+#toast.show{
+  opacity:1;
+  transform:translate(-50%,0);
+}
+
+/* LIGHT MODE */
+
+body.light{
+  color:#111827;
+  background:#edf3f8;
+}
+
+body.light::before{
+  background:
+    radial-gradient(circle at 15% 15%,#c9f7ff,transparent 28%),
+    radial-gradient(circle at 85% 80%,#e8ddff,transparent 30%),
+    #edf3f8;
+}
+
+body.light nav{
+  background:#ffffffdf;
+  border-color:#00000010;
+}
+
+body.light .panel,
+body.light .stat,
+body.light .card{
+  background:#ffffffdc;
+  border-color:#00000010;
+}
+
+body.light .hero p,
+body.light .panel-title p,
+body.light .stat small,
+body.light .field label,
+body.light .reason{
+  color:#526174;
+}
+
+body.light .field input,
+body.light .field textarea,
+body.light .field select,
+body.light .search-row input,
+body.light .search-row select{
+  background:#f8fafc;
+  color:#111827;
+  border-color:#00000012;
+}
+
+body.light .btn-secondary,
+body.light .small-btn,
+body.light .nav-btn{
+  color:#334155;
+  background:#ffffff;
+  border-color:#00000012;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:700px){
+
+  nav{
+    padding:13px 5%;
+  }
+
+  .nav-right{
+    gap:4px;
+  }
+
+  .nav-btn{
+    font-size:10px;
+    padding:7px 8px;
+  }
+
+  .container{
+    width:92%;
+    padding-top:38px;
+  }
+
+  .stats{
+    grid-template-columns:1fr;
+  }
+
+  .form-grid{
+    grid-template-columns:1fr;
+  }
+
+  .field.full{
+    grid-column:auto;
+  }
+
+  .search-row{
+    grid-template-columns:1fr;
+  }
+
+  h1{
+    font-size:50px;
+  }
+
+  .card-head{
+    flex-direction:column;
+  }
+
+  .tag{
+    align-self:flex-start;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="logo">VIDZ DB.</div>
+
+  <div class="nav-right">
+    <a class="nav-btn" href="index.html">Home</a>
+    <a class="nav-btn" href="Projects.html">Projects</a>
+    <button class="nav-btn" id="themeBtn" type="button">🌙</button>
+  </div>
+</nav>
+
+<main class="container">
+
+  <section class="hero">
+    <div class="badge">VIDZ • ANIME DATABASE</div>
+
+    <h1>
+      ANIME<br>
+      <span>DATABASE.</span>
+    </h1>
+
+    <p>
+      Database sederhana untuk menyimpan karakter anime,
+      alasan, dan informasi lainnya langsung di browser.
+      Semua data disimpan secara lokal di perangkat kamu.
+    </p>
+  </section>
+
+  <section class="stats">
+
+    <div class="stat">
+      <small>Total Character</small>
+      <b id="totalCount">0</b>
+    </div>
+
+    <div class="stat">
+      <small>Total Anime</small>
+      <b id="animeCount">0</b>
+    </div>
+
+    <div class="stat">
+      <small>Status Storage</small>
+      <b>LOCAL</b>
+    </div>
+
+  </section>
+
+  <!-- ADD DATA -->
+
+  <section class="panel">
+
+    <div class="panel-title">
+      <h2 id="formTitle">Tambah Data</h2>
+      <p>Masukkan informasi karakter anime ke database.</p>
+    </div>
+
+    <form id="animeForm">
+
+      <div class="form-grid">
+
+        <div class="field">
+          <label>Nama Anime</label>
+          <input
+            id="animeName"
+            type="text"
+            placeholder="Contoh: Naruto"
+            required
+          >
+        </div>
+
+        <div class="field">
+          <label>Nama Character</label>
+          <input
+            id="characterName"
+            type="text"
+            placeholder="Contoh: Naruto Uzumaki"
+            required
+          >
+        </div>
+
+        <div class="field">
+          <label>Kategori</label>
+
+          <select id="category">
+            <option value="Favorite">Favorite</option>
+            <option value="Strong">Strong</option>
+            <option value="Interesting">Interesting</option>
+            <option value="Villain">Villain</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Rating</label>
+
+          <select id="rating">
+            <option value="5">★★★★★</option>
+            <option value="4">★★★★☆</option>
+            <option value="3">★★★☆☆</option>
+            <option value="2">★★☆☆☆</option>
+            <option value="1">★☆☆☆☆</option>
+          </select>
+        </div>
+
+        <div class="field full">
+          <label>Reason</label>
+
+          <textarea
+            id="reason"
+            placeholder="Kenapa character ini kamu masukkan?"
+            required
+          ></textarea>
+        </div>
+
+      </div>
+
+      <div class="form-actions">
+
+        <button
+          class="btn btn-primary"
+          type="submit"
+          id="saveBtn"
+        >
+          + Simpan Data
+        </button>
+
+        <button
+          class="btn btn-secondary"
+          type="button"
+          id="cancelBtn"
+          style="display:none"
+        >
+          Batal Edit
+        </button>
+
+      </div>
+
+    </form>
+
+  </section>
+
+  <!-- SEARCH -->
+
+  <section class="panel">
+
+    <div class="panel-title">
+      <h2>Database</h2>
+      <p>Cari atau filter data yang sudah tersimpan.</p>
+    </div>
+
+    <div class="search-row">
+
+      <input
+        id="search"
+        type="search"
+        placeholder="🔎 Cari anime, character, atau reason..."
+      >
+
+      <select id="filter">
+        <option value="all">Semua kategori</option>
+        <option value="Favorite">Favorite</option>
+        <option value="Strong">Strong</option>
+        <option value="Interesting">Interesting</option>
+        <option value="Villain">Villain</option>
+        <option value="Other">Other</option>
+      </select>
+
+    </div>
+
+  </section>
+
+  <section class="database" id="database"></section>
+
+  <!-- DATA MANAGEMENT -->
+
+  <section class="panel">
+
+    <div class="panel-title">
+      <h2>Data Management</h2>
+      <p>Backup database agar data mudah dipindahkan ke perangkat lain.</p>
+    </div>
+
+    <div class="form-actions">
+
+      <button class="btn btn-secondary" id="exportBtn" type="button">
+        ↓ Export JSON
+      </button>
+
+      <button class="btn btn-secondary" id="importBtn" type="button">
+        ↑ Import JSON
+      </button>
+
+      <input
+        id="importFile"
+        type="file"
+        accept=".json,application/json"
+        hidden
+      >
+
+      <button class="btn btn-danger" id="clearBtn" type="button">
+        Hapus Semua
+      </button>
+
+    </div>
+
+  </section>
+
+</main>
+
+<footer>
+  VIDZ Anime DB • Data tersimpan di Local Storage browser
+</footer>
+
+<div id="toast"></div>
+
+<script>
+
+/* =========================
+   STORAGE
+========================= */
+
+const STORAGE_KEY = "vidz_anime_database_v1";
+
+let data = [];
+let editingId = null;
+
+function loadData(){
+
+  try{
+
+    const saved =
+      localStorage.getItem(STORAGE_KEY);
+
+    data = saved
+      ? JSON.parse(saved)
+      : [];
+
+    if(!Array.isArray(data)){
+      data = [];
+    }
+
+  }catch(error){
+
+    console.error(error);
+    data = [];
+
+  }
+
+}
+
+function saveData(){
+
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify(data)
+  );
+
+}
+
+/* =========================
+   ELEMENTS
+========================= */
+
+const form =
+  document.getElementById("animeForm");
+
+const animeName =
+  document.getElementById("animeName");
+
+const characterName =
+  document.getElementById("characterName");
+
+const category =
+  document.getElementById("category");
+
+const rating =
+  document.getElementById("rating");
+
+const reason =
+  document.getElementById("reason");
+
+const database =
+  document.getElementById("database");
+
+const search =
+  document.getElementById("search");
+
+const filter =
+  document.getElementById("filter");
+
+const totalCount =
+  document.getElementById("totalCount");
+
+const animeCount =
+  document.getElementById("animeCount");
+
+const saveBtn =
+  document.getElementById("saveBtn");
+
+const cancelBtn =
+  document.getElementById("cancelBtn");
+
+const formTitle =
+  document.getElementById("formTitle");
+
+const toast =
+  document.getElementById("toast");
+
+/* =========================
+   TOAST
+========================= */
+
+let toastTimer;
+
+function showToast(message){
+
+  toast.textContent = message;
+  toast.classList.add("show");
+
+  clearTimeout(toastTimer);
+
+  toastTimer = setTimeout(function(){
+
+    toast.classList.remove("show");
+
+  },2200);
+
+}
+
+/* =========================
+   ID
+========================= */
+
+function createId(){
+
+  return Date.now().toString(36)
+    + Math.random().toString(36).slice(2);
+
+}
+
+/* =========================
+   ESCAPE HTML
+========================= */
+
+function escapeHTML(value){
+
+  return String(value)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+
+}
+
+/* =========================
+   RENDER
+========================= */
+
+function render(){
+
+  const query =
+    search.value.trim().toLowerCase();
+
+  const selected =
+    filter.value;
+
+  const filtered =
+    data.filter(function(item){
+
+      const matchesSearch =
+        item.anime.toLowerCase().includes(query) ||
+        item.character.toLowerCase().includes(query) ||
+        item.reason.toLowerCase().includes(query);
+
+      const matchesFilter =
+        selected === "all" ||
+        item.category === selected;
+
+      return matchesSearch && matchesFilter;
+
+    });
+
+  totalCount.textContent =
+    data.length;
+
+  const uniqueAnime =
+    new Set(
+      data.map(item =>
+        item.anime.toLowerCase()
+      )
+    );
+
+  animeCount.textContent =
+    uniqueAnime.size;
+
+  if(filtered.length === 0){
+
+    database.innerHTML = `
+      <div class="empty">
+        ${
+          data.length === 0
+          ? "Belum ada data. Tambahkan character pertama kamu di atas."
+          : "Data yang dicari tidak ditemukan."
+        }
+      </div>
+    `;
+
+    return;
+
+  }
+
+  database.innerHTML =
+    filtered.map(function(item){
+
+      const stars =
+        "★".repeat(Number(item.rating))
+        + "☆".repeat(5 - Number(item.rating));
+
+      return `
+
+        <article class="card">
+
+          <div class="card-head">
+
+            <div>
+              <h3>
+                ${escapeHTML(item.character)}
+              </h3>
+
+              <div class="anime">
+                ${escapeHTML(item.anime)}
+              </div>
+            </div>
+
+            <div class="tag">
+              ${escapeHTML(item.category)}
+            </div>
+
+          </div>
+
+          <div class="reason">
+            ${escapeHTML(item.reason)}
+          </div>
+
+          <div style="
+            margin-top:12px;
+            color:#ffd166;
+            font-size:12px;
+          ">
+            ${stars}
+          </div>
+
+          <div class="card-actions">
+
+            <button
+              class="small-btn"
+              onclick="editItem('${item.id}')"
+              type="button"
+            >
+              ✏️ Edit
+            </button>
+
+            <button
+              class="small-btn delete"
+              onclick="deleteItem('${item.id}')"
+              type="button"
+            >
+              🗑️ Hapus
+            </button>
+
+          </div>
+
+        </article>
+
+      `;
+
+    }).join("");
+
+}
+
+/* =========================
+   ADD / EDIT
+========================= */
+
+form.addEventListener("submit",function(event){
+
+  event.preventDefault();
+
+  const anime =
+    animeName.value.trim();
+
+  const character =
+    characterName.value.trim();
+
+  const reasonText =
+    reason.value.trim();
+
+  if(!anime || !character || !reasonText){
+
+    showToast("Lengkapi semua data dulu.");
+    return;
+
+  }
+
+  if(editingId){
+
+    const item =
+      data.find(x => x.id === editingId);
+
+    if(item){
+
+      item.anime = anime;
+      item.character = character;
+      item.category = category.value;
+      item.rating = rating.value;
+      item.reason = reasonText;
+
+      showToast("Data berhasil diperbarui.");
+
+    }
+
+    editingId = null;
+
+    saveBtn.textContent =
+      "+ Simpan Data";
+
+    cancelBtn.style.display =
+      "none";
+
+    formTitle.textContent =
+      "Tambah Data";
+
+  }else{
+
+    data.unshift({
+
+      id:createId(),
+
+      anime:anime,
+
+      character:character,
+
+      category:category.value,
+
+      rating:rating.value,
+
+      reason:reasonText,
+
+      createdAt:new Date().toISOString()
+
+    });
+
+    showToast("Data berhasil disimpan.");
+
+  }
+
+  saveData();
+  form.reset();
+  rating.value = "5";
+
+  render();
+
+});
+
+/* =========================
+   EDIT
+========================= */
+
+window.editItem = function(id){
+
+  const item =
+    data.find(x => x.id === id);
+
+  if(!item) return;
+
+  editingId = id;
+
+  animeName.value =
+    item.anime;
+
+  characterName.value =
+    item.character;
+
+  category.value =
+    item.category;
+
+  rating.value =
+    item.rating;
+
+  reason.value =
+    item.reason;
+
+  saveBtn.textContent =
+    "✓ Simpan Perubahan";
+
+  cancelBtn.style.display =
+    "inline-block";
+
+  formTitle.textContent =
+    "Edit Data";
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+};
+
+/* =========================
+   CANCEL EDIT
+========================= */
+
+cancelBtn.addEventListener("click",function(){
+
+  editingId = null;
+
+  form.reset();
+
+  rating.value = "5";
+
+  saveBtn.textContent =
+    "+ Simpan Data";
+
+  cancelBtn.style.display =
+    "none";
+
+  formTitle.textContent =
+    "Tambah Data";
+
+});
+
+/* =========================
+   DELETE
+========================= */
+
+window.deleteItem = function(id){
+
+  const item =
+    data.find(x => x.id === id);
+
+  if(!item) return;
+
+  const confirmDelete =
+    confirm(
+      `Hapus "${item.character}" dari database?`
+    );
+
+  if(!confirmDelete) return;
+
+  data =
+    data.filter(x => x.id !== id);
+
+  saveData();
+  render();
+
+  showToast("Data berhasil dihapus.");
+
+};
+
+/* =========================
+   SEARCH
+========================= */
+
+search.addEventListener(
+  "input",
+  render
+);
+
+filter.addEventListener(
+  "change",
+  render
+);
+
+/* =========================
+   CLEAR ALL
+========================= */
+
+document
+  .getElementById("clearBtn")
+  .addEventListener("click",function(){
+
+    if(data.length === 0){
+
+      showToast("Database masih kosong.");
+      return;
+
+    }
+
+    const confirmClear =
+      confirm(
+        "Yakin ingin menghapus SEMUA data Anime DB?"
+      );
+
+    if(!confirmClear) return;
+
+    data = [];
+
+    save
