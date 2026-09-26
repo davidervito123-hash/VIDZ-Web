@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#060914">
+<meta name="theme-color" content="#050816">
 <meta name="description" content="VIDZ — Digital Space">
 <title>VIDZ — Digital Space</title>
 
@@ -20,7 +20,7 @@ html{
 
 body{
   font-family:Arial,Helvetica,sans-serif;
-  background:#060914;
+  background:#050816;
   color:#f5f7ff;
   overflow-x:hidden;
 }
@@ -35,26 +35,25 @@ button{
 }
 
 
-/* ========================================
-   ROOT
-======================================== */
+/* =========================
+   VARIABLES
+========================= */
 
 :root{
-  --bg:#060914;
-  --card:rgba(14,20,35,.72);
+  --bg:#050816;
+  --card:#0c1424;
+  --card2:#101a2e;
   --cyan:#00e5ff;
-  --cyan-soft:rgba(0,229,255,.1);
-  --purple:#8b5cf6;
   --text:#f5f7ff;
-  --muted:#8793a7;
-  --muted2:#586579;
+  --muted:#8492a6;
+  --muted2:#5e6c80;
   --line:rgba(255,255,255,.08);
 }
 
 
-/* ========================================
+/* =========================
    BACKGROUND
-======================================== */
+========================= */
 
 body::before{
   content:"";
@@ -64,13 +63,13 @@ body::before{
 
   background:
     radial-gradient(
-      circle at 15% 10%,
-      rgba(0,229,255,.13),
-      transparent 27%
+      circle at 15% 15%,
+      rgba(0,229,255,.12),
+      transparent 28%
     ),
     radial-gradient(
-      circle at 88% 72%,
-      rgba(139,92,246,.12),
+      circle at 85% 75%,
+      rgba(124,58,237,.12),
       transparent 30%
     ),
     var(--bg);
@@ -82,7 +81,6 @@ body::after{
   inset:0;
   z-index:-2;
   pointer-events:none;
-
   opacity:.025;
 
   background-image:
@@ -96,40 +94,40 @@ body::after{
       transparent 1px
     );
 
-  background-size:60px 60px;
+  background-size:55px 55px;
 }
 
 .orb{
   position:fixed;
-  width:300px;
-  height:300px;
+  width:280px;
+  height:280px;
   border-radius:50%;
-  filter:blur(110px);
+  filter:blur(100px);
   opacity:.13;
   z-index:-1;
   pointer-events:none;
 }
 
-.orb-one{
-  left:-180px;
-  top:25%;
-  background:var(--cyan);
+.orb.one{
+  left:-150px;
+  top:20%;
+  background:#00e5ff;
 }
 
-.orb-two{
-  right:-180px;
-  bottom:5%;
-  background:var(--purple);
+.orb.two{
+  right:-150px;
+  bottom:10%;
+  background:#7c3aed;
 }
 
 
-/* ========================================
+/* =========================
    NAVBAR
-======================================== */
+========================= */
 
 .nav-wrap{
   position:fixed;
-  top:15px;
+  top:14px;
   left:50%;
   transform:translateX(-50%);
   width:min(1120px,94%);
@@ -143,18 +141,17 @@ nav{
   align-items:center;
   justify-content:space-between;
 
-  padding:0 10px 0 21px;
+  padding:0 10px 0 20px;
 
   border:1px solid var(--line);
   border-radius:18px;
 
-  background:rgba(6,9,20,.72);
+  background:rgba(5,8,22,.78);
 
-  backdrop-filter:blur(22px);
-  -webkit-backdrop-filter:blur(22px);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
 
-  box-shadow:
-    0 18px 50px rgba(0,0,0,.2);
+  box-shadow:0 18px 55px rgba(0,0,0,.25);
 }
 
 .logo{
@@ -162,28 +159,21 @@ nav{
   font-size:25px;
   font-weight:900;
   letter-spacing:-2px;
-
-  text-shadow:
-    0 0 25px rgba(0,229,255,.3);
-
-  transition:.25s;
+  text-shadow:0 0 25px rgba(0,229,255,.35);
+  cursor:pointer;
 }
 
-.logo:hover{
-  transform:scale(1.04);
-}
-
-.nav-right{
+.nav-links{
   display:flex;
   align-items:center;
-  gap:4px;
+  gap:3px;
 }
 
-.nav-right a{
+.nav-links a{
   padding:9px 12px;
   border-radius:9px;
 
-  color:#8c98aa;
+  color:#8996aa;
 
   font-size:11px;
   font-weight:bold;
@@ -191,7 +181,7 @@ nav{
   transition:.2s;
 }
 
-.nav-right a:hover{
+.nav-links a:hover{
   color:var(--cyan);
   background:rgba(0,229,255,.06);
 }
@@ -210,19 +200,12 @@ nav{
   color:#fff;
 
   cursor:pointer;
-
-  transition:.25s;
-}
-
-.theme:hover{
-  border-color:rgba(0,229,255,.35);
-  transform:rotate(8deg);
 }
 
 
-/* ========================================
-   GLOBAL
-======================================== */
+/* =========================
+   CONTAINER
+========================= */
 
 .container{
   width:min(1120px,92%);
@@ -230,13 +213,13 @@ nav{
 }
 
 section{
-  padding:115px 0;
+  padding:110px 0;
 }
 
 
-/* ========================================
+/* =========================
    HERO
-======================================== */
+========================= */
 
 .hero{
   min-height:100vh;
@@ -246,28 +229,26 @@ section{
 
   align-items:center;
 
-  gap:80px;
+  gap:75px;
 
-  padding-top:130px;
+  padding-top:125px;
 }
 
-.hero-content{
-  position:relative;
-}
+.status{
+  width:max-content;
 
-.eyebrow{
-  display:inline-flex;
+  display:flex;
   align-items:center;
-  gap:9px;
+  gap:8px;
 
   padding:8px 12px;
 
-  border:1px solid rgba(0,229,255,.17);
+  border:1px solid rgba(0,229,255,.18);
   border-radius:30px;
 
-  background:rgba(0,229,255,.045);
+  background:rgba(0,229,255,.04);
 
-  color:#8c9bad;
+  color:#8291a5;
 
   font-size:9px;
   font-weight:bold;
@@ -275,42 +256,37 @@ section{
   letter-spacing:1.5px;
 }
 
-.eyebrow i{
+.status i{
   width:7px;
   height:7px;
-
   border-radius:50%;
 
   background:#00ff9d;
 
-  box-shadow:
-    0 0 12px #00ff9d;
+  box-shadow:0 0 12px #00ff9d;
 }
 
 .hero h1{
   margin-top:25px;
 
-  font-size:
-    clamp(60px,8.8vw,108px);
+  font-size:clamp(60px,8vw,105px);
 
-  line-height:.83;
+  line-height:.84;
 
-  letter-spacing:-8px;
-
-  font-weight:950;
+  letter-spacing:-7px;
 }
 
 .hero h1 span{
   color:var(--cyan);
 
   text-shadow:
-    0 0 45px rgba(0,229,255,.28);
+    0 0 40px rgba(0,229,255,.3);
 }
 
 .hero-sub{
   max-width:620px;
 
-  margin-top:29px;
+  margin-top:27px;
 
   color:var(--muted);
 
@@ -324,7 +300,7 @@ section{
   flex-wrap:wrap;
   gap:10px;
 
-  margin-top:31px;
+  margin-top:30px;
 }
 
 .btn{
@@ -334,7 +310,7 @@ section{
   align-items:center;
   justify-content:center;
 
-  padding:0 19px;
+  padding:0 20px;
 
   border-radius:11px;
 
@@ -353,107 +329,74 @@ section{
   background:var(--cyan);
 
   box-shadow:
-    0 12px 35px rgba(0,229,255,.13);
+    0 12px 35px rgba(0,229,255,.14);
 }
 
 .secondary{
   color:#fff;
 
-  background:rgba(255,255,255,.035);
+  background:rgba(255,255,255,.04);
 
   border:1px solid var(--line);
 }
 
-.hero-meta{
+.hero-info{
   display:flex;
-  gap:25px;
+  flex-wrap:wrap;
+  gap:22px;
 
-  margin-top:38px;
+  margin-top:35px;
 
-  color:var(--muted2);
+  color:#59677b;
 
   font-size:9px;
   font-weight:bold;
   letter-spacing:1px;
 }
 
-.hero-meta span{
-  display:flex;
-  align-items:center;
-  gap:7px;
-}
-
-.hero-meta b{
-  color:#aab5c5;
+.hero-info b{
+  color:#aeb9c8;
 }
 
 
-/* ========================================
-   PROFILE PANEL
-======================================== */
+/* =========================
+   PROFILE
+========================= */
 
 .profile{
-  position:relative;
+  padding:28px;
 
-  padding:27px;
-
-  border:1px solid rgba(0,229,255,.14);
+  border:1px solid rgba(0,229,255,.15);
   border-radius:27px;
 
   background:
     linear-gradient(
       145deg,
-      rgba(16,26,45,.86),
-      rgba(8,12,23,.82)
+      rgba(16,27,47,.9),
+      rgba(8,13,25,.9)
     );
 
-  box-shadow:
-    0 35px 100px rgba(0,0,0,.35);
+  box-shadow:0 35px 100px rgba(0,0,0,.35);
 
   overflow:hidden;
 }
 
-.profile::before{
-  content:"";
-
-  position:absolute;
-
-  width:170px;
-  height:170px;
-
-  top:-100px;
-  right:-80px;
-
-  border-radius:50%;
-
-  background:var(--cyan);
-
-  filter:blur(75px);
-
-  opacity:.12;
-}
-
-.profile-top{
-  position:relative;
-
+.profile-header{
   display:flex;
   justify-content:space-between;
 
-  color:#526075;
+  color:#566478;
 
   font-size:8px;
   font-weight:bold;
-
   letter-spacing:2px;
 }
 
-.profile-status{
+.online{
   color:#00ff9d;
 }
 
 .avatar{
-  position:relative;
-
   display:block;
 
   width:145px;
@@ -463,21 +406,19 @@ section{
 
   object-fit:cover;
 
-  border:2px solid var(--cyan);
+  border:3px solid var(--cyan);
   border-radius:50%;
 
   background:#111827;
 
   box-shadow:
-    0 0 30px rgba(0,229,255,.28),
-    0 0 80px rgba(0,229,255,.07);
+    0 0 30px rgba(0,229,255,.3),
+    0 0 80px rgba(0,229,255,.08);
 }
 
 .profile h2{
   text-align:center;
-
   font-size:28px;
-  letter-spacing:-1px;
 }
 
 .role{
@@ -491,10 +432,9 @@ section{
   font-weight:bold;
 }
 
-.line{
+.divider{
   height:1px;
-
-  margin:23px 0;
+  margin:24px 0;
 
   background:var(--line);
 }
@@ -548,15 +488,15 @@ section{
 }
 
 
-/* ========================================
-   SECTION HEADER
-======================================== */
+/* =========================
+   HEADINGS
+========================= */
 
-.section-head{
+.heading{
   margin-bottom:42px;
 }
 
-.section-head small{
+.heading small{
   color:var(--cyan);
 
   font-size:9px;
@@ -565,21 +505,20 @@ section{
   letter-spacing:3px;
 }
 
-.section-head h2{
+.heading h2{
   margin-top:9px;
 
-  font-size:
-    clamp(35px,5vw,52px);
+  font-size:clamp(36px,5vw,52px);
 
   line-height:1;
 
   letter-spacing:-3px;
 }
 
-.section-head p{
+.heading p{
   max-width:600px;
 
-  margin-top:16px;
+  margin-top:15px;
 
   color:var(--muted);
 
@@ -588,26 +527,25 @@ section{
   line-height:1.8;
 }
 
-.section-head::after{
+.heading::after{
   content:"";
 
   display:block;
 
-  width:42px;
+  width:40px;
   height:2px;
 
   margin-top:17px;
 
   background:var(--cyan);
 
-  box-shadow:
-    0 0 15px var(--cyan);
+  box-shadow:0 0 14px var(--cyan);
 }
 
 
-/* ========================================
+/* =========================
    STATS
-======================================== */
+========================= */
 
 .stats{
   display:grid;
@@ -618,28 +556,26 @@ section{
 .stat{
   position:relative;
 
-  padding:27px;
+  min-height:145px;
 
-  min-height:150px;
+  padding:27px;
 
   border:1px solid var(--line);
   border-radius:20px;
 
-  background:var(--card);
-
-  overflow:hidden;
+  background:rgba(12,20,36,.75);
 
   transition:.3s;
 }
 
 .stat:hover{
-  transform:translateY(-7px);
-
-  border-color:
-    rgba(0,229,255,.27);
+  transform:translateY(-6px);
+  border-color:rgba(0,229,255,.3);
 }
 
-.stat-number{
+.stat strong{
+  display:block;
+
   color:var(--cyan);
 
   font-size:42px;
@@ -648,59 +584,44 @@ section{
   letter-spacing:-3px;
 }
 
-.stat-label{
-  margin-top:9px;
+.stat span{
+  display:block;
+
+  margin-top:8px;
 
   color:#718096;
 
   font-size:11px;
 }
 
-.stat-line{
-  position:absolute;
 
-  left:27px;
-  bottom:22px;
-
-  width:35px;
-  height:2px;
-
-  background:var(--cyan);
-
-  opacity:.4;
-}
-
-
-/* ========================================
+/* =========================
    ABOUT PREVIEW
-======================================== */
+========================= */
 
 .about-preview{
   display:grid;
-  grid-template-columns:.75fr 1.25fr;
-  gap:20px;
+  grid-template-columns:.7fr 1.3fr;
+  gap:18px;
 }
 
-.about-side{
+.about-box{
   padding:30px;
 
   border:1px solid var(--line);
   border-radius:22px;
 
-  background:var(--card);
+  background:rgba(12,20,36,.75);
 }
 
-.about-side strong{
-  display:block;
-
+.about-number{
   color:var(--cyan);
 
-  font-size:32px;
-
-  letter-spacing:-2px;
+  font-size:38px;
+  font-weight:900;
 }
 
-.about-side span{
+.about-box span{
   display:block;
 
   margin-top:7px;
@@ -710,44 +631,29 @@ section{
   font-size:11px;
 }
 
-.about-main{
-  padding:30px;
-
-  border:1px solid var(--line);
-  border-radius:22px;
-
-  background:var(--card);
-}
-
-.about-main p{
-  color:#a4afc0;
+.about-box p{
+  color:#a6b1c0;
 
   font-size:14px;
 
   line-height:2;
 }
 
-.text-link{
-  display:inline-flex;
+.more{
+  display:inline-block;
 
-  margin-top:22px;
+  margin-top:20px;
 
   color:var(--cyan);
 
   font-size:11px;
   font-weight:bold;
-
-  transition:.2s;
-}
-
-.text-link:hover{
-  transform:translateX(5px);
 }
 
 
-/* ========================================
-   PROJECT PREVIEW
-======================================== */
+/* =========================
+   PROJECTS
+========================= */
 
 .projects{
   display:grid;
@@ -758,16 +664,14 @@ section{
 .project{
   position:relative;
 
-  min-height:245px;
+  min-height:235px;
 
   padding:27px;
 
   border:1px solid var(--line);
   border-radius:21px;
 
-  background:var(--card);
-
-  overflow:hidden;
+  background:rgba(12,20,36,.75);
 
   transition:.3s;
 }
@@ -775,28 +679,26 @@ section{
 .project:hover{
   transform:translateY(-8px);
 
-  border-color:
-    rgba(0,229,255,.28);
+  border-color:rgba(0,229,255,.28);
 
-  box-shadow:
-    0 25px 60px rgba(0,0,0,.25);
+  box-shadow:0 25px 60px rgba(0,0,0,.25);
 }
 
 .project-number{
   position:absolute;
 
-  top:21px;
+  top:20px;
   right:22px;
 
-  color:#526075;
+  color:#536075;
 
   font-size:9px;
   font-weight:bold;
 }
 
 .project-icon{
-  width:51px;
-  height:51px;
+  width:50px;
+  height:50px;
 
   display:grid;
   place-items:center;
@@ -808,7 +710,7 @@ section{
 
   background:rgba(255,255,255,.035);
 
-  font-size:23px;
+  font-size:22px;
 }
 
 .project h3{
@@ -828,25 +730,18 @@ section{
 .project-arrow{
   position:absolute;
 
-  right:23px;
-  bottom:20px;
+  right:22px;
+  bottom:19px;
 
   color:var(--cyan);
 
-  opacity:.45;
-
-  transition:.25s;
-}
-
-.project:hover .project-arrow{
-  opacity:1;
-  transform:translateX(5px);
+  font-size:20px;
 }
 
 
-/* ========================================
-   TIMELINE
-======================================== */
+/* =========================
+   JOURNEY
+========================= */
 
 .timeline{
   max-width:850px;
@@ -854,17 +749,14 @@ section{
 
 .event{
   display:grid;
-
   grid-template-columns:55px 1fr;
 
-  gap:17px;
+  gap:15px;
 
-  padding-bottom:18px;
+  margin-bottom:16px;
 }
 
 .event-number{
-  position:relative;
-
   width:42px;
   height:42px;
 
@@ -879,27 +771,6 @@ section{
 
   font-size:9px;
   font-weight:900;
-
-  box-shadow:
-    0 0 0 7px var(--bg);
-}
-
-.event:not(:last-child) .event-number::after{
-  content:"";
-
-  position:absolute;
-
-  top:49px;
-  left:20px;
-
-  width:1px;
-  height:60px;
-
-  background:
-    linear-gradient(
-      var(--cyan),
-      transparent
-    );
 }
 
 .event-content{
@@ -908,7 +779,7 @@ section{
   border:1px solid var(--line);
   border-radius:15px;
 
-  background:var(--card);
+  background:rgba(12,20,36,.75);
 }
 
 .event-content h3{
@@ -926,12 +797,12 @@ section{
 }
 
 
-/* ========================================
+/* =========================
    FOOTER
-======================================== */
+========================= */
 
 footer{
-  padding:42px 20px;
+  padding:40px 20px;
 
   border-top:1px solid var(--line);
 
@@ -947,27 +818,27 @@ footer span{
 }
 
 
-/* ========================================
+/* =========================
    LIGHT MODE
-======================================== */
+========================= */
 
 body.light{
-  background:#f2f6fa;
+  background:#f1f6fa;
   color:#101827;
 }
 
 body.light::before{
   background:
-    radial-gradient(circle at 10% 10%,#d4f9ff,transparent 28%),
-    radial-gradient(circle at 90% 80%,#e9ddff,transparent 30%),
-    #f2f6fa;
+    radial-gradient(circle at 10% 10%,#d4faff,transparent 28%),
+    radial-gradient(circle at 90% 75%,#e9ddff,transparent 30%),
+    #f1f6fa;
 }
 
 body.light nav{
-  background:rgba(255,255,255,.78);
+  background:rgba(255,255,255,.82);
 }
 
-body.light .nav-right a{
+body.light .nav-links a{
   color:#475569;
 }
 
@@ -977,16 +848,15 @@ body.light .theme{
 
 body.light .profile,
 body.light .stat,
-body.light .about-side,
-body.light .about-main,
+body.light .about-box,
 body.light .project,
 body.light .event-content{
-  background:rgba(255,255,255,.78);
+  background:rgba(255,255,255,.82);
   border-color:rgba(0,0,0,.08);
 }
 
 body.light .hero-sub,
-body.light .about-main p,
+body.light .about-box p,
 body.light .project p,
 body.light .event-content p{
   color:#526174;
@@ -997,23 +867,20 @@ body.light .secondary{
 }
 
 
-/* ========================================
+/* =========================
    MOBILE
-======================================== */
+========================= */
 
 @media(max-width:850px){
 
   .hero{
     grid-template-columns:1fr;
-
-    text-align:center;
-
     gap:55px;
 
-    padding-top:125px;
+    text-align:center;
   }
 
-  .eyebrow{
+  .status{
     margin:auto;
   }
 
@@ -1026,12 +893,12 @@ body.light .secondary{
     justify-content:center;
   }
 
-  .hero-meta{
+  .hero-info{
     justify-content:center;
   }
 
   .profile{
-    max-width:580px;
+    max-width:600px;
     margin:auto;
 
     text-align:left;
@@ -1055,19 +922,19 @@ body.light .secondary{
 @media(max-width:500px){
 
   .nav-wrap{
-    top:9px;
+    top:8px;
   }
 
   nav{
     height:57px;
   }
 
-  .nav-right a{
+  .nav-links a{
     display:none;
   }
 
   .hero{
-    padding-top:120px;
+    padding-top:115px;
   }
 
   .hero h1{
@@ -1079,11 +946,6 @@ body.light .secondary{
     font-size:13px;
   }
 
-  .hero-meta{
-    gap:13px;
-    flex-wrap:wrap;
-  }
-
   .profile{
     padding:23px;
   }
@@ -1092,23 +954,19 @@ body.light .secondary{
     grid-template-columns:1fr;
   }
 
-  .section-head h2{
+  .heading h2{
     font-size:37px;
-  }
-
-  .about-side,
-  .about-main{
-    padding:25px;
   }
 
 }
 </style>
 </head>
 
+
 <body>
 
-<div class="orb orb-one"></div>
-<div class="orb orb-two"></div>
+<div class="orb one"></div>
+<div class="orb two"></div>
 
 
 <!-- NAVBAR -->
@@ -1117,13 +975,13 @@ body.light .secondary{
 
 <nav>
 
-  <a href="index.html" class="logo">
+  <a class="logo" href="index.html">
     VIDZ.
   </a>
 
-  <div class="nav-right">
+  <div class="nav-links">
 
-    <a href="#home">
+    <a href="index.html">
       Home
     </a>
 
@@ -1131,7 +989,7 @@ body.light .secondary{
       About
     </a>
 
-    <a href="Project.html">
+    <a href="Projects.html">
       Project
     </a>
 
@@ -1142,7 +1000,8 @@ body.light .secondary{
     <button
       class="theme"
       id="themeButton"
-      type="button">
+      type="button"
+      aria-label="Ganti tema">
       🌙
     </button>
 
@@ -1157,11 +1016,11 @@ body.light .secondary{
 
 <main>
 
-<section class="hero container" id="home">
+<section class="hero container">
 
-  <div class="hero-content">
+  <div>
 
-    <div class="eyebrow">
+    <div class="status">
       <i></i>
       CURRENTLY LEARNING WEB DEVELOPMENT
     </div>
@@ -1181,7 +1040,7 @@ body.light .secondary{
 
       <a
         class="btn primary"
-        href="Project.html">
+        href="Projects.html">
         Lihat Project →
       </a>
 
@@ -1193,21 +1052,18 @@ body.light .secondary{
 
     </div>
 
-    <div class="hero-meta">
+    <div class="hero-info">
 
       <span>
-        STATUS
-        <b>LEARNING</b>
+        STATUS <b>LEARNING</b>
       </span>
 
       <span>
-        FOCUS
-        <b>WEB & TECH</b>
+        FOCUS <b>WEB & TECH</b>
       </span>
 
       <span>
-        VERSION
-        <b>2026</b>
+        YEAR <b>2026</b>
       </span>
 
     </div>
@@ -1215,17 +1071,17 @@ body.light .secondary{
   </div>
 
 
-  <!-- PROFILE -->
+  <!-- PROFILE CARD -->
 
   <div class="profile">
 
-    <div class="profile-top">
+    <div class="profile-header">
 
       <span>
         PROFILE // 001
       </span>
 
-      <span class="profile-status">
+      <span class="online">
         ● ONLINE
       </span>
 
@@ -1248,7 +1104,7 @@ body.light .secondary{
     </div>
 
 
-    <div class="line"></div>
+    <div class="divider"></div>
 
 
     <div class="profile-grid">
@@ -1292,7 +1148,7 @@ body.light .secondary{
 
 <div class="container">
 
-  <div class="section-head">
+  <div class="heading">
 
     <small>
       QUICK INFO
@@ -1314,45 +1170,39 @@ body.light .secondary{
 
     <div class="stat">
 
-      <div class="stat-number">
+      <strong>
         01
-      </div>
+      </strong>
 
-      <div class="stat-label">
+      <span>
         Website utama
-      </div>
-
-      <div class="stat-line"></div>
+      </span>
 
     </div>
 
 
     <div class="stat">
 
-      <div class="stat-number">
+      <strong>
         03+
-      </div>
+      </strong>
 
-      <div class="stat-label">
+      <span>
         Project / eksperimen
-      </div>
-
-      <div class="stat-line"></div>
+      </span>
 
     </div>
 
 
     <div class="stat">
 
-      <div class="stat-number">
+      <strong>
         ∞
-      </div>
+      </strong>
 
-      <div class="stat-label">
+      <span>
         Ide random 🗿
-      </div>
-
-      <div class="stat-line"></div>
+      </span>
 
     </div>
 
@@ -1369,7 +1219,7 @@ body.light .secondary{
 
 <div class="container">
 
-  <div class="section-head">
+  <div class="heading">
 
     <small>
       A LITTLE ABOUT ME
@@ -1384,11 +1234,11 @@ body.light .secondary{
 
   <div class="about-preview">
 
-    <div class="about-side">
+    <div class="about-box">
 
-      <strong>
+      <div class="about-number">
         2026
-      </strong>
+      </div>
 
       <span>
         Tahun Digital Space mulai berkembang.
@@ -1397,7 +1247,7 @@ body.light .secondary{
     </div>
 
 
-    <div class="about-main">
+    <div class="about-box">
 
       <p>
         Saya dari budak SMPN 2 Kelumpang Tengah.
@@ -1408,8 +1258,8 @@ body.light .secondary{
       </p>
 
       <a
-        href="About.html"
-        class="text-link">
+        class="more"
+        href="About.html">
 
         Baca lebih lanjut →
 
@@ -1430,7 +1280,7 @@ body.light .secondary{
 
 <div class="container">
 
-  <div class="section-head">
+  <div class="heading">
 
     <small>
       MY WORK
@@ -1532,17 +1382,13 @@ body.light .secondary{
   </div>
 
 
-  <div style="margin-top:25px">
+  <a
+    class="more"
+    href="Projects.html">
 
-    <a
-      href="Project.html"
-      class="text-link">
+    Lihat semua project →
 
-      Lihat semua project →
-
-    </a>
-
-  </div>
+  </a>
 
 </div>
 
@@ -1555,7 +1401,7 @@ body.light .secondary{
 
 <div class="container">
 
-  <div class="section-head">
+  <div class="heading">
 
     <small>
       MY JOURNEY
@@ -1577,4 +1423,159 @@ body.light .secondary{
         01
       </div>
 
-      <div class="event-cont
+      <div class="event-content">
+
+        <h3>
+          Mulai belajar
+        </h3>
+
+        <p>
+          Mulai mencoba membuat website sendiri.
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <div class="event">
+
+      <div class="event-number">
+        02
+      </div>
+
+      <div class="event-content">
+
+        <h3>
+          Website pertama online
+        </h3>
+
+        <p>
+          Project berhasil dipasang menggunakan
+          GitHub Pages.
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <div class="event">
+
+      <div class="event-number">
+        03
+      </div>
+
+      <div class="event-content">
+
+        <h3>
+          Terus eksperimen
+        </h3>
+
+        <p>
+          Mulai menambahkan desain,
+          animasi, dan fitur baru.
+        </p>
+
+      </div>
+
+    </div>
+
+
+  </div>
+
+</div>
+
+</section>
+
+</main>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+  © 2026
+  <span>VIDZ</span>
+  — Dibuat karena gabut 🗿
+
+</footer>
+
+
+<script>
+
+/* =========================
+   THEME
+========================= */
+
+const themeButton =
+document.getElementById("themeButton");
+
+themeButton.addEventListener(
+  "click",
+  function(){
+
+    document.body.classList.toggle("light");
+
+    if(
+      document.body.classList.contains("light")
+    ){
+
+      themeButton.textContent = "☀️";
+
+    }else{
+
+      themeButton.textContent = "🌙";
+
+    }
+
+  }
+);
+
+
+/* =========================
+   EASTER EGG
+========================= */
+
+const logo =
+document.querySelector(".logo");
+
+let clicks = 0;
+let clickTimer = null;
+
+logo.addEventListener(
+  "click",
+  function(){
+
+    clicks++;
+
+    clearTimeout(clickTimer);
+
+    clickTimer = setTimeout(
+      function(){
+
+        clicks = 0;
+
+      },
+      900
+    );
+
+
+    if(clicks === 3){
+
+      alert(
+        "🗿 EASTER EGG FOUND!\n\n" +
+        "Utuh & Enal FUTA LOVERS 🤫"
+      );
+
+      clicks = 0;
+
+    }
+
+  }
+);
+
+</script>
+
+</body>
+</html>
