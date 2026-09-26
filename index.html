@@ -59,9 +59,7 @@ body::after{
   pointer-events:none;
 }
 
-/* =========================
-   NAVBAR
-========================= */
+/* NAVBAR */
 
 nav{
   position:fixed;
@@ -89,6 +87,10 @@ nav{
   user-select:none;
 }
 
+.logo:active{
+  transform:scale(.92);
+}
+
 .navlinks{
   display:flex;
   align-items:center;
@@ -97,7 +99,6 @@ nav{
 
 .navlinks a{
   color:#9aa9bd;
-  text-decoration:none;
   font-size:13px;
   padding:8px 10px;
   border-radius:9px;
@@ -119,9 +120,7 @@ nav{
   cursor:pointer;
 }
 
-/* =========================
-   HERO
-========================= */
+/* HERO */
 
 .hero{
   min-height:100vh;
@@ -173,7 +172,6 @@ nav{
 .btn{
   padding:13px 21px;
   border-radius:12px;
-  text-decoration:none;
   font-weight:bold;
   transition:.25s;
 }
@@ -194,9 +192,7 @@ nav{
   transform:translateY(-4px);
 }
 
-/* =========================
-   PROFILE
-========================= */
+/* PROFILE */
 
 .profile-card{
   padding:30px;
@@ -296,9 +292,7 @@ nav{
   line-height:1.6;
 }
 
-/* =========================
-   TOOLS
-========================= */
+/* TOOLS */
 
 .tools-section{
   padding:90px 7%;
@@ -384,60 +378,55 @@ nav{
 #easterEgg{
   position:fixed;
   inset:0;
-  z-index:99999;
+  z-index:999999;
   display:none;
   overflow:hidden;
   background:#000;
   color:#00ff9d;
   font-family:"Courier New",monospace;
-  cursor:default;
 }
 
 #easterEgg.active{
   display:block;
-  animation:eggAppear .45s ease forwards;
+  animation:eggIn .35s ease forwards;
 }
-
-/* Rain code */
 
 .code-rain{
   position:absolute;
   inset:0;
   overflow:hidden;
-  opacity:.75;
+  opacity:.8;
   pointer-events:none;
 }
 
 .code-column{
   position:absolute;
-  top:-120%;
+  top:-130%;
   white-space:pre;
   color:#00ff9d;
-  font-size:clamp(12px,1.7vw,20px);
+  font-size:clamp(12px,1.8vw,21px);
   line-height:1.05;
   font-weight:bold;
   text-shadow:
     0 0 6px #00ff9d,
     0 0 18px #00ff9d;
-  animation:rainFall linear infinite;
-  user-select:none;
+  animation:rain linear infinite;
 }
 
 .code-column:nth-child(1){left:2%;animation-duration:5s;animation-delay:-2s}
-.code-column:nth-child(2){left:8%;animation-duration:7s;animation-delay:-5s}
-.code-column:nth-child(3){left:15%;animation-duration:4.5s;animation-delay:-1s}
-.code-column:nth-child(4){left:22%;animation-duration:6s;animation-delay:-4s}
-.code-column:nth-child(5){left:30%;animation-duration:5.5s;animation-delay:-3s}
-.code-column:nth-child(6){left:38%;animation-duration:4s;animation-delay:-2s}
-.code-column:nth-child(7){left:46%;animation-duration:6.5s;animation-delay:-5s}
-.code-column:nth-child(8){left:54%;animation-duration:4.8s;animation-delay:-1s}
-.code-column:nth-child(9){left:62%;animation-duration:5.8s;animation-delay:-4s}
-.code-column:nth-child(10){left:70%;animation-duration:4.2s;animation-delay:-2s}
-.code-column:nth-child(11){left:78%;animation-duration:6.2s;animation-delay:-3s}
-.code-column:nth-child(12){left:86%;animation-duration:4.6s;animation-delay:-5s}
-.code-column:nth-child(13){left:94%;animation-duration:5.2s;animation-delay:-1s}
-
-/* Dark cinematic overlay */
+.code-column:nth-child(2){left:9%;animation-duration:7s;animation-delay:-4s}
+.code-column:nth-child(3){left:16%;animation-duration:4s;animation-delay:-1s}
+.code-column:nth-child(4){left:23%;animation-duration:6s;animation-delay:-3s}
+.code-column:nth-child(5){left:30%;animation-duration:5s;animation-delay:-2s}
+.code-column:nth-child(6){left:37%;animation-duration:7s;animation-delay:-5s}
+.code-column:nth-child(7){left:44%;animation-duration:4.5s;animation-delay:-1s}
+.code-column:nth-child(8){left:51%;animation-duration:6s;animation-delay:-4s}
+.code-column:nth-child(9){left:58%;animation-duration:5.5s;animation-delay:-2s}
+.code-column:nth-child(10){left:65%;animation-duration:4s;animation-delay:-3s}
+.code-column:nth-child(11){left:72%;animation-duration:6.5s;animation-delay:-5s}
+.code-column:nth-child(12){left:79%;animation-duration:4.8s;animation-delay:-1s}
+.code-column:nth-child(13){left:86%;animation-duration:5.8s;animation-delay:-4s}
+.code-column:nth-child(14){left:93%;animation-duration:4.3s;animation-delay:-2s}
 
 .egg-dark{
   position:absolute;
@@ -445,82 +434,51 @@ nav{
   background:
     radial-gradient(
       circle at center,
-      transparent 5%,
-      rgba(0,0,0,.35) 45%,
-      rgba(0,0,0,.88) 100%
+      transparent 0%,
+      rgba(0,0,0,.25) 35%,
+      rgba(0,0,0,.92) 100%
     );
   pointer-events:none;
 }
-
-/* Scanlines */
 
 .egg-scanlines{
   position:absolute;
   inset:0;
   background:repeating-linear-gradient(
     to bottom,
-    transparent 0px,
+    transparent 0,
     transparent 3px,
-    rgba(0,255,157,.08) 4px
+    rgba(0,255,157,.09) 4px
   );
-  mix-blend-mode:screen;
   pointer-events:none;
 }
-
-/* Main cinematic box */
 
 .egg-box{
   position:absolute;
   left:50%;
   top:50%;
-  transform:translate(-50%,-50%) scale(.8);
   width:min(950px,92%);
   min-height:420px;
   padding:38px;
-  border:1px solid #00ff9d55;
+  transform:translate(-50%,-50%) scale(.8);
+  opacity:0;
+  border:1px solid #00ff9d66;
   background:
     linear-gradient(
       135deg,
-      rgba(0,20,15,.94),
-      rgba(0,5,8,.92)
+      rgba(0,22,15,.96),
+      rgba(0,5,8,.95)
     );
   box-shadow:
-    0 0 25px #00ff9d22,
-    0 0 100px #00ff9d11,
+    0 0 35px #00ff9d33,
+    0 0 120px #00ff9d11,
     inset 0 0 80px #00ff9d08;
-  opacity:0;
-  animation:boxReveal .8s .25s cubic-bezier(.2,.8,.2,1) forwards;
+  animation:boxIn .7s .15s ease forwards;
 }
-
-.egg-box::before,
-.egg-box::after{
-  content:"";
-  position:absolute;
-  width:45px;
-  height:45px;
-  pointer-events:none;
-}
-
-.egg-box::before{
-  top:-1px;
-  left:-1px;
-  border-top:2px solid #00ff9d;
-  border-left:2px solid #00ff9d;
-}
-
-.egg-box::after{
-  right:-1px;
-  bottom:-1px;
-  border-right:2px solid #00ff9d;
-  border-bottom:2px solid #00ff9d;
-}
-
-/* Terminal heading */
 
 .egg-top{
   display:flex;
   justify-content:space-between;
-  align-items:center;
   margin-bottom:20px;
   color:#00ff9d;
   font-size:10px;
@@ -529,23 +487,21 @@ nav{
 }
 
 .egg-title{
-  position:relative;
   font-size:clamp(32px,7vw,78px);
   font-weight:900;
   letter-spacing:7px;
-  line-height:1;
   color:#eafff7;
   text-shadow:
     3px 0 #ff0055,
     -3px 0 #00e5ff,
     0 0 20px #00ff9d,
     0 0 50px #00ff9d;
-  animation:titleGlitch .13s infinite;
+  animation:titleGlitch .12s infinite;
 }
 
 .egg-line{
-  width:100%;
   height:1px;
+  width:100%;
   margin:25px 0;
   background:linear-gradient(
     90deg,
@@ -557,10 +513,10 @@ nav{
 }
 
 .egg-terminal{
+  min-height:135px;
   color:#8affc9;
   font-size:13px;
   line-height:2;
-  min-height:125px;
 }
 
 .egg-terminal span{
@@ -568,85 +524,49 @@ nav{
   text-shadow:0 0 10px #00ff9d;
 }
 
-.terminal-cursor{
-  display:inline-block;
-  width:7px;
-  height:13px;
-  margin-left:4px;
-  background:#00ff9d;
-  box-shadow:0 0 10px #00ff9d;
-  animation:cursorBlink .5s infinite;
-}
-
-/* Secret text */
-
 .egg-final{
-  position:relative;
   margin-top:20px;
-  padding:18px 10px;
+  padding:18px 5px;
   text-align:center;
   color:#fff;
   font-size:clamp(20px,4.5vw,52px);
   font-weight:900;
   letter-spacing:2px;
-  text-transform:uppercase;
   text-shadow:
     4px 0 #ff0055,
     -4px 0 #00e5ff,
     0 0 15px #fff,
     0 0 35px #00ff9d;
   opacity:0;
-  transform:scale(.7);
-  animation:finalReveal .6s 2.1s cubic-bezier(.2,.8,.2,1) forwards,
-             finalGlitch .12s 2.7s infinite;
+  transform:scale(.6);
+  animation:
+    finalIn .6s 1.8s ease forwards,
+    finalGlitch .12s 2.5s infinite;
 }
-
-.egg-final::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      rgba(0,255,157,.25),
-      transparent
-    );
-  transform:translateX(-120%);
-  animation:finalSweep 1s 2.1s forwards;
-  pointer-events:none;
-}
-
-/* Close */
 
 .egg-close{
   position:absolute;
   top:14px;
   right:16px;
-  z-index:20;
-  border:1px solid #00ff9d33;
-  background:#00110bcc;
-  color:#00ff9d;
+  z-index:10;
   width:35px;
   height:35px;
+  border:1px solid #00ff9d33;
   border-radius:8px;
-  font-size:18px;
+  background:#00110bcc;
+  color:#00ff9d;
   cursor:pointer;
-  transition:.2s;
+  font-size:18px;
 }
 
 .egg-close:hover{
-  color:#fff;
   border-color:#00ff9d;
   box-shadow:0 0 20px #00ff9d55;
-  transform:rotate(90deg);
 }
-
-/* Corner text */
 
 .egg-corner{
   position:absolute;
-  bottom:16px;
+  bottom:15px;
   left:20px;
   color:#00ff9d66;
   font-size:8px;
@@ -655,37 +575,31 @@ nav{
 
 .egg-corner-right{
   position:absolute;
-  bottom:16px;
+  bottom:15px;
   right:20px;
   color:#00ff9d66;
   font-size:8px;
   letter-spacing:2px;
 }
 
-/* Easter Egg animations */
-
-@keyframes eggAppear{
-  0%{
+@keyframes eggIn{
+  from{
     opacity:0;
     filter:brightness(3) contrast(2);
   }
-  25%{
-    opacity:1;
-    filter:brightness(1.7) contrast(1.5);
-  }
-  100%{
+  to{
     opacity:1;
     filter:none;
   }
 }
 
-@keyframes boxReveal{
+@keyframes boxIn{
   0%{
     opacity:0;
     transform:translate(-50%,-50%) scale(.8);
     filter:blur(15px);
   }
-  60%{
+  70%{
     opacity:1;
     transform:translate(-50%,-50%) scale(1.03);
     filter:blur(0);
@@ -696,33 +610,32 @@ nav{
   }
 }
 
-@keyframes rainFall{
+@keyframes rain{
   from{
     transform:translateY(0);
   }
   to{
-    transform:translateY(220vh);
+    transform:translateY(230vh);
   }
 }
 
 @keyframes titleGlitch{
   0%{transform:translate(0)}
-  20%{transform:translate(-3px,1px)}
-  40%{transform:translate(3px,-1px)}
-  60%{transform:translate(-2px,-2px)}
-  80%{transform:translate(2px,2px)}
+  25%{transform:translate(-4px,2px)}
+  50%{transform:translate(4px,-2px)}
+  75%{transform:translate(-2px,-1px)}
   100%{transform:translate(0)}
 }
 
-@keyframes finalReveal{
+@keyframes finalIn{
   0%{
     opacity:0;
-    transform:scale(.65) translateY(20px);
+    transform:scale(.6) translateY(20px);
     filter:blur(12px);
   }
-  60%{
+  70%{
     opacity:1;
-    transform:scale(1.08) translateY(0);
+    transform:scale(1.08);
     filter:blur(0);
   }
   100%{
@@ -733,29 +646,13 @@ nav{
 
 @keyframes finalGlitch{
   0%{transform:translate(0)}
-  25%{transform:translate(-3px,1px)}
-  50%{transform:translate(3px,-1px)}
+  25%{transform:translate(-4px,1px)}
+  50%{transform:translate(4px,-1px)}
   75%{transform:translate(-2px,0)}
   100%{transform:translate(0)}
 }
 
-@keyframes finalSweep{
-  from{
-    transform:translateX(-120%);
-  }
-  to{
-    transform:translateX(120%);
-  }
-}
-
-@keyframes cursorBlink{
-  0%,45%{opacity:1}
-  46%,100%{opacity:0}
-}
-
-/* =========================
-   LIGHT MODE
-========================= */
+/* LIGHT MODE */
 
 body.light{
   color:#111827;
@@ -811,9 +708,7 @@ body.light .tool p{
   color:#526174;
 }
 
-/* =========================
-   MOBILE
-========================= */
+/* MOBILE */
 
 @media(max-width:850px){
 
@@ -905,11 +800,6 @@ body.light .tool p{
   .egg-top{
     font-size:7px;
   }
-
-  .egg-corner,
-  .egg-corner-right{
-    font-size:6px;
-  }
 }
 </style>
 </head>
@@ -917,7 +807,7 @@ body.light .tool p{
 <body>
 
 <!-- =========================
-     CINEMATIC EASTER EGG
+     EASTER EGG
 ========================= -->
 
 <div id="easterEgg">
@@ -1096,6 +986,19 @@ C0
 10
 00</div>
 
+    <div class="code-column">10
+FF
+00
+01
+VIDZ
+A7
+11
+SYSTEM
+09
+C1
+00
+10</div>
+
   </div>
 
   <div class="egg-dark"></div>
@@ -1103,7 +1006,10 @@ C0
 
   <div class="egg-box">
 
-    <button class="egg-close" id="eggClose" type="button">
+    <button
+      class="egg-close"
+      id="eggClose"
+      type="button">
       ✕
     </button>
 
@@ -1121,32 +1027,39 @@ C0
     <div class="egg-terminal">
 
       <div>
-        <span>[SYSTEM]</span> Initializing hidden layer...
+        <span>[SYSTEM]</span>
+        Initializing hidden layer...
       </div>
 
       <div>
-        <span>[SYSTEM]</span> Scanning VIDZ-Web...
+        <span>[SYSTEM]</span>
+        Scanning VIDZ-Web...
       </div>
 
       <div>
-        <span>[SYSTEM]</span> Connection established.
+        <span>[SYSTEM]</span>
+        Connection established.
       </div>
 
       <div>
-        <span>[SYSTEM]</span> Developer signature detected.
+        <span>[SYSTEM]</span>
+        Developer signature detected.
       </div>
 
       <div>
-        <span>[SYSTEM]</span> 🗿 anomaly detected.
+        <span>[SYSTEM]</span>
+        🗿 anomaly detected.
       </div>
 
       <div>
-        <span>[SYSTEM]</span> Secret sequence verified.
+        <span>[SYSTEM]</span>
+        Secret sequence verified.
       </div>
 
       <div>
-        <span>[SYSTEM]</span> Welcome to the hidden layer...
-        <span class="terminal-cursor"></span>
+        <span>[SYSTEM]</span>
+        Welcome to the hidden layer...
+        <span class="terminal-cursor">_</span>
       </div>
 
     </div>
@@ -1167,24 +1080,41 @@ C0
 
 </div>
 
-<!-- =========================
-     NAVBAR
-========================= -->
+<!-- NAVBAR -->
 
 <nav>
 
-  <div class="logo" id="logo">
+  <div
+    class="logo"
+    id="logo"
+    role="button"
+    tabindex="0"
+    aria-label="VIDZ secret button">
     VIDZ.
   </div>
 
   <div class="navlinks">
 
-    <a href="index.html" class="active">Home</a>
-    <a href="About.html">About</a>
-    <a href="Projects.html">Projects</a>
-    <a href="Contact.html">Contact</a>
+    <a href="index.html" class="active">
+      Home
+    </a>
 
-    <button class="theme" id="themeButton" type="button">
+    <a href="About.html">
+      About
+    </a>
+
+    <a href="Projects.html">
+      Projects
+    </a>
+
+    <a href="Contact.html">
+      Contact
+    </a>
+
+    <button
+      class="theme"
+      id="themeButton"
+      type="button">
       🌙
     </button>
 
@@ -1192,9 +1122,7 @@ C0
 
 </nav>
 
-<!-- =========================
-     HERO
-========================= -->
+<!-- HERO -->
 
 <main>
 
@@ -1219,11 +1147,15 @@ C0
 
     <div class="buttons">
 
-      <a href="#tools" class="btn primary">
+      <a
+        href="#tools"
+        class="btn primary">
         Buka Tools →
       </a>
 
-      <a href="Projects.html" class="btn secondary">
+      <a
+        href="Projects.html"
+        class="btn secondary">
         Lihat Project
       </a>
 
@@ -1236,10 +1168,11 @@ C0
     <img
       src="profile.jpg"
       alt="Foto profil VIDZ"
-      class="avatar"
-    >
+      class="avatar">
 
-    <div class="owner-status" id="ownerStatus">
+    <div
+      class="owner-status"
+      id="ownerStatus">
 
       <span class="status-dot"></span>
 
@@ -1290,11 +1223,11 @@ C0
 
 </section>
 
-<!-- =========================
-     TOOLS
-========================= -->
+<!-- TOOLS -->
 
-<section class="tools-section" id="tools">
+<section
+  class="tools-section"
+  id="tools">
 
   <div class="section-head">
 
@@ -1316,7 +1249,6 @@ C0
   <div class="tools">
 
     <div class="tool">
-
       <div class="tool-icon">🧮</div>
 
       <h3>Kalkulator</h3>
@@ -1329,11 +1261,117 @@ C0
       <span class="tool-btn">
         SEGERA
       </span>
-
     </div>
 
     <div class="tool">
-
       <div class="tool-icon">🔄</div>
 
       <h3>Unit Converter</h3>
+
+      <p>
+        Konversi satuan seperti panjang,
+        berat, dan temperatur.
+      </p>
+
+      <span class="tool-btn">
+        SEGERA
+      </span>
+    </div>
+
+    <div class="tool">
+      <div class="tool-icon">🔐</div>
+
+      <h3>Password Generator</h3>
+
+      <p>
+        Membuat password acak untuk membantu
+        meningkatkan keamanan akun.
+      </p>
+
+      <span class="tool-btn">
+        SEGERA
+      </span>
+    </div>
+
+    <div class="tool">
+      <div class="tool-icon">📝</div>
+
+      <h3>Quick Notes</h3>
+
+      <p>
+        Catatan sederhana yang bisa digunakan
+        langsung di browser.
+      </p>
+
+      <span class="tool-btn">
+        SEGERA
+      </span>
+    </div>
+
+    <div class="tool">
+      <div class="tool-icon">⏱️</div>
+
+      <h3>Timer &amp; Stopwatch</h3>
+
+      <p>
+        Timer dan stopwatch sederhana untuk
+        berbagai kebutuhan.
+      </p>
+
+      <span class="tool-btn">
+        SEGERA
+      </span>
+    </div>
+
+    <div class="tool">
+      <div class="tool-icon">📱</div>
+
+      <h3>QR Generator</h3>
+
+      <p>
+        Membuat QR code dari teks atau link
+        dengan cepat.
+      </p>
+
+      <span class="tool-btn">
+        SEGERA
+      </span>
+    </div>
+
+  </div>
+
+</section>
+
+</main>
+
+<script>
+/* =========================
+   THEME
+========================= */
+
+const themeButton =
+  document.getElementById("themeButton");
+
+themeButton.addEventListener("click", function(){
+
+  document.body.classList.toggle("light");
+
+  themeButton.textContent =
+    document.body.classList.contains("light")
+      ? "☀️"
+      : "🌙";
+
+});
+
+
+/* =========================
+   ONLINE / OFFLINE
+========================= */
+
+const ownerStatus =
+  document.getElementById("ownerStatus");
+
+const statusText =
+  document.getElementById("statusText");
+
+f
