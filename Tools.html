@@ -1,0 +1,777 @@
+<!DOCTYPE html><html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#050816">
+<meta name="description" content="VIDZ Toolbox — Tools sederhana yang berguna">
+<title>Tools — VIDZ</title><style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#050816;
+  color:#f5f7ff;
+  overflow-x:hidden;
+}
+
+:root{
+  --cyan:#00e5ff;
+  --green:#00ff9d;
+  --card:#0c1424;
+  --muted:#8292a7;
+  --line:rgba(255,255,255,.08);
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-3;
+  background:
+    radial-gradient(circle at 15% 15%,rgba(0,229,255,.12),transparent 28%),
+    radial-gradient(circle at 85% 75%,rgba(124,58,237,.12),transparent 30%),
+    #050816;
+}
+
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-2;
+  opacity:.025;
+  pointer-events:none;
+  background-image:
+    linear-gradient(#fff 1px,transparent 1px),
+    linear-gradient(90deg,#fff 1px,transparent 1px);
+  background-size:55px 55px;
+}
+
+/* NAVBAR */
+
+.nav-wrap{
+  position:fixed;
+  top:14px;
+  left:50%;
+  transform:translateX(-50%);
+  width:min(1120px,94%);
+  z-index:100;
+}
+
+nav{
+  height:62px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 10px 0 20px;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:rgba(5,8,22,.78);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+}
+
+.logo{
+  color:var(--cyan);
+  font-size:25px;
+  font-weight:900;
+  letter-spacing:-2px;
+  text-decoration:none;
+  text-shadow:0 0 25px rgba(0,229,255,.35);
+}
+
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:3px;
+}
+
+.nav-links a{
+  padding:9px 12px;
+  border-radius:9px;
+  color:#8996aa;
+  font-size:11px;
+  font-weight:bold;
+  text-decoration:none;
+  transition:.2s;
+}
+
+.nav-links a:hover,
+.nav-links a.active{
+  color:var(--cyan);
+  background:rgba(0,229,255,.06);
+}
+
+.theme{
+  width:38px;
+  height:38px;
+  margin-left:5px;
+  border:1px solid var(--line);
+  border-radius:10px;
+  background:#ffffff08;
+  color:white;
+  cursor:pointer;
+}
+
+/* PAGE */
+
+.page{
+  min-height:100vh;
+  padding:145px 0 80px;
+}
+
+.container{
+  width:min(1100px,92%);
+  margin:auto;
+}
+
+.badge{
+  width:max-content;
+  padding:8px 13px;
+  border:1px solid rgba(0,229,255,.18);
+  border-radius:30px;
+  color:#8291a5;
+  background:rgba(0,229,255,.04);
+  font-size:9px;
+  font-weight:bold;
+  letter-spacing:2px;
+}
+
+h1{
+  margin-top:25px;
+  font-size:clamp(48px,8vw,85px);
+  line-height:.9;
+  letter-spacing:-6px;
+}
+
+h1 span{
+  color:var(--cyan);
+  text-shadow:0 0 35px rgba(0,229,255,.3);
+}
+
+.intro{
+  max-width:700px;
+  margin-top:25px;
+  color:var(--muted);
+  font-size:15px;
+  line-height:1.9;
+}
+
+/* TOOLS */
+
+.tools{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+  margin-top:50px;
+}
+
+.tool{
+  padding:25px;
+  border:1px solid var(--line);
+  border-radius:22px;
+  background:rgba(12,20,36,.75);
+  transition:.3s;
+}
+
+.tool:hover{
+  transform:translateY(-6px);
+  border-color:rgba(0,229,255,.28);
+  box-shadow:0 20px 50px rgba(0,0,0,.25);
+}
+
+.icon{
+  width:52px;
+  height:52px;
+  display:grid;
+  place-items:center;
+  border:1px solid var(--line);
+  border-radius:15px;
+  background:#ffffff06;
+  font-size:23px;
+  margin-bottom:18px;
+}
+
+.tool h2{
+  font-size:18px;
+  margin-bottom:8px;
+}
+
+.tool p{
+  color:#718096;
+  font-size:11px;
+  line-height:1.7;
+  margin-bottom:18px;
+}
+
+textarea,
+input,
+select{
+  width:100%;
+  border:1px solid var(--line);
+  border-radius:11px;
+  outline:none;
+  padding:11px;
+  background:#050816;
+  color:white;
+  font:inherit;
+}
+
+textarea{
+  min-height:100px;
+  resize:vertical;
+}
+
+input:focus,
+textarea:focus,
+select:focus{
+  border-color:rgba(0,229,255,.5);
+}
+
+.tool button{
+  border:0;
+  border-radius:10px;
+  padding:10px 13px;
+  margin-top:10px;
+  background:var(--cyan);
+  color:#001017;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.tool button.secondary{
+  background:#ffffff0a;
+  color:white;
+  border:1px solid var(--line);
+}
+
+.result{
+  margin-top:12px;
+  padding:11px;
+  border-radius:10px;
+  background:#ffffff05;
+  color:var(--cyan);
+  font-size:12px;
+  min-height:20px;
+  word-break:break-word;
+}
+
+/* POMODORO */
+
+.timer{
+  text-align:center;
+  font-size:42px;
+  font-weight:900;
+  letter-spacing:3px;
+  color:var(--green);
+  text-shadow:0 0 20px rgba(0,255,157,.25);
+  margin:10px 0;
+}
+
+.timer-buttons{
+  display:flex;
+  gap:8px;
+}
+
+.timer-buttons button{
+  flex:1;
+}
+
+/* COLOR */
+
+.color-preview{
+  height:70px;
+  border-radius:13px;
+  margin-top:12px;
+  border:1px solid var(--line);
+  background:#00e5ff;
+}
+
+.color-value{
+  text-align:center;
+  margin-top:10px;
+  color:var(--cyan);
+  font-family:monospace;
+}
+
+/* CALCULATOR */
+
+.calc-display{
+  text-align:right;
+  font-size:25px;
+  padding:15px;
+  margin-bottom:10px;
+  overflow:hidden;
+  background:#00000030;
+  border:1px solid var(--line);
+  border-radius:12px;
+  font-family:monospace;
+}
+
+.calc-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:6px;
+}
+
+.calc-grid button{
+  margin:0;
+  padding:13px 5px;
+  background:#ffffff08;
+  color:white;
+  border:1px solid var(--line);
+}
+
+.calc-grid button:hover{
+  background:#00e5ff15;
+}
+
+.calc-grid .operator{
+  color:var(--cyan);
+}
+
+/* BACK */
+
+.back{
+  display:inline-block;
+  margin-top:35px;
+  color:var(--cyan);
+  font-size:11px;
+  font-weight:bold;
+  text-decoration:none;
+}
+
+footer{
+  padding:40px 20px;
+  border-top:1px solid var(--line);
+  text-align:center;
+  color:#586579;
+  font-size:10px;
+}
+
+footer span{
+  color:var(--cyan);
+}
+
+/* LIGHT MODE */
+
+body.light{
+  background:#f1f6fa;
+  color:#101827;
+}
+
+body.light::before{
+  background:
+    radial-gradient(circle at 10% 10%,#d4faff,transparent 28%),
+    radial-gradient(circle at 90% 75%,#e9ddff,transparent 30%),
+    #f1f6fa;
+}
+
+body.light nav{
+  background:rgba(255,255,255,.85);
+}
+
+body.light .nav-links a{
+  color:#475569;
+}
+
+body.light .nav-links a.active{
+  color:#008ca0;
+}
+
+body.light .theme{
+  color:#101827;
+}
+
+body.light .tool{
+  background:rgba(255,255,255,.85);
+  border-color:rgba(0,0,0,.08);
+}
+
+body.light .tool p{
+  color:#526174;
+}
+
+body.light input,
+body.light textarea,
+body.light select{
+  background:white;
+  color:#101827;
+  border-color:rgba(0,0,0,.1);
+}
+
+body.light .calc-display{
+  background:#ffffff;
+  color:#101827;
+}
+
+body.light .calc-grid button{
+  color:#101827;
+}
+
+/* MOBILE */
+
+@media(max-width:850px){
+  .tools{
+    grid-template-columns:1fr 1fr;
+  }
+}
+
+@media(max-width:650px){
+
+  .nav-wrap{
+    top:8px;
+  }
+
+  nav{
+    height:57px;
+  }
+
+  .nav-links a{
+    display:none;
+  }
+
+  .page{
+    padding-top:120px;
+  }
+
+  h1{
+    font-size:55px;
+    letter-spacing:-4px;
+  }
+
+  .tools{
+    grid-template-columns:1fr;
+  }
+}
+</style></head><body><div class="nav-wrap">
+<nav><a class="logo" href="index.html">VIDZ.</a>
+
+<div class="nav-links">
+<a href="index.html">Home</a>
+<a href="About.html">About</a>
+<a href="Projects.html">Project</a>
+<a href="Tools.html" class="active">Tools</a>
+<a href="Contact.html">Contact</a><button class="theme" id="themeButton" type="button">🌙</button>
+
+</div></nav>
+</div><main class="page"><div class="container"><div class="badge">VIDZ TOOLBOX</div><h1>
+USEFUL<br>
+<span>TOOLS.</span>
+</h1><p class="intro">
+Kumpulan tools sederhana yang bisa langsung digunakan
+di browser. Tidak perlu install aplikasi tambahan.
+Cocok buat belajar, tugas, atau sekadar iseng 🗿.
+</p><div class="tools"><!-- TEXT COUNTER --><div class="tool"><div class="icon">📝</div><h2>Text Counter</h2><p>Hitung jumlah kata, karakter, dan baris.</p><textarea id="counterText" placeholder="Tulis atau paste teks di sini..."></textarea><div class="result" id="counterResult">
+0 kata • 0 karakter • 0 baris
+</div></div><!-- CASE CONVERTER --><div class="tool"><div class="icon">🔤</div><h2>Case Converter</h2><p>Ubah teks menjadi huruf besar atau kecil.</p><textarea id="caseText" placeholder="Masukkan teks..."></textarea><button onclick="upperCase()">UPPERCASE</button>
+<button class="secondary" onclick="lowerCase()">lowercase</button>
+
+</div><!-- UNIT CONVERTER --><div class="tool"><div class="icon">📏</div><h2>Konversi Satuan</h2><p>Konversi kilometer, meter, centimeter, dan milimeter.</p><input id="unitInput" type="number" placeholder="Masukkan angka"><select id="unitFrom">
+<option value="km">Kilometer</option>
+<option value="m">Meter</option>
+<option value="cm">Centimeter</option>
+<option value="mm">Milimeter</option>
+</select><select id="unitTo">
+<option value="m">Meter</option>
+<option value="km">Kilometer</option>
+<option value="cm">Centimeter</option>
+<option value="mm">Milimeter</option>
+</select><button onclick="convertUnit()">Konversi</button>
+
+<div class="result" id="unitResult">Hasil akan muncul di sini</div></div><!-- POMODORO --><div class="tool"><div class="icon">⏱️</div><h2>Pomodoro</h2><p>Timer belajar 25 menit agar belajar lebih teratur.</p><div class="timer" id="timer">25:00</div><div class="timer-buttons">
+<button onclick="startTimer()">START</button>
+<button class="secondary" onclick="resetTimer()">RESET</button>
+</div></div><!-- COLOR PICKER --><div class="tool"><div class="icon">🎨</div><h2>Color Picker</h2><p>Pilih warna dan dapatkan kode HEX-nya.</p><input
+type="color"
+id="colorPicker"
+value="#00e5ff"
+
+«»
+
+<div
+  class="color-preview"
+  id="colorPreview">
+</div><div
+  class="color-value"
+  id="colorValue">
+#00E5FF
+</div></div><!-- CALCULATOR --><div class="tool"><div class="icon">🧮</div><h2>Kalkulator</h2><p>Kalkulator sederhana untuk perhitungan cepat.</p><div class="calc-display" id="calcDisplay">0</div><div class="calc-grid"><button onclick="calcInput('7')">7</button>
+<button onclick="calcInput('8')">8</button>
+<button onclick="calcInput('9')">9</button>
+<button class="operator" onclick="calcInput('/')">÷</button>
+
+<button onclick="calcInput('4')">4</button>
+<button onclick="calcInput('5')">5</button>
+<button onclick="calcInput('6')">6</button>
+<button class="operator" onclick="calcInput('*')">×</button>
+
+<button onclick="calcInput('1')">1</button>
+<button onclick="calcInput('2')">2</button>
+<button onclick="calcInput('3')">3</button>
+<button class="operator" onclick="calcInput('-')">−</button>
+
+<button onclick="calcInput('0')">0</button>
+<button onclick="calcInput('.')">.</button>
+<button onclick="calculate()">=</button>
+<button class="operator" onclick="calcInput('+')">+</button>
+
+<button onclick="clearCalc()" style="grid-column:1/-1">
+CLEAR
+</button></div></div></div><a class="back" href="index.html">
+← Kembali ke Home
+</a></div></main><footer>
+© 2026 <span>VIDZ</span> — VIDZ Toolbox 🗿
+</footer><script>
+
+/* =========================
+   THEME
+========================= */
+
+const themeButton =
+document.getElementById("themeButton");
+
+themeButton.addEventListener("click",function(){
+
+  document.body.classList.toggle("light");
+
+  themeButton.textContent =
+    document.body.classList.contains("light")
+    ? "☀️"
+    : "🌙";
+
+});
+
+
+/* =========================
+   TEXT COUNTER
+========================= */
+
+const counterText =
+document.getElementById("counterText");
+
+counterText.addEventListener("input",function(){
+
+  const text=this.value;
+
+  const characters=text.length;
+
+  const words=text.trim()
+    ? text.trim().split(/\s+/).length
+    : 0;
+
+  const lines=text
+    ? text.split("\n").length
+    : 0;
+
+  document.getElementById("counterResult").textContent =
+    `${words} kata • ${characters} karakter • ${lines} baris`;
+
+});
+
+
+/* =========================
+   CASE CONVERTER
+========================= */
+
+function upperCase(){
+
+  const box=document.getElementById("caseText");
+
+  box.value=box.value.toUpperCase();
+
+}
+
+function lowerCase(){
+
+  const box=document.getElementById("caseText");
+
+  box.value=box.value.toLowerCase();
+
+}
+
+
+/* =========================
+   UNIT CONVERTER
+========================= */
+
+function convertUnit(){
+
+  const value=parseFloat(
+    document.getElementById("unitInput").value
+  );
+
+  const from=
+    document.getElementById("unitFrom").value;
+
+  const to=
+    document.getElementById("unitTo").value;
+
+  if(isNaN(value)){
+
+    document.getElementById("unitResult").textContent=
+      "Masukkan angka terlebih dahulu.";
+
+    return;
+
+  }
+
+  const meter={
+    km:1000,
+    m:1,
+    cm:.01,
+    mm:.001
+  };
+
+  const result =
+    value * meter[from] / meter[to];
+
+  document.getElementById("unitResult").textContent =
+    `${result} ${to}`;
+
+}
+
+
+/* =========================
+   POMODORO
+========================= */
+
+let timeLeft=25*60;
+let timerInterval=null;
+
+function updateTimer(){
+
+  const minutes=
+    Math.floor(timeLeft/60);
+
+  const seconds=
+    timeLeft%60;
+
+  document.getElementById("timer").textContent =
+    `${String(minutes).padStart(2,"0")}:${String(seconds).padStart(2,"0")}`;
+
+}
+
+function startTimer(){
+
+  if(timerInterval) return;
+
+  timerInterval=setInterval(function(){
+
+    if(timeLeft<=0){
+
+      clearInterval(timerInterval);
+      timerInterval=null;
+
+      alert("⏱️ Waktu selesai! Istirahat dulu.");
+      return;
+
+    }
+
+    timeLeft--;
+    updateTimer();
+
+  },1000);
+
+}
+
+function resetTimer(){
+
+  clearInterval(timerInterval);
+
+  timerInterval=null;
+  timeLeft=25*60;
+
+  updateTimer();
+
+}
+
+
+/* =========================
+   COLOR PICKER
+========================= */
+
+const colorPicker=
+document.getElementById("colorPicker");
+
+colorPicker.addEventListener("input",function(){
+
+  const color=this.value;
+
+  document.getElementById("colorPreview")
+    .style.background=color;
+
+  document.getElementById("colorValue")
+    .textContent=color.toUpperCase();
+
+});
+
+
+document.getElementById("colorPreview")
+  .style.background=colorPicker.value;
+
+
+/* =========================
+   CALCULATOR
+========================= */
+
+let calcExpression="";
+
+function calcInput(value){
+
+  calcExpression+=value;
+
+  document.getElementById("calcDisplay")
+    .textContent=calcExpression;
+
+}
+
+function clearCalc(){
+
+  calcExpression="";
+
+  document.getElementById("calcDisplay")
+    .textContent="0";
+
+}
+
+function calculate(){
+
+  if(!calcExpression) return;
+
+  try{
+
+    /* Hanya ekspresi kalkulator dasar */
+    if(!/^[0-9+\-*/.() ]+$/.test(calcExpression)){
+      throw new Error();
+    }
+
+    const result=Function(
+      `"use strict";return (${calcExpression})`
+    )();
+
+    calcExpression=String(result);
+
+    document.getElementById("calcDisplay")
+      .textContent=calcExpression;
+
+  }catch{
+
+    calcExpression="";
+
+    document.getElementById("calcDisplay")
+      .textContent="ERROR";
+
+  }
+
+}
+
+</script></body>
+  </html>
